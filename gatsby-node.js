@@ -11,7 +11,7 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allWordpressPage {
+      pages {
         edges {
           node {
             id
@@ -54,7 +54,7 @@ exports.createPages = ({ actions, graphql }) => {
     .then(() => {
       return graphql(`
         {
-          allWordpressPost {
+          posts {
             edges {
               node {
                 id
@@ -106,7 +106,7 @@ exports.createPages = ({ actions, graphql }) => {
     .then(() => {
       return graphql(`
         {
-          allWordpressCategory(filter: { count: { gt: 0 } }) {
+          categories(filter: { count: { gt: 0 } }) {
             edges {
               node {
                 id
@@ -141,7 +141,7 @@ exports.createPages = ({ actions, graphql }) => {
     .then(() => {
       return graphql(`
         {
-          allWordpressTag(filter: { count: { gt: 0 } }) {
+          tags(filter: { count: { gt: 0 } }) {
             edges {
               node {
                 id
@@ -177,7 +177,7 @@ exports.createPages = ({ actions, graphql }) => {
     .then(() => {
       return graphql(`
         {
-          allWordpressWpUsers {
+          users {
             edges {
               node {
                 id
