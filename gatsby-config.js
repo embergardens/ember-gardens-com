@@ -3,7 +3,7 @@ module.exports = {
     title: 'Ember Gardens',
   },
   plugins: [
-    // Gatsby Cloud =====================================----=========
+    // Gatsby Cloud ====================================
     `gatsby-plugin-gatsby-cloud`,
 
     // Wordpress =======================================

@@ -18,8 +18,7 @@ const BlogIndex = ({
         <Seo title="All posts" />
         <Bio />
         <p>
-          No blog posts found. Add posts to your WordPress site and they'll
-          appear here!
+          No blog posts found here!
         </p>
       </Layout>
     )
@@ -33,7 +32,7 @@ const BlogIndex = ({
 
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const title = post.title
+          const { title } = post.title
 
           return (
             <li key={post.uri}>
