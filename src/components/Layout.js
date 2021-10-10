@@ -2,7 +2,7 @@ import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
 
-const Layout = ({ isHomePage, children }) => {
+export default ({ isHomePage, children }) => {
   const {
     wp: {
       generalSettings: { title },
@@ -41,5 +41,3 @@ const Layout = ({ isHomePage, children }) => {
     </div>
   )
 }
-
-export default Layout
