@@ -48,6 +48,12 @@ module.exports = {
           perPage: 50,
           timeout: 60000,
         },
+        auth: {
+          htaccess: {
+            username: process.env.HTTPBASICAUTH_USERNAME || `flywheel`,
+            password: process.env.HTTPBASICAUTH_PASSWORD || `optimal-brain`,
+          }
+        },
         debug: {
           graphql: {
             showQueryOnError: true,
