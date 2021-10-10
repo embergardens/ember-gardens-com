@@ -2,7 +2,7 @@ const globImporter = require('node-sass-glob-importer')
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + WordPress Starter',
+    title: 'Ember Gardens',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -15,8 +15,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Ember Gardens`,
+        short_name: `Ember Gardens`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -43,7 +43,7 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `http://legion.timothyspears.com/graphql`,
+        url: `https://admin-embergardens.flywheelsites.com/graphql`,
         schema: {
           perPage: 50,
           timeout: 60000,
