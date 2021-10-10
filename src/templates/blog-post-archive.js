@@ -32,7 +32,7 @@ const BlogIndex = ({
 
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const { title } = post.title
+          const title = post.title
 
           return (
             <li key={post.uri}>
