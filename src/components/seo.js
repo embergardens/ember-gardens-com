@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
+import * as React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-export default ({ description, lang, meta, title }) => {
-  const { wp, wpUser } = useStaticQuery(
+const Seo = ({ description, lang, meta, title }) => {
+  const { wp } = useStaticQuery(
     graphql`
       query {
         wp {
@@ -20,10 +20,11 @@ export default ({ description, lang, meta, title }) => {
             description
           }
         }
-
-        # if there's more than one user this would need to be filtered to the main user
-        wpUser {
-          twitter: name
+        site {
+          siteMetadata {
+            title
+            description
+          }
         }
       }
     `
@@ -62,7 +63,7 @@ export default ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:creator`,
-          content: wpUser?.twitter || ``,
+          content: `Ember Gardens`,
         },
         {
           name: `twitter:title`,
@@ -89,3 +90,5 @@ Seo.propTypes = {
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
+
+export default Seo

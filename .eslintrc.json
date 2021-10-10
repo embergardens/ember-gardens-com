@@ -7,8 +7,10 @@
     "react/require-default-props": "off",
     "react/prop-types": "off",
     "react/no-danger": "off",
+    "react/jsx-indent": "off",
     "import/no-named-as-default": "off",
-    "import/no-named-as-default-member": "off"
+    "import/no-named-as-default-member": "off",
+    "import/prefer-default-export": "off"
   },
   "settings": {
     "import/core-modules": []
