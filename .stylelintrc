@@ -1,6 +1,14 @@
 {
-    "extends": "stylelint-config-standard",
+    "extends": [
+            "stylelint-config-standard",
+            "stylelint-config-wordpress"
+	],
+    "plugins": ["stylelint-a11y"],
     "rules": {
-        "indentation": 4
+        "indentation": 4,
+        "font-family-no-missing-generic-family-keyword": null,
+		"no-descending-specificity": null,
+		"a11y/no-outline-none": true,
+		"a11y/selector-pseudo-class-focus": true
     }
 }
