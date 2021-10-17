@@ -10,7 +10,8 @@
     "react/jsx-indent": "off",
     "import/no-named-as-default": "off",
     "import/no-named-as-default-member": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "prefer-destructuring": "off",
   },
   "settings": {
     "import/core-modules": []
