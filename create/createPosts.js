@@ -2,10 +2,7 @@ const postTemplate = require.resolve("../src/templates/posts/index.js")
 
 const GET_POSTS = `
    query GET_POSTS {
-      allWpPost(limit: 10) {
-         pageInfo {
-            hasNextPage
-         }
+      allWpPost {
          edges {
             node {
                title
@@ -23,8 +20,6 @@ const GET_POSTS = `
 
 
 const allPosts = []
-let postNumber = 0
-const itemsPerPost = 10
 
 /**
  * This is the export which Gatbsy will use to process.
@@ -58,8 +53,7 @@ const fetchPosts = async (variables) =>
     */
    const {
       allWpPost: {
-         edges,
-         pageInfo: { hasNextPage },
+         edges
       },
    } = data
 
@@ -71,21 +65,6 @@ const fetchPosts = async (variables) =>
       allPosts.push(posts)
    })
 
-   /**
-    * If there's another post, fetch more
-    * so we can have all the data we need.
-    */
-   if (hasNextPage) {
-      postNumber++
-      reporter.info(`fetch post ${postNumber} of posts...`)
-      return fetchPosts({ first: itemsPerPost })
-   }
-
-   /**
-    * Once we're done, return all the posts
-    * so we can create the necessary posts with
-    * all the data on hand.
-    */
    return allPosts
    })
 
@@ -93,7 +72,7 @@ const fetchPosts = async (variables) =>
    * Kick off our `fetchPosts` method which will get us all
    * the posts we need to create individual posts.
    */
-   await fetchPosts({ first: itemsPerPost }).then((wpPosts) => {
+   await fetchPosts().then((wpPosts) => {
 
       wpPosts && wpPosts.map((post) => {
       /**

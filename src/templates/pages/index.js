@@ -3,11 +3,11 @@ import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 
 const Page = ({ pageContext }) => {
-   const page = pageContext.page
+   const { page } = pageContext
 
    return (
       <Layout>
-         <Seo title={page.title} />
+         <Seo title={page.isFrontPage ? 'Home' : page.title} />
 
          <h1>
             {page.title}
