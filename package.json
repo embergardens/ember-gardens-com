@@ -8,6 +8,7 @@
     "url": "https://github.com/embergardens/ember-gardens-com/issues"
   },
   "dependencies": {
+    "dotenv": "^8.6.0",
     "gatsby": "^4.0.0",
     "gatsby-cli": "^4.0.0",
     "gatsby-plugin-gatsby-cloud": "^4.0.0",

@@ -1,6 +1,18 @@
+require("dotenv").config({
+  path: `.env`,
+})
+
+// require .env.development or .env.production
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: 'Ember Gardens',
+    description: `A GatsbyJS website.`,
+    author: `@embergardens`,
+    siteUrl: process.env.SITE_URL,
   },
   plugins: [
     // Gatsby Cloud ====================================
@@ -14,6 +26,15 @@ module.exports = {
         schema: {
           perPage: 50,
           timeout: 60000,
+        },
+        html: {
+          useGatsbyImage: true,
+          // gatsbyImageOptions: {},
+          // imageMaxWidth: 1024,
+          // fallbackImageMaxWidth: 800,
+          // imageQuality: 90,
+          // createStaticFiles: true,
+          generateWebpImages: true,
         },
         auth: {
           htaccess: {
@@ -34,8 +55,8 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `assets`,
-        path: `${__dirname}/content/assets`,
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
       },
     },
 

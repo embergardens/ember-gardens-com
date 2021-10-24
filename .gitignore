@@ -55,6 +55,9 @@ typings/
 
 # dotenv environment variable files
 .env*
+.env.*
+!.env.GATSBY_CONCURRENT_DOWNLOAD
+!.env.example
 
 # gatsby files
 .cache/
