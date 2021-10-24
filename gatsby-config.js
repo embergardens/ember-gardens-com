@@ -39,8 +39,9 @@ module.exports = {
     },
 
     // Gatsby Image Plugins =======================================
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
 
     // Manifest =======================================
     {
