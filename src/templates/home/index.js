@@ -4,12 +4,12 @@ import FeaturedMedia from '../../components/FeaturedMedia'
 import Layout from '../../components/Layout'
 import Seo from '../../components/Seo'
 
-const Page = ({ data }) => {
-   const { page } = data
+const Home = ({ data }) => {
+   const { page, template } = data
    const { title, content, featuredImage, excerpt, databaseId, uri } = page
 
    return (
-      <Layout>
+      <Layout className={ `${template}-template` }>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
 
          <FeaturedMedia image={featuredImage} />
@@ -22,10 +22,10 @@ const Page = ({ data }) => {
 }
 
 export const query = graphql`
-   query page($id: String!) {
+   query home($id: String!) {
       page: wpPage(id: { eq: $id }) {
          ...PageContent
       }
    }
 `
-export default Page
+export default Home
