@@ -8,9 +8,6 @@ const GET_PAGES = `
                title
                uri
                id
-               slug
-               status
-               databaseId
                isFrontPage
                content
             }
@@ -53,6 +50,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
                path: pagePath,
                component: pageTemplate,
                context: {
+                  id: page.node.id,
                   page: page.node,
                }
             })

@@ -8,9 +8,6 @@ const GET_POSTS = `
                title
                uri
                id
-               slug
-               status
-               databaseId
                content
             }
          }
@@ -84,6 +81,7 @@ const fetchPosts = async (variables) =>
          path: path,
          component: postTemplate,
          context: {
+            id: post.node.id,
             post: post.node,
          },
       })

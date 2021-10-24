@@ -75,7 +75,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/img/github-icon.svg`,
+        icon: `src/assets/images/gatsby-icon.png`,
       },
     },
 
