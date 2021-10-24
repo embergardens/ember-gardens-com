@@ -1,4 +1,5 @@
 const pageTemplate = require.resolve('../src/templates/pages/index.js')
+const homepageTemplate = require.resolve('../src/templates/home/index.js')
 
 const GET_PAGES = `
    query GET_PAGES {
@@ -9,7 +10,7 @@ const GET_PAGES = `
                uri
                id
                isFrontPage
-               content
+               template
             }
          }
       }
@@ -48,7 +49,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
             createPage({
                path: pagePath,
-               component: pageTemplate,
+               component: page.node.isFrontPage ? homepageTemplate : pageTemplate,
                context: {
                   id: page.node.id,
                   page: page.node,

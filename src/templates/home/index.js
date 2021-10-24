@@ -14,7 +14,7 @@ const Page = ({ data }) => {
 
          <FeaturedMedia image={featuredImage} />
          <h1>
-            {title}
+            Welcome to EmberGardens
          </h1>
          <div dangerouslySetInnerHTML={{__html: content}} />
       </Layout>
