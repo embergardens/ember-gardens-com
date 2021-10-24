@@ -1,7 +1,7 @@
-const createPages = require('./create/createPages')
-const createPosts = require('./create/createPosts')
+const createWpPages = require('./create/createPages')
+const createWpPosts = require('./create/createPosts')
 
-exports.createPagesStatefully = async ({ graphql, actions, reporter }, options) => {
-  await createPages({ actions, graphql, reporter }, options)
-  await createPosts({ actions, graphql, reporter }, options)
+exports.createPages = async ({ graphql, actions, reporter }, options) => {
+  await createWpPages({ actions, graphql, reporter }, options)
+  await createWpPosts({ actions, graphql, reporter }, options)
 }
