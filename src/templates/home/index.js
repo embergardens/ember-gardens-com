@@ -9,9 +9,9 @@ const Home = ({ data }) => {
    const { title, content, featuredImage, excerpt, databaseId, uri } = page
 
    return (
-      <Layout className={ `${template}-template` }>
+      <Layout>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
-
+         <div className={ `${template}-template` } ></div>
          <FeaturedMedia image={featuredImage} />
          <h1>
             Welcome to EmberGardens
