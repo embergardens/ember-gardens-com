@@ -1,12 +1,11 @@
 import React  from "react"
-import Layout from '../../components/Layout'
-import Seo from '../../components/Seo'
+import Seo from '../../components/layout/Seo'
 
 const Post = ({ pageContext }) => {
    const post = pageContext.post
 
    return (
-      <Layout>
+      <>
 
          <Seo title={post.title} />
          <h1>
@@ -14,7 +13,7 @@ const Post = ({ pageContext }) => {
          </h1>
          <div dangerouslySetInnerHTML={{__html: post.content}} />
 
-      </Layout>
+      </>
    )
 }
 

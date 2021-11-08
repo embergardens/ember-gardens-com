@@ -1,4 +1,5 @@
 const _ = require('lodash')
+
 const pageTemplate = require.resolve('../src/templates/pages/index.js')
 const homepageTemplate = require.resolve('../src/templates/home/index.js')
 
