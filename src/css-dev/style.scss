@@ -1,7 +1,10 @@
 // normalize CSS across browsers
 @import "./normalize.css";
 
-@import './abstracts/base';
-@import './abstracts/variables';
-
-@import './templates/layout';
+@import './abstracts';
+@import './atoms';
+@import './molecules';
+@import './organisms';
+@import './pages';
+@import './templates';
+@import './utilities';

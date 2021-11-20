@@ -3,8 +3,14 @@ import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
 
 // custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
+import "@fontsource/titillium-web/200.css"
+import "@fontsource/titillium-web/300.css"
+import "@fontsource/titillium-web/300-italic.css"
+import "@fontsource/titillium-web/400.css"
+import "@fontsource/titillium-web/400-italic.css"
+import "@fontsource/titillium-web/600.css"
+import "@fontsource/titillium-web/700.css"
+import "@fontsource/titillium-web/900.css"
 
 // custom CSS styles
 import "./src/css-dev/style.scss"

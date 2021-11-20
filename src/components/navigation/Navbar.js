@@ -1,27 +1,29 @@
+/* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import React from 'react'
+import { useRecoilState} from 'recoil'
+
+// Hooks -----------------------------------------------------------
+import { BreakpointNotMobile } from '../utility/Breakpoints'
 
 // Store -----------------------------------------------------------
 import { navOpenState } from '../../store/navigation'
-import { isNotMobileState } from '../../store/global'
 
 // =================================================================
 
 export const Navbar = () => {
-   const isNotMobile = useRecoilValue( isNotMobileState )
 
    return (
       <nav>
          <NavTrigger />
          <NavTitle />
-         { isNotMobile &&
+         <BreakpointNotMobile>
             <>
                <NavLink1 />
                <NavLink2 />
                <NavLocations />
             </>
-         }
+         </BreakpointNotMobile>
          <NavInstagram />
       </nav>
    )
