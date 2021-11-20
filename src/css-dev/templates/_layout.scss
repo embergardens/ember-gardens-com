@@ -1,4 +1,41 @@
-.globalWrapper {
+.viewport {
+   display: grid;
+   height: 100vh;
+   margin: 0;
+   padding: 0;
+   position: fixed;
+   width: 100vw;
+
+   @include breakpoint( md ) {
+      grid-template-columns: min-content 1fr;
+   }
+
+}
+
+.viewportInner {
+   position: relative;
+	z-index: 400;
+}
+
+.viewportMain {
+   background: $color-grayscale-f;
+	// height: calc(100vh - 64px);
+	// margin: $mobileNavHeight 0;
+	transition: opacity 250ms ease-in-out;
+	width: 100vw;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	@include breakpoint( md ) {
+      height: 100vh;
+		margin: 0 0 60px;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
+
+.contentWrapper {
    margin: var(--spacing-0) auto;
    max-width: var(--maxWidth-wrapper);
    padding: var(--spacing-10) var(--spacing-5);

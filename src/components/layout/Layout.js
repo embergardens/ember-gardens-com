@@ -1,5 +1,5 @@
 // React / Gatsby --------------------------------------------------
-import React from "react"
+import React, { useRef } from "react"
 
 // Plugins ---------------------------------------------------------
 
@@ -12,12 +12,18 @@ import { Navbar } from "../navigation/Navbar"
 // =================================================================
 
 const Layout = ({ isHomePage, children }) => {
-
+  const scrollRef = useRef()
+	// const { scrollYProgress } = useElementScroll(scrollRef)
   return (
-    <div className="globalWrapper" data-is-root-path={isHomePage}>
+    <div className="viewport" data-is-root-path={isHomePage}>
       <Helmet title="Ember Gardens" />
       <Navbar />
-      <div className="contentWrapper">{children}</div>
+      {/* MegaMenu */}
+      <div className="viewportInner">
+        <div className='viewportMain' ref={scrollRef}>
+          {children}
+        </div>
+      </div>
     </div>
   )
 }

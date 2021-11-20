@@ -1,0 +1,13 @@
+.navBar {
+   background: $color-grayscale-f;
+   box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
+   display: flex;
+   width: 100vw;
+
+   @include breakpoint( md ) {
+      flex-direction: column;
+      height: 100vh;
+      width: auto;
+   }
+
+}

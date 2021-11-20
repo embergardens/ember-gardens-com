@@ -1,0 +1,177 @@
+// -----------------------------------------------------------------
+// Colors
+// -----------------------------------------------------------------
+
+// Tint Hue
+//
+// A color to tint your grays with.
+// Affects grayscale variables.
+
+$tint-hue: none !default;
+
+// Tint Saturation
+//
+// The amount to tint your grays, from 0-100%.
+// This will affect the maximum saturation of your tint.
+
+$tint-saturation: 15% !default;
+
+// Tint Color Function
+//
+// A tinting helper function for grayscale variables.
+// If you're adding your own grays and want to take advantage
+// of tinting, you can use this function to tint your grays.
+//
+// The actual tint is dependent on two variables: `$tint-hue`,
+// which is the color to use as a tint, and `$tint-saturation`,
+// which is the maximum saturation of that tint. More saturation
+// happens with dark colors, less or none with very light colors.
+
+@function tint-gray( $color ) {
+	@if ( $tint-hue == "none" ) {
+		@return $color;
+	} @else {
+		$_amt: $tint-saturation - ( lightness( $color ) / $tint-saturation );
+
+		@if ( $_amt <= 0 ) {
+			@return $color;
+		}
+
+		$newgray: adjust-hue( $color, hue( $tint-hue ) );
+
+		@return saturate( $newgray, $_amt );
+	}
+}
+
+// Grayscale Variables
+//
+// Grayscale variables that takes advantage of the tint system.
+// Overriding these variables is not supported.
+//
+// Colors:
+// $color-grayscale-0: #000
+// $color-grayscale-1: #111
+// $color-grayscale-2: #222
+// $color-grayscale-3: #333
+// $color-grayscale-4: #444
+// $color-grayscale-5: #555
+// $color-grayscale-6: #666
+// $color-grayscale-7: #777
+// $color-grayscale-8: #888
+// $color-grayscale-9: #999
+// $color-grayscale-a: #aaa
+// $color-grayscale-b: #bbb
+// $color-grayscale-c: #ccc
+// $color-grayscale-d: #ddd
+// $color-grayscale-e: #eee
+// $color-grayscale-f0: #f0f0f0
+// $color-grayscale-f5: #f5f5f5
+// $color-grayscale-f: #fff
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a very dark gray suitable for text.
+// Overriding this variable is not supported.
+
+$color-grayscale-0:                        tint-gray( #000 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a very dark gray suitable for text.
+// Overriding this variable is not supported.
+
+$color-grayscale-1:                        tint-gray( #111 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a dark gray suitable for text or backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-2:                        tint-gray( #222 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a dark gray suitable for text or backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-3:                        tint-gray( #333 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a dark gray suitable for backgrounds or metadata.
+// Overriding this variable is not supported.
+
+$color-grayscale-4:                        tint-gray( #444 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a dark gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-5:                        tint-gray( #555 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a middle gray suitable for backgrounds or large typography.
+// Overriding this variable is not supported.
+
+$color-grayscale-6:                        tint-gray( #666 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a middle gray suitable for backgrounds or large typography.
+// Overriding this variable is not supported.
+
+$color-grayscale-7:                        tint-gray( #777 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a middle gray suitable for backgrounds or large typography.
+// Overriding this variable is not supported.
+
+$color-grayscale-8:                        tint-gray( #888 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a middle gray suitable for backgrounds or large typography.
+// Overriding this variable is not supported.
+
+$color-grayscale-9:                        tint-gray( #999 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a middle gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-a:                        tint-gray( #aaa );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a light gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-b:                        tint-gray( #bbb );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a light gray suitable for backgrounds, borders, and metadata.
+// Overriding this variable is not supported.
+
+$color-grayscale-c:                        tint-gray( #ccc );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a light gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-d:                        tint-gray( #ddd );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a light gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-e:                        tint-gray( #eee );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a near-white gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-f0:                       tint-gray( #f0f0f0 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a near-white gray suitable for backgrounds.
+// Overriding this variable is not supported.
+
+$color-grayscale-f5:                       tint-gray( #f5f5f5 );
+
+// A grayscale variable that takes advantage of the tint system.
+// Produces a plain white.
+// Overriding this variable is not supported.
+
+$color-grayscale-f:                        tint-gray( #fff );

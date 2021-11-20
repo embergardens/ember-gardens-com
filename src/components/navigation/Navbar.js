@@ -4,7 +4,7 @@ import React from 'react'
 import { useRecoilState} from 'recoil'
 
 // Hooks -----------------------------------------------------------
-import { BreakpointNotMobile } from '../utility/Breakpoints'
+import { BreakpointDesktop } from '../utility/Breakpoints'
 
 // Store -----------------------------------------------------------
 import { navOpenState } from '../../store/navigation'
@@ -14,16 +14,16 @@ import { navOpenState } from '../../store/navigation'
 export const Navbar = () => {
 
    return (
-      <nav>
+      <nav className="navBar">
          <NavTrigger />
          <NavTitle />
-         <BreakpointNotMobile>
+         <BreakpointDesktop>
             <>
                <NavLink1 />
                <NavLink2 />
                <NavLocations />
             </>
-         </BreakpointNotMobile>
+         </BreakpointDesktop>
          <NavInstagram />
       </nav>
    )
