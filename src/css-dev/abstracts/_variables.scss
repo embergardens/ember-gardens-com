@@ -8,11 +8,13 @@ $c-coral:               #F48474;
 $c-fog:                 #D9D9D9;
 $c-white:               #FAF9FC;
 $c-light:               #F1ECF5;
+$c-gray:                #C0B5BF;
 $c-dark:                #402E52;
 $c-black:               #070609;
 
-$c-primary-gradient: linear-gradient( $c-plum, $c-rose, $c-coral );
-
+@mixin primary-gradient() {
+   @include linear-gradient( 90deg, $c-plum, $c-rose, $c-coral  );
+}
 
 $breakpoints: (
    xs: 500px,

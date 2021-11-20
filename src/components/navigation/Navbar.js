@@ -3,6 +3,16 @@
 import React from 'react'
 import { useRecoilState} from 'recoil'
 
+// Components -----------------------------------------------------------
+import { IconMenuTrigger } from '../icons/IconMenuTrigger'
+import { IconLogoTitle } from '../icons/IconLogoTitle'
+import { IconFlower } from '../icons/IconFlower'
+import { IconTruck } from '../icons/IconTruck'
+import { IconUSA } from '../icons/IconUSA'
+import { IconMass } from '../icons/IconMass'
+import { IconMaine } from '../icons/IconMaine'
+import { IconInstagram } from '../icons/IconInstagram'
+
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop } from '../utility/Breakpoints'
 
@@ -34,22 +44,26 @@ export const NavTrigger = () => {
    const onToggleNavOpen = () => setNavOpen( (currentState) => (!currentState) )
 
    return (
-      <button type="button" onClick={onToggleNavOpen}>Menu</button>
+      <button className="navBar__trigger" type="button" onClick={onToggleNavOpen}>
+         <IconMenuTrigger />
+      </button>
    )
 }
 
 export const NavTitle = () => {
 
    return (
-      <a href="/" type="button">Ember Gardens</a>
+      <a href="/" type="button" className="navBar__title">
+         <IconLogoTitle />
+      </a>
    )
 }
 
 export const NavInstagram = () => {
 
    return (
-      <a href="https://www.instagram.com">
-         <span className="sr-only">Instagram</span>
+      <a className="navBar__instagram" href="https://www.instagram.com" target="_blank">
+         <IconInstagram />
       </a>
    )
 }

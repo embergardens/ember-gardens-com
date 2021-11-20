@@ -18,9 +18,9 @@
 }
 
 .viewportMain {
-   background: $color-grayscale-f;
-	// height: calc(100vh - 64px);
-	// margin: $mobileNavHeight 0;
+   @include primary-gradient;
+	height: calc(100vh - 69px);
+	//margin: $mobileNavHeight 0;
 	transition: opacity 250ms ease-in-out;
 	width: 100vw;
 

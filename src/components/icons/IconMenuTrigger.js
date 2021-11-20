@@ -6,6 +6,7 @@ export const IconMenuTrigger = () => {
 
    return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54.2 48.4" className="iconMenuTrigger">
+         <title>Menu</title>
          <g id="close_group">
             <path id="close_c" d="M14.76,47.5a12.92,12.92,0,0,1-3.11.38,5.23,5.23,0,0,1-2.45-.46A2.6,2.6,0,0,1,8,45.91a9.52,9.52,0,0,1-.38-3c0-1.9.3-3.2.88-3.9s1.71-1.06,3.36-1.06a12.59,12.59,0,0,1,2.44.29l.5.1-.09,2.57a17.1,17.1,0,0,0-2.17-.15,1.6,1.6,0,0,0-1.28.38,2.88,2.88,0,0,0-.29,1.57,6.72,6.72,0,0,0,.14,1.65,1,1,0,0,0,.44.61,2.3,2.3,0,0,0,1,.15L14.72,45Z" fill={ textColor } />
             <path id="close_l" d="M21.84,47.69H15.39v-9.6h3.32V45h3.13Z" fill={ textColor } />
@@ -17,7 +18,7 @@ export const IconMenuTrigger = () => {
             <polygon id="sticks_right" points="22.19 7.69 22.19 7.68 22.79 8.79 32.8 27.27 36.88 27.27 22.24 0.27 20.2 4.02 22.19 7.69" fill={ iconColor } />
             <polygon id="sticks_left" points="31.25 7.69 31.24 7.68 30.64 8.79 20.63 27.27 16.55 27.27 31.2 0.27 33.23 4.02 31.25 7.69" fill={ iconColor } />
          </g>
-         <g id="menu_group" style="isolation:isolate">
+         <g id="menu_group">
             <path id="menu_m" d="M19.85,48.26H16.91V42.1h-.05l-1.68,6.16H11.8L10.14,42.1h-.07v6.16H7.39v-9.6h4.82l1.38,5.12h.06L15,38.66h4.84Z" fill={ textColor } />
             <path id="menu_3" d="M28.38,40.87H24.33v1.4h3.89v2.14H24.33V46h4.05l.28,2.3H21.45v-9.6h7.21Z" fill={ textColor } />
             <path id="menu_n" d="M38,48.26H35.47L32.59,44.1l0-.1v4.26h-2.7v-9.6h2.46l2.94,4.25,0,.1V38.66H38Z" fill={ textColor } />
