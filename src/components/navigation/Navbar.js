@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React from 'react'
+import React, { useState } from 'react'
 import { useRecoilState} from 'recoil'
 
 // Components -----------------------------------------------------------
@@ -12,6 +12,7 @@ import { IconUSA } from '../icons/IconUSA'
 import { IconMass } from '../icons/IconMass'
 import { IconMaine } from '../icons/IconMaine'
 import { IconInstagram } from '../icons/IconInstagram'
+import { IconArrowSimple } from '../icons/IconArrowSimple'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop } from '../utility/Breakpoints'
@@ -21,6 +22,45 @@ import { navOpenState } from '../../store/navigation'
 
 // =================================================================
 
+const deliveryLocations = [
+   {
+      icon: <IconMass />,
+      name: 'Massachusetts',
+      label: 'MA',
+      url: '/locations/ma',
+      cities: [
+         {
+            cityName: 'Boston',
+            cityUrl: '/locations/ma/boston',
+         },
+         {
+            cityName: 'Orleans',
+            cityUrl: '/locations/ma/orleans',
+         },
+         {
+            cityName: 'New Bedford',
+            cityUrl: '/locations/ma/new-bedford',
+         },
+      ],
+   },
+   {
+      icon: <IconMaine />,
+      name: 'Maine',
+      label: 'ME',
+      url: '/locations/me',
+      cities: [
+         {
+            cityName: 'Greenville',
+            cityUrl: '/locations/me/greenville',
+         },
+         {
+            cityName: 'Portland',
+            cityUrl: '/locations/me/portland',
+         },
+      ],
+   },
+]
+
 export const Navbar = () => {
 
    return (
@@ -28,11 +68,15 @@ export const Navbar = () => {
          <NavTrigger />
          <NavTitle />
          <BreakpointDesktop>
-            <>
-               <NavLink1 />
-               <NavLink2 />
-               <NavLocations />
-            </>
+            <NavLink title="Our Products" url="/">
+               <IconFlower />
+            </NavLink>
+
+            <NavLink title="Adult Use Delivery" url="/">
+               <IconTruck />
+            </NavLink>
+
+            <NavLocations icon={ <IconUSA /> } locations={ deliveryLocations } />
          </BreakpointDesktop>
          <NavInstagram />
       </nav>
@@ -54,7 +98,9 @@ export const NavTitle = () => {
 
    return (
       <a href="/" type="button" className="navBar__title">
-         <IconLogoTitle />
+         <div className="navBar__titleWrapper">
+            <IconLogoTitle />
+         </div>
       </a>
    )
 }
@@ -68,47 +114,83 @@ export const NavInstagram = () => {
    )
 }
 
-export const NavLink1 = () => {
+export const NavLink = ( props ) => {
+   const { children, title, url, target } = props
 
    return (
-      <>
-         <img src="" alt="" />
-         <a href="/">Our Products</a>
-      </>
+      <div className="navBar__cta">
+         <div className="navBar__ctaIcon">
+            { children }
+         </div>
+         <a className="navBar__ctaLink" href={ url } target={ target }>{ title }</a>
+         <div className="navBar__ctaArrow">
+            <IconArrowSimple />
+         </div>
+      </div>
    )
 }
 
-export const NavLink2 = () => {
-
+export const NavLocations = ( props ) => {
+   const { icon, locations = [] } = props
+   const locationList = locations.map( ( state ) => <NavLocationGroup key={ state.label } state={ state } /> )
    return (
-      <>
-         <img src="" alt="" />
-         <a href="/">Adult Use Delivery</a>
-      </>
+      <nav className="navBar__locations">
+         <div className="navBar__locationsIcon">
+            { icon }
+         </div>
+         { locationList }
+      </nav>
    )
 }
 
-export const NavLocations = () => {
+export const NavLocationGroup = ( props ) => {
+   const { state } = props
+   const { icon, name, url, label, cities } = state
+
+   const [ menuOpen, setMenuOpen ] = useState(false)
+
+   const cityList = cities.map( ( city ) => {
+      const { cityUrl, cityName } = city
+
+      return (
+         <li className="navBar__locationCity" key={ city.cityName }>
+            <a href={ cityUrl } className="navBar__locationCityLink">
+               <span>{ cityName }</span>
+               <div className="navBar__locationCityArrow">
+                  <IconArrowSimple />
+               </div>
+            </a>
+         </li>
+      )
+   })
 
    return (
-      <>
-         <img src="" alt="" />
-         <a href="/">MA</a>
-         <a href="/">ME</a>
-      </>
+      <div className="navBar__locationGroup">
+         <div className="navBar__locationGroupIcon">
+            { icon }
+         </div>
+         <a
+            className="navBar__locationGroupLink"
+            href={ url }
+            aria-label={ name }
+            onMouseEnter={() => setMenuOpen(true)}
+            onMouseLeave={() => setMenuOpen(false)}
+         >
+            { label }
+         </a>
+         { cities.length > 0 && menuOpen &&
+            <div
+               className="navBar__locationCities"
+               onMouseEnter={() => setMenuOpen(true)}
+            onMouseLeave={() => setMenuOpen(false)}
+            >
+               <ul className="navBar__locationCitiesWrapper">
+                  { cityList }
+               </ul>
+            </div>
+         }
+
+      </div>
    )
+
 }
-
-
-//Mobile
-// Title
-// Instagram
-// Trigger
-
-//Desktop
-// Trigger
-// Title
-// Link 1 (our products)
-// Link 2 (Adult use deliver)
-// Locations (us logo, MA, ME)
-// Instagram

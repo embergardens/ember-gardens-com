@@ -13,6 +13,12 @@
    @include visuallyhidden();
 }
 
+%remove-list-styles {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
 %remove-button-styles {
    -webkit-appearance: none;
    appearance: none;
@@ -21,4 +27,37 @@
    border-radius: 0;
    margin: 0;
    padding: 0;
+}
+
+%flex-center {
+   align-items: center;
+   display: flex;
+   justify-content: center;
+
+   > * {
+      flex: none;
+   }
+}
+
+@mixin pseudo-link( $z: 1 ) {
+   &::after {
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: #{ $z };
+   }
+}
+
+@mixin svg-contain( $height: auto, $width ) {
+   height: #{ $height };
+   object-fit: contain;
+   width: #{ $width };
+
+   svg {
+      height: 100%;
+      width: 100%;
+   }
 }

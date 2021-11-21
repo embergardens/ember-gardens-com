@@ -8,6 +8,7 @@
     "url": "https://github.com/embergardens/ember-gardens-com/issues"
   },
   "dependencies": {
+    "@fontsource/chivo": "^4.5.0",
     "@fontsource/titillium-web": "^4.5.0",
     "dotenv": "^8.6.0",
     "framer-motion": "^5.2.1",

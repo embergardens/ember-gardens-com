@@ -1,12 +1,15 @@
 .navBar {
    background: $color-grayscale-f;
-   box-shadow: 3px 3px 10px rgba(0,0,0,0.3);
-   display: flex;
-   flex-direction: row;
+   display: grid;
+   grid-template-columns: 1fr 69px 69px;
+   grid-template-areas: "Logo Social Menu";
    width: 100vw;
+   z-index: 500;
 
    @include breakpoint( md ) {
-      flex-direction: column;
+      grid-template-columns: 1fr;
+      grid-template-rows: 100px 1fr min-content min-content min-content 100px;
+      grid-template-areas: "Menu" "Logo" "Link1" "Link2" "Locations" "Social";
       height: 100vh;
       min-width: 100px;
       width: auto;
@@ -25,18 +28,16 @@
    }
 
    > * + * {
-      border: solid $c-gray;
-      border-width: 0 0 0 1px;
 
       @include breakpoint( md ) {
-         border-width: 1px 0 0 0;
+         border-top: 1px solid $c-gray;
       }
    }
 
    &__trigger {
       @extend %remove-button-styles;
       cursor: pointer;
-      order: 3;
+      grid-area: Menu;
 
       svg {
          width: 42px;
@@ -48,23 +49,212 @@
    }
 
    &__title {
-      flex: 1 1 auto;
-      order: 1;
+      border: solid $c-gray;
+      border-width: 0 1px 0 0;
+      grid-area: Logo;
+      justify-content: center;
 
-      svg {
-         width: 123px;
+      @include breakpoint( xs ) {
+         justify-content: flex-start;
+      }
+
+      @include breakpoint( md ) {
+         border-width: 1px 0 0 0;
+         justify-content: center;
+      }
+
+      &Wrapper {
+         height: 1.6rem;
+         object-fit: contain;
+         width: auto;
 
          @include breakpoint( md ) {
+            height: auto;
             width: 30px;
          }
+
+      }
+
+      svg {
+         height: 100%;
+         width: 100%;
       }
    }
 
    &__instagram {
-      order: 2;
+      border: solid $c-gray;
+      border-width: 0 1px 0 0;
+      grid-area: Social;
+
+      @include breakpoint( md ) {
+         border-width: 1px 0 0 0;
+      }
 
       svg {
          width: 19px;
+      }
+   }
+
+   &__cta {
+      align-items: center;
+      display: grid;
+      gap: 12px;
+      justify-content: center;
+      padding: 24px 12px;
+      position: relative;
+
+      &Icon {
+         flex: 0 0 auto;
+         height: 38px;
+         object-fit: contain;
+         width: auto;
+
+         svg {
+            height: 100%;
+            width: 100%;
+         }
+      }
+
+      &Link {
+         @include pseudo-link;
+         color: $c-coral;
+         font-family: $ff-ui;
+         font-size: 13px;
+         font-weight: 700;
+         line-height: 1.1;
+         text-align: center;
+         text-decoration: none;
+         text-transform: uppercase;
+      }
+
+      &Arrow {
+         height: auto;
+         justify-self: center;
+         object-fit: contain;
+         width: 20px;
+
+         svg {
+            height: 100%;
+            width: 100%;
+         }
+      }
+   }
+
+   &__locations {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 2.4rem 0 0;
+
+      &Icon {
+         height: 17px;
+         margin: 0 0 15px;
+         object-fit: contain;
+         width: auto;
+
+         svg {
+            height: 100%;
+            width: 100%;
+         }
+      }
+   }
+
+   &__locationGroup {
+      align-items: center;
+      display: grid;
+      gap: 0.5rem;
+      justify-items: center;
+      padding: 1.2rem 0;
+      position: relative;
+
+      &Icon {
+         height: 20px;
+         object-fit: contain;
+         width: 30px;
+
+         svg {
+            height: 100%;
+            width: 100%;
+         }
+      }
+
+      &Link {
+         @include pseudo-link();
+         color: $c-coral;
+         font-family: $ff-ui;
+         font-size: 1.3rem;
+         font-weight: 700;
+         line-height: 1.1;
+         text-decoration: none;
+      }
+   }
+
+   &__locationCities {
+      background: $color-grayscale-f;
+      border-left: 1px solid $c-gray;
+      display: grid;
+      grid-template-columns: max-content;
+      left: 100%;
+      padding: 24px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &::before,
+      &::after {
+         border: solid transparent;
+         content: '';
+         height: 0;
+         position: absolute;
+         right: 100%;
+         top: 50%;
+         width: 0;
+      }
+
+      &::after {
+         border-color: rgba( $color-grayscale-f, 0);
+         border-right-color: $color-grayscale-f;
+         border-width: 20px;
+         margin-top: -20px;
+      }
+      &::before {
+         border-color: rgba( $c-gray, 0);
+         border-right-color: $c-gray;
+         border-width: 21px;
+         margin-top: -21px;
+      }
+
+      &Wrapper {
+         @extend %remove-list-styles;
+         display: grid;
+         gap: 18px;
+      }
+   }
+
+   &__locationCity {
+      margin: 0;
+
+      &Link {
+         @extend %flex-center;
+         color: $c-gray;
+         font-family: $ff-ui;
+         font-size: 1.4rem;
+         font-weight: 700;
+         justify-content: flex-start;
+         line-height: 1;
+         text-decoration: none;
+
+         &:hover {
+            color: $c-plum;
+         }
+
+         span {
+            margin: 0 8px 0 0;
+         }
+      }
+
+      &Arrow {
+         @include svg-contain( auto, 1.6rem );
+         color: inherit;
       }
    }
 
