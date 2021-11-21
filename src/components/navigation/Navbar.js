@@ -1,10 +1,9 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
 import React, { useState } from 'react'
-import { useRecoilState} from 'recoil'
 
 // Components -----------------------------------------------------------
-import { IconMenuTrigger } from '../icons/IconMenuTrigger'
+import { NavTrigger } from './NavTrigger'
 import { IconLogoTitle } from '../icons/IconLogoTitle'
 import { IconFlower } from '../icons/IconFlower'
 import { IconTruck } from '../icons/IconTruck'
@@ -18,7 +17,6 @@ import { IconArrowSimple } from '../icons/IconArrowSimple'
 import { BreakpointDesktop } from '../utility/Breakpoints'
 
 // Store -----------------------------------------------------------
-import { navOpenState } from '../../store/navigation'
 
 // =================================================================
 
@@ -80,17 +78,6 @@ export const Navbar = () => {
          </BreakpointDesktop>
          <NavInstagram />
       </nav>
-   )
-}
-
-export const NavTrigger = () => {
-   const [ navOpen, setNavOpen ] = useRecoilState( navOpenState )
-   const onToggleNavOpen = () => setNavOpen( (currentState) => (!currentState) )
-
-   return (
-      <button className="navBar__trigger" type="button" onClick={onToggleNavOpen}>
-         <IconMenuTrigger />
-      </button>
    )
 }
 
