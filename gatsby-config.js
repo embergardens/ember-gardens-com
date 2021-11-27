@@ -22,7 +22,13 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: process.env.WPGRAPHQL_URL || `https://admin-embergardens.flywheelsites.com/graphql`,
+        auth: {
+          htaccess: {
+            username: process.env.HTTPBASICAUTH_USERNAME,
+            password: process.env.HTTPBASICAUTH_PASSWORD,
+          }
+        },
+        url: process.env.WPGRAPHQL_URL,
         schema: {
           perPage: 50,
           timeout: 60000,
@@ -35,12 +41,6 @@ module.exports = {
           // imageQuality: 90,
           // createStaticFiles: true,
           generateWebpImages: true,
-        },
-        auth: {
-          htaccess: {
-            username: process.env.HTTPBASICAUTH_USERNAME || `flywheel`,
-            password: process.env.HTTPBASICAUTH_PASSWORD || `optimal-brain`,
-          }
         },
         debug: {
           graphql: {
