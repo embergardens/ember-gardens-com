@@ -1,32 +1,72 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useState } from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { GatsbyImage } from 'gatsby-plugin-image'
+import { useStaticQuery, graphql } from 'gatsby'
 // Data ------------------------------------------------------------
-import { graphql } from "gatsby"
 
 // Components -----------------------------------------------------------
 import { NavTrigger } from './NavTrigger'
 import { IconLogoTitle } from '../icons/IconLogoTitle'
-import { IconFlower } from '../icons/IconFlower'
-import { IconTruck } from '../icons/IconTruck'
 import { IconUSA } from '../icons/IconUSA'
-import { IconMass } from '../icons/IconMass'
-import { IconMaine } from '../icons/IconMaine'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconArrowSimple } from '../icons/IconArrowSimple'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop } from '../utility/Breakpoints'
-import { GatsbyImage } from 'gatsby-plugin-image'
 
 // Store -----------------------------------------------------------
 
 // =================================================================
 
-export const Navbar = ( data ) => {
-   const { quickLinks, locations, instagram } = data.wp.acfOptionsNavigation.navigation
-   const navLinks = quickLinks.map( (navLink) => <NavLink key={ navLink.name } data={ navLink } /> )
+export const Navbar = () => {
+   const data = useStaticQuery(graphql`
+      query NavBarData {
+         wp {
+            acfOptionsNavigation {
+               navBar {
+                  quickLinks {
+                     name
+                     link {
+                        target
+                        title
+                        url
+                     }
+                     icon {
+                        altText
+                        sourceUrl
+                     }
+                  }
+                  locations {
+                     state
+                     link {
+                        ... on WpLocation {
+                           uri
+                           slug
+                        }
+                     }
+                     icon {
+                        sourceUrl
+                     }
+                     cities {
+                        ... on WpLocation {
+                           title
+                           uri
+                        }
+                     }
+                  }
+                  instagram {
+                     url
+                  }
+               }
+            }
+
+         }
+      }
+   `)
+   const { wp: { acfOptionsNavigation: { navBar } } } = data
+   const { quickLinks, locations, instagram } = navBar
+   const navLinks = quickLinks.map( ( navLink ) => <NavLink key={ navLink.name } data={ navLink } /> )
 
    return (
       <nav className="navBar">
@@ -69,7 +109,7 @@ export const NavLink = ( props ) => {
    return (
       <div className="navBar__cta">
          <div className="navBar__ctaIcon">
-            <GatsbyImage alt={ icon.altText } image={ icon.sourceUrl } />
+            <img alt={ icon.altText } src={ icon.sourceUrl } />
          </div>
          <a className="navBar__ctaLink" href={ link.url } target={ link.target }>{ name }</a>
          <div className="navBar__ctaArrow">
@@ -116,7 +156,7 @@ export const NavLocationGroup = ( props ) => {
    return (
       <div className="navBar__locationGroup">
          <div className="navBar__locationGroupIcon">
-            { icon }
+            <img src={ icon.sourceUrl } alt={ link.title } />
          </div>
          <a
             className="navBar__locationGroupLink"
@@ -131,7 +171,7 @@ export const NavLocationGroup = ( props ) => {
             <div
                className="navBar__locationCities"
                onMouseEnter={() => setMenuOpen(true)}
-            onMouseLeave={() => setMenuOpen(false)}
+               onMouseLeave={() => setMenuOpen(false)}
             >
                <ul className="navBar__locationCitiesWrapper">
                   { cityList }
@@ -144,48 +184,3 @@ export const NavLocationGroup = ( props ) => {
 
 }
 
-const data = graphql`
-   {
-      allWp {
-         nodes {
-            acfOptionsNavigation {
-               navigation {
-                  quickLinks {
-                     name
-                     link {
-                        target
-                        title
-                        url
-                     }
-                     icon {
-                        altText
-                        sourceUrl
-                     }
-                  }
-                  locations {
-                     state
-                     link {
-                        ... on WpLocation {
-                           uri
-                           slug
-                        }
-                     }
-                     icon {
-                        sourceUrl
-                     }
-                     cities {
-                        ... on WpLocation {
-                           title
-                           uri
-                        }
-                     }
-                  }
-                  instagram {
-                     url
-                  }
-               }
-            }
-         }
-      }
-   }
-`

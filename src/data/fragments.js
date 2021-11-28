@@ -114,4 +114,42 @@ export const fragments = graphql`
          }
       }
    }
+
+   fragment NavBar on acfOptionsnavigation {
+      navBar {
+         quickLinks {
+            name
+            link {
+               target
+               title
+               url
+            }
+            icon {
+               altText
+               sourceUrl
+            }
+         }
+         locations {
+            state
+            link {
+               ... on WpLocation {
+                  uri
+                  slug
+               }
+            }
+            icon {
+               sourceUrl
+            }
+            cities {
+               ... on WpLocation {
+                  title
+                  uri
+               }
+            }
+         }
+         instagram {
+            url
+         }
+      }
+   }
 `
