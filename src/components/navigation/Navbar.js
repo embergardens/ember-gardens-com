@@ -2,6 +2,9 @@
 // React / Gatsby --------------------------------------------------
 import React, { useState } from 'react'
 
+// Data ------------------------------------------------------------
+import { graphql } from "gatsby"
+
 // Components -----------------------------------------------------------
 import { NavTrigger } from './NavTrigger'
 import { IconLogoTitle } from '../icons/IconLogoTitle'
@@ -15,68 +18,25 @@ import { IconArrowSimple } from '../icons/IconArrowSimple'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop } from '../utility/Breakpoints'
+import { GatsbyImage } from 'gatsby-plugin-image'
 
 // Store -----------------------------------------------------------
 
 // =================================================================
 
-const deliveryLocations = [
-   {
-      icon: <IconMass />,
-      name: 'Massachusetts',
-      label: 'MA',
-      url: '/locations/ma',
-      cities: [
-         {
-            cityName: 'Boston',
-            cityUrl: '/locations/ma/boston',
-         },
-         {
-            cityName: 'Orleans',
-            cityUrl: '/locations/ma/orleans',
-         },
-         {
-            cityName: 'New Bedford',
-            cityUrl: '/locations/ma/new-bedford',
-         },
-      ],
-   },
-   {
-      icon: <IconMaine />,
-      name: 'Maine',
-      label: 'ME',
-      url: '/locations/me',
-      cities: [
-         {
-            cityName: 'Greenville',
-            cityUrl: '/locations/me/greenville',
-         },
-         {
-            cityName: 'Portland',
-            cityUrl: '/locations/me/portland',
-         },
-      ],
-   },
-]
-
-export const Navbar = () => {
+export const Navbar = ( data ) => {
+   const { quickLinks, locations, instagram } = data.wp.acfOptionsNavigation.navigation
+   const navLinks = quickLinks.map( (navLink) => <NavLink key={ navLink.name } data={ navLink } /> )
 
    return (
       <nav className="navBar">
          <NavTrigger />
          <NavTitle />
          <BreakpointDesktop>
-            <NavLink title="Our Products" url="/">
-               <IconFlower />
-            </NavLink>
-
-            <NavLink title="Adult Use Delivery" url="/">
-               <IconTruck />
-            </NavLink>
-
-            <NavLocations icon={ <IconUSA /> } locations={ deliveryLocations } />
+            { navLinks }
+            <NavLocations icon={ <IconUSA /> } locations={ locations } />
          </BreakpointDesktop>
-         <NavInstagram />
+         <NavInstagram url={ instagram.url } />
       </nav>
    )
 }
@@ -92,24 +52,26 @@ export const NavTitle = () => {
    )
 }
 
-export const NavInstagram = () => {
+export const NavInstagram = ( props ) => {
+   const { url } = props
 
    return (
-      <a className="navBar__instagram" href="https://www.instagram.com" target="_blank">
+      <a className="navBar__instagram" href={ url } target="_blank">
          <IconInstagram />
       </a>
    )
 }
 
 export const NavLink = ( props ) => {
-   const { children, title, url, target } = props
+   const { data } = props
+   const {name, icon, link } = data
 
    return (
       <div className="navBar__cta">
          <div className="navBar__ctaIcon">
-            { children }
+            <GatsbyImage alt={ icon.altText } image={ icon.sourceUrl } />
          </div>
-         <a className="navBar__ctaLink" href={ url } target={ target }>{ title }</a>
+         <a className="navBar__ctaLink" href={ link.url } target={ link.target }>{ name }</a>
          <div className="navBar__ctaArrow">
             <IconArrowSimple />
          </div>
@@ -119,7 +81,7 @@ export const NavLink = ( props ) => {
 
 export const NavLocations = ( props ) => {
    const { icon, locations = [] } = props
-   const locationList = locations.map( ( state ) => <NavLocationGroup key={ state.label } state={ state } /> )
+   const locationList = locations.map( ( location ) => <NavLocationGroup key={ location.state } location={ location } /> )
    return (
       <nav className="navBar__locations">
          <div className="navBar__locationsIcon">
@@ -131,18 +93,18 @@ export const NavLocations = ( props ) => {
 }
 
 export const NavLocationGroup = ( props ) => {
-   const { state } = props
-   const { icon, name, url, label, cities } = state
+   const { location } = props
+   const { icon, link, state, cities } = location
 
    const [ menuOpen, setMenuOpen ] = useState(false)
 
    const cityList = cities.map( ( city ) => {
-      const { cityUrl, cityName } = city
+      const { uri, title } = city
 
       return (
-         <li className="navBar__locationCity" key={ city.cityName }>
-            <a href={ cityUrl } className="navBar__locationCityLink">
-               <span>{ cityName }</span>
+         <li className="navBar__locationCity" key={ city.title }>
+            <a href={ uri } className="navBar__locationCityLink">
+               <span>{ title }</span>
                <div className="navBar__locationCityArrow">
                   <IconArrowSimple />
                </div>
@@ -158,12 +120,12 @@ export const NavLocationGroup = ( props ) => {
          </div>
          <a
             className="navBar__locationGroupLink"
-            href={ url }
-            aria-label={ name }
+            href={ link.url }
+            aria-label={ link.title }
             onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
          >
-            { label }
+            { state }
          </a>
          { cities.length > 0 && menuOpen &&
             <div
@@ -181,3 +143,49 @@ export const NavLocationGroup = ( props ) => {
    )
 
 }
+
+const data = graphql`
+   {
+      allWp {
+         nodes {
+            acfOptionsNavigation {
+               navigation {
+                  quickLinks {
+                     name
+                     link {
+                        target
+                        title
+                        url
+                     }
+                     icon {
+                        altText
+                        sourceUrl
+                     }
+                  }
+                  locations {
+                     state
+                     link {
+                        ... on WpLocation {
+                           uri
+                           slug
+                        }
+                     }
+                     icon {
+                        sourceUrl
+                     }
+                     cities {
+                        ... on WpLocation {
+                           title
+                           uri
+                        }
+                     }
+                  }
+                  instagram {
+                     url
+                  }
+               }
+            }
+         }
+      }
+   }
+`
