@@ -109,7 +109,7 @@
          object-fit: contain;
          width: auto;
 
-         svg {
+         img {
             height: 100%;
             width: 100%;
          }
@@ -166,9 +166,19 @@
       padding: 1.2rem 0;
       position: relative;
 
+      &:hover,
+      &:focus-within {
+         .navBar__locationGroupIcon {
+            color: $c-coral;
+            transition: color 250ms ease-in-out;
+         }
+      }
+
       &Icon {
+         color: $c-plum;
          height: 20px;
          object-fit: contain;
+         transition: color 250ms ease-in-out;
          width: 30px;
 
          svg {
@@ -180,6 +190,7 @@
       &Link {
          @include pseudo-link();
          color: $c-coral;
+         cursor: pointer;
          font-family: $ff-ui;
          font-size: 1.3rem;
          font-weight: 700;

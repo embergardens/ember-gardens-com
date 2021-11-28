@@ -1,7 +1,6 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useEffect, useState } from 'react'
-import { GatsbyImage } from 'gatsby-plugin-image'
+import React, { useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 // Data ------------------------------------------------------------
 
@@ -11,6 +10,8 @@ import { IconLogoTitle } from '../icons/IconLogoTitle'
 import { IconUSA } from '../icons/IconUSA'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconArrowSimple } from '../icons/IconArrowSimple'
+import { IconMaine } from '../icons/IconMaine'
+import { IconMass } from '../icons/IconMass'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop } from '../utility/Breakpoints'
@@ -44,9 +45,6 @@ export const Navbar = () => {
                            uri
                            slug
                         }
-                     }
-                     icon {
-                        sourceUrl
                      }
                      cities {
                         ... on WpLocation {
@@ -96,7 +94,7 @@ export const NavInstagram = ( props ) => {
    const { url } = props
 
    return (
-      <a className="navBar__instagram" href={ url } target="_blank">
+      <a className="navBar__instagram" href={ url } target="_blank" rel="noreferrer">
          <IconInstagram />
       </a>
    )
@@ -134,7 +132,7 @@ export const NavLocations = ( props ) => {
 
 export const NavLocationGroup = ( props ) => {
    const { location } = props
-   const { icon, link, state, cities } = location
+   const { link, state, cities } = location
 
    const [ menuOpen, setMenuOpen ] = useState(false)
 
@@ -156,7 +154,12 @@ export const NavLocationGroup = ( props ) => {
    return (
       <div className="navBar__locationGroup">
          <div className="navBar__locationGroupIcon">
-            <img src={ icon.sourceUrl } alt={ link.title } />
+            { state === 'ME' &&
+               <IconMaine />
+            }
+            { state === 'MA' &&
+               <IconMass />
+            }
          </div>
          <a
             className="navBar__locationGroupLink"
