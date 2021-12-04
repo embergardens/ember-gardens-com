@@ -5,6 +5,7 @@ import React, { useRef } from "react"
 
 // Components ------------------------------------------------------
 import { Helmet } from "react-helmet"
+import { MainMenu } from "../navigation/MainMenu"
 import { Navbar } from "../navigation/Navbar"
 
 // Store -----------------------------------------------------------
@@ -18,8 +19,8 @@ const Layout = ({ isHomePage, children }) => {
     <div className="viewport" data-is-root-path={isHomePage}>
       <Helmet title="Ember Gardens" />
       <Navbar />
-      {/* MegaMenu */}
       <div className="viewportInner">
+        <MainMenu />
         <div className='viewportMain' ref={scrollRef}>
           {children}
         </div>

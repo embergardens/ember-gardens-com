@@ -1,0 +1,38 @@
+.mainMenu {
+   background: #334455;
+   bottom: 0;
+   left: 0;
+   position: absolute;
+   right: 0;
+   top: 0;
+   z-index: 1;
+
+   &__bgImage {
+      background-image: url('../assets/images/menu__bg.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+   }
+
+   &__bgGradient {
+      @include primary-gradient();
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+   }
+
+   &__bgScreen {
+
+   }
+
+   &__wrapper {
+
+   }
+}
