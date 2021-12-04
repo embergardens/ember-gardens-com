@@ -53,7 +53,9 @@ export const Navbar = () => {
                      }
                   }
                   instagram {
-                     url
+                     link {
+                        url
+                     }
                   }
                }
             }
@@ -95,10 +97,10 @@ export const NavTitle = () => {
 }
 
 export const NavInstagram = ( props ) => {
-   const { url } = props
+   const { link } = props
 
    return (
-      <a className="navBar__instagram" href={ url } target="_blank" rel="noreferrer">
+      <a className="navBar__instagram" href={ link.url } target={ link.target } rel="noreferrer">
          <IconInstagram />
       </a>
    )

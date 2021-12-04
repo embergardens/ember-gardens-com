@@ -1,6 +1,9 @@
 .mainMenu {
+   align-items: center;
    background: #334455;
    bottom: 0;
+   display: flex;
+   justify-content: center;
    left: 0;
    position: absolute;
    right: 0;
@@ -8,7 +11,8 @@
    z-index: 1;
 
    &__bgImage {
-      background-image: url('../assets/images/menu__bg.jpg');
+      background-blend-mode: color-burn, normal;
+      background-image: linear-gradient( rgba($c-black, 0.62), rgba($c-black, 0.62) ), url('../assets/images/menu__bg.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -23,16 +27,21 @@
       @include primary-gradient();
       bottom: 0;
       left: 0;
+      mix-blend-mode: overlay;
       position: absolute;
       right: 0;
       top: 0;
    }
 
-   &__bgScreen {
-
-   }
-
    &__wrapper {
+      display: flex;
+      flex-direction: column;
+      position: relative;
 
+      @include breakpoint( md ) {
+         align-items: center;
+         flex-direction: row;
+         justify-content: center;
+      }
    }
 }
