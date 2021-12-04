@@ -38,8 +38,10 @@
       @extend %remove-button-styles;
       cursor: pointer;
       grid-area: Menu;
+      overflow: hidden;
 
       svg {
+         overflow: visible;
          width: 42px;
 
          @include breakpoint( md ) {
@@ -78,6 +80,11 @@
       svg {
          height: 100%;
          width: 100%;
+
+         @include breakpoint( md ) {
+            max-height: 19vh;
+            max-height: clamp( 100px, 19vh, 230px);
+         }
       }
    }
 
@@ -109,7 +116,8 @@
          object-fit: contain;
          width: auto;
 
-         img {
+         img,
+         svg {
             height: 100%;
             width: 100%;
          }
@@ -131,7 +139,8 @@
          height: auto;
          justify-self: center;
          object-fit: contain;
-         width: 20px;
+         height: 14px;
+         width: auto;
 
          svg {
             height: 100%;
@@ -264,7 +273,7 @@
       }
 
       &Arrow {
-         @include svg-contain( auto, 1.6rem );
+         @include svg-contain( 1rem, auto );
          color: inherit;
       }
    }

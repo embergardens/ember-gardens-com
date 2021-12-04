@@ -6,6 +6,11 @@ export const isDesktop = atom({
    default: { minWidth: 992 }
 })
 
+export const isNotDesktop = atom({
+   key: 'isNotDesktop',
+   default: { maxWidth: 991 }
+})
+
 export const isTablet = atom({
    key: 'isTablet',
    default: { minWidth: 768, maxWidth: 991 }
@@ -23,6 +28,10 @@ export const isNotMobile = atom({
 export const BreakpointDesktop = ({ children }) => {
    const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
    return desktop ? children : null
+}
+export const BreakpointNotDesktop = ({ children }) => {
+   const notDesktop = useMediaQuery( useRecoilValue( isNotDesktop ) )
+   return notDesktop ? children : null
 }
 export const BreakpointTablet = ({ children }) => {
    const tablet = useMediaQuery( useRecoilValue( isTablet ) )

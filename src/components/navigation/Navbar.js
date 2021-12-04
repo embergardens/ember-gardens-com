@@ -7,14 +7,17 @@ import { useStaticQuery, graphql } from 'gatsby'
 // Components -----------------------------------------------------------
 import { NavTrigger } from './NavTrigger'
 import { IconLogoTitle } from '../icons/IconLogoTitle'
+import { IconLogoTitleMobile } from '../icons/IconLogoTitleMobile'
 import { IconUSA } from '../icons/IconUSA'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconArrowSimple } from '../icons/IconArrowSimple'
 import { IconMaine } from '../icons/IconMaine'
 import { IconMass } from '../icons/IconMass'
+import { IconFlower } from '../icons/IconFlower'
+import { IconTruck } from '../icons/IconTruck'
 
 // Hooks -----------------------------------------------------------
-import { BreakpointDesktop } from '../utility/Breakpoints'
+import { BreakpointDesktop, BreakpointNotDesktop } from '../utility/Breakpoints'
 
 // Store -----------------------------------------------------------
 
@@ -32,10 +35,6 @@ export const Navbar = () => {
                         target
                         title
                         url
-                     }
-                     icon {
-                        altText
-                        sourceUrl
                      }
                   }
                   locations {
@@ -64,7 +63,7 @@ export const Navbar = () => {
    `)
    const { wp: { acfOptionsNavigation: { navBar } } } = data
    const { quickLinks, locations, instagram } = navBar
-   const navLinks = quickLinks.map( ( navLink ) => <NavLink key={ navLink.name } data={ navLink } /> )
+   const navLinks = quickLinks.map( ( navLink, index ) => <NavLink key={ navLink.name } index={ index } data={ navLink } /> )
 
    return (
       <nav className="navBar">
@@ -84,7 +83,12 @@ export const NavTitle = () => {
    return (
       <a href="/" type="button" className="navBar__title">
          <div className="navBar__titleWrapper">
-            <IconLogoTitle />
+            <BreakpointNotDesktop>
+               <IconLogoTitleMobile />
+            </BreakpointNotDesktop>
+            <BreakpointDesktop>
+               <IconLogoTitle />
+            </BreakpointDesktop>
          </div>
       </a>
    )
@@ -101,17 +105,27 @@ export const NavInstagram = ( props ) => {
 }
 
 export const NavLink = ( props ) => {
-   const { data } = props
-   const {name, icon, link } = data
+   const { data, index } = props
+   const {name, link } = data
+   const [ isHover, setIsHover ] = useState( false )
 
    return (
-      <div className="navBar__cta">
+      <div
+         className="navBar__cta"
+         onMouseEnter={() => setIsHover(true)}
+         onMouseLeave={() => setIsHover(false)}
+      >
          <div className="navBar__ctaIcon">
-            <img alt={ icon.altText } src={ icon.sourceUrl } />
+            { index === 0 &&
+               <IconFlower />
+            }
+            { index === 1 &&
+               <IconTruck />
+            }
          </div>
          <a className="navBar__ctaLink" href={ link.url } target={ link.target }>{ name }</a>
          <div className="navBar__ctaArrow">
-            <IconArrowSimple />
+            <IconArrowSimple isHover={ isHover } animate />
          </div>
       </div>
    )
