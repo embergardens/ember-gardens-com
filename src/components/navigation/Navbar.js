@@ -28,7 +28,7 @@ export const Navbar = () => {
       query NavBarData {
          wp {
             acfOptionsNavigation {
-               navBar {
+               navigation {
                   quickLinks {
                      name
                      link {
@@ -55,6 +55,7 @@ export const Navbar = () => {
                   instagram {
                      link {
                         url
+                        target
                      }
                   }
                }
@@ -63,8 +64,8 @@ export const Navbar = () => {
          }
       }
    `)
-   const { wp: { acfOptionsNavigation: { navBar } } } = data
-   const { quickLinks, locations, instagram } = navBar
+   const { wp: { acfOptionsNavigation: { navigation } } } = data
+   const { quickLinks, locations, instagram } = navigation
    const navLinks = quickLinks.map( ( navLink, index ) => <NavLink key={ navLink.name } index={ index } data={ navLink } /> )
 
    return (
@@ -75,7 +76,7 @@ export const Navbar = () => {
             { navLinks }
             <NavLocations icon={ <IconUSA /> } locations={ locations } />
          </BreakpointDesktop>
-         <NavInstagram url={ instagram.url } />
+         <NavInstagram url={ instagram.link } />
       </nav>
    )
 }
@@ -97,10 +98,10 @@ export const NavTitle = () => {
 }
 
 export const NavInstagram = ( props ) => {
-   const { link } = props
+   const { url } = props
 
    return (
-      <a className="navBar__instagram" href={ link.url } target={ link.target } rel="noreferrer">
+      <a className="navBar__instagram" href={ url.url } target={ url.target } rel="noreferrer">
          <IconInstagram />
       </a>
    )
