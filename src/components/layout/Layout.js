@@ -20,8 +20,8 @@ const Layout = ({ isHomePage, children }) => {
       <Helmet title="Ember Gardens" />
       <Navbar />
       <div className="viewportInner">
+        <MainMenu />
         <div className='viewportMain' ref={scrollRef}>
-          <MainMenu />
           {children}
         </div>
       </div>

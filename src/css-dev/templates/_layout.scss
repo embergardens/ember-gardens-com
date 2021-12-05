@@ -18,21 +18,13 @@
 }
 
 .viewportMain {
-   @include primary-gradient;
-	height: calc(100vh - 69px);
-	//margin: $mobileNavHeight 0;
+   @include primary-gradient();
+   @include viewport();
 	transition: opacity 250ms ease-in-out;
-	width: 100vw;
-
-	overflow-x: hidden;
-	overflow-y: auto;
 
 	@include breakpoint( md ) {
       height: 100vh;
 		margin: 0 0 60px;
-		overflow-x: hidden;
-		overflow-y: auto;
-      width: calc(100vw - 100px);
 	}
 }
 

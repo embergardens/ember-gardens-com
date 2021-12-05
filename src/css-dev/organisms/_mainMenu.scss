@@ -1,14 +1,17 @@
 .mainMenu {
-   align-items: center;
+   @include viewport();
    background: #334455;
    bottom: 0;
-   display: flex;
-   justify-content: center;
    left: 0;
+   overflow-y: hidden;
    position: absolute;
    right: 0;
    top: 0;
    z-index: 1;
+
+   @include breakpoint( md ) {
+      overflow-y: auto;
+   }
 
    &__bgImage {
       background-blend-mode: color-burn, normal;
@@ -34,14 +37,121 @@
    }
 
    &__wrapper {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-areas: 'PRIMARY' 'SOCIAL';
+      grid-template-rows: repeat( 2, 1fr );
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 60px;
       position: relative;
 
       @include breakpoint( md ) {
          align-items: center;
-         flex-direction: row;
-         justify-content: center;
+         grid-template-areas: 'PRIMARY SOCIAL';
+         grid-template-columns: repeat( 2, 1fr );
+         grid-template-rows: auto;
+         height: 100vh;
+         justify-items: stretch;
+      }
+   }
+
+   &__primary {
+      align-items: center;
+      display: flex;
+      grid-area: PRIMARY;
+      justify-content: center;
+      position: relative;
+   }
+
+   &__primaryWrapper {
+      @extend %remove-list-styles;
+   }
+
+   &__primaryBorder {
+      background: $c-white;
+      height: 1px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+
+      @include breakpoint( md ) {
+         bottom: auto;
+         height: 100%;
+         top: 0;
+         width: 1px;
+      }
+   }
+
+   &__primaryItem {
+      margin: 0;
+      padding: 1.6rem 0;
+   }
+
+   &__primaryLink {
+      color: $c-white;
+      font-size: 55px;
+      font-weight: 700;
+      line-height: 1.1;
+   }
+
+   &__primaryLinkIcon {
+      @include svg-contain(auto, 18px);
+   }
+
+   &__social {
+      align-items: center;
+      display: flex;
+      grid-area: SOCIAL;
+      justify-content: center;
+   }
+
+   &__socialWrapper {
+      @extend %remove-list-styles;
+      display: grid;
+      gap: 48px;
+   }
+
+   &__socialItem {
+      align-items: center;
+      display: flex;
+      margin: 0;
+      position: relative;
+
+      > * + * {
+         margin-left: 30px;
+      }
+   }
+
+   &__socialIcon {
+      @include svg-contain(40px, 40px);
+      color: $c-white;
+   }
+
+   &__socialLink {
+      @include pseudo-link();
+      color: $c-white;
+      font-size: 18px;
+      font-weight: 500;
+   }
+
+   &__socialSignup {
+      align-items: flex-start;
+      flex-direction: column;
+      margin: 48px 0 0;
+
+      &Title {
+         color: $c-white;
+         font-size: 21px;
+         font-weight: 700;
+         margin: 0 0 30px;
+      }
+
+      &Form {
+         align-items: center;
+         display: flex;
+         margin: 0;
       }
    }
 }

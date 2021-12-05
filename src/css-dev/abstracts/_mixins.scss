@@ -3,3 +3,53 @@
       @content;
    }
 }
+
+@mixin pseudo-link( $z: 1 ) {
+   &::after {
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: #{ $z };
+   }
+}
+
+@mixin svg-contain( $height: auto, $width ) {
+   height: #{ $height };
+   object-fit: contain;
+   width: #{ $width };
+
+   svg {
+      height: 100%;
+      width: 100%;
+   }
+}
+
+@mixin viewport() {
+   height: calc(100vh - 69px);
+   overflow-x: hidden;
+	overflow-y: auto;
+   width: 100vw;
+
+   @include breakpoint( md ) {
+      height: 100vh;
+      width: calc(100vw - 100px);
+   }
+}
+
+@mixin visuallyhidden {
+   border: 0;
+   clip: rect(0 0 0 0);
+   height: 1px;
+   margin: -1px;
+   overflow: hidden;
+   padding: 0;
+   position: absolute;
+   width: 1px;
+}
+
+.sr-only {
+   @include visuallyhidden();
+}
