@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from "gatsby"
 import FeaturedMedia from '../../components/images/FeaturedMedia'
 import Seo from '../../components/layout/Seo'
+import { ContentWrapper } from '../../components/layout/ContentWrapper'
 
 const Page = ({ data }) => {
    const { page } = data
