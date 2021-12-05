@@ -4,6 +4,10 @@
    }
 }
 
+@mixin primary-gradient() {
+   @include linear-gradient( 90deg, $c-plum, $c-rose, $c-coral  );
+}
+
 @mixin pseudo-link( $z: 1 ) {
    &::after {
       bottom: 0;
@@ -16,7 +20,7 @@
    }
 }
 
-@mixin svg-contain( $height: auto, $width ) {
+@mixin svg-contain( $width,$height: auto ) {
    height: #{ $height };
    object-fit: contain;
    width: #{ $width };
@@ -28,14 +32,14 @@
 }
 
 @mixin viewport() {
-   height: calc(100vh - 69px);
+   height: $mobileHeight;
    overflow-x: hidden;
 	overflow-y: auto;
    width: 100vw;
 
    @include breakpoint( md ) {
       height: 100vh;
-      width: calc(100vw - 100px);
+      width: $desktopWidth;
    }
 }
 

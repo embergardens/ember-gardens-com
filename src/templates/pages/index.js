@@ -10,12 +10,15 @@ const Page = ({ data }) => {
    return (
       <>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
-
-         <FeaturedMedia image={featuredImage} />
-         <h1>
-            {title}
-         </h1>
-         <div dangerouslySetInnerHTML={{__html: content}} />
+         <div className={ `${template}-template` } >
+            <ContentWrapper layout="narrow">
+               <FeaturedMedia image={featuredImage} />
+               <h1>
+                  { title }
+               </h1>
+               <div dangerouslySetInnerHTML={{__html: content}} />
+            </ContentWrapper>
+         </div>
       </>
    )
 }

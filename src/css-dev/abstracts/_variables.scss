@@ -15,9 +15,12 @@ $c-gray:                #C0B5BF;
 $c-dark:                #402E52;
 $c-black:               #070609;
 
-@mixin primary-gradient() {
-   @include linear-gradient( 90deg, $c-plum, $c-rose, $c-coral  );
-}
+$e-in:                  $easeInQuint;
+$e-out:                 $easeOutQuint;
+$e-in-out:              $easeInOutQuint;
+
+$mobileHeight:          calc( 100vh - 69px );
+$desktopWidth:          calc( 100vw - 100px );
 
 $breakpoints: (
    xs: 500px,

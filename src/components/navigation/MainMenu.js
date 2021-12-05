@@ -2,98 +2,25 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { useRecoilValue} from 'recoil'
+import { useMediaQuery } from 'react-responsive'
 
 // Plugins ---------------------------------------------------------
 import { AnimatePresence, motion } from 'framer-motion'
 
 // Store -----------------------------------------------------------
 import { navOpenState } from '../../store/navigation'
+import { isDesktop } from '../utility/Breakpoints'
 
 // Icons -----------------------------------------------------------
+import { IconArrowDouble } from '../icons/IconArrowDouble'
 import { IconEmail } from '../icons/IconEmail'
 import { IconExternalLink } from '../icons/IconExternalLink'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconTwitter } from '../icons/IconTwitter'
 
-const motionMenu = {
-
-   closed: {
-      opacity: 0,
-      translateY: '-100%',
-      transition: {
-         when: 'afterChildren'
-      }
-   },
-
-   open: {
-      opacity: 1,
-      translateY: '0%',
-      transition: {
-         when: 'beforeChildren',
-         staggerChildren: 0.1,
-      }
-   }
-}
-
-const motionBackground = {
-
-   closed: {
-      opacity: 0,
-
-   },
-
-   open: {
-      opacity: 1,
-   }
-}
-
-const motionBorder = {
-
-   closed: {
-      opacity: 0,
-      //height: 0,
-
-   },
-
-   open: {
-      opacity: 1,
-      // adjust for mobile
-      //height: '100%'
-   }
-}
-
-const motionPrimary = {
-
-   closed: {
-      opacity: 0,
-      translateY: -100
-
-   },
-
-   open: i => ({
-      opacity: 1,
-      translateY: 0,
-      transition: {
-         delay: i * 0.1,
-      },
-   })
-}
-
-const motionSocial = {
-
-   closed: {
-      opacity: 0,
-      translateY: -100
-
-   },
-
-   open: {
-      opacity: 1,
-      translateY: 0
-   }
-}
-
 export const MainMenu = () => {
+   const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
+
    const data = useStaticQuery(graphql`
       query MainMenuData {
          mainMenu: wpMenu(locations: {eq: PRIMARY}) {
@@ -135,6 +62,66 @@ export const MainMenu = () => {
          }
       }
    `)
+
+   const motionMenu = {
+
+      closed: {
+         opacity: 0,
+         transition: {
+            when: 'afterChildren'
+         }
+      },
+
+      open: {
+         opacity: 1,
+         transition: {
+            when: 'beforeChildren',
+            staggerChildren: 0.1,
+         }
+      }
+   }
+
+   const motionBackground = {
+
+      closed: {
+         opacity: 0,
+
+      },
+
+      open: {
+         opacity: 1,
+      }
+   }
+
+   const motionBorder = {
+
+      closed: {
+         opacity: 0,
+         height: desktop ? 0 : 1,
+         width: desktop ? 1 : 0,
+
+      },
+
+      open: {
+         opacity: 1,
+         height: desktop ? '100%' : 1,
+         width: desktop ? 1 : '100%'
+      }
+   }
+
+   const motionSocial = {
+
+      closed: {
+         opacity: 0,
+         translateY: -100
+
+      },
+
+      open: {
+         opacity: 1,
+         translateY: 0
+      }
+   }
 
    const navOpen = useRecoilValue( navOpenState )
 
@@ -225,8 +212,8 @@ export const MainMenu = () => {
                                  { signup.text ? signup.text : 'Sign Up' }
                               </h6>
                               <form className="mainMenu__socialSignupForm">
-                                 <input type="text" placeholder="name@email.com" />
-                                 <button type="submit">
+                                 <input className="mainMenu__socialSignupInput" type="text" placeholder="name@email.com" />
+                                 <button className="mainMenu__socialSignupButton" type="submit">
                                     { signup.buttonText ? signup.buttonText : 'Submit' }
                                  </button>
                               </form>
@@ -243,21 +230,44 @@ export const MainMenu = () => {
 }
 
 export const MainMenuItem = ({ data, index }) => {
+
+   const motionPrimary = {
+
+      closed: {
+         opacity: 0,
+         translateY: -100
+
+      },
+
+      open: i => ({
+         opacity: 1,
+         translateY: 0,
+         transition: {
+            delay: i * 0.1,
+         },
+      })
+   }
+
    const { url, target, label } = data
+   const targetClass = target === '_blank' ? '-external' : ''
    return (
       <motion.li
-         className="mainMenu__primaryItem"
+         className={`mainMenu__primaryItem ${ targetClass }` }
          variants={ motionPrimary }
          custom={ index }
       >
          <a className="mainMenu__primaryLink" href={ url } target={ target } >
             { label }
          </a>
+         <div className="mainMenu__primaryLinkIcon">
+               <IconArrowDouble />
+         </div>
          { target === '_blank' &&
-            <div className="mainMenu__primaryLinkIcon">
+            <div className="mainMenu__primaryLinkExternalIcon">
                <IconExternalLink />
             </div>
          }
+
       </motion.li>
    )
 }

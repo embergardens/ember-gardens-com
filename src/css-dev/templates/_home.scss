@@ -1,0 +1,52 @@
+.homepage {
+
+   &__wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+   }
+
+   &__content {
+      @extend %flex-center;
+      flex: 1 1 auto;
+   }
+
+   &__logo {
+      height: auto;
+      width: 60vw;
+   }
+
+   &__footer {
+      align-items: center;
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include breakpoint ( sm ) {
+         flex-direction: row;
+      }
+   }
+
+   &__button {
+      display: block;
+
+      &.-full {
+         @include button( 'full' );
+      }
+
+      &.-half {
+         @include button( 'half' );
+      }
+
+      + .homepage__button {
+         margin-top: 30px;
+
+         @include breakpoint( sm ) {
+            margin-left: 45px;
+         }
+
+      }
+   }
+}

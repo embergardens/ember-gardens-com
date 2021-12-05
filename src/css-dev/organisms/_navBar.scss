@@ -273,7 +273,7 @@
       }
 
       &Arrow {
-         @include svg-contain( 1rem, auto );
+         @include svg-contain( auto, 1rem );
          color: inherit;
       }
    }

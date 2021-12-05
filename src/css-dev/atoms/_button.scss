@@ -1,0 +1,120 @@
+@mixin button( $style: 'full', $color: $c-white, $gap: 40px ) {
+   -webkit-appearance: none;
+   appearance: none;
+   background: transparent;
+   border: none;
+   border-radius: 0;
+   color: #{ $color };
+   cursor: pointer;
+   flex: 0 0 auto;
+   font-size: 16px;
+   font-weight: 900;
+   margin: 0;
+   padding: 12px 48px;
+   text-transform: uppercase;
+   transition: background-size $fast $e-out;
+
+   $half-gap: calc( $gap / 2 );
+
+   @if $style == 'full' {
+      background-image:
+         //NW
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //NE
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //E
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //SE
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //SW
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //W
+         linear-gradient(0deg, #{ $color }, #{ $color });
+      background-position:
+         //NW
+         0 0,
+         //NE
+         100% 0,
+         //E
+         100% 0,
+         //SE
+         100% 100%,
+         //SW
+         0 100%,
+         //W
+         0 0;
+      background-repeat: no-repeat;
+      background-size:
+         //NW
+         calc( 50% - $half-gap ) 1px,
+         //NE
+         calc( 50% - $half-gap ) 1px,
+         //E
+         1px 100%,
+         //SE
+         calc( 50% - $half-gap ) 1px,
+         //SW
+         calc( 50% - $half-gap ) 1px,
+         //W
+         1px 100%;
+
+      &:hover,
+      &:focus {
+         background-size:
+         //NW
+         50% 1px,
+         //NE
+         50% 1px,
+         //E
+         1px 100%,
+         //SE
+         50% 1px,
+         //SW
+         50% 1px,
+         //W
+         1px 100%;
+      }
+   } @else if $style == 'half' {
+      background-image:
+         //NW
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //E
+         linear-gradient(0deg, transparent, transparent),
+         //SW
+         linear-gradient(0deg, #{ $color }, #{ $color }),
+         //W
+         linear-gradient(0deg, #{ $color }, #{ $color });
+      background-position:
+         //NW
+         0 0,
+         //E
+         100% 0,
+         //SW
+         0 100%,
+         //W
+         0 0;
+      background-repeat: no-repeat;
+      background-size:
+         //NW
+         calc( 50% - $half-gap ) 1px,
+         //E
+         1px 100%,
+         //SW
+         calc( 50% - $half-gap ) 1px,
+         //W
+         1px 100%;
+
+      &:hover,
+      &:focus {
+         background-size:
+         //NW
+         100% 1px,
+         //E
+         1px 100%,
+         //SW
+         100% 1px,
+         //W
+         1px 100%;
+      }
+   }
+}

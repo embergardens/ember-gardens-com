@@ -18,7 +18,7 @@
 }
 
 .viewportMain {
-   @include primary-gradient();
+   background: $c-white;
    @include viewport();
 	transition: opacity 250ms ease-in-out;
 
@@ -30,6 +30,55 @@
 
 .contentWrapper {
    margin: var(--spacing-0) auto;
-   max-width: var(--maxWidth-wrapper);
-   padding: var(--spacing-10) var(--spacing-5);
+
+   &.-narrow {
+      max-width: var(--maxWidth-wrapper);
+      padding: var(--spacing-10) var(--spacing-5);
+   }
+
+   &.-full {
+      min-height: $mobileHeight;
+      min-width: 100vw;
+      padding: 20px;
+
+      @include breakpoint( xs ) {
+         padding: 30px;
+      }
+
+      @include breakpoint( sm ) {
+         padding: 40px;
+      }
+
+      @include breakpoint( md ) {
+         min-height: 100vh;
+         min-width: $desktopWidth;
+         padding: 60px;
+      }
+   }
+
+   &.-splash {
+      height: $mobileHeight;
+      width: 100vw;
+      padding: 40px 20px;
+
+      @include breakpoint( xs ) {
+         padding: 40px 30px;
+      }
+
+      @include breakpoint( sm ) {
+         padding: 40px;
+      }
+
+      @include breakpoint( md ) {
+         height: 100vh;
+         width: $desktopWidth;
+         padding: 60px;
+      }
+   }
+
+   &__content {
+      height: 100%;
+      position: relative;
+      z-index: 400;
+   }
 }
