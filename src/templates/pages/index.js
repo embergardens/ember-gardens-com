@@ -5,12 +5,12 @@ import Seo from '../../components/layout/Seo'
 
 const Page = ({ data }) => {
    const { page } = data
-   const { title, content, featuredImage, excerpt, databaseId, uri } = page
+   const { title, content, featuredImage, excerpt, uri } = page
 
    return (
       <>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
-         <div className={ `${template}-template` } >
+         <div className="default-template" >
             <ContentWrapper layout="narrow">
                <FeaturedMedia image={featuredImage} />
                <h1>
