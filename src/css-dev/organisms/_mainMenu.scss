@@ -14,7 +14,7 @@
    }
 
    &__bgImage {
-      background-blend-mode: color-burn, normal;
+      background-blend-mode: multiply, normal;
       background-image: linear-gradient( rgba($c-black, 0.62), rgba($c-black, 0.62) ), url('../assets/images/menu__bg.jpg');
       background-position: center;
       background-repeat: no-repeat;

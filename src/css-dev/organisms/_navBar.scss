@@ -51,6 +51,8 @@
    }
 
    &__title {
+      -webkit-appearance: none;
+      appearance: none;
       border: solid $c-gray;
       border-width: 0 1px 0 0;
       grid-area: Logo;
