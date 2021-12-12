@@ -42,8 +42,8 @@ const motionCloseC = {
    },
 
    menuOpenHover: {
-      opacity: 1,
-      translateX: -10
+      // opacity: 1,
+      // translateX: -10
    }
 }
 const motionCloseL = {
@@ -61,8 +61,8 @@ const motionCloseL = {
    },
 
    menuOpenHover: {
-      opacity: 1,
-      translateX: -5
+      // opacity: 1,
+      // translateX: -5
    }
 }
 const motionCloseO = {
@@ -80,8 +80,8 @@ const motionCloseO = {
    },
 
    menuOpenHover: {
-      opacity: 1,
-      translateX: 0
+      // opacity: 1,
+      // translateX: 0
    }
 }
 const motionCloseS = {
@@ -99,8 +99,8 @@ const motionCloseS = {
    },
 
    menuOpenHover: {
-      opacity: 1,
-      translateX: 5
+      // opacity: 1,
+      // translateX: 5
    }
 }
 const motionCloseE = {
@@ -118,8 +118,8 @@ const motionCloseE = {
    },
 
    menuOpenHover: {
-      opacity: 1,
-      translateX: 10
+      // opacity: 1,
+      // translateX: 10
    }
 }
 const motionMenuM = {
@@ -133,8 +133,8 @@ const motionMenuM = {
    },
 
    menuClosedHover: {
-      opacity: 1,
-      translateX: -5
+      // opacity: 1,
+      // translateX: -5
    },
 
    menuOpenHover: {
@@ -152,8 +152,8 @@ const motionMenuE = {
    },
 
    menuClosedHover: {
-      opacity: 1,
-      translateX: -2.5
+      // opacity: 1,
+      // translateX: -2.5
    },
 
    menuOpenHover: {
@@ -171,8 +171,8 @@ const motionMenuN = {
    },
 
    menuClosedHover: {
-      opacity: 1,
-      translateX: 2.5
+      // opacity: 1,
+      // translateX: 2.5
    },
 
    menuOpenHover: {
@@ -190,8 +190,8 @@ const motionMenuU = {
    },
 
    menuClosedHover: {
-      opacity: 1,
-      translateX: 5
+      // opacity: 1,
+      // translateX: 5
    },
 
    menuOpenHover: {
@@ -214,7 +214,8 @@ const motionStickLeft = {
    },
 
    menuOpenHover: {
-
+      opacity: 1,
+      points: "35.46 10.56 35.45 10.56 34.52 11.5 18.91 27.16 12.55 27.16 35.38 4.27 38.55 7.45 35.46 10.56"
    }
 }
 
@@ -234,7 +235,8 @@ const motionStickRight = {
    },
 
    menuOpenHover: {
-
+      opacity: 1,
+      points: "18.69 10.56 18.7 10.56 19.64 11.5 35.45 27.16 41.88 27.16 18.77 4.27 15.55 7.45 18.69 10.56"
    }
 }
 const motionMtnCenter = {
@@ -316,7 +318,7 @@ export const NavTrigger = () => {
 }
 
 export const IconMenuTrigger = ( props ) => {
-   const textColor = '#f48474'
+   const textColor = '#CE4813'
    const iconColor = '#715191'
 
    return (

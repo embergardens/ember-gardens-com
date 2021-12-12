@@ -1,5 +1,5 @@
 // React / Gatsby --------------------------------------------------
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 
 // Plugins ---------------------------------------------------------
 
@@ -13,6 +13,14 @@ import { Navbar } from "../navigation/Navbar"
 // =================================================================
 
 const Layout = ({ isHomePage, children }) => {
+  const getViewportHeight = () => {
+    document.querySelector(':root').style.setProperty('--vh', `${ window.innerHeight }px`)
+  }
+  useEffect(()=> {
+    window.addEventListener('resize', getViewportHeight)
+    getViewportHeight()
+  })
+
   const scrollRef = useRef()
 	// const { scrollYProgress } = useElementScroll(scrollRef)
   return (

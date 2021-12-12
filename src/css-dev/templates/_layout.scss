@@ -1,6 +1,6 @@
 .viewport {
    display: grid;
-   height: 100vh;
+   height: var( --vh );
    margin: 0;
    padding: 0;
    position: fixed;
@@ -23,7 +23,7 @@
 	transition: opacity 250ms ease-in-out;
 
 	@include breakpoint( md ) {
-      height: 100vh;
+      height: var( --vh );
 		margin: 0 0 60px;
 	}
 }
@@ -50,7 +50,7 @@
       }
 
       @include breakpoint( md ) {
-         min-height: 100vh;
+         min-height: var( --vh );
          min-width: $desktopWidth;
          padding: 60px;
       }
@@ -70,7 +70,7 @@
       }
 
       @include breakpoint( md ) {
-         height: 100vh;
+         height: var( --vh );
          width: $desktopWidth;
          padding: 60px;
       }

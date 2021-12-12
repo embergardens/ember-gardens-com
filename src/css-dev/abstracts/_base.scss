@@ -78,7 +78,7 @@ html {
   width: 100vw;
 
   @include breakpoint( md ) {
-    height: 100vh;
+    height: var( --vh );
     overflow: hidden;
   }
 }
@@ -89,7 +89,7 @@ body {
   color: var(--color-text);
 
   @include breakpoint ( md ) {
-		height: 100vh;
+		height: var( --vh );
 		overflow: hidden;
 		width: 100vw;
 	}

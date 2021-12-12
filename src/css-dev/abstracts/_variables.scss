@@ -8,6 +8,7 @@ $ff-ui:     'Chivo', system-ui, -apple-system, BlinkMacSystemFont,
 $c-plum:                #715191;
 $c-rose:                #BA5B80;
 $c-coral:               #F48474;
+$c-coral-ada:           #CE4813;
 $c-fog:                 #D9D9D9;
 $c-white:               #FAF9FC;
 $c-light:               #F1ECF5;
@@ -19,7 +20,7 @@ $e-in:                  $easeInQuint;
 $e-out:                 $easeOutQuint;
 $e-in-out:              $easeInOutQuint;
 
-$mobileHeight:          calc( 100vh - 69px );
+$mobileHeight:          calc( var( --vh ) - 69px );
 $desktopWidth:          calc( 100vw - 100px );
 
 $breakpoints: (

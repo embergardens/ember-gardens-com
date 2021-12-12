@@ -59,7 +59,7 @@
          grid-template-areas: 'PRIMARY SOCIAL';
          grid-template-columns: repeat( 2, 1fr );
          grid-template-rows: auto;
-         height: 100vh;
+         height: var( --vh );
          justify-items: stretch;
       }
    }
@@ -118,7 +118,7 @@
       &:focus {
          .mainMenu__primaryLinkIcon {
             opacity: 1;
-            transform: translateY(2px);
+            transform: translateY(0);
             transition: opacity $fast $e-out, transform $fast $e-out;
          }
 
@@ -143,7 +143,8 @@
    }
 
    &__primaryLinkIcon {
-      @include svg-contain( 30px, auto );
+      @include svg-contain( 30px, 20px );
+      color: $c-coral;
       opacity: 0;
       transform: translateY(-70px);
       transition: opacity $fast $e-out, transform $fast $e-out;

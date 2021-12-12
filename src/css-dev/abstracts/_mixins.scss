@@ -38,7 +38,7 @@
    width: 100vw;
 
    @include breakpoint( md ) {
-      height: 100vh;
+      height: var( --vh );
       width: $desktopWidth;
    }
 }

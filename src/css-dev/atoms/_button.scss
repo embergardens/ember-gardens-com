@@ -62,15 +62,15 @@
       &:focus {
          background-size:
          //NW
-         50% 1px,
+         calc( 50% + 1px ) 1px,
          //NE
-         50% 1px,
+         calc( 50% + 1px ) 1px,
          //E
          1px 100%,
          //SE
-         50% 1px,
+         calc( 50% + 1px ) 1px,
          //SW
-         50% 1px,
+         calc( 50% + 1px ) 1px,
          //W
          1px 100%;
       }

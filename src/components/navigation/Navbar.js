@@ -11,13 +11,14 @@ import { IconLogoTitleMobile } from '../icons/IconLogoTitleMobile'
 import { IconUSA } from '../icons/IconUSA'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconArrowSimple } from '../icons/IconArrowSimple'
+import { IconArrowDouble } from '../icons/IconArrowDouble'
 import { IconMaine } from '../icons/IconMaine'
 import { IconMass } from '../icons/IconMass'
 import { IconFlower } from '../icons/IconFlower'
 import { IconTruck } from '../icons/IconTruck'
 
 // Hooks -----------------------------------------------------------
-import { BreakpointDesktop, BreakpointNotDesktop } from '../utility/Breakpoints'
+import { BreakpointDesktop, BreakpointNotDesktop, BreakpointNotSmallDesktop } from '../utility/Breakpoints'
 
 // Store -----------------------------------------------------------
 
@@ -118,14 +119,16 @@ export const NavLink = ( props ) => {
          onMouseEnter={() => setIsHover(true)}
          onMouseLeave={() => setIsHover(false)}
       >
-         <div className="navBar__ctaIcon">
-            { index === 0 &&
-               <IconFlower />
-            }
-            { index === 1 &&
-               <IconTruck />
-            }
-         </div>
+         <BreakpointNotSmallDesktop>
+            <div className="navBar__ctaIcon">
+               { index === 0 &&
+                  <IconFlower />
+               }
+               { index === 1 &&
+                  <IconTruck />
+               }
+            </div>
+         </BreakpointNotSmallDesktop>
          <a className="navBar__ctaLink" href={ link.url } target={ link.target }>{ name }</a>
          <div className="navBar__ctaArrow">
             <IconArrowSimple isHover={ isHover } animate />
@@ -139,9 +142,11 @@ export const NavLocations = ( props ) => {
    const locationList = locations.map( ( location ) => <NavLocationGroup key={ location.state } location={ location } /> )
    return (
       <nav className="navBar__locations">
-         <div className="navBar__locationsIcon">
-            { icon }
-         </div>
+         <BreakpointNotSmallDesktop>
+            <div className="navBar__locationsIcon">
+               { icon }
+            </div>
+         </BreakpointNotSmallDesktop>
          { locationList }
       </nav>
    )
@@ -161,7 +166,7 @@ export const NavLocationGroup = ( props ) => {
             <a href={ uri } className="navBar__locationCityLink">
                <span>{ title }</span>
                <div className="navBar__locationCityArrow">
-                  <IconArrowSimple />
+                  <IconArrowDouble />
                </div>
             </a>
          </li>
