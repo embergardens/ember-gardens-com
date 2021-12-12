@@ -19,6 +19,7 @@ import { IconTruck } from '../icons/IconTruck'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop, BreakpointNotDesktop, BreakpointNotSmallDesktop } from '../utility/Breakpoints'
+import Link from './Link'
 
 // Store -----------------------------------------------------------
 
@@ -85,7 +86,7 @@ export const Navbar = () => {
 export const NavTitle = () => {
 
    return (
-      <a href="/" type="button" className="navBar__title">
+      <Link to="/" type="button" className="navBar__title">
          <div className="navBar__titleWrapper">
             <BreakpointNotDesktop>
                <IconLogoTitleMobile />
@@ -94,7 +95,7 @@ export const NavTitle = () => {
                <IconLogoTitle />
             </BreakpointDesktop>
          </div>
-      </a>
+      </Link>
    )
 }
 
