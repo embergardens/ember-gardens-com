@@ -93,6 +93,16 @@ export const MainMenu = () => {
       }
    }
 
+   const motionGradient = {
+      closed: {
+         opacity: 1,
+      },
+
+      open: {
+         opacity: 1,
+      }
+   }
+
    const motionBorder = {
 
       closed: {
@@ -145,7 +155,10 @@ export const MainMenu = () => {
                   className="mainMenu__bgImage"
                   variants={ motionBackground }
                />
-               <div className="mainMenu__bgGradient" />
+               <motion.div
+                  className="mainMenu__bgGradient"
+                  variants={ motionGradient }
+               />
                <div className="mainMenu__wrapper">
                   <div className="mainMenu__primary">
                      <ul className="mainMenu__primaryWrapper">

@@ -65,6 +65,9 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
 
+    // Gatsby Transition Link ===================================
+    `gatsby-plugin-transition-link`,
+
     // Manifest =======================================
     {
       resolve: `gatsby-plugin-manifest`,
