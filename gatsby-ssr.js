@@ -1,8 +1,10 @@
 import React from 'react'
+import {AnimatePresence} from 'framer-motion'
 import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
 
 // custom typefaces
+import "@fontsource/chivo/700.css"
 import "@fontsource/titillium-web/200.css"
 import "@fontsource/titillium-web/300.css"
 import "@fontsource/titillium-web/300-italic.css"
@@ -20,9 +22,11 @@ export const wrapRootElement = ({ element }) => {
 
    return (
       <RecoilRoot>
-         <Layout>
-            {element}
-         </Layout>
+         <AnimatePresence exitBeforeEnter>
+            <Layout>
+               {element}
+            </Layout>
+         </AnimatePresence>
       </RecoilRoot>
    )
 }

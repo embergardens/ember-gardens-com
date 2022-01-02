@@ -7,6 +7,9 @@ import { useMediaQuery } from 'react-responsive'
 // Plugins ---------------------------------------------------------
 import { AnimatePresence, motion } from 'framer-motion'
 
+// Components ------------------------------------------------------
+import Link from './Link'
+
 // Store -----------------------------------------------------------
 import { navOpenState } from '../../store/navigation'
 import { isDesktop } from '../utility/Breakpoints'
@@ -269,9 +272,9 @@ export const MainMenuItem = ({ data, index }) => {
          variants={ motionPrimary }
          custom={ index }
       >
-         <a className="mainMenu__primaryLink" href={ url } target={ target } >
+         <Link className="mainMenu__primaryLink" to={ url } target={ target } >
             { label }
-         </a>
+         </Link>
          <div className="mainMenu__primaryLinkIcon">
                <IconArrowDouble />
          </div>

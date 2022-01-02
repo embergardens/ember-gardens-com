@@ -1,4 +1,5 @@
 import React from 'react'
+import { AnimatePresence} from 'framer-motion'
 import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
 
@@ -21,9 +22,11 @@ export const wrapRootElement = ({ element }) => {
 
    return (
       <RecoilRoot>
-         <Layout>
-            {element}
-         </Layout>
+         <AnimatePresence >
+            <Layout>
+               {element}
+            </Layout>
+         </AnimatePresence>
       </RecoilRoot>
    )
 }

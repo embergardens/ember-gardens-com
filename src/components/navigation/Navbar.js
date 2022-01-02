@@ -103,9 +103,9 @@ export const NavInstagram = ( props ) => {
    const { url } = props
 
    return (
-      <a className="navBar__instagram" href={ url.url } target={ url.target } rel="noreferrer">
+      <Link className="navBar__instagram" to={ url.url } target={ url.target } rel="noreferrer">
          <IconInstagram />
-      </a>
+      </Link>
    )
 }
 
@@ -130,7 +130,7 @@ export const NavLink = ( props ) => {
                }
             </div>
          </BreakpointNotSmallDesktop>
-         <a className="navBar__ctaLink" href={ link.url } target={ link.target }>{ name }</a>
+         <Link className="navBar__ctaLink" to={ link.url } target={ link.target }>{ name }</Link>
          <div className="navBar__ctaArrow">
             <IconArrowSimple isHover={ isHover } animate />
          </div>
@@ -164,12 +164,12 @@ export const NavLocationGroup = ( props ) => {
 
       return (
          <li className="navBar__locationCity" key={ city.title }>
-            <a href={ uri } className="navBar__locationCityLink">
+            <Link to={ uri } className="navBar__locationCityLink">
                <span>{ title }</span>
                <div className="navBar__locationCityArrow">
                   <IconArrowDouble />
                </div>
-            </a>
+            </Link>
          </li>
       )
    })
@@ -184,15 +184,15 @@ export const NavLocationGroup = ( props ) => {
                <IconMass />
             }
          </div>
-         <a
+         <Link
             className="navBar__locationGroupLink"
-            href={ link.url }
+            to={ link.url }
             aria-label={ link.title }
             onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
          >
             { state }
-         </a>
+         </Link>
          { cities.length > 0 && menuOpen &&
             <div
                className="navBar__locationCities"
