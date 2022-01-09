@@ -1,5 +1,4 @@
 import React from 'react'
-import {AnimatePresence} from 'framer-motion'
 import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
 
@@ -18,15 +17,13 @@ import "@fontsource/titillium-web/900.css"
 import "./src/css-dev/style.scss"
 
 // eslint-disable-next-line arrow-body-style
-export const wrapRootElement = ({ element }) => {
+export const wrapPageElement = ({ element }) => {
 
    return (
       <RecoilRoot>
-         <AnimatePresence exitBeforeEnter>
             <Layout>
                {element}
             </Layout>
-         </AnimatePresence>
       </RecoilRoot>
    )
 }

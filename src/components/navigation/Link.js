@@ -1,36 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import { Link as GatsbyLink } from "gatsby"
-import { useRecoilState} from 'recoil'
-
-import { activeTransitionState } from '../../store/navigation'
+import TransitionAnime from './TransitionAnime'
 
 const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
 
    const internal = /^\/(?!\/)/.test(to)
 
-   const [ activeTransition, setActiveTransition ] = useRecoilState( activeTransitionState )
-   const onActivateTransition = () => setActiveTransition( true )
-
-   const handleClick = () => {
-      if ( !activeTransition ) {
-         onActivateTransition()
-      }
-   }
 
   // Use Gatsby Link for internal links, and <a> for others
    if (internal) {
 
       return (
-         <GatsbyLink
+         <TransitionAnime
+            bg="linear-gradient( 90deg, #715191, #BA5B80, #F48474)"
             to={to}
             activeClassName={activeClassName}
             partiallyActive={partiallyActive}
-            onClick={handleClick}
+            duration={1.5}
             {...other}
          >
          {children}
-         </GatsbyLink>
+         </TransitionAnime>
       )
    }
    return (
