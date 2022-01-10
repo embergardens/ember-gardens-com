@@ -19,6 +19,14 @@ const TransitionAnime = ( options ) => {
 
 	const getCoverEl = () => document.querySelector(`.tl-cover-el`)
 
+	const toggleNav = () => {
+		setTimeout(() => {
+			if ( navOpen ) {
+				setNavOpen( false )
+			}
+		}, 500);
+	}
+
 	const horizontal = ({ node, props: { length: seconds }, direction }) => {
 		const directionTo = direction === 'left' ? '-100%' : '100%'
 		const directionFrom = direction === 'left' ? '100%' : '-100%'
@@ -36,7 +44,7 @@ const TransitionAnime = ( options ) => {
 				ease: "power1.easeInOut",
 				duration: half,
 				opacity: 1,
-				onComplete: navOpen ? setNavOpen( false ) : ''
+				onComplete: toggleNav()
 			})
 			.set(node, { opacity: 0 })
 			.to(
@@ -68,7 +76,7 @@ const TransitionAnime = ( options ) => {
 				ease: "power1.easeInOut",
 				duration: half,
 				opacity: 1,
-				onComplete: navOpen ? setNavOpen( false ) : ''
+				onComplete: toggleNav()
 			})
 			.set(node, { opacity: 0 })
 			.to(

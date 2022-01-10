@@ -1,23 +1,28 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import FeaturedMedia from '../../components/images/FeaturedMedia'
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
+import { PageSection } from '../../components/layout/PageSection'
 
 const Page = ({ data }) => {
    const { page } = data
-   const { title, content, featuredImage, excerpt, uri } = page
+   const { title, uri, acf } = page
+   const { hero, pagesection } = acf
+
+   const sections = pagesection.map( ( section, index ) => <PageSection data={section} key={ index } />)
 
    return (
       <>
-         <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
+         <Seo title={title} uri={uri} />
          <div className="default-template" >
             <ContentWrapper layout="narrow">
-               <FeaturedMedia image={featuredImage} />
-               <h1>
-                  { title }
-               </h1>
-               <div dangerouslySetInnerHTML={{__html: content}} />
+
+               <PageSection data={hero} hero />
+
+               { pagesection &&
+                  sections
+               }
+
             </ContentWrapper>
          </div>
       </>
@@ -27,7 +32,7 @@ const Page = ({ data }) => {
 export const query = graphql`
    query page($id: String!) {
       page: wpPage(id: { eq: $id }) {
-         ...PageContent
+         ...DefaultPageContent
       }
    }
 `

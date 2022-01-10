@@ -115,5 +115,129 @@ export const fragments = graphql`
       }
    }
 
+   fragment DefaultPageContent on WpPage {
+      title
+      uri
+      databaseId
+      acf {
+         hero {
+            sectioneyebrow
+            sectionstyle
+            sectiontitle
+            sectionbackground {
+               color
+               image {
+                  altText
+                  localFile {
+                     ...HeroImage
+                     publicURL
+                  }
+                  mediaDetails {
+                     width
+                     height
+                  }
+               }
+               layout
+               opacity
+            }
+            contentdesigner {
+               ...HeroTextBlock
+               ...HeroButtonBlock
+               ...HeroImageBlock
+            }
+         }
+         pagesection {
+            navigationtitle
+            sectionstyle
+            sectiontitle
+            showinnav
+            sectionbackground {
+               color
+               image {
+                  altText
+                  localFile {
+                     ...HeroImage
+                     publicURL
+                  }
+                  mediaDetails {
+                     width
+                     height
+                  }
+               }
+               layout
+               opacity
+            }
+            contentdesigner {
+               ...TextBlock
+               ...ButtonBlock
+               ...ImageBlock
+            }
+         }
+      }
+   }
+
+   fragment HeroTextBlock on WpPage_Acf_Hero_Contentdesigner_Textblock {
+      fieldGroupName
+      text
+   }
+
+   fragment HeroButtonBlock on WpPage_Acf_Hero_Contentdesigner_Buttonblock {
+      fieldGroupName
+      buttongroup {
+         button {
+            target
+            title
+            url
+         }
+      }
+   }
+
+   fragment HeroImageBlock on WpPage_Acf_Hero_Contentdesigner_ImageBlock {
+      fieldGroupName
+      image {
+         altText
+         localFile {
+            ...HeroImage
+            publicURL
+         }
+         mediaDetails {
+            width
+            height
+         }
+      }
+   }
+
+   fragment TextBlock on WpPage_Acf_pagesection_Contentdesigner_Textblock {
+      fieldGroupName
+      text
+   }
+
+   fragment ButtonBlock on WpPage_Acf_pagesection_Contentdesigner_Buttonblock {
+      fieldGroupName
+      buttongroup {
+         button {
+            target
+            title
+            url
+         }
+         style
+      }
+   }
+
+   fragment ImageBlock on WpPage_Acf_pagesection_Contentdesigner_ImageBlock {
+      fieldGroupName
+      image {
+         altText
+         localFile {
+            ...HeroImage
+            publicURL
+         }
+         mediaDetails {
+            width
+            height
+         }
+      }
+   }
+
 
 `
