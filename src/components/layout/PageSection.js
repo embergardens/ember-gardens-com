@@ -1,18 +1,23 @@
 import React from 'react'
+import { kebabCase } from 'lodash'
 import { ContentDesigner } from '../content/ContentDesigner'
+import { SectionFooterNav } from '../navigation/SectionFooterNav'
 
-export const PageSection = ({ data }) => {
+export const PageSection = ({ data, pageTitle, hero = false, list, index }) => {
    const {
+      navigationtitle: navTitle,
       sectionstyle: style,
-      sectiontitle: title,
+      sectiontitle,
       contentdesigner: content,
       sectioneyebrow: eyebrow,
-      hero
    } = data
 
+   const idName = kebabCase( navTitle || sectiontitle || pageTitle )
+
    return (
-      <section className={`pageSection -${ style }`}>
-         { hero &&
+      <section id={ idName } className={`pageSection -${ style }`}>
+         { hero
+            ?
             <>
                { eyebrow &&
                   <div className="sectionEyebrow">
@@ -20,19 +25,20 @@ export const PageSection = ({ data }) => {
                   </div>
                }
                <h1>
-                  { title }
+                  { sectiontitle || pageTitle }
                </h1>
             </>
-         }
-
-         { ! hero &&
-
-         <h3 className="sectionTitle">
-               { title }
+            :
+            <h3 className="sectionTitle">
+               { sectiontitle }
             </h3>
-
          }
-         <ContentDesigner blocks={ content } />
+
+         { content &&
+            <ContentDesigner blocks={ content } />
+         }
+
+         <SectionFooterNav list={list} index={ hero ? -1 : index } />
       </section>
    )
 
