@@ -2,6 +2,7 @@ const _ = require('lodash')
 
 const pageTemplate = require.resolve('../src/templates/pages/index.js')
 const homepageTemplate = require.resolve('../src/templates/home/index.js')
+const simpleTemplate = require.resolve( '../src/templates/pages/simple.js')
 
 const GET_PAGES = `
    query GET_PAGES {
@@ -54,7 +55,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
             createPage({
                path: pagePath,
-               component: page.node.isFrontPage ? homepageTemplate : pageTemplate,
+               component: page.node.isFrontPage ? homepageTemplate : page.node.template.templateName === 'Default' ? pageTemplate : simpleTemplate,
                context: {
                   id: page.node.id,
                   page: page.node,
