@@ -8,8 +8,9 @@ import BackgroundGradient from '../images/BackgroundGradient'
 import { SectionBackground } from '../images/SectionBackground'
 import { SvgFilters } from '../images/SvgFilters'
 
-export const ContentWrapper = ( { children, layout, image, gradient, sections } ) => {
+export const ContentWrapper = ( { children, layout, image, gradient, sections = [], tag = 'main' } ) => {
    const layoutClass = layout ? `-${ layout }` : '-full'
+   const ContentTag = tag
 
    const currentSection = useRecoilValue( currentSectionState )
 
@@ -25,8 +26,9 @@ export const ContentWrapper = ( { children, layout, image, gradient, sections } 
 
    })
 
+
    return (
-      <main className={ `contentWrapper ${ layoutClass }` }>
+      <ContentTag className={ `contentWrapper ${ layoutClass }` }>
          <SvgFilters />
 
          { gradient &&
@@ -44,6 +46,6 @@ export const ContentWrapper = ( { children, layout, image, gradient, sections } 
          <div className="contentWrapper__content">
             { children }
          </div>
-      </main>
+      </ContentTag>
    )
 }

@@ -6,18 +6,20 @@ import { kebabCase } from 'lodash'
 
 import { useRecoilValue } from 'recoil'
 import { currentSectionState } from '../../store/navigation'
+import { footerData } from '../../data/footerSection'
 
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
-import { Footer } from '../../components/layout/Footer'
 import { PageSection } from '../../components/layout/PageSection'
 import { SectionNav } from '../../components/navigation/SectionNav'
 import { SectionFooterNav } from '../../components/navigation/SectionFooterNav'
 
 const Page = ({ data }) => {
    const { page } = data
-   const { title, uri, acf } = page
+   const { title, uri, acf, global: { footerImage } } = page
    const { hero, pagesection } = acf
+   const { footer } = footerData
+
 
    const currentSection = useRecoilValue( currentSectionState )
 
@@ -28,7 +30,14 @@ const Page = ({ data }) => {
       showinnav: false,
    })
 
-   const sectionArray = [ hero, ...pagesection ]
+   Object.assign( footer, {
+      sectionbackground: {
+         image: footerImage  // Footer Image not working yet TODO:
+      }
+   })
+
+
+   const sectionArray = [ hero, ...pagesection, footer ]
 
    const sectionList = sectionArray.map( (section) => {
       const slug = section.isHero ? section.pageTitle : section.navigationtitle ||section.sectiontitle
@@ -65,11 +74,10 @@ const Page = ({ data }) => {
 
                { sections }
 
-               <Footer />
-
                <SectionFooterNav list={ sectionList } />
 
             </ContentWrapper>
+
          </div>
       </>
    )

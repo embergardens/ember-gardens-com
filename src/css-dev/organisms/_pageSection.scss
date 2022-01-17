@@ -14,6 +14,14 @@
       padding: 16vh 7.5rem;
    }
 
+   &.-footer {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--fontSize-30) var(--fontSize-30) var(--fontSize-60);
+   }
+
    &__wrapper {
       max-width: 1220px;
    }

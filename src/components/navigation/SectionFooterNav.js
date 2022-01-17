@@ -14,7 +14,7 @@ export const SectionFooterNav = ({ list }) => {
    let slug = 'about-ember-gardens'
    let footer = false
 
-   if ( next > list.length ) {
+   if ( next == list.length ) {
       label = ''
       slug = list[0].slug
       footer = true
@@ -25,10 +25,10 @@ export const SectionFooterNav = ({ list }) => {
 
    return (
       <div className="sectionFooter__nav">
-         <a href={ `#${ slug }` } className={ `sectionFooter__navLink ${ footer ? '-reverse' : ''}` }>
+         <a href={ `#${ slug }` } className='sectionFooter__navLink'>
             { label }
          </a>
-         <div className="sectionFooter__navIcon">
+         <div className={ `sectionFooter__navIcon ${ footer ? '-reverse' : ''}` }>
             <IconArrowCircle />
          </div>
       </div>

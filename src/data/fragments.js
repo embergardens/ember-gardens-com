@@ -174,6 +174,19 @@ export const fragments = graphql`
             }
          }
       }
+      global {
+         footerImage {
+            altText
+            localFile {
+               ...HeroImage
+               publicURL
+            }
+            mediaDetails {
+               width
+               height
+            }
+         }
+      }
    }
 
    fragment HeroTextBlock on WpPage_Acf_Hero_Contentdesigner_Textblock {

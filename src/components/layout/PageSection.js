@@ -10,11 +10,13 @@ import { currentSectionState } from '../../store/navigation'
 
 // Components --------------------
 import { ContentDesigner } from '../content/ContentDesigner'
+import { Footer } from './Footer'
 
 export const PageSection = ({ data }) => {
    const {
       sectiontitle,
       isHero,
+      isFooter,
       pageTitle,
       navigationtitle: navTitle,
       sectionstyle: style,
@@ -42,8 +44,7 @@ export const PageSection = ({ data }) => {
       <section ref={ ref } id={ idName } className={`pageSection -${ style }`}>
 
          <div className="pageSection__wrapper">
-            { isHero
-               ?
+            { isHero &&
                <>
                   { eyebrow &&
                      <div className="sectionEyebrow">
@@ -54,14 +55,21 @@ export const PageSection = ({ data }) => {
                      { sectiontitle || pageTitle }
                   </h1>
                </>
-               :
+            }
+
+            { !isHero && !isFooter &&
                <h3 className="sectionTitle">
                   { sectiontitle }
                </h3>
             }
 
+
             { content &&
                <ContentDesigner blocks={ content } hero={ isHero } />
+            }
+
+            { isFooter &&
+               <Footer />
             }
          </div>
 
