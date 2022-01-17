@@ -59,7 +59,7 @@ const Page = ({ data }) => {
       <>
          <Seo title={title} uri={uri} />
          <div className="default-template">
-            <ContentWrapper layout="open" gradient={ currentBackground }>
+            <ContentWrapper layout="open" gradient={ currentBackground } sections={ sectionList }>
 
                <SectionNav items={ sectionList } />
 

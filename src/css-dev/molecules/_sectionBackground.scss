@@ -1,0 +1,14 @@
+.sectionBackground {
+   bottom: 0;
+   left: 0;
+   mix-blend-mode: multiply;
+   position: fixed;
+   right: 0;
+   top: 0;
+   z-index: 0;
+
+   .gatsby-image-wrapper-constrained {
+      display: block;
+      height: 100%;
+   }
+}

@@ -10,7 +10,6 @@ import { currentSectionState } from '../../store/navigation'
 
 // Components --------------------
 import { ContentDesigner } from '../content/ContentDesigner'
-import { SectionBackground } from '../images/SectionBackground'
 
 export const PageSection = ({ data }) => {
    const {
@@ -21,7 +20,6 @@ export const PageSection = ({ data }) => {
       sectionstyle: style,
       contentdesigner: content,
       sectioneyebrow: eyebrow,
-      sectionbackground: background,
    } = data
 
    const { ref, inView } = useInView({
@@ -42,8 +40,6 @@ export const PageSection = ({ data }) => {
 
    return (
       <section ref={ ref } id={ idName } className={`pageSection -${ style }`}>
-
-         <SectionBackground data={ background } />
 
          <div className="pageSection__wrapper">
             { isHero

@@ -138,7 +138,7 @@ export const fragments = graphql`
                   }
                }
                layout
-               opacity
+               brightness
             }
             contentdesigner {
                ...HeroTextBlock
@@ -165,7 +165,7 @@ export const fragments = graphql`
                   }
                }
                layout
-               opacity
+               brightness
             }
             contentdesigner {
                ...TextBlock
