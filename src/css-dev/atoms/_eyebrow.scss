@@ -1,0 +1,16 @@
+.sectionEyebrow {
+   @include pseudo-link( $z: -1 );
+   @include theme-text( 'reverse' );
+   display: inline-block;
+   font-size: var(--fontSize-16);
+   font-weight: var(--fontWeight-bold);
+   opacity: 0.6;
+   padding: 0.5rem var(--fontSize-18);
+   position: relative;
+   text-transform: uppercase;
+
+   &::after {
+      @include theme-text();
+      background: currentColor;
+   }
+}

@@ -3,7 +3,7 @@ import { ButtonBlock } from '../blocks/ButtonBlock'
 import { TextBlock } from '../blocks/TextBlock'
 import { ImageBlock } from '../blocks/ImageBlock'
 
-export const ContentDesigner = ({ blocks }) => {
+export const ContentDesigner = ({ blocks, hero }) => {
 
    const content = blocks.map( ( block, index ) => {
       const name = block.fieldGroupName.split("_").pop()
@@ -20,6 +20,6 @@ export const ContentDesigner = ({ blocks }) => {
       }
    })
 
-   return <div className="sectionContent">{ content }</div>
+   return <div className={`sectionContent ${ hero ? '-hero' : '' }`}>{ content }</div>
 
 }

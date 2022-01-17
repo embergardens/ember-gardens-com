@@ -41,7 +41,7 @@ const Page = ({ data }) => {
       return currentSection === section.slug
    })
 
-   const currentBackground = currentObject[0].sectionbackground
+   const currentBackground = currentObject[0] ? currentObject[0].sectionbackground.color : 'gradient'
 
    // Build Individual Sections
    const sections = sectionList.map( ( section, index ) => {
@@ -59,7 +59,7 @@ const Page = ({ data }) => {
       <>
          <Seo title={title} uri={uri} />
          <div className="default-template">
-            <ContentWrapper layout="open" gradient={ currentBackground.color }>
+            <ContentWrapper layout="open" gradient={ currentBackground }>
 
                <SectionNav items={ sectionList } />
 

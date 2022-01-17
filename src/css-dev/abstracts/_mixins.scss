@@ -4,6 +4,13 @@
    }
 }
 
+@mixin intro() {
+   @include theme-text('1');
+   font-size: var(--fontSize-26);
+   font-weight: var(--fontWeight-light);
+   line-height: var(--lineHeight-heading);
+}
+
 @mixin primary-gradient() {
    @include linear-gradient( 90deg, $c-plum, $c-rose, $c-coral  );
 }
@@ -28,6 +35,14 @@
    svg {
       height: 100%;
       width: 100%;
+   }
+}
+
+@mixin theme-text( $shade: '0', $transition: true ) {
+   color: var( --theme-color-#{ $shade } );
+
+   @if ( $transition ) {
+      transition: color 300ms $e-in-out;
    }
 }
 

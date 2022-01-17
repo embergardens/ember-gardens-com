@@ -65,7 +65,7 @@ export const PageSection = ({ data }) => {
             }
 
             { content &&
-               <ContentDesigner blocks={ content } />
+               <ContentDesigner blocks={ content } hero={ isHero } />
             }
          </div>
 

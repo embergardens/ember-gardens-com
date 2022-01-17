@@ -1,5 +1,6 @@
 .navBar {
    background: $color-grayscale-f;
+   box-shadow: $low-shadow;
    display: grid;
    grid-template-columns: 1fr 69px 69px;
    grid-template-areas: "Logo Social Menu";

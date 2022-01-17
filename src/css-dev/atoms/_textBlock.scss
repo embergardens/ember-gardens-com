@@ -1,0 +1,11 @@
+.textBlock {
+   .-hero > & {
+      p:first-child {
+         @include intro();
+      }
+   }
+
+   b, strong {
+      font-weight: bold;
+   }
+}

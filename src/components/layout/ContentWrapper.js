@@ -6,16 +6,18 @@ import { SvgFilters } from '../images/SvgFilters'
 export const ContentWrapper = ( { children, layout, image, gradient } ) => {
    const layoutClass = layout ? `-${ layout }` : '-full'
 
+   // Add classes for light and dark themes
+
    return (
       <main className={ `contentWrapper ${ layoutClass }` }>
          <SvgFilters />
 
-         { image &&
-            <BackgroundMedia image={ image } />
-         }
-
          { gradient &&
             <BackgroundGradient theme={ gradient } />
+         }
+
+         { image &&
+            <BackgroundMedia image={ image } />
          }
 
          <div className="contentWrapper__content">

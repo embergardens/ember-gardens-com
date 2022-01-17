@@ -13,6 +13,7 @@
 
    &__navLink {
       @include pseudo-link();
+      @include theme-text();
       font-size: 1rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -20,11 +21,16 @@
 
    &__navIcon {
       @include svg-contain( 60px, 60px );
+      color: currentColor;
       transform: rotate( 90deg );
       transition: transform 300ms ease-in-out;
 
       &.-reverse {
          transform: rotate( 270deg );
+      }
+
+      > svg {
+         @include theme-text();
       }
    }
 }
