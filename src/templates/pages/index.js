@@ -17,7 +17,7 @@ import { SectionFooterNav } from '../../components/navigation/SectionFooterNav'
 const Page = ({ data }) => {
    const { page } = data
    const { title, uri, acf, global: { footerImage } } = page
-   const { hero, pagesection } = acf
+   const { hero, pagesection = [] } = acf
    const { footer } = footerData
 
 
