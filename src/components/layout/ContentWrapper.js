@@ -9,11 +9,13 @@ export const ContentWrapper = ( { children, layout, image, gradient } ) => {
    return (
       <main className={ `contentWrapper ${ layoutClass }` }>
          <SvgFilters />
-         {/* { gradient &&
-            <BackgroundGradient theme={ gradient } />
-         } */}
+
          { image &&
             <BackgroundMedia image={ image } />
+         }
+
+         { gradient &&
+            <BackgroundGradient theme={ gradient } />
          }
 
          <div className="contentWrapper__content">

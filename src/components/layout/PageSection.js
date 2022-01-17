@@ -1,44 +1,74 @@
-import React from 'react'
-import { kebabCase } from 'lodash'
-import { ContentDesigner } from '../content/ContentDesigner'
-import { SectionFooterNav } from '../navigation/SectionFooterNav'
+import React, { useEffect } from 'react'
 
-export const PageSection = ({ data, pageTitle, hero = false, list, index }) => {
+// Plugins --------------
+import { kebabCase } from 'lodash'
+import { useInView } from 'react-intersection-observer'
+
+// Store ---------------
+import { useRecoilState } from 'recoil'
+import { currentSectionState } from '../../store/navigation'
+
+// Components --------------------
+import { ContentDesigner } from '../content/ContentDesigner'
+import { SectionBackground } from '../images/SectionBackground'
+
+export const PageSection = ({ data }) => {
    const {
+      sectiontitle,
+      isHero,
+      pageTitle,
       navigationtitle: navTitle,
       sectionstyle: style,
-      sectiontitle,
       contentdesigner: content,
       sectioneyebrow: eyebrow,
+      sectionbackground: background,
    } = data
 
-   const idName = kebabCase( navTitle || sectiontitle || pageTitle )
+   const { ref, inView } = useInView({
+      threshold: 0,
+      rootMargin: '-50% 0%',
+   })
+
+   const idName = kebabCase( isHero ? pageTitle : navTitle || sectiontitle )
+
+   const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
+
+   useEffect( () => {
+      if ( inView ) {
+         setCurrentSection( idName )
+      }
+   }, [inView] )
+
 
    return (
-      <section id={ idName } className={`pageSection -${ style }`}>
-         { hero
-            ?
-            <>
-               { eyebrow &&
-                  <div className="sectionEyebrow">
-                     { eyebrow }
-                  </div>
-               }
-               <h1>
-                  { sectiontitle || pageTitle }
-               </h1>
-            </>
-            :
-            <h3 className="sectionTitle">
-               { sectiontitle }
-            </h3>
-         }
+      <section ref={ ref } id={ idName } className={`pageSection -${ style }`}>
 
-         { content &&
-            <ContentDesigner blocks={ content } />
-         }
+         <SectionBackground data={ background } />
 
-         <SectionFooterNav list={list} index={ hero ? -1 : index } />
+         <div className="pageSection__wrapper">
+            { isHero
+               ?
+               <>
+                  { eyebrow &&
+                     <div className="sectionEyebrow">
+                        { eyebrow }
+                     </div>
+                  }
+                  <h1>
+                     { sectiontitle || pageTitle }
+                  </h1>
+               </>
+               :
+               <h3 className="sectionTitle">
+                  { sectiontitle }
+               </h3>
+            }
+
+            { content &&
+               <ContentDesigner blocks={ content } />
+            }
+         </div>
+
       </section>
    )
 

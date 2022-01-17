@@ -1,0 +1,13 @@
+.pageSection {
+   &.-fullWidth {
+      min-height: 100vh;
+      padding: 16vh 7.5rem;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+   }
+
+   &__wrapper {
+      max-width: 1220px;
+   }
+}

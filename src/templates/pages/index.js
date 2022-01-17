@@ -1,33 +1,73 @@
+/* eslint-disable arrow-body-style */
 import React from 'react'
 import { graphql } from "gatsby"
+
+import { kebabCase } from 'lodash'
+
+import { useRecoilValue } from 'recoil'
+import { currentSectionState } from '../../store/navigation'
+
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
+import { Footer } from '../../components/layout/Footer'
 import { PageSection } from '../../components/layout/PageSection'
 import { SectionNav } from '../../components/navigation/SectionNav'
+import { SectionFooterNav } from '../../components/navigation/SectionFooterNav'
 
 const Page = ({ data }) => {
    const { page } = data
    const { title, uri, acf } = page
    const { hero, pagesection } = acf
 
-   const sections = pagesection?.map( ( section, index, array ) => <PageSection data={section} index={index} list={array} key={ section.sectiontitle } />)
+   const currentSection = useRecoilValue( currentSectionState )
+
+   // Update Hero / Section Objects
+   Object.assign( hero, {
+      isHero: true,
+      pageTitle: title,
+      showinnav: false,
+   })
+
+   const sectionArray = [ hero, ...pagesection ]
+
+   const sectionList = sectionArray.map( (section) => {
+      const slug = section.isHero ? section.pageTitle : section.navigationtitle ||section.sectiontitle
+      Object.assign( section, { slug: kebabCase( slug ) } )
+      return section
+   })
+
+   // Get Current Section Background
+   const currentObject = sectionList.filter( (section) => {
+      return currentSection === section.slug
+   })
+
+   const currentBackground = currentObject[0].sectionbackground
+
+   // Build Individual Sections
+   const sections = sectionList.map( ( section, index ) => {
+
+      return (
+         <PageSection
+            data={section}
+            index={index}
+            key={ section.isHero ? section.pageTitle : section.sectiontitle  }
+         />
+      )
+   })
 
    return (
       <>
          <Seo title={title} uri={uri} />
-         <div className="default-template" >
-            <ContentWrapper layout="narrow">
-               { pagesection &&
-                  <SectionNav items={pagesection} />
-               }
+         <div className="default-template">
+            <ContentWrapper layout="open" gradient={ currentBackground.color }>
 
-               { hero &&
-                  <PageSection data={hero} pageTitle={title} list={pagesection} hero />
-               }
+               <SectionNav items={ sectionList } />
 
-               { pagesection &&
-                  sections
-               }
+               { sections }
+
+               <Footer />
+
+               <SectionFooterNav list={ sectionList } />
 
             </ContentWrapper>
          </div>
