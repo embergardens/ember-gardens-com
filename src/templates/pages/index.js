@@ -16,7 +16,7 @@ import { SectionFooterNav } from '../../components/navigation/SectionFooterNav'
 
 const Page = ({ data }) => {
    const { page } = data
-   const { title, uri, acf, global: { footerImage } } = page
+   const { title, uri, acf } = page
    const { hero, pagesection = [] } = acf
    const { footer } = footerData
 
@@ -30,11 +30,11 @@ const Page = ({ data }) => {
       showinnav: false,
    })
 
-   Object.assign( footer, {
-      sectionbackground: {
-         image: footerImage  // Footer Image not working yet TODO:
-      }
-   })
+   // Object.assign( footer, {
+   //    sectionbackground: {
+   //       image: footerImage  // Footer Image not working yet TODO:
+   //    }
+   // })
 
 
    const sectionArray = [ hero, ...pagesection, footer ]
