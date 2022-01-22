@@ -29,40 +29,7 @@ export const Navbar = () => {
    const data = useStaticQuery(graphql`
       query NavBarData {
          wp {
-            acfOptionsNavigation {
-               navigation {
-                  quickLinks {
-                     name
-                     link {
-                        target
-                        title
-                        url
-                     }
-                  }
-                  locations {
-                     state
-                     link {
-                        ... on WpLocation {
-                           uri
-                           slug
-                        }
-                     }
-                     cities {
-                        ... on WpLocation {
-                           title
-                           uri
-                        }
-                     }
-                  }
-                  instagram {
-                     link {
-                        url
-                        target
-                     }
-                  }
-               }
-            }
-
+            ...GlobalNavigation
          }
       }
    `)

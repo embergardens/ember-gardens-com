@@ -19,6 +19,78 @@ export const fragments = graphql`
       }
    }
 
+   fragment GlobalFooter on Wp {
+      acfOptionsGlobal {
+			globalOptions {
+				footerOptions {
+               footerLinks {
+                  link {
+                     target
+                     title
+                     url
+                  }
+               }
+               backgroundImage {
+                  altText
+                  localFile {
+                     ...HeroImage
+                     publicURL
+                  }
+                  mediaDetails {
+                     width
+                     height
+                  }
+               }
+            }
+         }
+      }
+   }
+
+   fragment GlobalNavigation on Wp {
+      acfOptionsNavigation {
+         navigation {
+            quickLinks {
+               name
+               link {
+                  target
+                  title
+                  url
+               }
+            }
+            locations {
+               state
+               link {
+                  ... on WpLocation {
+                     uri
+                     slug
+                  }
+               }
+               cities {
+                  ... on WpLocation {
+                     title
+                     uri
+                  }
+               }
+            }
+            instagram {
+               link {
+                  url
+                  target
+               }
+               text
+            }
+            email {
+               address
+               text
+            }
+            signup {
+               buttonText
+               text
+            }
+         }
+      }
+   }
+
    fragment PostPreviewContent on WpPost {
       uri
       title
@@ -144,6 +216,16 @@ export const fragments = graphql`
                ...HeroTextBlock
                ...HeroButtonBlock
                ...HeroImageBlock
+            }
+         }
+         footerOptions {
+            hideFooter
+            footerLinks {
+               link {
+                  target
+                  title
+                  url
+               }
             }
          }
          pagesection {

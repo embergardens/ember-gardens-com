@@ -10,11 +10,11 @@ export const SectionFooterNav = ({ list }) => {
    const currentIndex = list.findIndex( (obj) => currentSection === obj.slug
 )
    const next = currentIndex + 1
-   let label = 'More About Ember Gardens'
-   let slug = 'about-ember-gardens'
+   let label = ''
+   let slug = ''
    let footer = false
 
-   if ( next == list.length ) {
+   if ( next === list.length ) {
       label = ''
       slug = list[0].slug
       footer = true

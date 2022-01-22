@@ -6,7 +6,7 @@ import { kebabCase } from 'lodash'
 
 import { useRecoilValue } from 'recoil'
 import { currentSectionState } from '../../store/navigation'
-import { footerData } from '../../data/footerSection'
+import { buildPageFooter } from '../../functions/footerSection'
 
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
@@ -15,11 +15,9 @@ import { SectionNav } from '../../components/navigation/SectionNav'
 import { SectionFooterNav } from '../../components/navigation/SectionFooterNav'
 
 const Page = ({ data }) => {
-   const { page } = data
+   const { page, globalFooter } = data
    const { title, uri, acf } = page
-   const { hero, pagesection = [] } = acf
-   const { footer } = footerData
-
+   const { hero, pagesection = [], footerOptions } = acf
 
    const currentSection = useRecoilValue( currentSectionState )
 
@@ -30,14 +28,13 @@ const Page = ({ data }) => {
       showinnav: false,
    })
 
-   // Object.assign( footer, {
-   //    sectionbackground: {
-   //       image: footerImage  // Footer Image not working yet TODO:
-   //    }
-   // })
+   const footer = buildPageFooter( globalFooter, footerOptions )
 
+   const sectionArray = [ hero, ...pagesection ]
 
-   const sectionArray = [ hero, ...pagesection, footer ]
+   if ( ! footerOptions.hideFooter ) {
+      sectionArray.push( footer )
+   }
 
    const sectionList = sectionArray.map( (section) => {
       const slug = section.isHero ? section.pageTitle : section.navigationtitle ||section.sectiontitle
@@ -87,6 +84,9 @@ export const query = graphql`
    query page($id: String!) {
       page: wpPage(id: { eq: $id }) {
          ...DefaultPageContent
+      }
+      globalFooter: wp {
+         ...GlobalFooter
       }
    }
 `

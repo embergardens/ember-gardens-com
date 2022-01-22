@@ -15,7 +15,7 @@ export const SectionBackground = ({ data, active }) => {
       enter: {
          opacity: 1,
          transition: {
-            duration: 2.25
+            duration: 1.75
          }
       },
 

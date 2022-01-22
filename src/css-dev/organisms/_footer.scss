@@ -1,3 +1,157 @@
+
+footer.footer {
+   padding: 0;
+}
+
 .footer {
 
+   &__links {
+      @extend %remove-list-styles;
+      display: grid;
+      gap: 45px;
+      grid-template-columns: repeat( 3, 1fr );
+      grid-template-rows: repeat( 2, 45vh );
+   }
+
+   &__linkItem {
+
+   }
+
+   &__linkButton {
+      @include button( 'full', $gap: 30% );
+      align-items: center;
+      display: flex;
+      font-size: var(--fontSize-36);
+      justify-content: center;
+      height: 100%;
+   }
+
+   &__wrapper {
+      display: grid;
+      gap: var(--fontSize-30);
+      grid-auto-columns: auto;
+      grid-auto-flow: column;
+      justify-content: space-around;
+      padding: var(--fontSize-45) var(--fontSize-30) 0;
+      place-items: center;
+   }
+
+   &__locations {
+      display: grid;
+      gap: var(--fontSize-16);
+   }
+
+   &__locationsWrapper {
+      @extend %remove-list-styles;
+   }
+
+   &__locationsState {
+      color: $c-white;
+      font-size: var(--fontSize-13);
+      font-weight: var(--fontWeight-semibold);
+      margin: 0;
+      text-transform: uppercase;
+   }
+
+   &__locationsStateWrapper {
+      @extend %remove-list-styles;
+      display: grid;
+      gap: 15px;
+      grid-auto-flow: column;
+      grid-auto-columns: max-content;
+   }
+
+   &__locationsCity {
+      margin: 0;
+   }
+
+   &__locationsCityLink {
+      color: $c-coral;
+      font-size: var(--fontSize-18);
+      font-weight: var(--fontWeight-bold);
+
+      &:hover,
+      &:focus {
+         color: $c-white;
+      }
+   }
+
+
+   &__social {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+   }
+
+   &__socialWrapper {
+      @extend %remove-list-styles;
+      display: grid;
+      flex: 1 1 auto;
+      gap: 48px;
+      grid-template-columns: 1fr;
+      justify-content: start;
+   }
+
+   &__socialItem {
+      align-items: center;
+      display: flex;
+      margin: 0;
+      position: relative;
+
+      > * + * {
+         margin-left: 30px;
+      }
+   }
+
+   &__socialIcon {
+      @include svg-contain(35px, 35px);
+      color: $c-white;
+   }
+
+   &__socialLink {
+      @include pseudo-link();
+      color: $c-coral;
+      font-size: 18px;
+      font-weight: 600;
+      transition: color $fast $e-out;
+
+      &:hover,
+      &:focus {
+         color: $c-white;
+      }
+   }
+
+   &__signup {
+      align-items: flex-start;
+      flex-direction: column;
+      margin: 0;
+
+      &Title {
+         color: $c-white;
+         font-size: 21px;
+         font-weight: 700;
+         margin: 0 0 30px;
+      }
+
+      &Form {
+         align-items: center;
+         display: grid;
+         gap: 30px;
+         grid-auto-flow: row;
+         justify-items: start;
+         margin: 0;
+
+         @include breakpoint( md ) {
+            grid-auto-flow: column;
+         }
+      }
+
+      &Button {
+         @include button( 'full' );
+      }
+   }
+
+   &__brand {
+      width: 160px;
+   }
 }

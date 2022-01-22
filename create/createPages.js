@@ -4,6 +4,19 @@ const pageTemplate = require.resolve('../src/templates/pages/index.js')
 const homepageTemplate = require.resolve('../src/templates/home/index.js')
 const simpleTemplate = require.resolve( '../src/templates/pages/simple.js')
 
+const getTemplate = ( node ) => {
+   if ( node.isFrontPage ) {
+      return homepageTemplate
+   }
+
+   if ( node.template.templateName === 'Default' ) {
+      return pageTemplate
+   }
+
+   return simpleTemplate
+
+}
+
 const GET_PAGES = `
    query GET_PAGES {
       allWpPage {
@@ -55,7 +68,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
 
             createPage({
                path: pagePath,
-               component: page.node.isFrontPage ? homepageTemplate : page.node.template.templateName === 'Default' ? pageTemplate : simpleTemplate,
+               component: getTemplate( page.node ),
                context: {
                   id: page.node.id,
                   page: page.node,

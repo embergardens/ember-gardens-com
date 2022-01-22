@@ -11,8 +11,8 @@ export const IconLogoColor = () => {
                <stop offset="0.5" stopColor="#ba5b80"/>
                <stop offset="1" stopColor="#ff8672"/>
             </linearGradient>
-               <linearGradient id="b" x1="-989.95" y1="369.95" x2="-989.95" y2="370.95" gradientTransform="matrix(50.43, 0, 0, -67.5, 49952.34, 25052.46)" xlinkHref="#a"/>
-               <linearGradient id="c" x1="-989.95" y1="369.95" x2="-989.95" y2="370.95" gradientTransform="matrix(50.43, 0, 0, -67.5, 50061.23, 25052.46)" xlinkHref="#a"/>
+            <linearGradient id="b" x1="-989.95" y1="369.95" x2="-989.95" y2="370.95" gradientTransform="matrix(50.43, 0, 0, -67.5, 49952.34, 25052.46)" xlinkHref="#a"/>
+            <linearGradient id="c" x1="-989.95" y1="369.95" x2="-989.95" y2="370.95" gradientTransform="matrix(50.43, 0, 0, -67.5, 50061.23, 25052.46)" xlinkHref="#a"/>
          </defs>
 
          <path d="M10,92.15c0,.25-.1.42-.4.42H3.33v5H8.12a.39.39,0,0,1,.4.35v2.56a.39.39,0,0,1-.33.42H3.33V106H9.59c.3,0,.4.13.4.4v2.5c0,.25-.1.4-.4.4H.38a.37.37,0,0,1-.38-.35V89.65a.37.37,0,0,1,.33-.4H9.59c.3,0,.4.15.4.4Z" fill="#715091"/>

@@ -1,9 +1,25 @@
 /* eslint-disable consistent-return */
 import React from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
 import { useRecoilValue } from 'recoil'
 import { currentSectionState } from '../../store/navigation'
 
 export const SectionNav = ({ items }) => {
+   const currentSection = useRecoilValue( currentSectionState )
+   const isFooter = currentSection === 'footer'
+
+   const navAnime = {
+      enter: {
+         opacity: 1,
+         translateY: 0,
+      },
+
+      exit: {
+         opacity: 0,
+         translateY: -150,
+      }
+   }
 
    const sections = items.map( ( section ) => {
 
@@ -22,15 +38,21 @@ export const SectionNav = ({ items }) => {
    })
 
    return (
-      <>
-         { sections &&
-            <nav className="sectionNav">
+      <AnimatePresence>
+         { sections && ! isFooter &&
+            <motion.nav
+               className="sectionNav"
+               variants={ navAnime }
+               initial='exit'
+               animate='enter'
+               exit='exit'
+            >
                <ul className="sectionNav__list">
                   { sections }
                </ul>
-            </nav>
+            </motion.nav>
          }
-      </>
+      </AnimatePresence>
    )
 }
 

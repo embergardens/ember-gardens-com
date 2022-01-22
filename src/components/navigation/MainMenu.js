@@ -19,7 +19,6 @@ import { IconArrowDouble } from '../icons/IconArrowDouble'
 import { IconEmail } from '../icons/IconEmail'
 import { IconExternalLink } from '../icons/IconExternalLink'
 import { IconInstagram } from '../icons/IconInstagram'
-import { IconTwitter } from '../icons/IconTwitter'
 
 export const MainMenu = () => {
    const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
@@ -36,32 +35,7 @@ export const MainMenu = () => {
             }
          }
          options: wp {
-            acfOptionsNavigation {
-               navigation {
-                  instagram {
-                     link {
-                        url
-                        target
-                     }
-                     text
-                  }
-                  twitter {
-                     link {
-                        url
-                        target
-                     }
-                     text
-                  }
-                  email {
-                     address
-                     text
-                  }
-                  signup {
-                     buttonText
-                     text
-                  }
-               }
-            }
+            ...GlobalNavigation
          }
       }
    `)
@@ -140,7 +114,7 @@ export const MainMenu = () => {
 
    const { mainMenu, options } = data
    const { menuItems: { nodes } } = mainMenu
-   const { acfOptionsNavigation: { navigation: { instagram, twitter, email, signup } } } = options
+   const { acfOptionsNavigation: { navigation: { instagram, email, signup } } } = options
 
    const menuItems = nodes.map( ( item, index ) => <MainMenuItem data={ item } index={ index } key={ item.label } />)
 
@@ -187,20 +161,6 @@ export const MainMenu = () => {
                               </div>
                               <a className="mainMenu__socialLink" href={ instagram.link.url } target={ instagram.link.target }>
                                  { instagram.text ? instagram.text : 'Instagram' }
-                              </a>
-                           </motion.li>
-                        }
-
-                        { twitter.link.url &&
-                           <motion.li
-                              className="mainMenu__socialItem"
-                              variants={ motionSocial }
-                           >
-                              <div className="mainMenu__socialIcon">
-                                 <IconTwitter />
-                              </div>
-                              <a className="mainMenu__socialLink" href={ twitter.link.url } target={ twitter.link.target }>
-                                 { twitter.text ? twitter.text : 'Twitter' }
                               </a>
                            </motion.li>
                         }

@@ -69,7 +69,7 @@ export const PageSection = ({ data }) => {
             }
 
             { isFooter &&
-               <Footer />
+               <Footer links={ data.footerLinks } />
             }
          </div>
 
