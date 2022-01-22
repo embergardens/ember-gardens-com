@@ -56,10 +56,10 @@ export const Footer = ({ links }) => {
       })
 
       return (
-         <ul className='footer__locationsWrapper'>
+         <ul className='footer__locationsWrapper' key={ abbr }>
             <li className='footer__locationsState' key={ abbr }>
                { state }
-               <ul className='footer__locationsStateWrapper'>
+               <ul className='footer__locationsStateWrapper' key={ abbr }>
                   { cityList }
                </ul>
             </li>

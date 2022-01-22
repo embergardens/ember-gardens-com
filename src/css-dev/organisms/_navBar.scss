@@ -2,18 +2,18 @@
    background: $color-grayscale-f;
    box-shadow: $low-shadow;
    display: grid;
-   grid-template-columns: 1fr 69px 69px;
+   grid-template-columns: 1fr $navHeightMobile $navHeightMobile;
    grid-template-areas: "Logo Social Menu";
-   height: 69px;
+   height: $navHeightMobile;
    width: 100vw;
    z-index: 500;
 
    @include breakpoint( md ) {
       grid-template-columns: 1fr;
-      grid-template-rows: 100px 1fr min-content min-content min-content 100px;
+      grid-template-rows: $navWidthDesktop 1fr min-content min-content min-content $navWidthDesktop;
       grid-template-areas: "Menu" "Logo" "Link1" "Link2" "Locations" "Social";
       height: var( --vh );
-      min-width: 100px;
+      min-width: $navWidthDesktop;
       width: auto;
    }
 

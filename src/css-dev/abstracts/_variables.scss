@@ -24,8 +24,10 @@ $e-in:                  $easeInQuint;
 $e-out:                 $easeOutQuint;
 $e-in-out:              $easeInOutQuint;
 
-$mobileHeight:          calc( var( --vh ) - 69px );
-$desktopWidth:          calc( 100vw - 100px );
+$navHeightMobile:       69px;
+$navWidthDesktop:       100px;
+$mobileHeight:          calc( var( --vh ) - $navHeightMobile );
+$desktopWidth:          calc( 100vw - $navWidthDesktop );
 
 $breakpoints: (
    xs: 500px,

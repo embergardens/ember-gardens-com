@@ -216,6 +216,7 @@ export const fragments = graphql`
                ...HeroTextBlock
                ...HeroButtonBlock
                ...HeroImageBlock
+               ...HeroCalloutBlock
             }
          }
          footerOptions {
@@ -253,6 +254,7 @@ export const fragments = graphql`
                ...TextBlock
                ...ButtonBlock
                ...ImageBlock
+               ...CalloutBlock
             }
          }
       }
@@ -278,6 +280,7 @@ export const fragments = graphql`
       fieldGroupName
       image {
          altText
+         caption
          localFile {
             ...HeroImage
             publicURL
@@ -285,6 +288,33 @@ export const fragments = graphql`
          mediaDetails {
             width
             height
+         }
+      }
+   }
+
+   fragment HeroCalloutBlock on WpPage_Acf_Hero_Contentdesigner_CalloutBlock {
+      fieldGroupName
+      callout {
+         alignment
+         eyebrow
+         text
+         title
+         link {
+            target
+            title
+            url
+         }
+         background {
+            image {
+               altText
+               localFile {
+                  ...HeroImage
+                  publicURL
+               }
+            }
+            brightness
+            color
+            size
          }
       }
    }
@@ -310,6 +340,7 @@ export const fragments = graphql`
       fieldGroupName
       image {
          altText
+         caption
          localFile {
             ...HeroImage
             publicURL
@@ -317,6 +348,33 @@ export const fragments = graphql`
          mediaDetails {
             width
             height
+         }
+      }
+   }
+
+   fragment CalloutBlock on WpPage_Acf_pagesection_Contentdesigner_CalloutBlock {
+      fieldGroupName
+      callout {
+         alignment
+         eyebrow
+         text
+         title
+         link {
+            target
+            title
+            url
+         }
+         background {
+            image {
+               altText
+               localFile {
+                  ...HeroImage
+                  publicURL
+               }
+            }
+            brightness
+            color
+            size
          }
       }
    }

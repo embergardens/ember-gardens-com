@@ -42,7 +42,7 @@
    color: var( --theme-color-#{ $shade } );
 
    @if ( $transition ) {
-      transition: color 1500ms $e-in-out;
+      transition: color var(--theme-transition-speed) $e-in-out;
    }
 }
 

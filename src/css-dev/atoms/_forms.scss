@@ -107,6 +107,7 @@ input[type="radio"] {
 }
 
 a.button,
-span.button, {
+span.button {
    @include button();
+   @include theme-text( $transition: false );
 }

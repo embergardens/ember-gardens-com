@@ -12,6 +12,10 @@
       display: flex;
       justify-content: center;
       padding: 16vh 7.5rem;
+
+      .pageSection__wrapper {
+         max-width: 1020px;
+      }
    }
 
    &.-footer {

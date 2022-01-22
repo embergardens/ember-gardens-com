@@ -3,7 +3,8 @@
    padding: 0;
    position: fixed;
    top: 8vh;
-   left: calc( 100px + 7.5rem );
+   left: calc( $navWidthDesktop + 7.5rem );
+   z-index: 300;
 
    &__list {
       @extend %remove-list-styles;
