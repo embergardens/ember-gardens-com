@@ -29,6 +29,9 @@ export const SvgFilters = () => {
             </feComponentTransfer>
             <feBlend mode="multiply" in="componentTransfer" in2="SourceGraphic" result="blend"/>
          </filter>
+         <clipPath id="moon" clipPathUnits="objectBoundingBox">
+            <path d="M0,1 C0.287,0.487,0,0,0,0 H1 V1" />
+         </clipPath>
       </svg>
    )
 }

@@ -32,7 +32,7 @@ export const ContentWrapper = ( { children, layout, image, gradient, sections = 
          <SvgFilters />
 
          { gradient &&
-            <BackgroundGradient theme={ gradient } />
+            <BackgroundGradient theme={ layout == 'halfWidth' ? 'white' : gradient } />
          }
 
          { sectionList &&

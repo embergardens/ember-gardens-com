@@ -38,6 +38,7 @@ const Page = ({ data }) => {
 
    const sectionList = sectionArray.map( (section) => {
       const slug = section.isHero ? section.pageTitle : section.navigationtitle ||section.sectiontitle
+
       Object.assign( section, { slug: kebabCase( slug ) } )
       return section
    })

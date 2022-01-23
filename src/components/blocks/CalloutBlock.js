@@ -6,7 +6,7 @@ export const CalloutBlock = ({ data }) => {
    const { background, eyebrow, alignment, title, text, link } = data
    const { brightness, image, color, size } = background
 
-   const imageData = getImage( image.localFile )
+   const imageData = image ? getImage( image.localFile ) : null
 
    return (
       <div className={`calloutBlock -${alignment} -${size} -${color}`}>
