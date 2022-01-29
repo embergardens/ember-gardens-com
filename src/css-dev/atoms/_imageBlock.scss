@@ -1,12 +1,29 @@
 .imageBlock {
-   margin: 4rem calc( 50% - 50vw + ( $navWidthDesktop / 2 ) );
-   width: calc( 100vw - $navWidthDesktop );
+   margin: 2rem calc( 50% - 50vw );
+   width: 100vw;
+
+   @include breakpoint( sm ) {
+      margin: 4rem calc( 50% - 50vw );
+   }
+
+   @include breakpoint( md ) {
+      margin: 4rem calc( 50% - 50vw + ( $navWidthDesktop / 2 ) );
+      width: calc( 100vw - $navWidthDesktop );
+   }
 
    &__caption {
-      font-size: var(--fontSize-14);
-      font-weight: 600;
       margin: 0.5rem 1rem;
       text-transform: uppercase;
+
+      p {
+         font-size: var(--fontSize-11);
+         font-weight: 600;
+
+         @include breakpoint( md ) {
+            font-size: var(--fontSize-13);
+         }
+      }
+
    }
 
    .gatsby-image-wrapper {

@@ -57,17 +57,21 @@
   --fontSize-16: 1rem; // 16
   --fontSize-18: 1.125rem; // 18
   --fontSize-20: 1.25rem; // 20
+  --fontSize-22: 1.375rem; // 22
   --fontSize-24: 1.5rem; // 24
   --fontSize-26: 1.625rem; // 26
   --fontSize-28: 1.75rem; // 28
   --fontSize-30: 1.875rem; // 30
+  --fontSize-32: 2rem; // 32
   --fontSize-36: 2.25rem; // 36
   --fontSize-45: 2.8125rem; // 45
+  --fontSize-48: 3rem; // 48
   --fontSize-60: 3.75rem; // 60
   --fontSize-64: 4rem; // 64
   --fontSize-80: 5rem; // 80
   --fontSize-75: 4.6875rem; // 75
   --fontSize-90: 5.625rem; // 90
+  --fontSize-120: 7.5rem; // 120
 
   --color-primary:#{ $c-plum };
   --color-text: #{ $c-dark };
@@ -96,7 +100,7 @@
     --theme-color-reverse: #000000;
   }
 
-  --theme-transition-speed: 1500ms;
+  --theme-transition-speed: 1000ms;
 }
 
  /* HTML elements */
@@ -166,35 +170,83 @@ h6 {
 }
 
 h1 {
-  font-size: var(--fontSize-90);
+  font-size: var(--fontSize-48);
   font-weight: var(--fontWeight-bold);
   line-height: var(--lineHeight-page-title);
+
+  @include breakpoint( xs ) {
+    font-size: calc( 5vw + 1.5rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-90);
+  }
 }
 
 h2 {
-  font-size: var(--fontSize-75);
+  font-size: var(--fontSize-45);
   font-weight: var(--fontWeight-bold);
+
+  @include breakpoint( xs ) {
+    font-size: calc( 5vw + 1rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-75);
+  }
 }
 
 h3 {
-  font-size: var(--fontSize-60);
+  font-size: var(--fontSize-36);
   font-weight: var(--fontWeight-bold);
+
+  @include breakpoint( xs ) {
+    font-size: calc( 4vw + 1rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-60);
+  }
 }
 
 h4 {
-  font-size: var(--fontSize-45);
+  font-size: var(--fontSize-32);
   font-weight: var(--fontWeight-bold);
+
+  @include breakpoint( xs ) {
+    font-size: calc( 2vw + 1.5rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-45);
+  }
 }
 
 h5 {
-  font-size: var(--fontSize-30);
+  font-size: var(--fontSize-28);
   font-weight: var(--fontWeight-semibold);
+
+  @include breakpoint( xs ) {
+    font-size: calc( 2vw + 1rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-36);
+  }
 }
 
 h6 {
-  font-size: var(--fontSize-28);
+  font-size: var(--fontSize-22);
   font-weight: var(--fontWeight-semibold);
   text-transform: uppercase;
+
+  @include breakpoint( xs ) {
+    font-size: calc( 1vw + 1rem );
+  }
+
+  @include breakpoint( lg ) {
+    font-size: var(--fontSize-28);
+  }
 }
 
 h1 > a {
@@ -219,14 +271,19 @@ p {
   --x-height-multiplier: 0.35;
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0);
   padding: var(--spacing-0);
+
+  @include breakpoint( md ) {
+    font-size: var(--fontSize-18);
+  }
 }
 
 ul,
 ol {
   margin-left: var(--spacing-0);
   margin-right: var(--spacing-0);
-  padding: var(--spacing-0);
+  padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-8);
   margin-bottom: var(--spacing-8);
+  list-style: square;
   list-style-position: outside;
   list-style-image: none;
 }

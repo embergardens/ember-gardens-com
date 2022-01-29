@@ -22,6 +22,7 @@ export const PageSection = ({ data }) => {
       style,
       content,
       eyebrow,
+      background: { layout },
    } = data
 
    const { ref, inView } = useInView({
@@ -30,6 +31,7 @@ export const PageSection = ({ data }) => {
    })
 
    const idName = kebabCase( isHero ? pageTitle : navTitle || title )
+   const layoutClass = layout ? `-${layout}Layout` : ''
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
 
@@ -41,7 +43,7 @@ export const PageSection = ({ data }) => {
 
 
    return (
-      <section ref={ ref } id={ idName } className={`pageSection -${ style }`}>
+      <section ref={ ref } id={ idName } className={`pageSection -${ style } ${ layoutClass }`}>
 
          <div className="pageSection__wrapper">
             { isHero &&

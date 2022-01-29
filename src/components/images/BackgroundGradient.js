@@ -2,7 +2,11 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+
+
 import { Plum, Rose, Coral, White } from '../../globals/colors'
+import { useRecoilState } from 'recoil'
+import { currentBackgroundGradientState, currentTextÇolorState } from '../../store/global'
 
 const BackgroundGradient = ( { theme } ) => {
 
@@ -50,9 +54,13 @@ const BackgroundGradient = ( { theme } ) => {
       }
    }
 
+   const [ currentBackgroundGradient, setCurrentBackgroundGradient ] = useRecoilState( currentBackgroundGradientState )
+   const [ currentTextColor, setCurrentTextColor ] = useRecoilState( currentTextÇolorState )
+
    useEffect(() => {
-      document.querySelector(':root').dataset.themeColor = text( theme )
-   }, [ theme ])
+      setCurrentBackgroundGradient( gradient( theme ) )
+      setCurrentTextColor( text( theme ) )
+   })
 
    return (
       <motion.div

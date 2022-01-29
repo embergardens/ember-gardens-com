@@ -1,17 +1,39 @@
 .sectionNav {
+   left: var(--fontSize-30);
    margin: 0;
    padding: 0;
    position: fixed;
-   top: 8vh;
-   left: calc( $navWidthDesktop + 7.5rem );
+   top: calc( ( $navHeightMobile + var(--fontSize-45) ) - var(--fontSize-14) );
    z-index: 300;
+
+   @include breakpoint( sm ) {
+      left: var(--fontSize-60);
+   }
+
+   @include breakpoint( md ) {
+      left: calc( $navWidthDesktop + var(--fontSize-90) );
+      top: calc( var(--fontSize-60) - var(--fontSize-14) );
+   }
+
+   @include breakpoint( lg ) {
+      left: calc( $navWidthDesktop + var(--fontSize-120) );
+      top: calc( 8vh - var(--fontSize-14) );
+   }
 
    &__list {
       @extend %remove-list-styles;
       display: grid;
-      gap: 60px;
+      gap: var(--fontSize-30);
       grid-auto-flow: column dense;
       grid-auto-columns: max-content;
+
+      @include breakpoint( sm ) {
+         gap: var(--fontSize-45);
+      }
+
+      @include breakpoint( lg ) {
+         gap: var(--fontSize-60);
+      }
 
    }
 

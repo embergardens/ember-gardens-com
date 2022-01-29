@@ -110,11 +110,11 @@ export const NavLocations = ( props ) => {
    const locationList = locations.map( ( location ) => <NavLocationGroup key={ location.state } location={ location } /> )
    return (
       <nav className="navBar__locations">
-         <BreakpointNotSmallDesktop>
+         {/* <BreakpointNotSmallDesktop>
             <div className="navBar__locationsIcon">
                { icon }
             </div>
-         </BreakpointNotSmallDesktop>
+         </BreakpointNotSmallDesktop> */}
          { locationList }
       </nav>
    )

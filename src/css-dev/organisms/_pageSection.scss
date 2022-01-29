@@ -1,27 +1,61 @@
 .pageSection {
+   padding: var(--fontSize-90) var(--fontSize-30);
+
+   @include breakpoint( sm ) {
+      padding: var(--fontSize-90)  var(--fontSize-60);
+   }
+
+   @include breakpoint( md ) {
+      padding: var(--fontSize-120) var(--fontSize-90);
+   }
+
+   @include breakpoint( lg ) {
+      padding: 16vh var(--fontSize-120);
+   }
+
    &.-fullWidth {
       align-items: center;
       display: flex;
       justify-content: center;
       min-height: 100vh;
-      padding: 16vh 7.5rem;
+   }
+
+   &.-halfWidth {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      width: $desktopContentHalf;
+
+      &.-leftLayout {
+         margin-left: $desktopContentHalf;
+      }
+
+      &.-rightLayout {
+         margin-right: $desktopContentHalf;
+      }
    }
 
    &.-standard {
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 16vh 7.5rem;
+      padding-bottom: 0;
+
+      + .pageSection.-standard {
+         padding-top: 0;
+      }
 
       .pageSection__wrapper {
          max-width: 1020px;
       }
+
    }
 
    &.-footer {
       display: block;
       min-height: 100vh;
-      padding: var(--fontSize-30) var(--fontSize-30) var(--fontSize-60);
+      padding: var(--fontSize-60) var(--fontSize-30);
 
       .pageSection__wrapper {
          max-width: none;

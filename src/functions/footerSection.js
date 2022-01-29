@@ -14,6 +14,8 @@ export const buildPageFooter = ( globalData, pageData = null ) => {
          image: backgroundImage || null,
          layout: null,
       },
+      content: null,
+      eyebrow: null,
       footerLinks: linkOverrides || footerLinks,
       isFooter: true,
       isHero: false,

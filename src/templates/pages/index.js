@@ -68,7 +68,7 @@ const Page = ({ data }) => {
 
                { sections }
 
-               <SectionFooterNav list={ sectionList } />
+               {/* <SectionFooterNav list={ sectionList } /> */}
 
             </ContentWrapper>
 

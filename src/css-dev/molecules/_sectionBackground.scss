@@ -7,6 +7,24 @@
    top: 0;
    z-index: 0;
 
+   &.-leftLayout,
+   &.-rightLayout {
+      mix-blend-mode: normal;
+      width: $desktopContentHalf;
+   }
+
+   &.-leftLayout {
+      clip-path: url(#moon-left);
+      left: $navWidthDesktop;
+      right: auto;
+   }
+
+   &.-rightLayout {
+      clip-path: url(#moon-right);
+      left: auto;
+      right: 0;
+   }
+
    .gatsby-image-wrapper-constrained {
       display: block;
       height: 100%;

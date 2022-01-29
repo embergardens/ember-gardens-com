@@ -2,7 +2,7 @@ import { kebabCase } from "lodash"
 
 export const buildSectionObject = ( section ) => {
 
-   const sectionColor = section.sectionstyle === 'halfWidth'
+   const sectionColor = section.sectionstyle !== 'fullWidth'
       ? 'white'
       : section.sectionbackground.color || 'white'
 
@@ -22,7 +22,7 @@ export const buildSectionObject = ( section ) => {
          layout: sectionLayout,
       },
       content: section.contentdesigner || null,
-      eyebrow: section.eyebrow || null,
+      eyebrow: section.sectioneyebrow || null,
       footerLinks: null,
       isFooter: false,
       isHero: section.isHero || false,

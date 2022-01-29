@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 export const SectionBackground = ({ data, active }) => {
 
-   const { image, brightness } = data
+   const { image, brightness, layout } = data
 
    const imageData = getImage(image?.localFile)
 
@@ -13,26 +13,28 @@ export const SectionBackground = ({ data, active }) => {
 
    const anime = {
       enter: {
-         opacity: 1,
+         opacity: 0.9,
          transition: {
-            duration: 1.75
+            duration: 0.75
          }
       },
 
       exit: {
          opacity: 0,
          transition: {
-            duration: 2.25
+            duration: 1.25
          }
 
       }
    }
 
+   const layoutClass = layout ? `-${layout}Layout` : ''
+
    return (
       <AnimatePresence>
          { active &&
             <motion.div
-               className="sectionBackground"
+               className={`sectionBackground ${ layoutClass }`}
                variants={ anime }
                initial='exit'
                animate='enter'

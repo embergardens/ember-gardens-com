@@ -1,44 +1,112 @@
 
 footer.footer {
    padding: 0;
+
+   @include breakpoint( md ) {
+      padding: 0 var(--fontSize-45);
+   }
 }
 
 .footer {
+   display: grid;
+   gap: var(--fontSize-30);
+   grid-template-rows: max-content max-content;
+
+   @include breakpoint( md ) {
+      gap: var(--fontSize-45);
+      grid-template-rows: 1fr max-content;
+      height: calc( 100vh - var(--fontSize-120) )
+   }
 
    &__links {
       @extend %remove-list-styles;
       display: grid;
-      gap: 45px;
-      grid-template-columns: repeat( 3, 1fr );
-      grid-template-rows: repeat( 2, 45vh );
+      gap: var(--fontSize-16);
+      grid-template-columns: repeat( 2, 1fr );
+
+      @include breakpoint( sm ) {
+         gap: var(--fontSize-24);
+      }
+
+      @include breakpoint( md ) {
+         gap: var(--fontSize-45);
+         grid-template-columns: repeat( 3, 1fr );
+      }
    }
 
    &__linkItem {
+      height: 100%;
+      min-height: 180px;
 
+      @include breakpoint( sm ) {
+         min-height: 250px;
+      }
    }
 
    &__linkButton {
       @include button( 'full', $gap: 30% );
       align-items: center;
       display: flex;
-      font-size: var(--fontSize-36);
+      font-size: var(--fontSize-16);
       justify-content: center;
       height: 100%;
+      padding: var(--fontSize-16);
+      text-align: center;
+
+      @include breakpoint( xs ) {
+         font-size: var(--fontSize-20);
+      }
+
+      @include breakpoint( sm ) {
+         font-size: var(--fontSize-24);
+      }
+
+      @include breakpoint( md ) {
+         font-size: var(--fontSize-28);
+      }
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-32);
+      }
+
+      @include breakpoint( xl ) {
+         font-size: var(--fontSize-36);
+      }
    }
 
    &__wrapper {
       display: grid;
       gap: var(--fontSize-30);
-      grid-auto-columns: auto;
-      grid-auto-flow: column;
-      justify-content: space-around;
-      padding: var(--fontSize-45) var(--fontSize-30) 0;
-      place-items: center;
+      grid-template-areas:
+         'LOCATIONS'
+         'SOCIAL'
+         'SIGNUP'
+         'BRAND';
+      justify-content: space-between;
+      padding: 0;
+
+      @include breakpoint( sm ) {
+         grid-template-areas:
+         'LOCATIONS SIGNUP'
+         'SOCIAL BRAND';
+      }
+
+      @include breakpoint( lg ) {
+         grid-template-areas:
+         'LOCATIONS SOCIAL BRAND'
+         'LOCATIONS SIGNUP BRAND';
+      }
+
+      @include breakpoint( xl ) {
+         grid-template-areas: 'LOCATIONS SOCIAL SIGNUP BRAND';
+         place-items: center;
+      }
    }
 
    &__locations {
       display: grid;
       gap: var(--fontSize-16);
+      grid-area: LOCATIONS;
    }
 
    &__locationsWrapper {
@@ -80,6 +148,7 @@ footer.footer {
    &__social {
       align-items: center;
       display: flex;
+      grid-area: SOCIAL;
       justify-content: center;
    }
 
@@ -87,9 +156,19 @@ footer.footer {
       @extend %remove-list-styles;
       display: grid;
       flex: 1 1 auto;
-      gap: 48px;
-      grid-template-columns: 1fr;
+      gap: var(--fontSize-16);
+      grid-template-columns: max-content;
       justify-content: start;
+
+      @include breakpoint( lg ) {
+         gap: var(--fontSize-30);
+         grid-template-columns: repeat( 2 , max-content );
+      }
+
+      @include breakpoint( xl ) {
+         gap: var(--fontSize-48);
+         grid-template-columns: max-content;
+      }
    }
 
    &__socialItem {
@@ -124,13 +203,14 @@ footer.footer {
    &__signup {
       align-items: flex-start;
       flex-direction: column;
+      grid-area: SIGNUP;
       margin: 0;
 
       &Title {
          color: $c-white;
          font-size: 21px;
          font-weight: 700;
-         margin: 0 0 30px;
+         margin: 0 0 1rem;
       }
 
       &Form {
@@ -141,8 +221,13 @@ footer.footer {
          justify-items: start;
          margin: 0;
 
+         @include breakpoint( sm ) {
+            justify-items: end;
+         }
+
          @include breakpoint( md ) {
             grid-auto-flow: column;
+            justify-items: start;
          }
       }
 
@@ -152,6 +237,12 @@ footer.footer {
    }
 
    &__brand {
+      align-self: center;
+      grid-area: BRAND;
       width: 160px;
+
+      @include breakpoint( sm ) {
+         justify-self: end;
+      }
    }
 }

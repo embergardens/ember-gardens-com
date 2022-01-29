@@ -2,13 +2,16 @@
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
+import { useMediaQuery } from 'react-responsive'
 import { useRecoilValue } from 'recoil'
+import { isNotDesktop } from '../utility/Breakpoints'
+
 import { currentSectionState } from '../../store/navigation'
 
 export const SectionNav = ({ items }) => {
    const currentSection = useRecoilValue( currentSectionState )
    const isFooter = currentSection === 'footer'
-
+   const isMobile = useMediaQuery( useRecoilValue( isNotDesktop ) )
    const navAnime = {
       enter: {
          opacity: 1,
