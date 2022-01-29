@@ -8,19 +8,21 @@ export const buildPageFooter = ( globalData, pageData = null ) => {
    }
 
    const footerObject = {
-      sectionbackground: {
+      background: {
+         brightness: 100,
          color: 'gradient',
-         image: backgroundImage,
+         image: backgroundImage || null,
          layout: null,
       },
+      footerLinks: linkOverrides || footerLinks,
       isFooter: true,
       isHero: false,
+      navDisplay: false,
+      navTitle: null,
+      pageTitle: null,
       slug: 'footer',
-      showinnav: false,
-      navigationtitle: null,
-      sectiontitle: 'Footer',
-      sectionstyle: 'footer',
-      footerLinks: linkOverrides || footerLinks,
+      style: 'footer',
+      title: 'Footer'
    }
 
    return footerObject

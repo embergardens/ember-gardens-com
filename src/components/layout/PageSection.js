@@ -14,14 +14,14 @@ import { Footer } from './Footer'
 
 export const PageSection = ({ data }) => {
    const {
-      sectiontitle,
+      title,
       isHero,
       isFooter,
       pageTitle,
-      navigationtitle: navTitle,
-      sectionstyle: style,
-      contentdesigner: content,
-      sectioneyebrow: eyebrow,
+      navTitle,
+      style,
+      content,
+      eyebrow,
    } = data
 
    const { ref, inView } = useInView({
@@ -29,7 +29,7 @@ export const PageSection = ({ data }) => {
       rootMargin: '-50% 0%',
    })
 
-   const idName = kebabCase( isHero ? pageTitle : navTitle || sectiontitle )
+   const idName = kebabCase( isHero ? pageTitle : navTitle || title )
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
 
@@ -52,14 +52,14 @@ export const PageSection = ({ data }) => {
                      </div>
                   }
                   <h1>
-                     { sectiontitle || pageTitle }
+                     { title || pageTitle }
                   </h1>
                </>
             }
 
             { !isHero && !isFooter &&
                <h3 className="sectionTitle">
-                  { sectiontitle }
+                  { title }
                </h3>
             }
 

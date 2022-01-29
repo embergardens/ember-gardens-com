@@ -23,11 +23,11 @@ export const SectionNav = ({ items }) => {
 
    const sections = items.map( ( section ) => {
 
-      if ( !section.showinnav ) {
+      if ( !section.navDisplay ) {
          return
       }
 
-      const sectionName = section.navigationtitle || section.sectiontitle
+      const sectionName = section.navTitle || section.title
 
       return (
          <li className="sectionNav__item" key={ section.slug }>

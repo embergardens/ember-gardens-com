@@ -2,11 +2,10 @@
 import React from 'react'
 import { graphql } from "gatsby"
 
-import { kebabCase } from 'lodash'
-
 import { useRecoilValue } from 'recoil'
 import { currentSectionState } from '../../store/navigation'
 import { buildPageFooter } from '../../functions/footerSection'
+import { buildSectionObject } from '../../functions/sections'
 
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
@@ -29,26 +28,23 @@ const Page = ({ data }) => {
    })
 
    const footer = buildPageFooter( globalFooter, footerOptions )
+   const blocks = [ hero, ...pagesection ]
 
-   const sectionArray = [ hero, ...pagesection ]
+   const sectionList = blocks.map(section => {
+      return buildSectionObject( section )
+   })
+
 
    if ( ! footerOptions.hideFooter ) {
-      sectionArray.push( footer )
+      sectionList.push( footer )
    }
-
-   const sectionList = sectionArray.map( (section) => {
-      const slug = section.isHero ? section.pageTitle : section.navigationtitle ||section.sectiontitle
-
-      Object.assign( section, { slug: kebabCase( slug ) } )
-      return section
-   })
 
    // Get Current Section Background
    const currentObject = sectionList.filter( (section) => {
       return currentSection === section.slug
    })
 
-   const currentBackground = currentObject[0] ? currentObject[0].sectionbackground.color : 'gradient'
+   const currentBackground = currentObject[0] ? currentObject[0].background.color : 'gradient'
 
    // Build Individual Sections
    const sections = sectionList.map( ( section, index ) => {
@@ -57,7 +53,7 @@ const Page = ({ data }) => {
          <PageSection
             data={section}
             index={index}
-            key={ section.isHero ? section.pageTitle : section.sectiontitle  }
+            key={ section.slug  }
          />
       )
    })

@@ -19,7 +19,7 @@ export const SectionFooterNav = ({ list }) => {
       slug = list[0].slug
       footer = true
    } else if ( next < list.length ) {
-      label = list[next].navigationtitle || list[next].sectiontitle
+      label = list[next].navTitle || list[next].title
       slug = list[next].slug
    }
 

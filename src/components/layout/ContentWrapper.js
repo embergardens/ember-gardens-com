@@ -16,7 +16,7 @@ export const ContentWrapper = ( { children, layout, image, gradient, sections = 
 
    const sectionList = sections.map( (section) => {
       const isCurrent = currentSection === section.slug
-      const background = section.sectionbackground
+      const background = section.background
 
       if ( !background.image ) {
          return
