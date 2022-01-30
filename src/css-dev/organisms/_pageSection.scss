@@ -87,7 +87,24 @@
       }
 
       .pageSection__wrapper {
-         max-width: 1020px;
+         width: 100%;
+
+         @include breakpoint( xs ) {
+            // max-width: 410px;
+            max-width: 84%;
+         }
+
+         // @include breakpoint( sm ) {
+         //    max-width: 730px;
+         // }
+
+         // @include breakpoint( md ) {
+         //    max-width: 815px;
+         // }
+
+         @include breakpoint( lg ) {
+            max-width: 1020px;
+         }
       }
 
    }
