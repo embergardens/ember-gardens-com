@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
@@ -26,4 +27,10 @@ export const wrapPageElement = ({ element }) => {
             </Layout>
       </RecoilRoot>
    )
+}
+
+export const onRouteUpdate = () => {
+   if ( ! window.__tl_inTransition ) {
+      document.querySelector('.viewportMain').scrollTo( 0, 0 );
+   }
 }

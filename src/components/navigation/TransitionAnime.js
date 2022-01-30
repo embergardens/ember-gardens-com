@@ -24,7 +24,18 @@ const TransitionAnime = ( options ) => {
 			if ( navOpen ) {
 				setNavOpen( false )
 			}
-		}, 500);
+		}, length - (length / 2) );
+	}
+
+	const resetScroll = () => {
+		setTimeout(() => {
+			document.querySelector('.viewportMain').scrollTo( 0, 0 )
+		}, 500 )
+	}
+
+	const onExitComplete = () => {
+		toggleNav()
+		resetScroll()
 	}
 
 	const horizontal = ({ node, props: { length: seconds }, direction }) => {
@@ -44,7 +55,7 @@ const TransitionAnime = ( options ) => {
 				ease: "power1.easeInOut",
 				duration: half,
 				opacity: 1,
-				onComplete: toggleNav()
+				onComplete: onExitComplete()
 			})
 			.set(node, { opacity: 0 })
 			.to(
@@ -76,7 +87,7 @@ const TransitionAnime = ( options ) => {
 				ease: "power1.easeInOut",
 				duration: half,
 				opacity: 1,
-				onComplete: toggleNav()
+				onComplete: onExitComplete()
 			})
 			.set(node, { opacity: 0 })
 			.to(
@@ -104,12 +115,14 @@ const TransitionAnime = ( options ) => {
 			<TransitionLink
 				exit={{
 					length: length,
-					trigger: ({ exit, node }) =>
+					trigger: ({ exit, node }) => {
 						moveInDirection({
 							props: exit,
 							node,
 							direction,
-						}),
+						})
+					},
+
 				}}
 				entry={{
 					delay: length / 2,
