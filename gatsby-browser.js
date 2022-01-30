@@ -29,8 +29,8 @@ export const wrapPageElement = ({ element }) => {
    )
 }
 
-export const onRouteUpdate = () => {
-   if ( ! window.__tl_inTransition ) {
+export const onRouteUpdate = ( loc ) => {
+   if ( ! window.__tl_inTransition && ! loc.location.hash ) {
       document.querySelector('.viewportMain').scrollTo( 0, 0 );
    }
 }
