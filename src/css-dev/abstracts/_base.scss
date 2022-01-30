@@ -68,8 +68,8 @@
   --fontSize-48: 3rem; // 48
   --fontSize-60: 3.75rem; // 60
   --fontSize-64: 4rem; // 64
-  --fontSize-80: 5rem; // 80
   --fontSize-75: 4.6875rem; // 75
+  --fontSize-80: 5rem; // 80
   --fontSize-90: 5.625rem; // 90
   --fontSize-120: 7.5rem; // 120
 
@@ -175,10 +175,14 @@ h1 {
   line-height: var(--lineHeight-page-title);
 
   @include breakpoint( xs ) {
-    font-size: calc( 5vw + 1.5rem );
+    font-size: calc( 4vw + 1.5rem );
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-80);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-90);
   }
 }
@@ -188,10 +192,14 @@ h2 {
   font-weight: var(--fontWeight-bold);
 
   @include breakpoint( xs ) {
-    font-size: calc( 5vw + 1rem );
+    font-size: calc( 4vw + 1rem );
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-64);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-75);
   }
 }
@@ -201,10 +209,14 @@ h3 {
   font-weight: var(--fontWeight-bold);
 
   @include breakpoint( xs ) {
-    font-size: calc( 4vw + 1rem );
+    font-size: calc( 3vw + 1rem );
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-45);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-60);
   }
 }
@@ -214,10 +226,14 @@ h4 {
   font-weight: var(--fontWeight-bold);
 
   @include breakpoint( xs ) {
-    font-size: calc( 2vw + 1.5rem );
+    font-size: calc( 1vw + 1.5rem );
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-36);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-45);
   }
 }
@@ -227,10 +243,14 @@ h5 {
   font-weight: var(--fontWeight-semibold);
 
   @include breakpoint( xs ) {
-    font-size: calc( 2vw + 1rem );
+    font-size: calc( 1vw + 1rem );
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-32);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-36);
   }
 }
@@ -245,6 +265,10 @@ h6 {
   }
 
   @include breakpoint( lg ) {
+    font-size: var(--fontSize-26);
+  }
+
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-28);
   }
 }
@@ -272,7 +296,7 @@ p {
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0);
   padding: var(--spacing-0);
 
-  @include breakpoint( md ) {
+  @include breakpoint( xl ) {
     font-size: var(--fontSize-18);
   }
 }

@@ -18,7 +18,7 @@
       font-size: var(--fontSize-24);
    }
 
-   @include breakpoint( lg ) {
+   @include breakpoint( xl ) {
       font-size: var(--fontSize-26);
    }
 }

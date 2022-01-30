@@ -23,16 +23,56 @@
    &.-halfWidth {
       align-items: center;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       min-height: 100vh;
-      width: $desktopContentHalf;
+      width: 100vw;
+
+      @include breakpoint( sm ) {
+         flex-direction: row;
+         width: 60vw;
+      }
+
+      @include breakpoint( md ) {
+         padding-left: var(--fontSize-45);
+         padding-right: var(--fontSize-45);
+         width: $desktopContent60;
+      }
+
+      @include breakpoint( lg ) {
+         padding-left: var(--fontSize-60);
+         padding-right: var(--fontSize-60);
+         width: $desktopContentHalf;
+      }
 
       &.-leftLayout {
-         margin-left: $desktopContentHalf;
+
+         @include breakpoint( sm ) {
+            margin-left: 40vw;
+         }
+
+         @include breakpoint( md ) {
+            margin-left: $desktopContent40;
+         }
+
+         @include breakpoint( lg ) {
+            margin-left: $desktopContentHalf;
+         }
       }
 
       &.-rightLayout {
-         margin-right: $desktopContentHalf;
+
+         @include breakpoint( sm ) {
+            margin-right: 40vw;
+         }
+
+         @include breakpoint( md ) {
+            margin-right: $desktopContent40;
+         }
+
+         @include breakpoint( lg ) {
+            margin-right: $desktopContentHalf;
+         }
       }
    }
 
@@ -64,5 +104,23 @@
 
    &__wrapper {
       max-width: 1220px;
+   }
+
+   &__halfImage {
+      clip-path: url(#moon-bottom);
+      height: 60vh;
+      margin: 0 calc(50% - 50vw);
+      width: 100vw;
+   }
+
+   &__halfImageWrapper {
+      height: 100%;
+      width: 100%;
+   }
+
+   &__halfImageBg {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
    }
 }

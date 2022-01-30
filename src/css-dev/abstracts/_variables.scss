@@ -29,6 +29,8 @@ $navWidthDesktop:       100px;
 $mobileHeight:          calc( var( --vh ) - $navHeightMobile );
 $desktopWidth:          calc( 100vw - $navWidthDesktop );
 $desktopContentHalf:    calc( ( 100vw - $navWidthDesktop ) / 2 );
+$desktopContent40:      calc( ( 100vw - $navWidthDesktop ) - 60% );
+$desktopContent60:      calc( ( 100vw - $navWidthDesktop ) - 40% );
 
 $breakpoints: (
    xs: 500px,

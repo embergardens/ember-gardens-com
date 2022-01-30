@@ -9,14 +9,32 @@
 
    &.-leftLayout,
    &.-rightLayout {
+      display: none;
       mix-blend-mode: normal;
       width: $desktopContentHalf;
+
+      @include breakpoint( sm ) {
+         display: block;
+         width: 40vw;
+      }
+
+      @include breakpoint( md ) {
+         width: $desktopContent40;
+      }
+
+      @include breakpoint( lg ) {
+         width: $desktopContentHalf;
+      }
    }
 
    &.-leftLayout {
       clip-path: url(#moon-left);
-      left: $navWidthDesktop;
+      left: 0;
       right: auto;
+
+      @include breakpoint( md ) {
+         left: $navWidthDesktop;
+      }
    }
 
    &.-rightLayout {

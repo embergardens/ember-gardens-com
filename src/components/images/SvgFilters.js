@@ -35,6 +35,12 @@ export const SvgFilters = () => {
          <clipPath id="moon-right" clipPathUnits="objectBoundingBox">
             <path d="M0,1 C0.287,0.487,0,0,0,0 H1 V1" />
          </clipPath>
+         <clipPath id="moon-top" clipPathUnits="objectBoundingBox">
+            <path d="M1,0A1.05,1.05,0,0,1,0,0V1H1"/>
+         </clipPath>
+         <clipPath id="moon-bottom" clipPathUnits="objectBoundingBox">
+            <path d="M0,1A1.05,1.05,0,0,1,1,1V0H0"/>
+         </clipPath>
       </svg>
    )
 }
