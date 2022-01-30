@@ -2,11 +2,10 @@
 import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-
+import { useRecoilState } from 'recoil'
+import { currentThemeState } from '../../store/global'
 
 import { Plum, Rose, Coral, White } from '../../globals/colors'
-import { useRecoilState } from 'recoil'
-import { currentBackgroundGradientState, currentTextÇolorState } from '../../store/global'
 
 const BackgroundGradient = ( { theme } ) => {
 
@@ -32,34 +31,10 @@ const BackgroundGradient = ( { theme } ) => {
          }
    }
 
-   const text = ( colors ) => {
-      switch (colors) {
-         case 'gradient':
-            return 'dark'
-         break;
-         case 'plum':
-            return 'dark'
-         break;
-         case 'rose':
-            return 'dark'
-         break;
-         case 'coral':
-            return 'dark'
-         break;
-         case 'white':
-            return 'light'
-         break;
-         default:
-            return 'light'
-      }
-   }
-
-   const [ currentBackgroundGradient, setCurrentBackgroundGradient ] = useRecoilState( currentBackgroundGradientState )
-   const [ currentTextColor, setCurrentTextColor ] = useRecoilState( currentTextÇolorState )
+   const [ currentTheme, setCurrentTheme ] = useRecoilState( currentThemeState )
 
    useEffect(() => {
-      setCurrentBackgroundGradient( gradient( theme ) )
-      setCurrentTextColor( text( theme ) )
+      setCurrentTheme( theme )
    })
 
    return (

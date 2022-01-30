@@ -5,7 +5,8 @@ import React, { useEffect, useRef } from "react"
 // Components ------------------------------------------------------
 import { Helmet } from "react-helmet"
 import { useRecoilValue } from "recoil"
-import { currentTextÇolorState } from "../../store/global"
+import { currentTextColorState } from "../../store/global"
+import { currentSectionState } from "../../store/navigation"
 import { MainMenu } from "../navigation/MainMenu"
 import { Navbar } from "../navigation/Navbar"
 
@@ -14,7 +15,8 @@ import { Navbar } from "../navigation/Navbar"
 // =================================================================
 
 const Layout = ({ isHomePage, children }) => {
-  const currentTextColor = useRecoilValue( currentTextÇolorState )
+  const currentTextColor = useRecoilValue( currentTextColorState )
+  const currentSection = useRecoilValue( currentSectionState )
   const getViewportHeight = () => {
     document.querySelector(':root').style.setProperty('--vh', `${ window.innerHeight }px`)
   }
@@ -26,6 +28,7 @@ const Layout = ({ isHomePage, children }) => {
 
   useEffect(() => {
     document.querySelector(':root').dataset.themeColor = currentTextColor
+    console.log( {currentTextColor, currentSection})
   })
 
   const scrollRef = useRef()
