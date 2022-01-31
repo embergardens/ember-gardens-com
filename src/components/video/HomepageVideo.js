@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable arrow-body-style */
+/* eslint-disable no-unused-expressions */
+import React, { memo, useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import ReactPlayer from 'react-player'
@@ -12,49 +14,51 @@ import { HomeLogo } from '../icons/HomeLogo'
 
 export const HomepageVideo = () => {
    const logoAnime = {
-      in: {
+      logoEnter: {
          opacity: 1,
       },
 
-      out: {
+      logoExit: {
          opacity: 0,
 
       }
    }
-
+   const playVideo = true
    const [ duration, setDuration ] = useState( 0 )
    const [ progress, setProgress ] = useState( {} )
-   let isLoaded = false
+   const [ isLoaded, setIsLoaded ] = useState( false )
    const [ isStarted, setIsStarted ] = useState( false )
    const [ isPlaying, setIsPlaying ] = useState( false )
 
    const handleDuration = ( time ) => setDuration( time )
    const handleProgress = ( time ) => {
-      //setProgress( time )
-      // if ( time.playedSeconds > 7 ) {
-      //    console.log('animate!')
-      //    return isLoaded = true
-      // }
+      setProgress( time )
+      if ( time.playedSeconds > 7 ) {
+         setIsLoaded( true )
+      }
    }
    const handlePlaying = ( e ) => setIsPlaying( true )
    const handleStarted = ( e ) => setIsStarted( true )
+
+   const sourceFiles = [
+      { src: webmVideo, type: 'video/webm' },
+      { src: mp4Video, type: 'video/mp4' }
+   ]
+   const files = useMemo( () => [...sourceFiles], [])
 
    return (
       <div className='homeVideo'>
          <motion.div
             className='homeVideo__logo'
             variants={ logoAnime }
-            initial='out'
-            animate={ isLoaded ? 'in' : 'out'}
+            initial='logoExit'
+            animate={ isLoaded ? 'logoEnter' : 'logoExit'}
          >
             <HomeLogo />
          </motion.div>
          <ReactPlayer
             className="homeVideo__video"
-            url={[
-               { src: webmVideo, type: 'video/webm' },
-               { src: mp4Video, type: 'video/mp4' }
-            ]}
+            url={ files }
             height="100%"
             width="100%"
             playing
@@ -62,7 +66,7 @@ export const HomepageVideo = () => {
             loop
             playsinline
             volume={0}
-            // progressInterval={ 1000 }
+            progressInterval={ 1000 }
             config={{
                file: {
                   attributes: {
