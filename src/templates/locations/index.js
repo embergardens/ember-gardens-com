@@ -3,17 +3,17 @@ import { graphql } from "gatsby"
 
 import Sections from '../../components/layout/Sections'
 
-const Page = ({ data }) => <Sections data={data} postType='page' />
+const Location = ({ data }) => <Sections data={data} postType='location' />
 
 
 export const query = graphql`
-   query page($id: String!) {
-      page: wpPage(id: { eq: $id }) {
-         ...DefaultPageContent
+   query location($id: String!) {
+      page: wpLocation(id: { eq: $id }) {
+         ...LocationContent
       }
       globalFooter: wp {
          ...GlobalFooter
       }
    }
 `
-export default Page
+export default Location

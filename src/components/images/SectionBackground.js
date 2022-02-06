@@ -44,6 +44,7 @@ export const SectionBackground = ({ data, active }) => {
                   alt={image.altText}
                   image={imageData}
                   className={`backgroundMedia__img -brightness-${ brightness }`}
+                  placeholder="blurred"
                />
             </motion.div>
          }

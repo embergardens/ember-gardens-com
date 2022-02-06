@@ -14,6 +14,8 @@ import { ContentDesigner } from '../content/ContentDesigner'
 import { Footer } from './Footer'
 import { useMediaQuery } from 'react-responsive'
 import { isMobile } from '../utility/Breakpoints'
+import { TextBlock } from '../blocks/TextBlock'
+import { ButtonBlock } from '../blocks/ButtonBlock'
 
 export const PageSection = ({ data }) => {
    const {
@@ -25,6 +27,7 @@ export const PageSection = ({ data }) => {
       style,
       content,
       eyebrow,
+      locationInfo,
       background: { layout, image },
    } = data
 
@@ -81,9 +84,12 @@ export const PageSection = ({ data }) => {
                </h3>
             }
 
-
             { content &&
                <ContentDesigner blocks={ content } hero={ isHero } />
+            }
+
+            { locationInfo &&
+               <LocationHero info={ locationInfo } />
             }
 
             { isFooter &&
@@ -94,4 +100,32 @@ export const PageSection = ({ data }) => {
       </section>
    )
 
+}
+
+const LocationHero = ({ info }) => {
+   const { address, email, phone, intro, links } = info
+
+   return (
+      <div className='sectionContent -hero'>
+         { intro &&
+            <TextBlock content={ intro } />
+         }
+         { ( address || email || phone ) &&
+            <div className='textBlock -details'>
+               { address &&
+                  <p><strong>Address:</strong> { address }</p>
+               }
+               { phone &&
+                  <p><strong>Call us:</strong> <a href={ `tel:${phone}` } target="_blank">{ phone }</a></p>
+               }
+               { email &&
+                  <p><strong>Email us:</strong> <a href={ `mailto:${ email }` } target="_blank">{ email }</a></p>
+               }
+            </div>
+         }
+         { links &&
+            <ButtonBlock group={ links } />
+         }
+      </div>
+   )
 }

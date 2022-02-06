@@ -19,6 +19,7 @@ export const buildPageFooter = ( globalData, pageData = null ) => {
       footerLinks: linkOverrides || footerLinks,
       isFooter: true,
       isHero: false,
+      locationInfo: null,
       navDisplay: false,
       navTitle: null,
       pageTitle: null,

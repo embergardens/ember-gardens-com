@@ -1,10 +1,10 @@
-@mixin button( $style: 'full', $color: $c-white, $gap: 40px ) {
+@mixin button( $style: 'full', $gap: 40px, $color: var(--theme-color-0) ) {
    -webkit-appearance: none;
    appearance: none;
-   background: transparent;
+   background-color: transparent;
    border: none;
    border-radius: 0;
-   color: #{ $color };
+   color: $color;
    cursor: pointer;
    flex: 0 0 auto;
    font-size: 16px;
@@ -19,17 +19,17 @@
    @if $style == 'full' {
       background-image:
          //NW
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //NE
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //E
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //SE
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //SW
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //W
-         linear-gradient(0deg, currentColor, currentColor);
+         linear-gradient(0deg, $color, $color);
       background-position:
          //NW
          0 0,
@@ -77,13 +77,13 @@
    } @else if $style == 'half' {
       background-image:
          //NW
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //E
          linear-gradient(0deg, transparent, transparent),
          //SW
-         linear-gradient(0deg, currentColor, currentColor),
+         linear-gradient(0deg, $color, $color),
          //W
-         linear-gradient(0deg, currentColor, currentColor);
+         linear-gradient(0deg, $color, $color);
       background-position:
          //NW
          0 0,

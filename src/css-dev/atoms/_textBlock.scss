@@ -1,7 +1,9 @@
 .textBlock {
    .-hero > & {
-      p:first-child {
-         @include intro();
+      &:first-child {
+         p:first-child {
+            @include intro();
+         }
       }
    }
 

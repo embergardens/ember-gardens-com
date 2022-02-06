@@ -26,6 +26,7 @@ export const buildSectionObject = ( section ) => {
       footerLinks: null,
       isFooter: false,
       isHero: section.isHero || false,
+      locationInfo: section.locationInfo || null,
       navDisplay: section.showinnav || false,
       navTitle: section.navigationtitle || null,
       pageTitle: section.pageTitle || null,
