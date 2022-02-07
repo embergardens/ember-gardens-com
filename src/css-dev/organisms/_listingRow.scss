@@ -1,0 +1,27 @@
+.listingRow {
+   + .listingRow {
+      margin: var(--fontSize-30) 0 0;
+
+      @include breakpoint( sm ) {
+         margin: var(--fontSize-60) 0 0;
+      }
+
+      @include breakpoint( lg ) {
+         margin: var(--fontSize-90) 0 0;
+      }
+   }
+
+   &__label {
+      @include eyebrow();
+      margin: 0 0 var(--fontSize-30);
+   }
+
+   &__wrapper {
+      align-items: center;
+      display: grid;
+      gap: var(--fontSize-60);
+      grid-auto-flow: column;
+      grid-template-columns: repeat( 4, max-content );
+      width: 100%;
+   }
+}

@@ -113,13 +113,19 @@ const LocationHero = ({ info }) => {
          { ( address || email || phone ) &&
             <div className='textBlock -details'>
                { address &&
-                  <p><strong>Address:</strong> { address }</p>
+                  <p>
+                     <strong>Address:</strong> <a href={ `https://www.google.com/maps/place/${ address.replaceAll(' ', '+') }` } target="_blank">{ address }</a>
+                  </p>
                }
                { phone &&
-                  <p><strong>Call us:</strong> <a href={ `tel:${phone}` } target="_blank">{ phone }</a></p>
+                  <p>
+                     <strong>Call us:</strong> <a href={ `tel:${phone}` } target="_blank">{ phone }</a>
+                  </p>
                }
                { email &&
-                  <p><strong>Email us:</strong> <a href={ `mailto:${ email }` } target="_blank">{ email }</a></p>
+                  <p>
+                     <strong>Email us:</strong> <a href={ `mailto:${ email }` } target="_blank">{ email }</a>
+                  </p>
                }
             </div>
          }
@@ -129,3 +135,5 @@ const LocationHero = ({ info }) => {
       </div>
    )
 }
+
+//https://www.google.com/maps/place/18+Jefferson+St,+Newburyport,+MA+01950/

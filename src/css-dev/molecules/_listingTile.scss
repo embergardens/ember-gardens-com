@@ -1,0 +1,48 @@
+.listingTile {
+   display: grid;
+   gap: var(--fontSize-16);
+   grid-template-rows: max-content;
+
+   &.-featured {
+      border-right: 1px solid var(--theme-color-0);
+      grid-row: 1 / -1;
+      max-width: 360px;
+   }
+
+   &__title {
+      @include theme-text();
+      font-family: var(--font-heading);
+      font-size: var(--fontSize-30);
+      font-weight: var(--fontWeight-bold);
+      line-height: 1.1;
+
+      @include breakpoint( sm ) {
+         font-size: var(--fontSize-45);
+      }
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-60);
+      }
+   }
+
+   &__text {
+      @include theme-text();
+      font-size: var(--fontSize-16);
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-18);
+         line-height: 1.2;
+      }
+   }
+
+   &__linkList {
+      display: grid;
+      gap: var(--fontSize-16);
+   }
+
+   &__link {
+      @include doubleArrow-link-style();
+   }
+
+
+}

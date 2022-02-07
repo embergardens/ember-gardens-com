@@ -1,8 +1,9 @@
 const _ = require('lodash')
 
-const pageTemplate = require.resolve('../src/templates/pages/index.js')
-const homepageTemplate = require.resolve('../src/templates/home/index.js')
-const simpleTemplate = require.resolve( '../src/templates/pages/simple.js')
+const pageTemplate = require.resolve('../src/templates/pages/index.js' )
+const homepageTemplate = require.resolve('../src/templates/home/index.js' )
+const simpleTemplate = require.resolve( '../src/templates/pages/simple.js' )
+const listingTemplate = require.resolve( '../src/templates/pages/listing.js' )
 
 const getTemplate = ( node ) => {
    if ( node.isFrontPage ) {
@@ -11,6 +12,10 @@ const getTemplate = ( node ) => {
 
    if ( node.template.templateName === 'Default' ) {
       return pageTemplate
+   }
+
+   if ( node.template.templateName === 'Listing Template' ) {
+      return listingTemplate
    }
 
    return simpleTemplate
@@ -76,7 +81,7 @@ module.exports = async ({ actions, graphql, reporter }, options) => {
                }
             })
 
-            reporter.info(`page create: ${page.node.uri}`)
+            reporter.info(`page create: ${page.node.uri} ${ page.node.template.templateName }`)
          })
 
          reporter.info(`# --------> PAGES TOTAL: ${wpPages.length}`)

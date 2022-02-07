@@ -1,4 +1,5 @@
 .sectionNav {
+   display: none;
    left: var(--fontSize-30);
    margin: 0;
    padding: 0;
@@ -11,6 +12,7 @@
    }
 
    @include breakpoint( md ) {
+      display: block;
       left: calc( $navWidthDesktop + var(--fontSize-90) );
       top: calc( var(--fontSize-60) - var(--fontSize-14) );
    }

@@ -7,7 +7,17 @@
       }
    }
 
+   &.-details {
+      p:not(:last-child) {
+         margin-bottom: 0.5rem;
+      }
+   }
+
    b, strong {
       font-weight: bold;
+   }
+
+   a {
+      @include link-style();
    }
 }
