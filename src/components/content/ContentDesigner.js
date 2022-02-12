@@ -3,6 +3,7 @@ import { ButtonBlock } from '../blocks/ButtonBlock'
 import { CalloutBlock } from '../blocks/CalloutBlock'
 import { TextBlock } from '../blocks/TextBlock'
 import { ImageBlock } from '../blocks/ImageBlock'
+import { TextImageBlock } from '../blocks/TextImageBlock'
 
 export const ContentDesigner = ({ blocks, hero }) => {
 
@@ -24,6 +25,9 @@ export const ContentDesigner = ({ blocks, hero }) => {
 
          case 'CalloutBlock':
             return <CalloutBlock data={block.callout} key={`${name}-${index}`} />
+
+         case 'TextImageBlock':
+            return <TextImageBlock content={block} key={`${name}-${index}`} />
       }
    })
 

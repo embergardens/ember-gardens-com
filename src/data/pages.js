@@ -69,6 +69,7 @@ export const pageFragments = graphql`
                ...ButtonBlock
                ...ImageBlock
                ...CalloutBlock
+               ...TextImageBlock
             }
          }
       }

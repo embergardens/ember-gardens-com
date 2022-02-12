@@ -109,5 +109,10 @@ input[type="radio"] {
 a.button,
 span.button {
    @include button();
+
+   &.-half {
+      @include button( $style: 'half' );
+   }
+
    @include theme-text( $transition: false );
 }

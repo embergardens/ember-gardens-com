@@ -18,4 +18,10 @@ export const mediaFragments = graphql`
          gatsbyImageData(layout: CONSTRAINED, quality: 90)
       }
    }
+
+   fragment SquareImage on File {
+      childImageSharp {
+         gatsbyImageData(layout: CONSTRAINED, width: 1000, height: 1000, quality: 90, aspectRatio: 1)
+      }
+   }
 `

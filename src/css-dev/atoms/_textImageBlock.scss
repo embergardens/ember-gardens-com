@@ -1,0 +1,55 @@
+.textImageBlock {
+   margin: var(--fontSize-60) auto;
+   max-width: 500px;
+
+   @include breakpoint( md ) {
+      margin: var(--fontSize-90) auto;
+      max-width: none;
+   }
+
+   &__wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+         "IMAGE"
+         "TEXT";
+      gap: 2.4rem;
+
+      @include breakpoint( md ) {
+         grid-template-columns: repeat(2, 1fr);
+         grid-template-areas: "TEXT IMAGE";
+
+         .-leftLayout & {
+            grid-template-areas: "IMAGE TEXT";
+         }
+      }
+   }
+
+   &__content {
+      grid-area: TEXT;
+   }
+
+   &__eyebrow {
+      @include eyebrow();
+   }
+
+   &__title {
+      margin: 1.5rem 0 0.5rem;
+   }
+
+   &__subtitle {
+      @include intro();
+      margin-bottom: 1.5rem;
+   }
+
+
+   &__media {
+      grid-area: IMAGE;
+   }
+
+   &__image {
+      .-circleFrame & {
+         border-radius: 50%;
+      }
+   }
+}
