@@ -51,6 +51,14 @@ module.exports = {
       },
     },
 
+    // Gravity Forms =====================================
+    {
+      resolve: "gatsby-plugin-gravity-forms",
+      options: {
+        url: process.env.WPGRAPHQL_URL,
+      },
+    },
+
     // Source Filesystem =======================================
     {
       resolve: `gatsby-source-filesystem`,

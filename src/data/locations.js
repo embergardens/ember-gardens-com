@@ -68,6 +68,8 @@ export const locationFragments = graphql`
                ...LocationButtonBlock
                ...LocationImageBlock
                ...LocationCalloutBlock
+               ...LocationTextImageBlock
+               ...LocationFormBlock
             }
          }
       }

@@ -15,6 +15,7 @@
     "gatsby": "^4.0.0",
     "gatsby-cli": "^4.4.0",
     "gatsby-plugin-gatsby-cloud": "^4.0.0",
+    "gatsby-plugin-gravity-forms": "^1.0.4",
     "gatsby-plugin-image": "^2.0.0",
     "gatsby-plugin-manifest": "^4.0.0",
     "gatsby-plugin-offline": "^5.0.0",
