@@ -97,7 +97,7 @@ export const CheckboxField = graphql`
   fragment CheckboxField on WpCheckboxField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     checkboxValues {
       inputId
       value
@@ -146,7 +146,7 @@ export const RadioField = graphql`
   fragment RadioField on WpRadioField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     choices {
       isOtherChoice
       isSelected

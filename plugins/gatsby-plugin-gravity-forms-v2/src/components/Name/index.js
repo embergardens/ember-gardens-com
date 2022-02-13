@@ -24,19 +24,21 @@ const NameField = ({
       }
    })
    const nameInputs = filteredNames.map((input) => {
+      const inputName = `input_${input.id}`;
+      Object.assign(input, { type: 'NAME' })
       return <Input
             fieldData={input}
             key={input.id}
-            gfId={gfId}
-            name={name}
+            gfId={input.id}
+            name={inputName}
             defaultValue={defaultValue}
-            wrapClassName={wrapClassName}
+            wrapClassName={`${wrapClassName} -half`}
             wrapId={wrapId}
          />
    })
    return (
       <li>
-         <ul className="Nameinput">
+         <ul className="Nameinput -columns">
             { nameInputs }
          </ul>
       </li>

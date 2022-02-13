@@ -30,7 +30,6 @@ export const FormBlock = ({ formId }) => {
 
    return (
       <div className="formBlock">
-         <h1>GRAVITY FORM</h1>
          <GravityFormForm data={ form[0] } />
       </div>
    )

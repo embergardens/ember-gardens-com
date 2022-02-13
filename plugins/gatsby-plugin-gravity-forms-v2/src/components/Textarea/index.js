@@ -94,7 +94,7 @@ export const TextAreaField = graphql`
   fragment TextAreaField on WpTextAreaField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     conditionalLogic {
       actionType
       rules {

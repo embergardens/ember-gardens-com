@@ -54,9 +54,9 @@ const GravityFormForm = ({
 
   // Handle Gravity Form Submittion state.
   // Thanks to: https://developers.wpengine.com/blog/gravity-forms-in-headless-wordpress-gatsby
-  const haveEntryId = Boolean(submittionData?.submitGravityFormsForm?.entryId);
+  const haveEntryId = Boolean(submittionData?.submitGfForm?.entryId);
   const haveFieldErrors = Boolean(
-    submittionData?.submitGravityFormsForm?.errors?.length
+    submittionData?.submitGfForm?.errors?.length
   );
   const wasSuccessfullySubmitted = haveEntryId && !haveFieldErrors;
 
@@ -79,11 +79,13 @@ const GravityFormForm = ({
       // Check that at least one field has been filled in
       if (submissionHasOneFieldEntry(values)) {
         setGeneralError("");
-
+        console.log({values}, formFields.nodes)
         const formRes = formatPayload({
           serverData: formFields?.nodes,
           clientData: values,
         });
+
+        console.log({formRes})
 
         submitForm({
           variables: {
@@ -94,7 +96,7 @@ const GravityFormForm = ({
           .then(
             ({
               data: {
-                submitGravityFormsForm: { entryId, errors },
+                submitGfForm: { entryId, errors },
               },
             }) => {
               // Success

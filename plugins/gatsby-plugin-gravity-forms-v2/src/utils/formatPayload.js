@@ -13,11 +13,11 @@
 
 const formatter = ({ id, fieldResponse, type, inputs }) => {
   switch (type) {
-    case "address":
+    case "ADDRESS":
       return {
         addressValues: value,
       };
-    case "checkbox":
+    case "CHECKBOX":
       // Loop through all Gravity Form Checkbox choices.
       const selectedChoices = inputs
         .map(({ id, label, name }) => {
@@ -36,42 +36,55 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
       return {
         checkboxValues: selectedChoices,
       };
-    case "email":
+    case "EMAIL":
       return {
         emailValues: {
           value: fieldResponse,
+          confirmationValue: fieldResponse
         },
       };
-    case "consent":
-    case "date":
-    case "hidden":
+    case "NAME":
+      const nameInputs = inputs.map( ({id, label, isHidden }) => {
+        return {
+          inputId: id,
+          value: fieldResponse,
+          label: label,
+          isHidden
+        }
+      })
+      return {
+        nameValues: nameInputs
+      }
+    case "CONSENT":
+    case "DATE":
+    case "HIDDEN":
     case "number":
-    case "phone":
-    case "postContent":
-    case "postExcerpt":
-    case "postTitle":
-    case "radio":
-    case "select":
-    case "signature":
-    case "textarea":
-    case "text":
-    case "website":
+    case "PHONE":
+    case "POSTCONTENT":
+    case "POSTEXCERPT":
+    case "POSTTITLE":
+    case "RADIO":
+    case "SELECT":
+    case "SIGNATURE":
+    case "TEXTAREA":
+    case "TEST":
+    case "WEBSITE":
       return {
         value: fieldResponse,
       };
-    case "multiSelect":
+    case "MULTISELECT":
       return {
         values: fieldResponse,
       };
-    case "postCategory":
+    case "POSTCATEGORY":
       return {
         values: fieldResponse,
       };
-    case "postCustom":
+    case "POSTCUSTOM":
       return {
         values: fieldResponse,
       };
-    case "postTags":
+    case "POSTTAGS":
       return {
         values: fieldResponse,
       };

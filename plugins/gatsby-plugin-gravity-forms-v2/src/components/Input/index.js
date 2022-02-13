@@ -13,6 +13,8 @@ const standardType = (type) => {
       return "tel";
     case "fileupload":
       return "file";
+    case "NAME":
+      return "TEXT";
     default:
       return type;
   }
@@ -120,7 +122,7 @@ export const TextField = graphql`
     enablePasswordInput
     enableAutocomplete
     autocompleteAttribute
-    allowsPrepopulate
+    canPrepopulate
     adminOnly
     adminLabel
     conditionalLogic {
@@ -139,7 +141,7 @@ export const DateField = graphql`
   fragment DateField on WpDateField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     calendarIconType
     calendarIconUrl
     conditionalLogic {
@@ -187,7 +189,7 @@ export const EmailField = graphql`
   fragment EmailField on WpEmailField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     autocompleteAttribute
     conditionalLogic {
       actionType
@@ -234,7 +236,7 @@ export const EmailField = graphql`
 
 export const HiddenField = graphql`
   fragment HiddenField on WpHiddenField {
-    allowsPrepopulate
+    canPrepopulate
     conditionalLogic {
       actionType
       logicType
@@ -263,7 +265,7 @@ export const NumberField = graphql`
   fragment NumberField on WpNumberField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     autocompleteAttribute
     calculationFormula
     calculationRounding
@@ -307,7 +309,7 @@ export const PhoneField = graphql`
   fragment PhoneField on WpPhoneField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     autocompleteAttribute
     conditionalLogic {
       actionType

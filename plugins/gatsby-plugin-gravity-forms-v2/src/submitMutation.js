@@ -2,10 +2,12 @@ import { gql } from "@apollo/client";
 
 export default gql`
   mutation submitForm($formId: Int!, $fieldValues: [FieldValuesInput]) {
-    submitGravityFormsForm(
+    submitGfForm(
       input: { formId: $formId, fieldValues: $fieldValues }
     ) {
-      entryId
+      entry {
+        id
+      }
       errors {
         id
         message

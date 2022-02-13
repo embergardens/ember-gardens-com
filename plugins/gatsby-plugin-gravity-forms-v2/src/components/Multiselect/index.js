@@ -71,7 +71,7 @@ export const MultiSelectField = graphql`
   fragment MultiSelectField on WpMultiSelectField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     choices {
       isSelected
       text

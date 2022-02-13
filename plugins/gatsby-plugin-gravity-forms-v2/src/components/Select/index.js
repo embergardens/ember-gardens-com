@@ -7,8 +7,7 @@ import InputWrapper from "../InputWrapper";
 import { valueToLowerCase } from "../../utils/helpers";
 
 const Select = ({ fieldData, name, ...wrapProps }) => {
-  const { choices, cssClass, isRequired, size } = fieldData;
-  const options = JSON.parse(choices);
+  const { choices, cssClass, isRequired } = fieldData;
 
   const {
     register,
@@ -25,13 +24,11 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
       <select
         aria-invalid={errors}
         aria-required={isRequired}
-        //TODO: GF uses select2 library and classes, need to figure out how to handle here if we're mimicing their functionality
         className={classnames(
           "gravityform__field__input",
           "gravityform__field__input__select",
           "gfield_select",
           cssClass,
-          valueToLowerCase(size)
         )}
         id={name}
         name={name}
@@ -39,7 +36,7 @@ const Select = ({ fieldData, name, ...wrapProps }) => {
           required: isRequired && "This field is required",
         })}
       >
-        {options.map(({ isSelected, text, value }, index) => {
+        {choices.map(({ isSelected, text, value }, index) => {
           return (
             <option
               defaultValue={isSelected}
@@ -59,7 +56,7 @@ export default Select;
 
 Select.propTypes = {
   fieldData: PropTypes.shape({
-    choices: PropTypes.string,
+    choices: PropTypes.array,
     cssClass: PropTypes.string,
     isRequired: PropTypes.bool,
     size: PropTypes.string,
@@ -72,7 +69,7 @@ export const SelectField = graphql`
   fragment SelectField on WpSelectField {
     adminLabel
     adminOnly
-    allowsPrepopulate
+    canPrepopulate
     autocompleteAttribute
     choices {
       isSelected

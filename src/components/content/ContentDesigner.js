@@ -31,7 +31,7 @@ export const ContentDesigner = ({ blocks, hero }) => {
             return <TextImageBlock content={block} key={`${name}-${index}`} />
 
          case 'FormBlock':
-            return <FormBlock formId={block} />
+            return <FormBlock formId={block} key={`${name}-${index}`}/>
       }
    })
 
