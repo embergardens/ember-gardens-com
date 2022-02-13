@@ -230,20 +230,37 @@
       }
 
       &Form {
-         align-items: center;
-         display: grid;
-         gap: 30px;
-         grid-auto-flow: row;
-         justify-items: start;
          margin: 0;
 
-         @include breakpoint( md ) {
-            grid-auto-flow: column;
+         form {
+            align-items: center;
+            display: grid;
+            gap: 30px;
+            grid-auto-flow: row;
+            justify-items: start;
+            margin: 0;
+
+            @include breakpoint( md ) {
+               grid-auto-flow: column;
+            }
          }
       }
 
-      &Button {
-         @include button( 'full' );
+
+      .gform_body {
+         margin: 0;
+
+         input[type="text"] {
+            border: 1px solid $c-white;
+         }
+
+         button[type="submit"] {
+            @include button( $style: 'full', $gap: 40px, $color: $c-white );
+         }
+      }
+
+      label {
+         @include visuallyhidden();
       }
    }
 }

@@ -101,6 +101,7 @@ const GravityFormForm = ({
             }) => {
               // Success
               if (entryId) {
+                console.log('success?')
                 successCallback({
                   data: formRes,
                   reset,
@@ -109,12 +110,14 @@ const GravityFormForm = ({
               // We have a problem
               if (errors?.length) {
                 handleGravityFormsValidationErrors(errors, setError);
+                console.log({ errors, setError })
                 errorCallback({ data: formRes, error: errors, reset });
               }
             }
           )
           .catch((error) => {
             setGeneralError("unknownError");
+            console.log({ error, reset })
             errorCallback({ data: formRes, error, reset });
           });
       } else {

@@ -19,6 +19,7 @@ import { IconArrowDouble } from '../icons/IconArrowDouble'
 import { IconEmail } from '../icons/IconEmail'
 import { IconExternalLink } from '../icons/IconExternalLink'
 import { IconInstagram } from '../icons/IconInstagram'
+import { FormBlock } from '../blocks/FormBlock'
 
 export const MainMenu = () => {
    const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
@@ -187,12 +188,7 @@ export const MainMenu = () => {
                               <h6 className="mainMenu__socialSignupTitle">
                                  { signup.text ? signup.text : 'Sign Up' }
                               </h6>
-                              <form className="mainMenu__socialSignupForm">
-                                 <input className="mainMenu__socialSignupInput" type="text" placeholder="name@email.com" />
-                                 <button className="mainMenu__socialSignupButton" type="submit">
-                                    { signup.buttonText ? signup.buttonText : 'Submit' }
-                                 </button>
-                              </form>
+                              <FormBlock formId={ signup } blockClass='mainMenu__socialSignupForm' />
                            </motion.li>
                         }
 

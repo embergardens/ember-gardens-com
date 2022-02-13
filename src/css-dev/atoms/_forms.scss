@@ -134,7 +134,7 @@ input[type="radio"] {
    padding: 0;
 }
 
-a.button,
+a.button:not(.homepage__button),
 span.button,
 [type="button"]:not(.navBar__trigger, .navBar__title),
 [type="reset"],

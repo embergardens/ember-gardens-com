@@ -39,7 +39,7 @@ export const navigationFragments = graphql`
                text
             }
             signup {
-               buttonText
+               gravityFormSelect
                text
             }
          }

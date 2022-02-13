@@ -1,11 +1,11 @@
 /* eslint-disable consistent-return */
 /* eslint-disable array-callback-return */
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import GravityFormForm from '../../../plugins/gatsby-plugin-gravity-forms-v2'
 
-export const FormBlock = ({ formId }) => {
+export const FormBlock = ({ formId, blockClass ='formBlock' }) => {
    const data = useStaticQuery(graphql`
       {
          allWpGfForm {
@@ -20,8 +20,10 @@ export const FormBlock = ({ formId }) => {
       allWpGfForm: { nodes },
    } = data
 
+   const gfId = useMemo( () => formId, [])
+
    const form = nodes.filter((node) => {
-      if (node.databaseId === Number(formId.gravityFormSelect)) {
+      if (node.databaseId === Number(gfId.gravityFormSelect)) {
          return node
       }
    })
@@ -29,7 +31,7 @@ export const FormBlock = ({ formId }) => {
    console.log({form})
 
    return (
-      <div className="formBlock">
+      <div className={ blockClass }>
          <GravityFormForm data={ form[0] } />
       </div>
    )

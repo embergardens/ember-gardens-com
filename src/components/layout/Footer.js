@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { getStateName } from '../../functions/locations'
+import { FormBlock } from '../blocks/FormBlock'
 import { IconEmail } from '../icons/IconEmail'
 import { IconInstagram } from '../icons/IconInstagram'
 import { IconLogoColor } from '../icons/IconLogoColor'
@@ -113,12 +114,7 @@ export const Footer = ({ links }) => {
                      <h6 className="footer__signupTitle">
                         { signup.text ? signup.text : 'Sign Up' }
                      </h6>
-                     <form className="footer__signupForm">
-                        <input className="footer__signupInput" type="text" placeholder="name@email.com" />
-                        <button className="footer__signupButton" type="submit">
-                           { signup.buttonText ? signup.buttonText : 'Submit' }
-                        </button>
-                     </form>
+                     <FormBlock formId={ signup } blockClass='footer__signupForm' />
                   </div>
                }
                <div className="footer__brand">

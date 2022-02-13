@@ -33,11 +33,11 @@
       display: block;
 
       &.-full {
-         @include button( 'full' );
+         @include button( 'full', 40px, $c-white );
       }
 
       &.-half {
-         @include button( 'half' );
+         @include button( 'half', 40px, $c-white );
       }
 
       + .homepage__button {
