@@ -3,7 +3,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import GravityFormForm from 'gatsby-plugin-gravity-forms'
+import GravityFormForm from '../../../plugins/gatsby-plugin-gravity-forms-v2'
 
 export const FormBlock = ({ formId }) => {
    const data = useStaticQuery(graphql`
@@ -25,6 +25,8 @@ export const FormBlock = ({ formId }) => {
          return node
       }
    })
+
+   console.log({form})
 
    return (
       <div className="formBlock">

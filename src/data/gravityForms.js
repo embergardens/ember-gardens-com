@@ -133,6 +133,8 @@ export const GravityFormFields = graphql`
       label
       name
       placeholder
+      isHidden
+      key
     }
     isRequired
     label
