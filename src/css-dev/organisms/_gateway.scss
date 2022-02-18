@@ -1,0 +1,64 @@
+.gateway {
+   background: rgba(255, 255, 255, 0.6);
+   height: 100vh;
+   width: 100vw;
+   position: fixed;
+   z-index: 9999;
+}
+
+
+ @keyframes modal-fade-in {
+   from {
+     opacity: 0;
+   }
+   to {
+     opacity: 1;
+   }
+ }
+
+ @keyframes modal-slide-in {
+   from {
+     transform: translateY(55%);
+   }
+   to {
+     transform: translateY(0);
+   }
+ }
+
+ @keyframes modal-slide-out {
+   from {
+     transform: translateY(0);
+   }
+   to {
+     transform: translateY(-55%);
+   }
+ }
+
+ @keyframes modal-fade-out {
+   from {
+     opacity: 1;
+   }
+   to {
+     opacity: 0;
+   }
+ }
+
+ .modal-slide[aria-hidden='false'] .modal-overlay.custom-animation {
+   animation: modal-fade-in 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='true'] .modal-overlay.custom-animation {
+   animation: modal-fade-out 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='false']
+   .modal-overlay.custom-animation
+   > .modal-container {
+   animation: modal-slide-in 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='true']
+   .modal-overlay.custom-animation
+   > .modal-container {
+   animation: modal-slide-out 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
