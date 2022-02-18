@@ -136,7 +136,7 @@ input[type="radio"] {
 
 a.button:not(.homepage__button),
 span.button,
-[type="button"]:not(.navBar__trigger, .navBar__title),
+[type="button"]:not(.navBar__trigger, .navBar__title, .gateway__button),
 [type="reset"],
 [type="submit"] {
    @include button();

@@ -1,9 +1,149 @@
 .gateway {
-   background: rgba(255, 255, 255, 0.6);
    height: 100vh;
    width: 100vw;
    position: fixed;
    z-index: 9999;
+
+   &__overlay {
+      @include primary-gradient(0deg);
+
+      &::before {
+         @include linear-gradient(270deg, rgba($c-white, 0.8), rgba($c-white, 0) );
+         content: '';
+         height: 100vh;
+         position: absolute;
+         right: 0;
+         top: 0;
+         width: 50vw;
+      }
+   }
+
+   &__backgroundImage {
+      height: 100vh;
+      left: 0;
+      opacity: 0.4;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+   }
+
+   &__content {
+      height: 100%;
+      min-height: 100vh;
+      padding: var(--fontSize-30);
+      position: relative;
+      width: 100vw;
+
+      @include breakpoint( sm ) {
+         height: 100vh;
+         padding: var(--fontSize-30) var(--fontSize-60);
+      }
+
+      @include breakpoint( md ) {
+         padding: var(--fontSize-60) var(--fontSize-90);
+      }
+
+      @include breakpoint( lg ) {
+         padding: var(--fontSize-90) var(--fontSize-120);
+      }
+   }
+
+   &__contentWrapper {
+      display: grid;
+      grid-template-rows: 1fr max-content;
+      height: 100%;
+   }
+
+   &__body {
+      align-self: center;
+      display: grid;
+      gap: var(--fontSize-16);
+      justify-self: start;
+   }
+
+   &__title {
+      color: $c-white;
+      margin: 0;
+   }
+
+   &__subtitle {
+      color: $c-white;
+      font-size: var(--fontSize-18);
+      font-weight: var(--fontWeight-semibold);
+      text-transform: uppercase;
+
+      @include breakpoint( xs ) {
+         font-size: calc( 1vw + 1rem );
+      }
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-20);
+      }
+
+      @include breakpoint( xl ) {
+         font-size: var(--fontSize-22);
+      }
+   }
+
+   &__input {
+      margin: 0 0 var(--fontSize-30);
+      position: relative;
+
+      input {
+         @include visuallyhidden();
+
+         &:checked + label {
+            &::before {
+               background: $c-white;
+            }
+         }
+
+         &:focus-visible + label {
+            &::before {
+               outline: 2px solid $c-white;
+               outline-offset: 2px;
+            }
+         }
+      }
+
+      label {
+         color: $c-white;
+         line-height: 1.1;
+         margin: 0;
+         padding: 0 0 0 18px;
+
+         &::before {
+            background: transparent;
+            border: 2px solid $c-white;
+            content: '';
+            height: 12px;
+            left: 0;
+            position: absolute;
+            top: calc(50% - 6px);
+            width: 12px;
+         }
+      }
+   }
+
+   &__buttons {
+      display: grid;
+      gap: var(--fontSize-16);
+      grid-auto-flow: column;
+      justify-content: start;
+   }
+
+   &__button {
+      @include button( $color: $c-white );
+   }
+
+   &__footer {
+      justify-self: end;
+
+      svg {
+         height: auto;
+         width: 160px;
+      }
+   }
 }
 
 

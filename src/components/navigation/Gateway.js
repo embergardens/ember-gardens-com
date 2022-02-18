@@ -1,16 +1,42 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable arrow-body-style */
-import { motion, AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
+import { graphql, useStaticQuery } from "gatsby"
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+
+import { motion, AnimatePresence } from 'framer-motion'
+
 import ReactModal from 'react-modal'
 import { IconLogoWhite } from '../icons/IconLogoWhite'
-import { IconMantis } from '../icons/IconMantis'
 
 export const Gateway = () => {
+   // DATA ====================================================
+   const data = useStaticQuery( graphql`
+      query GatewayData {
+         options: wp {
+            ...Gateway
+         }
+      }
+   `)
+
+   const { options: { acfOptionsGlobal: { globalOptions: { gatewayOptions } } } } = data
+   const { failmessage, failtext, passtext, subtitle, title, backgroundImage: image } = gatewayOptions
+   const imageData = getImage(image?.localFile)
+
+   // VARIABLES ====================================================
+   const storageName = 'emberGardens:gateway'
+
+   // STATE ====================================================
    const [ inStorage, setInStorage ] = useState()
    const [ isRemembered, setIsRemembered ] = useState(false)
    const [ isActive, setIsActive ] = useState( true )
 
+   // LIFECYCLE ====================================================
+   useEffect(() => {
+      checkStorage()
+   }, [])
+
+   // METHODS ====================================================
    const handleInputChange = () => {
       setIsRemembered( rememberState => !rememberState )
    }
@@ -18,8 +44,6 @@ export const Gateway = () => {
    const toggleIsActive = ( state ) => {
       setIsActive( state )
    }
-
-   const storageName = 'emberGardens:gateway'
 
    const checkStorage = () => {
       const local = localStorage.getItem( storageName )
@@ -37,10 +61,6 @@ export const Gateway = () => {
       }
    }
 
-   useEffect(() => {
-      checkStorage()
-   }, [])
-
    const youShallPass = () => {
       if ( isRemembered ) {
          localStorage.setItem( storageName, true)
@@ -55,9 +75,9 @@ export const Gateway = () => {
       localStorage.setItem( storageName, false)
       sessionStorage.setItem( storageName, false)
       checkStorage()
-      //window.location.replace('https://pawpatrolandfriends.com/')
    }
 
+   // TEMPLATE ====================================================
 
    return (
       <AnimatePresence>
@@ -73,6 +93,23 @@ export const Gateway = () => {
                shouldCloseOnOverlayClick={false}
                preventScroll={true}
                appElement={document.querySelector('#___gatsby')}
+               overlayElement={
+                  (props, contentElement) => {
+                     return (
+                        <div className='gateway__overlay' {...props}>
+                           { imageData &&
+                              <GatsbyImage
+                                 alt={image.altText}
+                                 image={imageData}
+                                 className='gateway__backgroundImage'
+                                 placeholder="blurred"
+                              />
+                           }
+                           {contentElement}
+                        </div>
+                     )
+                  }
+               }
                contentElement={
                   (props,children) => <motion.div {...props}>{children}</motion.div>
                }
@@ -81,30 +118,43 @@ export const Gateway = () => {
                   <div className='gateway__body'>
                      { inStorage === null &&
                         <>
-                           <div className='gateway__title'>Are you 21 years of age or older?</div>
-                           <div className='gateway__subtitle'>New York & Florida: 18+ with valid medical ID</div>
+                           <h4 className='gateway__title'>{ title }</h4>
+                           <div className='gateway__subtitle'>{ subtitle }</div>
                            <div className='gateway__input'>
+                              <input
+                                 type='checkbox'
+                                 id='rememberMe'
+                                 checked={isRemembered}
+                                 onChange={handleInputChange}
+                                 value={isRemembered}
+                              />
                               <label htmlFor='rememberMe'>
                                  Remember Me
-                                 <input type='checkbox' name='rememberMe' checked={isRemembered} onChange={handleInputChange} />
                               </label>
                            </div>
                            <div className='gateway__buttons'>
-                              <button type='button' className='gateway__button' onClick={youShallNotPass}>No</button>
-                              <button type='button' className='gateway__button' onClick={youShallPass} >Yes</button>
+                              <button
+                                 type='button'
+                                 className='gateway__button'
+                                 onClick={youShallNotPass}
+                              >
+                                 {failtext}
+                              </button>
+                              <button
+                                 type='button'
+                                 className='gateway__button'
+                                 onClick={youShallPass}
+                              >
+                                 {passtext}
+                              </button>
                            </div>
                         </>
                      }
                      { inStorage === false &&
-                        <div className='gateway__title'>
-                           Must be 21 years of age to enter this site.
-                        </div>
+                        <h4 className='gateway__title'>
+                           { failmessage }
+                        </h4>
                      }
-                  </div>
-                  <div className='gateway__media'>
-                     <div className='gateway__mediaWrapper'>
-                        <IconMantis outline />
-                     </div>
                   </div>
                   <div className='gateway__footer'>
                      <IconLogoWhite />
