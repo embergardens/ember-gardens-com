@@ -1,11 +1,17 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable arrow-body-style */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
+// Store
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { gatewayPassedState } from '../../store/homepage'
+
+// Motion
 import { motion, AnimatePresence } from 'framer-motion'
 
+// Components
 import ReactModal from 'react-modal'
 import { IconLogoWhite } from '../icons/IconLogoWhite'
 
@@ -25,14 +31,17 @@ export const Gateway = () => {
 
    // VARIABLES ====================================================
    const storageName = 'emberGardens:gateway'
+   let isHomepage = false
 
    // STATE ====================================================
    const [ inStorage, setInStorage ] = useState()
    const [ isRemembered, setIsRemembered ] = useState(false)
    const [ isActive, setIsActive ] = useState( true )
+   const setUserPassed = useSetRecoilState( gatewayPassedState )
 
    // LIFECYCLE ====================================================
    useEffect(() => {
+      checkPage()
       checkStorage()
    }, [])
 
@@ -45,18 +54,26 @@ export const Gateway = () => {
       setIsActive( state )
    }
 
+   const checkPage = () => {
+      if ( location.pathname === '/' ) {
+         isHomepage = true
+      }
+   }
+
    const checkStorage = () => {
       const local = localStorage.getItem( storageName )
       const session = sessionStorage.getItem( storageName )
 
       if ( local === 'false' || session === 'false' ) {
          setInStorage( false )
+         setUserPassed( false )
          toggleIsActive( true )
       } else if ( (local || session ) === null ) {
          setInStorage( null )
          toggleIsActive( true )
       } else {
          setInStorage( true )
+         setUserPassed( true )
          toggleIsActive( false )
       }
    }
@@ -67,7 +84,7 @@ export const Gateway = () => {
       } else {
          sessionStorage.setItem( storageName, true)
       }
-
+      setUserPassed( true )
       toggleIsActive( false )
    }
 
