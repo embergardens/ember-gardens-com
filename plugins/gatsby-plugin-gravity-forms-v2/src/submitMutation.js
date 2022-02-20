@@ -1,12 +1,21 @@
 import { gql } from "@apollo/client";
 
 export default gql`
-  mutation submitForm($formId: Int!, $fieldValues: [FieldValuesInput]) {
+  mutation submitForm($databaseId: ID!, $fieldValues: [FieldValuesInput]) {
     submitGfForm(
-      input: { formId: $formId, fieldValues: $fieldValues }
+      input: {
+        id: $databaseId,
+        fieldValues: $fieldValues
+      }
     ) {
       entry {
-        id
+        databaseId
+        ... on GfSubmittedEntry {
+          databaseId
+        }
+        ... on GfDraftEntry {
+          resumeToken
+        }
       }
       errors {
         id

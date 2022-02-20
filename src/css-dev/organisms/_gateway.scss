@@ -1,0 +1,222 @@
+.gateway {
+   height: var( --vh );
+   width: 100vw;
+   position: fixed;
+   z-index: 9999;
+
+   &__overlay {
+      @include primary-gradient(0deg);
+
+      &::before {
+         @include linear-gradient(270deg, rgba($c-white, 0.8), rgba($c-white, 0) );
+         content: '';
+         height: var( --vh );
+         position: absolute;
+         right: 0;
+         top: 0;
+         width: 50vw;
+      }
+   }
+
+   &__backgroundImage {
+      height: var( --vh );
+      left: 0;
+      opacity: 0.4;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+
+      &.gatsby-image-wrapper {
+         position: absolute;
+      }
+   }
+
+   &__content {
+      display: grid;
+      height: 100%;
+      min-height: var( --vh );
+      padding: var(--fontSize-30);
+      position: relative;
+      width: 100vw;
+
+      @include breakpoint( sm ) {
+         height: var( --vh );
+         padding: var(--fontSize-30) var(--fontSize-60);
+      }
+
+      @include breakpoint( md ) {
+         padding: var(--fontSize-60) var(--fontSize-90);
+      }
+
+      @include breakpoint( lg ) {
+         padding: var(--fontSize-90) var(--fontSize-120);
+      }
+
+      &:focus {
+         outline: 1px solid $c-coral;
+         outline-offset: 4px;
+      }
+   }
+
+   &__contentWrapper {
+      display: grid;
+      grid-template-rows: 1fr max-content;
+      height: 100%;
+   }
+
+   &__body {
+      align-self: center;
+      display: grid;
+      gap: var(--fontSize-16);
+      justify-self: start;
+   }
+
+   &__title {
+      color: $c-white;
+      margin: 0;
+   }
+
+   &__subtitle {
+      color: $c-white;
+      font-size: var(--fontSize-18);
+      font-weight: var(--fontWeight-semibold);
+      text-transform: uppercase;
+
+      @include breakpoint( xs ) {
+         font-size: calc( 1vw + 1rem );
+      }
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-20);
+      }
+
+      @include breakpoint( xl ) {
+         font-size: var(--fontSize-22);
+      }
+   }
+
+   &__input {
+      margin: 0 0 var(--fontSize-30);
+      position: relative;
+
+      input {
+         @include visuallyhidden();
+
+         &:checked + label {
+            &::before {
+               background: $c-white;
+            }
+         }
+
+         &:focus-visible + label {
+            &::before {
+               outline: 2px solid $c-white;
+               outline-offset: 2px;
+            }
+         }
+      }
+
+      label {
+         color: $c-white;
+         line-height: 1.1;
+         margin: 0;
+         padding: 0 0 0 18px;
+
+         &::before {
+            background: transparent;
+            border: 2px solid $c-white;
+            content: '';
+            height: 12px;
+            left: 0;
+            position: absolute;
+            top: calc(50% - 6px);
+            width: 12px;
+         }
+      }
+   }
+
+   &__buttons {
+      display: grid;
+      gap: var(--fontSize-16);
+      grid-auto-flow: column;
+      justify-content: start;
+   }
+
+   &__button {
+      @include button( $color: $c-white );
+
+      &:focus {
+         outline: none;
+      }
+   }
+
+   &__footer {
+      justify-self: end;
+
+      svg {
+         height: auto;
+         width: 120px;
+
+         @include breakpoint( xs ) {
+            width: 160px;
+         }
+      }
+   }
+}
+
+
+ @keyframes modal-fade-in {
+   from {
+     opacity: 0;
+   }
+   to {
+     opacity: 1;
+   }
+ }
+
+ @keyframes modal-slide-in {
+   from {
+     transform: translateY(55%);
+   }
+   to {
+     transform: translateY(0);
+   }
+ }
+
+ @keyframes modal-slide-out {
+   from {
+     transform: translateY(0);
+   }
+   to {
+     transform: translateY(-55%);
+   }
+ }
+
+ @keyframes modal-fade-out {
+   from {
+     opacity: 1;
+   }
+   to {
+     opacity: 0;
+   }
+ }
+
+ .modal-slide[aria-hidden='false'] .modal-overlay.custom-animation {
+   animation: modal-fade-in 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='true'] .modal-overlay.custom-animation {
+   animation: modal-fade-out 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='false']
+   .modal-overlay.custom-animation
+   > .modal-container {
+   animation: modal-slide-in 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }
+
+ .modal-slide[aria-hidden='true']
+   .modal-overlay.custom-animation
+   > .modal-container {
+   animation: modal-slide-out 2s cubic-bezier(0, 0, 0.5, 1) !important;
+ }

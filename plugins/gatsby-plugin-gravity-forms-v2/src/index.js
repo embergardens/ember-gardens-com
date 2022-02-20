@@ -30,8 +30,9 @@ const GravityFormForm = ({
 }) => {
   // Split out data depending on how it is passed in.
   let form;
-  if (data?.wpGravityFormsForm) {
-    form = data.wpGravityFormsForm;
+
+  if (data?.wpGfForm) {
+    form = data.wpGfForm;
   } else {
     form = data;
   }
@@ -39,16 +40,16 @@ const GravityFormForm = ({
   const {
     button,
     confirmations,
+    databaseId,
     description,
     descriptionPlacement,
+    formFields,
     labelPlacement,
     subLabelPlacement,
-    formFields,
-    formId,
     title,
   } = form;
 
-  const [submitForm, { data: submittionData, loading }] = useMutation(
+  const [submitForm, { data: submittionData, loading}] = useMutation(
     submitMutation
   );
 
@@ -58,6 +59,7 @@ const GravityFormForm = ({
   const haveFieldErrors = Boolean(
     submittionData?.submitGfForm?.errors?.length
   );
+    //console.log({ submittionData })
   const wasSuccessfullySubmitted = haveEntryId && !haveFieldErrors;
 
   // Pull in form functions
@@ -79,17 +81,14 @@ const GravityFormForm = ({
       // Check that at least one field has been filled in
       if (submissionHasOneFieldEntry(values)) {
         setGeneralError("");
-        console.log({values}, formFields.nodes)
+
         const formRes = formatPayload({
           serverData: formFields?.nodes,
           clientData: values,
         });
-
-        console.log({formRes})
-
         submitForm({
           variables: {
-            formId: formId,
+            databaseId,
             fieldValues: formRes,
           },
         })
@@ -101,7 +100,7 @@ const GravityFormForm = ({
             }) => {
               // Success
               if (entryId) {
-                console.log('success?')
+                //console.log('success?')
                 successCallback({
                   data: formRes,
                   reset,
@@ -110,14 +109,14 @@ const GravityFormForm = ({
               // We have a problem
               if (errors?.length) {
                 handleGravityFormsValidationErrors(errors, setError);
-                console.log({ errors, setError })
+                //console.log({ entry, entryId, errors, setError },'We have a problem')
                 errorCallback({ data: formRes, error: errors, reset });
               }
             }
           )
           .catch((error) => {
             setGeneralError("unknownError");
-            console.log({ error, reset })
+            //console.log({ data, error, reset }, data.submitGfForm, 'unknown error data')
             errorCallback({ data: formRes, error, reset });
           });
       } else {
@@ -141,18 +140,18 @@ const GravityFormForm = ({
   }
 
   return (
-    <div className="gform_wrapper" id={`gform_wrapper_${formId}`}>
-      <div className="gform_anchor" id={`gf_${formId}`} />
+    <div className="gform_wrapper" id={`gform_wrapper_${databaseId}`}>
+      <div className="gform_anchor" id={`gf_${databaseId}`} />
 
       <FormProvider {...methods}>
         <form
           className={
             loading
-              ? `gravityform gravityform--loading gravityform--id-${formId}`
-              : `gravityform gravityform--id-${formId}`
+              ? `gravityform gravityform--loading gravityform--id-${databaseId}`
+              : `gravityform gravityform--id-${databaseId}`
           }
-          id={`gfrom_${formId}`}
-          key={`gfrom_-${formId}`}
+          id={`gfrom_${databaseId}`}
+          key={`gfrom_-${databaseId}`}
           onSubmit={handleSubmit(onSubmitCallback)}
         >
           {generalError && <FormGeneralError errorCode={generalError} />}
@@ -168,9 +167,10 @@ const GravityFormForm = ({
                 `description_${valueToLowerCase(descriptionPlacement)}`,
                 `${valueToLowerCase(labelPlacement)}`
               )}
-              id={`gform_fields_${formId}`}
+              id={`gform_fields_${databaseId}`}
             >
               <FieldBuilder
+                databaseId={databaseId}
                 formLoading={loading}
                 formFields={formFields.nodes}
                 presetValues={presetValues}
@@ -183,7 +183,7 @@ const GravityFormForm = ({
             <button
               className="gravityform__button gform_button button"
               disabled={loading}
-              id={`gform_submit_button_${formId}`}
+              id={`gform_submit_button_${databaseId}`}
               type="submit"
             >
               {loading ? (

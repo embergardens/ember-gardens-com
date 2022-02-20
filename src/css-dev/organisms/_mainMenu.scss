@@ -247,10 +247,11 @@
       }
 
 
-      .gform_body {
+      .gravityform {
          margin: 0;
 
-         input[type="text"] {
+         input[type="text"],
+         input[type="EMAIL"] {
             border: 1px solid $c-white;
          }
 
@@ -258,6 +259,8 @@
             @include button( $style: 'full', $gap: 40px, $color: $c-white );
          }
       }
+
+
 
       label {
          @include visuallyhidden();

@@ -4,7 +4,6 @@ import Link from '../../components/navigation/Link'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
 import Seo from '../../components/layout/Seo'
 
-import { IconLogoMountains } from '../../components/icons/IconLogoMountains'
 import { HomepageVideo } from '../../components/video/HomepageVideo'
 
 const Home = ({ data }) => {
@@ -16,12 +15,9 @@ const Home = ({ data }) => {
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
          <div className='home-template homepage' >
             <HomepageVideo />
-            <ContentWrapper layout="splash" image={ featuredImage } gradient='default' >
+            <ContentWrapper layout="splash">
                <section className="homepage__wrapper">
                   <div className="homepage__content">
-                     {/* <div className="homepage__logo">
-                        <IconLogoMountains />
-                     </div> */}
                   </div>
                   <div className="homepage__footer">
                      <Link className="homepage__button button -full" to='/shop'>

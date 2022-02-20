@@ -28,7 +28,7 @@ export const FormBlock = ({ formId, blockClass ='formBlock' }) => {
       }
    })
 
-   console.log({form})
+   //console.log({form})
 
    return (
       <div className={ blockClass }>

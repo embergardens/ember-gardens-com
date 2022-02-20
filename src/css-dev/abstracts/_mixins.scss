@@ -83,8 +83,8 @@
    }
 }
 
-@mixin primary-gradient() {
-   @include linear-gradient( 90deg, $c-plum, $c-rose, $c-coral  );
+@mixin primary-gradient( $angle: 90deg ) {
+   @include linear-gradient( $angle, $c-plum, $c-rose, $c-coral  );
 }
 
 @mixin pseudo-link( $z: 1 ) {

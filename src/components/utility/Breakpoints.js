@@ -25,9 +25,19 @@ export const isNotMobile = atom({
    default: { minWidth: 768 }
 })
 
-export const isNotSmallDesktop = atom( {
+export const isNotSmallDesktop = atom({
    key: 'isNotSmallDesktop',
    default: { minHeight: 960 }
+})
+
+export const isPortraitState = atom({
+   key: 'isPortraitState',
+   default: { orientation: 'portrait' }
+})
+
+export const isLandscapeState = atom({
+   key: 'isLandscapeState',
+   default: { orientation: 'landscape' }
 })
 
 export const BreakpointDesktop = ({ children }) => {
