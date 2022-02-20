@@ -59,7 +59,7 @@ const GravityFormForm = ({
   const haveFieldErrors = Boolean(
     submittionData?.submitGfForm?.errors?.length
   );
-    console.log({ submittionData })
+    //console.log({ submittionData })
   const wasSuccessfullySubmitted = haveEntryId && !haveFieldErrors;
 
   // Pull in form functions
@@ -100,7 +100,7 @@ const GravityFormForm = ({
             }) => {
               // Success
               if (entryId) {
-                console.log('success?')
+                //console.log('success?')
                 successCallback({
                   data: formRes,
                   reset,
@@ -109,14 +109,14 @@ const GravityFormForm = ({
               // We have a problem
               if (errors?.length) {
                 handleGravityFormsValidationErrors(errors, setError);
-                console.log({ entry, entryId, errors, setError },'We have a problem')
+                //console.log({ entry, entryId, errors, setError },'We have a problem')
                 errorCallback({ data: formRes, error: errors, reset });
               }
             }
           )
           .catch((error) => {
             setGeneralError("unknownError");
-            console.log({ data, error, reset }, data.submitGfForm, 'unknown error data')
+            //console.log({ data, error, reset }, data.submitGfForm, 'unknown error data')
             errorCallback({ data: formRes, error, reset });
           });
       } else {

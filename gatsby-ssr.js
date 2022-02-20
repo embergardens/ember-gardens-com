@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react'
 import { RecoilRoot } from 'recoil'
 import Layout from './src/components/layout/Layout'
@@ -17,7 +18,10 @@ import "@fontsource/titillium-web/900.css"
 import "./src/css-dev/style.scss"
 
 // eslint-disable-next-line arrow-body-style
-export const wrapPageElement = ({ element }) => {
+export const wrapPageElement = ({ element, props }) => {
+   if ( props?.pageResources?.page?.path === '/404.html' ) {
+      return element
+   }
 
    return (
       <RecoilRoot>
@@ -27,3 +31,4 @@ export const wrapPageElement = ({ element }) => {
       </RecoilRoot>
    )
 }
+

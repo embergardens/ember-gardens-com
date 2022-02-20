@@ -112,7 +112,7 @@ export const Gateway = () => {
                shouldCloseOnEsc={false}
                shouldCloseOnOverlayClick={false}
                preventScroll={true}
-               appElement={document.querySelector('#___gatsby')}
+               appElement={'#___gatsby'}
                overlayElement={
                   (props, contentElement) => {
                      return (

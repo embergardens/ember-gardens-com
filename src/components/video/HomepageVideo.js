@@ -30,7 +30,7 @@ export const HomepageVideo = () => {
 
    const [ playLoop, setPlayLoop ] = useState( false )
    const playIntro = useRecoilValue( gatewayPassedState )
-   const introHasPlayed = sessionStorage.getItem( storageName )
+   let introHasPlayed
    let noIntro = false
 
    const handleIntroReady = () => setIntroIsLoaded( true )
@@ -39,6 +39,7 @@ export const HomepageVideo = () => {
    const handleIntroEnded = () => setPlayLoop( true )
 
    useEffect(() => {
+      introHasPlayed = sessionStorage.getItem( storageName )
       if ( introHasPlayed ) {
          setPlayLoop( true )
          noIntro = true

@@ -19,7 +19,7 @@ import "./src/css-dev/style.scss"
 
 // eslint-disable-next-line arrow-body-style
 export const wrapPageElement = ({ element, props }) => {
-   if ( props.pageResources.page.path === '/404.html' ) {
+   if ( props?.pageResources?.page?.path === '/404.html' ) {
       return element
    }
 
