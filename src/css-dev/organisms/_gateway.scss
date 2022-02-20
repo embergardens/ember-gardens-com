@@ -1,5 +1,5 @@
 .gateway {
-   height: 100vh;
+   height: var( --vh );
    width: 100vw;
    position: fixed;
    z-index: 9999;
@@ -10,7 +10,7 @@
       &::before {
          @include linear-gradient(270deg, rgba($c-white, 0.8), rgba($c-white, 0) );
          content: '';
-         height: 100vh;
+         height: var( --vh );
          position: absolute;
          right: 0;
          top: 0;
@@ -19,7 +19,7 @@
    }
 
    &__backgroundImage {
-      height: 100vh;
+      height: var( --vh );
       left: 0;
       opacity: 0.4;
       position: absolute;
@@ -30,13 +30,13 @@
    &__content {
       display: grid;
       height: 100%;
-      min-height: 100vh;
+      min-height: var( --vh );
       padding: var(--fontSize-30);
       position: relative;
       width: 100vw;
 
       @include breakpoint( sm ) {
-         height: 100vh;
+         height: var( --vh );
          padding: var(--fontSize-30) var(--fontSize-60);
       }
 
