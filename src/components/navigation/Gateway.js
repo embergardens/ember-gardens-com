@@ -15,6 +15,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ReactModal from 'react-modal'
 import { IconLogoWhite } from '../icons/IconLogoWhite'
 
+
+ReactModal.setAppElement('#___gatsby');
+
 export const Gateway = () => {
    // DATA ====================================================
    const data = useStaticQuery( graphql`
@@ -112,7 +115,7 @@ export const Gateway = () => {
                shouldCloseOnEsc={false}
                shouldCloseOnOverlayClick={false}
                preventScroll={true}
-               appElement={'#___gatsby'}
+               // appElement={'#___gatsby'}
                overlayElement={
                   (props, contentElement) => {
                      return (
