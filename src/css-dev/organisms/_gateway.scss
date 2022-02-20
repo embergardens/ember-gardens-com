@@ -25,6 +25,10 @@
       position: absolute;
       top: 0;
       width: 100vw;
+
+      &.gatsby-image-wrapper {
+         position: absolute;
+      }
    }
 
    &__content {
