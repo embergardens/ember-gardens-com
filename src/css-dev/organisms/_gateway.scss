@@ -28,6 +28,7 @@
    }
 
    &__content {
+      display: grid;
       height: 100%;
       min-height: 100vh;
       padding: var(--fontSize-30);
@@ -45,6 +46,11 @@
 
       @include breakpoint( lg ) {
          padding: var(--fontSize-90) var(--fontSize-120);
+      }
+
+      &:focus {
+         outline: 1px solid $c-coral;
+         outline-offset: 4px;
       }
    }
 
@@ -134,6 +140,10 @@
 
    &__button {
       @include button( $color: $c-white );
+
+      &:focus {
+         outline: none;
+      }
    }
 
    &__footer {
@@ -141,7 +151,11 @@
 
       svg {
          height: auto;
-         width: 160px;
+         width: 120px;
+
+         @include breakpoint( xs ) {
+            width: 160px;
+         }
       }
    }
 }

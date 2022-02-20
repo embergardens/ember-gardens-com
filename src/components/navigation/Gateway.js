@@ -78,6 +78,9 @@ export const Gateway = () => {
    }
 
    // TEMPLATE ====================================================
+   if ( inStorage === true ) {
+      return null
+   }
 
    return (
       <AnimatePresence>
@@ -96,7 +99,16 @@ export const Gateway = () => {
                overlayElement={
                   (props, contentElement) => {
                      return (
-                        <div className='gateway__overlay' {...props}>
+                        <motion.div
+                           className='gateway__overlay'
+                           exit={{
+                              opacity: 0,
+                              transition: {
+                                 duration: 1.5
+                              }
+                           }}
+                           {...props}
+                        >
                            { imageData &&
                               <GatsbyImage
                                  alt={image.altText}
@@ -106,12 +118,27 @@ export const Gateway = () => {
                               />
                            }
                            {contentElement}
-                        </div>
+                        </motion.div>
                      )
                   }
                }
                contentElement={
-                  (props,children) => <motion.div {...props}>{children}</motion.div>
+                  (props,children) => {
+                     return(
+                        <motion.div
+                           {...props}
+                           exit={{
+                              opacity: 0,
+                              translateY: '10vh',
+                              transition: {
+                                 duration: 1
+                              }
+                           }}
+                        >
+                           {children}
+                        </motion.div>
+                     )
+                  }
                }
             >
                <div className='gateway__contentWrapper'>
