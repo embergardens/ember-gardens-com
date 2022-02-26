@@ -18,7 +18,7 @@ const Sections = ({ data, postType }) => {
    const { hero: pageHero, pagesection = [], footerOptions } = acf
 
    const currentSection = useRecoilValue( currentSectionState )
-
+   console.log({currentSection})
    const hero = buildPageHero( pageHero, title, postType )
    const footer = buildPageFooter( globalFooter, footerOptions )
    const blocks = pagesection ? [ hero, ...pagesection ] : [ hero ]
@@ -67,4 +67,4 @@ const Sections = ({ data, postType }) => {
    )
 }
 
-export default Sections
+export default React.memo(Sections)

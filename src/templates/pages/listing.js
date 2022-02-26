@@ -25,7 +25,7 @@ const ListingTemplate = ({ data }) => {
 
    useEffect( () => {
       setCurrentSection( idName )
-   })
+   }, [])
 
    return (
       <>

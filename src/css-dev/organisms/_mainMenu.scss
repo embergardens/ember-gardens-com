@@ -116,10 +116,14 @@
 
       &:hover,
       &:focus {
-         .mainMenu__primaryLinkIcon {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity $fast $e-out, transform $fast $e-out;
+         .mainMenu__primaryLink:not(.-currentPage) {
+
+            + .mainMenu__primaryLinkIcon {
+               opacity: 1;
+               transform: translateY(0);
+               transition: opacity $fast $e-out, transform $fast $e-out;
+            }
+
          }
 
          .mainMenu__primaryLinkExternalIcon {
@@ -139,6 +143,14 @@
 
       @include breakpoint( md ) {
          font-size: 55px;
+      }
+
+      &.-currentPage {
+         opacity: 0.5;
+
+         &:hover {
+            cursor: default;
+         }
       }
    }
 
