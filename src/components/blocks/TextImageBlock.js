@@ -11,7 +11,7 @@ export const TextImageBlock = ({ content }) => {
 
    if (!imageData) return null
 
-   const buttons = buttongroup.map( ( btn, index ) => {
+   const buttons = buttongroup?.map( ( btn, index ) => {
       const { style, button } = btn
       return (
          <Link className={`button -${ style }`} to={ button.url } target={ button.target } key={ `${button.title}-${index}` }>
