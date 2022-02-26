@@ -15,7 +15,7 @@ const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
          <TransitionAnime
             bg="linear-gradient( 90deg, #715191, #BA5B80, #F48474)"
             to={to}
-            activeClassName={activeClassName}
+            activeClassName='-currentPage'
             partiallyActive={partiallyActive}
             duration={1.5}
             {...other}
