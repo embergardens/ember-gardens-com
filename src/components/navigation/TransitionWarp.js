@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 
 import { useRecoilState} from 'recoil'
@@ -109,12 +109,7 @@ const TransitionWarp = ( options ) => {
 			for (let i = 0; i < motion.paths.length; i += 1) {
             const currentTime = Date.now() - (motion.timeStart + motion.delayPerPath * (motion.paths.length - i - 1) )
             const newPath = updatePathOut( currentTime )
-            try {
-               motion.paths[i].setAttribute("d", newPath)
-            } catch (error) {
-               console.error({error})
-               console.log({ cover, path, motion})
-            }
+            motion.paths[i].setAttribute("d", newPath)
          }
       }
    }
@@ -156,7 +151,7 @@ const TransitionWarp = ( options ) => {
    }
 
    // Timeline ==============================
-   const runWarp = ({ node, props: { exit, length: seconds } }) => {
+   const runWarp = ({ node }) => {
       motion.cover = document.querySelector('.tl-cover-el')
       motion.paths = motion.cover.querySelectorAll('.mjScreen__path')
       motion.exitNode = node
@@ -167,7 +162,7 @@ const TransitionWarp = ( options ) => {
 		<>
 			<TransitionLink
 				exit={{
-					length: length,
+					length,
 					trigger: ({ exit, node }) => {
 						runWarp({
 							props: exit,
@@ -178,7 +173,7 @@ const TransitionWarp = ( options ) => {
 				}}
 				entry={{
 					delay: 0.8,
-               length: length
+               length,
 				}}
 				{...props}
 			>
