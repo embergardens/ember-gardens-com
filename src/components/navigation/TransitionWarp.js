@@ -17,23 +17,18 @@ const TransitionWarp = ( options ) => {
 		...props
 	} = options
 
-   // Refs ========================
-   const cover = useRef()
-   const path = useRef([])
-
-   // State =======================
-
    // Props =======================
 	const pathArray = [ 1, 2, 3 ]
    const length = props.duration || 1
 
    const motion = {
+      cover: null,
       delayPerPath: 90,
       delayPointsArray: [],
       delayPointsMax: 420,
       duration: 600,
       exitNode: null,
-      intermissionTime: 500,
+      intermissionTime: 250,
       isAnimating: false,
       isOpened: false,
       numPoints: 4,
@@ -105,25 +100,28 @@ const TransitionWarp = ( options ) => {
 
    const motionRender = () => {
 		if (motion.isOpened) {
-			for (let i = 0; i < path.current.length; i += 1) {
+			for (let i = 0; i < motion.paths.length; i += 1) {
 				const currentTime = Date.now() - (motion.timeStart + motion.delayPerPath * i)
 				const newPath = updatePathIn( currentTime )
-            console.log({path, cover})
-				path.current[i]?.setAttribute("d", newPath)
+				motion.paths[i].setAttribute("d", newPath)
 			}
       } else {
-			for (let i = 0; i < path.current.length; i += 1) {
-            const currentTime = Date.now() - (motion.timeStart + motion.delayPerPath * (path.current.length - i - 1) )
+			for (let i = 0; i < motion.paths.length; i += 1) {
+            const currentTime = Date.now() - (motion.timeStart + motion.delayPerPath * (motion.paths.length - i - 1) )
             const newPath = updatePathOut( currentTime )
-            console.log({path, cover})
-				path.current[i]?.setAttribute("d", newPath) || motion.paths[i].setAttribute("d", newPath)
+            try {
+               motion.paths[i].setAttribute("d", newPath)
+            } catch (error) {
+               console.error({error})
+               console.log({ cover, path, motion})
+            }
          }
       }
    }
 
    const motionRenderLoop = () => {
       motionRender()
-      if ( Date.now() - motion.timeStart < motion.duration + motion.delayPerPath * (path.current.length - 1) + motion.delayPointsMax ) {
+      if ( Date.now() - motion.timeStart < motion.duration + motion.delayPerPath * (motion.paths.length - 1) + motion.delayPointsMax ) {
          requestAnimationFrame( () => motionRenderLoop() )
       } else {
          motion.isAnimating = false
@@ -146,7 +144,7 @@ const TransitionWarp = ( options ) => {
    const intermission = () => {
       onExitComplete()
       motion.exitNode.style.opacity = 0
-      cover.current.style.transform = 'rotate(180deg)'
+      motion.cover.style.transform = 'rotate(0deg)'
       motion.timers.intermission = setTimeout(() => {
          toggle( false )
       }, motion.intermissionTime )
@@ -154,12 +152,13 @@ const TransitionWarp = ( options ) => {
 
    const cleanup = () => {
       clearTimeout( motion.timers.intermission )
-      cover.current.style.transform = 'rotate(0deg)'
+      motion.cover.style.transform = 'rotate(180deg)'
    }
 
    // Timeline ==============================
    const runWarp = ({ node, props: { exit, length: seconds } }) => {
-      motion.paths = path.current
+      motion.cover = document.querySelector('.tl-cover-el')
+      motion.paths = motion.cover.querySelectorAll('.mjScreen__path')
       motion.exitNode = node
       toggle( true )
    }
@@ -187,18 +186,8 @@ const TransitionWarp = ( options ) => {
 			</TransitionLink>
 
 			<TransitionPortal>
-            <svg ref={cover} className="tl-cover-el mjScreen" viewBox="0 0 100 100" preserveAspectRatio="none">
-               { pathArray.map( (item, index) => {
-                  return (
-                     <path
-                        className={`mjScreen__path path-${item}`}
-                        key={`path-${item}`}
-                        ref={
-                           (element) => { path.current[index] = element }
-                        }
-                     />
-                  )
-               })}
+            <svg className="tl-cover-el mjScreen" viewBox="0 0 100 100" preserveAspectRatio="none">
+               { pathArray.map( (item) => <path className={`mjScreen__path path-${item}`} key={`path-${item}`}/> ) }
             </svg>
 			</TransitionPortal>
 		</>
