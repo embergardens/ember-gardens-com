@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 
 import { useRecoilState} from 'recoil'
@@ -37,6 +37,7 @@ const TransitionWarp = ( options ) => {
       isAnimating: false,
       isOpened: false,
       numPoints: 4,
+      paths: [],
       timeStart: 0,
       timers: {},
    }
@@ -51,10 +52,6 @@ const TransitionWarp = ( options ) => {
          }
       }, 0 );
    }
-
-   useEffect(() => {
-      console.log('updating')
-   })
 
    const resetScroll = () => {
       setTimeout(() => {
@@ -119,7 +116,7 @@ const TransitionWarp = ( options ) => {
             const currentTime = Date.now() - (motion.timeStart + motion.delayPerPath * (path.current.length - i - 1) )
             const newPath = updatePathOut( currentTime )
             console.log({path, cover})
-				path.current[i]?.setAttribute("d", newPath)
+				path.current[i]?.setAttribute("d", newPath) || motion.paths[i].setAttribute("d", newPath)
          }
       }
    }
@@ -162,6 +159,7 @@ const TransitionWarp = ( options ) => {
 
    // Timeline ==============================
    const runWarp = ({ node, props: { exit, length: seconds } }) => {
+      motion.paths = path.current
       motion.exitNode = node
       toggle( true )
    }

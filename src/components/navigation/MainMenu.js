@@ -128,6 +128,7 @@ export const MainMenu = () => {
                initial='closed'
                animate={ navOpen ? 'open' : 'closed' }
                exit='closed'
+               key='mainMenu'
             >
                <motion.div
                   className="mainMenu__bgImage"
