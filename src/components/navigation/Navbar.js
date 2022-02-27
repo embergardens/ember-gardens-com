@@ -110,11 +110,6 @@ export const NavLocations = ( props ) => {
    const locationList = locations.map( ( location ) => <NavLocationGroup key={ location.state } location={ location } /> )
    return (
       <nav className="navBar__locations">
-         {/* <BreakpointNotSmallDesktop>
-            <div className="navBar__locationsIcon">
-               { icon }
-            </div>
-         </BreakpointNotSmallDesktop> */}
          { locationList }
       </nav>
    )
@@ -131,7 +126,7 @@ export const NavLocationGroup = ( props ) => {
 
       return (
          <li className="navBar__locationCity" key={ city.title }>
-            <Link to={ uri } className="navBar__locationCityLink">
+            <Link to={ uri } className="navBar__locationCityLink" onClick={ () => setMenuOpen(false) }>
                <span>{ title }</span>
                <div className="navBar__locationCityArrow">
                   <IconArrowDouble />
@@ -155,8 +150,9 @@ export const NavLocationGroup = ( props ) => {
             className="navBar__locationGroupLink"
             to={ link.url }
             aria-label={ link.title }
-            onMouseEnter={() => setMenuOpen(true)}
+            // onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
+            onClick={ () => setMenuOpen(true) }
          >
             { state }
          </Link>

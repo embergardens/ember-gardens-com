@@ -1,0 +1,29 @@
+.mjScreen {
+   display: block;
+   height: 100vh;
+   left: 0;
+   overflow: hidden;
+   pointer-events: none;
+   position: fixed;
+   top: 0;
+   transform: rotate(180deg);
+   width: 100vw;
+   z-index: 1000;
+
+   &__path {
+      &:nth-child(1) {
+         fill: $c-coral;
+         opacity: 0.9;
+      }
+
+      &:nth-child(2) {
+         fill: $c-rose;
+         opacity: 0.7;
+      }
+
+      &:nth-child(3) {
+         fill: $c-plum;
+         opacity: 0.9;
+      }
+   }
+}

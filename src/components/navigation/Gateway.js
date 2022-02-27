@@ -29,7 +29,7 @@ export const Gateway = () => {
    `)
 
    const { options: { acfOptionsGlobal: { globalOptions: { gatewayOptions } } } } = data
-   const { failmessage, failtext, passtext, subtitle, title, backgroundImage: image } = gatewayOptions
+   const { enableLocalStorage, failmessage, failtext, passtext, subtitle, title, backgroundImage: image } = gatewayOptions
    const imageData = getImage(image?.localFile)
 
    // VARIABLES ====================================================
@@ -167,18 +167,20 @@ export const Gateway = () => {
                         <>
                            <h4 className='gateway__title'>{ title }</h4>
                            <div className='gateway__subtitle'>{ subtitle }</div>
-                           <div className='gateway__input'>
-                              <input
-                                 type='checkbox'
-                                 id='rememberMe'
-                                 checked={isRemembered}
-                                 onChange={handleInputChange}
-                                 value={isRemembered}
-                              />
-                              <label htmlFor='rememberMe'>
-                                 Remember Me
-                              </label>
-                           </div>
+                           { enableLocalStorage &&
+                              <div className='gateway__input'>
+                                 <input
+                                    type='checkbox'
+                                    id='rememberMe'
+                                    checked={isRemembered}
+                                    onChange={handleInputChange}
+                                    value={isRemembered}
+                                 />
+                                 <label htmlFor='rememberMe'>
+                                    Remember Me
+                                 </label>
+                              </div>
+                           }
                            <div className='gateway__buttons'>
                               <button
                                  type='button'

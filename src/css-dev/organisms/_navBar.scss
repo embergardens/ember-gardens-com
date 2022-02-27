@@ -224,6 +224,7 @@
    &__locationCities {
       background: $color-grayscale-f;
       border-left: 1px solid $c-gray;
+      box-shadow: $low-shadow;
       display: grid;
       grid-template-columns: max-content;
       left: calc(100% + 24px);
@@ -282,6 +283,18 @@
 
          span {
             margin: 0 8px 0 0;
+         }
+
+         &.-currentPage {
+            color: $c-coral-ada;
+
+            &:hover {
+               cursor: default;
+            }
+
+            > .navBar__locationCityArrow {
+               display: none;
+            }
          }
       }
 
