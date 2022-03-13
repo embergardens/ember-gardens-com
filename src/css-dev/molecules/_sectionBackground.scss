@@ -28,7 +28,7 @@
    }
 
    &.-leftLayout {
-      clip-path: url(#moon-left);
+      // clip-path: url(#moon-left);
       left: 0;
       right: auto;
 
@@ -38,7 +38,7 @@
    }
 
    &.-rightLayout {
-      clip-path: url(#moon-right);
+      // clip-path: url(#moon-right);
       left: auto;
       right: 0;
    }

@@ -92,7 +92,7 @@ export const Gateway = () => {
    }
 
    const youShallNotPass = () => {
-      localStorage.setItem( storageName, false)
+      //localStorage.setItem( storageName, false)
       sessionStorage.setItem( storageName, false)
       checkStorage()
    }

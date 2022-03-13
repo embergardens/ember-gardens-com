@@ -39,9 +39,16 @@
 
    &__trigger {
       @extend %remove-button-styles;
+      color: $c-rose;
       cursor: pointer;
       grid-area: Menu;
       overflow: hidden;
+      transition: color 250ms ease-in-out;
+
+      &:hover,
+      &:focus {
+         color: $c-plum;
+      }
 
       svg {
          overflow: visible;
@@ -123,6 +130,13 @@
       padding: 24px 12px;
       position: relative;
 
+      &:hover,
+      &:focus-within {
+         .navBar__ctaLink {
+            color: $c-plum;
+         }
+      }
+
       &Icon {
          flex: 0 0 auto;
          height: 38px;
@@ -138,7 +152,7 @@
 
       &Link {
          @include pseudo-link;
-         color: $c-coral-ada;
+         color: $c-rose;
          font-family: $ff-ui;
          font-size: 13px;
          font-weight: 700;
@@ -146,6 +160,7 @@
          text-align: center;
          text-decoration: none;
          text-transform: uppercase;
+         transition: color 250ms ease-in-out;
       }
 
       &Arrow {
@@ -190,9 +205,8 @@
 
       &:hover,
       &:focus-within {
-         .navBar__locationGroupIcon {
-            color: $c-coral-ada;
-            transition: color 250ms ease-in-out;
+         .navBar__locationGroupLink {
+            color: $c-plum;
          }
       }
 
@@ -200,7 +214,6 @@
          color: $c-plum;
          height: 20px;
          object-fit: contain;
-         transition: color 250ms ease-in-out;
          width: 30px;
 
          svg {
@@ -211,13 +224,14 @@
 
       &Link {
          @include pseudo-link();
-         color: $c-coral-ada;
+         color: $c-rose;
          cursor: pointer;
          font-family: $ff-ui;
          font-size: 1.3rem;
          font-weight: 700;
          line-height: 1.1;
          text-decoration: none;
+         transition: color 250ms ease-in-out;
       }
    }
 
@@ -269,13 +283,14 @@
 
       &Link {
          @extend %flex-center;
-         color: $c-gray;
+         color: $c-rose;
          font-family: $ff-ui;
          font-size: 1.4rem;
          font-weight: 700;
          justify-content: flex-start;
          line-height: 1;
          text-decoration: none;
+         transition: color 250ms ease-in-out;
 
          &:hover {
             color: $c-plum;
@@ -286,7 +301,7 @@
          }
 
          &.-currentPage {
-            color: $c-coral-ada;
+            color: $c-gray;
 
             &:hover {
                cursor: default;

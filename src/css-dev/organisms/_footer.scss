@@ -3,7 +3,7 @@ footer.footer {
    padding: 0;
 
    @include breakpoint( md ) {
-      padding: 0 var(--fontSize-45);
+      padding: 0 var(--fontSize-30);
    }
 }
 

@@ -1,12 +1,13 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 
 import { useRecoilState} from 'recoil'
 import { navOpenState } from '../../store/navigation'
 
+import farmer from '../../assets/images/illustrations/farmer.svg'
 import { cubicInOut } from '../../functions/easing'
 
 const TransitionWarp = ( options ) => {
@@ -20,6 +21,7 @@ const TransitionWarp = ( options ) => {
    // Props =======================
 	const pathArray = [ 1, 2, 3 ]
    const length = props.duration || 1
+   const illustration = useRef()
 
    const motion = {
       cover: null,
@@ -142,20 +144,29 @@ const TransitionWarp = ( options ) => {
       motion.cover.style.transform = 'rotate(0deg)'
       motion.timers.intermission = setTimeout(() => {
          toggle( false )
+         document.body.classList.remove('-transitionOpen')
+         motion.bg.style.opacity = 0
+         motion.bg.style.clipPath = 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)'
       }, motion.intermissionTime )
    }
 
    const cleanup = () => {
       clearTimeout( motion.timers.intermission )
       motion.cover.style.transform = 'rotate(180deg)'
+      motion.bg.style.opacity = 0
+      motion.bg.style.clipPath = 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)'
    }
 
    // Timeline ==============================
    const runWarp = ({ node }) => {
       motion.cover = document.querySelector('.tl-cover-el')
       motion.paths = motion.cover.querySelectorAll('.mjScreen__path')
+      motion.bg = document.querySelector('.mjScreen__illustration')
       motion.exitNode = node
       toggle( true )
+      document.body.classList.add('-transitionOpen')
+      motion.bg.style.opacity = 1
+      motion.bg.style.clipPath = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)'
    }
 
 	return (
@@ -181,9 +192,15 @@ const TransitionWarp = ( options ) => {
 			</TransitionLink>
 
 			<TransitionPortal>
-            <svg className="tl-cover-el mjScreen" viewBox="0 0 100 100" preserveAspectRatio="none">
-               { pathArray.map( (item) => <path className={`mjScreen__path path-${item}`} key={`path-${item}`}/> ) }
-            </svg>
+            <div className='tl-cover-parent'>
+               <svg className="tl-cover-el mjScreen" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  { pathArray.map( (item) => <path className={`mjScreen__path path-${item}`} key={`path-${item}`}/> ) }
+               </svg>
+               <div className="mjScreen__illustration" style={{opacity: 0, clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' }}>
+                  <img src={farmer} alt="farmer"/>
+                  <div className='mjScreen__illustrationText'>Loading...</div>
+               </div>
+            </div>
 			</TransitionPortal>
 		</>
 	)

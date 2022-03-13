@@ -11,19 +11,47 @@
    z-index: 1000;
 
    &__path {
-      &:nth-child(1) {
+      &.path-1 {
          fill: $c-coral;
          opacity: 0.9;
       }
 
-      &:nth-child(2) {
+      &.path-2 {
          fill: $c-rose;
          opacity: 0.7;
       }
 
-      &:nth-child(3) {
+      &.path-3 {
          fill: $c-plum;
          opacity: 0.9;
       }
+   }
+
+   &__illustration {
+      bottom: 0;
+      display: grid;
+      gap: 10vh;
+      left: 0;
+      place-content: center;
+      place-items: center;
+      pointer-events: none;
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: all 1200ms $e-in-out;
+      z-index: 9999;
+
+      img {
+         height: 50vh;
+         width: auto;
+      }
+   }
+
+   &__illustrationText {
+      font-size: var(--fontSize-14);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: $c-white;
+      letter-spacing: 3px;
    }
 }

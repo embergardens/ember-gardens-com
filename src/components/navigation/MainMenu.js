@@ -1,7 +1,7 @@
 // React / Gatsby --------------------------------------------------
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useRecoilValue} from 'recoil'
+import { useRecoilValue, useSetRecoilState} from 'recoil'
 import { useMediaQuery } from 'react-responsive'
 
 // Plugins ---------------------------------------------------------
@@ -17,7 +17,7 @@ import { isDesktop } from '../utility/Breakpoints'
 // Icons -----------------------------------------------------------
 import { IconArrowDouble } from '../icons/IconArrowDouble'
 import { IconEmail } from '../icons/IconEmail'
-import { IconExternalLink } from '../icons/IconExternalLink'
+// import { IconExternalLink } from '../icons/IconExternalLink'
 import { IconInstagram } from '../icons/IconInstagram'
 import { FormBlock } from '../blocks/FormBlock'
 
@@ -221,25 +221,33 @@ export const MainMenuItem = ({ data, index }) => {
       })
    }
 
+   const setNavOpen = useSetRecoilState( navOpenState )
+
    const { url, target, label } = data
    const targetClass = target === '_blank' ? '-external' : ''
+
+   const handleClickCurrentPage = (e) => {
+      if ( e.target.classList.contains('-currentPage') ) {
+         setNavOpen( false )
+      }
+   }
    return (
       <motion.li
          className={`mainMenu__primaryItem ${ targetClass }` }
          variants={ motionPrimary }
          custom={ index }
       >
-         <Link className="mainMenu__primaryLink" to={ url } target={ target } >
+         <Link className="mainMenu__primaryLink" to={ url } target={ target } onClick={handleClickCurrentPage}>
             { label }
          </Link>
          <div className="mainMenu__primaryLinkIcon">
                <IconArrowDouble />
          </div>
-         { target === '_blank' &&
+         {/* { target === '_blank' &&
             <div className="mainMenu__primaryLinkExternalIcon">
                <IconExternalLink />
             </div>
-         }
+         } */}
 
       </motion.li>
    )

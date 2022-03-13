@@ -318,7 +318,7 @@ export const NavTrigger = () => {
 }
 
 export const IconMenuTrigger = ( props ) => {
-   const textColor = '#CE4813'
+   const textColor = 'currentColor'
    const iconColor = '#715191'
 
    return (
