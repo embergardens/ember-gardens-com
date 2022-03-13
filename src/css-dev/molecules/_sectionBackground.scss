@@ -13,16 +13,17 @@
       mix-blend-mode: normal;
       width: $desktopContentHalf;
 
-      @include breakpoint( sm ) {
-         display: block;
-         width: 40vw;
-      }
+      // @include breakpoint( sm ) {
+      //    display: block;
+      //    width: 40vw;
+      // }
+
+      // @include breakpoint( md ) {
+      //    width: $desktopContent40;
+      // }
 
       @include breakpoint( md ) {
-         width: $desktopContent40;
-      }
-
-      @include breakpoint( lg ) {
+         display: block;
          width: $desktopContentHalf;
       }
    }

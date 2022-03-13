@@ -28,18 +28,18 @@
       min-height: 100vh;
       width: 100vw;
 
-      @include breakpoint( sm ) {
-         flex-direction: row;
-         width: 60vw;
-      }
+      // @include breakpoint( sm ) {
+      //    flex-direction: row;
+      //    width: 60vw;
+      // }
+
+      // @include breakpoint( md ) {
+      //    padding-left: var(--fontSize-45);
+      //    padding-right: var(--fontSize-45);
+      //    width: $desktopContent60;
+      // }
 
       @include breakpoint( md ) {
-         padding-left: var(--fontSize-45);
-         padding-right: var(--fontSize-45);
-         width: $desktopContent60;
-      }
-
-      @include breakpoint( lg ) {
          padding-left: var(--fontSize-60);
          padding-right: var(--fontSize-60);
          width: $desktopContentHalf;
@@ -47,30 +47,30 @@
 
       &.-leftLayout {
 
-         @include breakpoint( sm ) {
-            margin-left: 40vw;
-         }
+         // @include breakpoint( sm ) {
+         //    margin-left: 40vw;
+         // }
+
+         // @include breakpoint( md ) {
+         //    margin-left: $desktopContent40;
+         // }
 
          @include breakpoint( md ) {
-            margin-left: $desktopContent40;
-         }
-
-         @include breakpoint( lg ) {
             margin-left: $desktopContentHalf;
          }
       }
 
       &.-rightLayout {
 
-         @include breakpoint( sm ) {
-            margin-right: 40vw;
-         }
+         // @include breakpoint( sm ) {
+         //    margin-right: 40vw;
+         // }
+
+         // @include breakpoint( md ) {
+         //    margin-right: $desktopContent40;
+         // }
 
          @include breakpoint( md ) {
-            margin-right: $desktopContent40;
-         }
-
-         @include breakpoint( lg ) {
             margin-right: $desktopContentHalf;
          }
       }
