@@ -19,7 +19,7 @@ const getTemplate = ( node ) => {
       return listingTemplate
    }
 
-   if ( node.tempalte.templateName === 'Sections Template' ) {
+   if ( node.template.templateName === 'Sections Template' ) {
       return sectionsTemplate
    }
 
