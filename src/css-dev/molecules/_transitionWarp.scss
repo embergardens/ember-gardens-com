@@ -41,9 +41,33 @@
       transition: all 1200ms $e-in-out;
       z-index: 9999;
 
+      &.-farmer {
+         img {
+            height: 50vh;
+         }
+      }
+
+      &.-woman {
+         img {
+            height: 40vh;
+         }
+      }
+
+      &.-joint {
+         img {
+            height: 36vh;
+         }
+      }
+
+      &.-mantis {
+         img {
+            height: 30vh;
+         }
+      }
+
       img {
-         height: 50vh;
          width: auto;
+
       }
    }
 

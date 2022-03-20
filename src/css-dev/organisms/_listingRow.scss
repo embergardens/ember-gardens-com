@@ -1,6 +1,6 @@
 .listingRow {
    + .listingRow {
-      margin: var(--fontSize-30) 0 0;
+      margin: var(--fontSize-60) 0 0;
 
       @include breakpoint( sm ) {
          margin: var(--fontSize-60) 0 0;
@@ -19,9 +19,20 @@
    &__wrapper {
       align-items: center;
       display: grid;
-      gap: var(--fontSize-60);
-      grid-auto-flow: column;
-      grid-template-columns: repeat( 4, max-content );
+      gap: var(--fontSize-45);
+      justify-content: start;
       width: 100%;
+
+      @include breakpoint( xs ) {
+         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include breakpoint( sm ) {
+         grid-template-columns: repeat(auto-fit, minmax( 220px, max-content) );
+      }
+
+      @include breakpoint( xl ) {
+         gap: var(--fontSize-60);
+      }
    }
 }

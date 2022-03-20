@@ -4,9 +4,18 @@
    grid-template-rows: max-content;
 
    &.-featured {
-      border-right: 1px solid var(--theme-color-0);
-      grid-row: 1 / -1;
-      max-width: 360px;
+      border: solid var(--theme-color-0);
+      border-width: 0 0 1px;
+      grid-column: 1 / -1;
+      padding: 0 0 var(--fontSize-30);
+
+      @include breakpoint( md ) {
+         border-width: 0 1px 0 0;
+         grid-column: auto;
+         grid-row: 1 / -1;
+         max-width: 360px;
+         padding: 0 var(--fontSize-20) 0 0;
+      }
    }
 
    &__title {
@@ -20,7 +29,7 @@
          font-size: var(--fontSize-45);
       }
 
-      @include breakpoint( lg ) {
+      @include breakpoint( xl ) {
          font-size: var(--fontSize-60);
       }
    }
@@ -29,7 +38,7 @@
       @include theme-text();
       font-size: var(--fontSize-16);
 
-      @include breakpoint( lg ) {
+      @include breakpoint( xl ) {
          font-size: var(--fontSize-18);
          line-height: 1.2;
       }

@@ -122,6 +122,11 @@
 
    &__wrapper {
       max-width: 1220px;
+
+      .listing-template & {
+         max-width: 1400px;
+         width: 100%;
+      }
    }
 
    &__halfImage {

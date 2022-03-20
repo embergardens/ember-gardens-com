@@ -1,11 +1,11 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
-import React, { useEffect, useMemo, useState } from 'react'
+import React from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 
 import { useRecoilState} from 'recoil'
-import { navOpenState } from '../../store/navigation'
+import { navOpenState, transitionImageState } from '../../store/navigation'
 
 import farmer from '../../assets/images/illustrations/farmer.svg'
 import joint from '../../assets/images/illustrations/joint.svg'
@@ -26,8 +26,25 @@ const TransitionWarp = ( options ) => {
    // Props =======================
 	const pathArray = [ 1, 2, 3 ]
    const length = props.duration || 1
-   const illustrations = [ 'farmer', 'joint', 'mantis', 'woman' ]
-   const firstImage = useMemo( () => randomize( illustrations ) )
+   const illustrations = [
+      {
+         name: 'farmer',
+         image: farmer,
+      },
+      {
+         name: 'joint',
+         image: joint,
+      },
+      {
+         name: 'mantis',
+         image: mantis,
+      },
+      {
+         name: 'woman',
+         image: woman,
+      },
+   ]
+   const [currentImage, setCurrentImage ] = useRecoilState( transitionImageState )
 
    const motion = {
       cover: null,
@@ -36,7 +53,7 @@ const TransitionWarp = ( options ) => {
       delayPointsMax: 420,
       duration: 600,
       exitNode: null,
-      image: firstImage,
+      image: null,
       intermissionTime: 250,
       isAnimating: false,
       isOpened: false,
@@ -170,7 +187,6 @@ const TransitionWarp = ( options ) => {
       motion.paths = motion.cover.querySelectorAll('.mjScreen__path')
       motion.bg = document.querySelector('.mjScreen__illustration')
       motion.exitNode = node
-      motion.image = randomize( illustrations )
       toggle( true )
       document.body.classList.add('-transitionOpen')
       motion.bg.style.opacity = 1
@@ -183,10 +199,12 @@ const TransitionWarp = ( options ) => {
 				exit={{
 					length,
 					trigger: ({ exit, node }) => {
-						runWarp({
+                  setCurrentImage( randomize( illustrations ) )
+                  runWarp({
 							props: exit,
 							node
 						})
+
 					},
 
 				}}
@@ -204,19 +222,8 @@ const TransitionWarp = ( options ) => {
                <svg className="tl-cover-el mjScreen" viewBox="0 0 100 100" preserveAspectRatio="none">
                   { pathArray.map( (item) => <path className={`mjScreen__path path-${item}`} key={`path-${item}`}/> ) }
                </svg>
-               <div className="mjScreen__illustration" style={{opacity: 0, clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' }}>
-                  { motion.image === 'farmer' &&
-                     <img src={ farmer } alt='' />
-                  }
-                  { motion.image === 'joint' &&
-                     <img src={ joint } alt='' />
-                  }
-                  { motion.image === 'woman' &&
-                     <img src={ woman } alt='' />
-                  }
-                  { motion.image === 'mantis' &&
-                     <img src={ mantis } alt='' />
-                  }
+               <div className={`mjScreen__illustration -${ currentImage.name }`} style={{opacity: 0, clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' }}>
+                  <img src={ currentImage.image } alt={ currentImage.name } />
                   <div className='mjScreen__illustrationText'>Loading...</div>
                </div>
             </div>

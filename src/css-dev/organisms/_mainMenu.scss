@@ -57,7 +57,7 @@
       @include breakpoint( md ) {
          align-items: center;
          grid-template-areas: 'PRIMARY SOCIAL';
-         grid-template-columns: repeat( 2, 1fr );
+         grid-template-columns: auto;
          grid-template-rows: auto;
          height: var( --vh );
          justify-items: stretch;
@@ -137,12 +137,16 @@
    &__primaryLink {
       @include pseudo-link();
       color: $c-white;
-      font-size: 32px;
+      font-size: var(--fontSize-32);
       font-weight: 700;
       line-height: 1.1;
 
       @include breakpoint( md ) {
-         font-size: 55px;
+         font-size: var(--fontSize-45);
+      }
+
+      @include breakpoint( lg ) {
+         font-size: var(--fontSize-55);
       }
 
       &.-currentPage {
@@ -269,6 +273,7 @@
          input[type="text"],
          input[type="EMAIL"] {
             border: 1px solid $c-white;
+            color: $c-white;
          }
 
          button[type="submit"] {
