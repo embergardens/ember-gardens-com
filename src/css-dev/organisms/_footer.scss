@@ -20,17 +20,19 @@ footer.footer {
 
    &__links {
       @extend %remove-list-styles;
+      align-content: center;
       display: grid;
       gap: var(--fontSize-16);
-      grid-template-columns: repeat( 2, 1fr );
+      grid-template-columns: 1fr;
 
       @include breakpoint( sm ) {
          gap: var(--fontSize-24);
+         grid-template-columns: repeat( 3, 1fr );
       }
 
       @include breakpoint( md ) {
          gap: var(--fontSize-45);
-         grid-template-columns: repeat( 3, 1fr );
+         grid-auto-rows: 50%;
       }
    }
 

@@ -14,6 +14,12 @@
   --maxWidth-full: "100%";
   --maxWidth-wrapper: var(--maxWidth-2xl);
 
+  --navWidthDesktop: 5.3125rem;
+
+  @include breakpoint( xl ) {
+    --navWidthDesktop: 5.9375rem;
+  }
+
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -51,6 +57,7 @@
   --lineHeight-heading: 1.3;
   --lineHeight-page-title: 1.1;
 
+  --fontSize-10: 0.625rem;
   --fontSize-11: 0.6875rem; // 11
   --fontSize-12: 0.75rem; // 12
   --fontSize-13: 0.8125rem; // 13

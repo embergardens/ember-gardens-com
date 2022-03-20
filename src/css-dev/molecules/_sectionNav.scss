@@ -13,12 +13,12 @@
 
    @include breakpoint( md ) {
       display: block;
-      left: calc( $navWidthDesktop + var(--fontSize-90) );
+      left: calc( var(--navWidthDesktop) + var(--fontSize-90) );
       top: calc( var(--fontSize-60) - var(--fontSize-14) );
    }
 
    @include breakpoint( lg ) {
-      left: calc( $navWidthDesktop + var(--fontSize-120) );
+      left: calc( var(--navWidthDesktop) + var(--fontSize-120) );
       top: calc( 8vh - var(--fontSize-14) );
    }
 
@@ -33,7 +33,7 @@
          gap: var(--fontSize-45);
       }
 
-      @include breakpoint( lg ) {
+      @include breakpoint( xl ) {
          gap: var(--fontSize-60);
       }
 
@@ -46,11 +46,19 @@
 
    &__link {
       @include theme-text( '2' );
-      font-size: 1.1rem;
+      font-size: var( --fontSize-11 );
       font-weight: 700;
       line-height: 1;
       position: relative;
       text-transform: uppercase;
+
+      @include breakpoint( md ) {
+         font-size: var(--fontSize-14)
+      }
+
+      @include breakpoint( xl ) {
+         font-size: 1.1rem;
+      }
 
       &:hover,
       &:focus,

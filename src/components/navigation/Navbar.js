@@ -87,20 +87,20 @@ export const NavLink = ( props ) => {
          onMouseEnter={() => setIsHover(true)}
          onMouseLeave={() => setIsHover(false)}
       >
+         <div className="navBar__ctaIcon">
+            { index === 0 &&
+               <IconFlower />
+            }
+            { index === 1 &&
+               <IconTruck />
+            }
+         </div>
+         <Link className="navBar__ctaLink" to={ link.url } target={ link.target }>{ name }</Link>
          <BreakpointNotSmallDesktop>
-            <div className="navBar__ctaIcon">
-               { index === 0 &&
-                  <IconFlower />
-               }
-               { index === 1 &&
-                  <IconTruck />
-               }
+            <div className="navBar__ctaArrow">
+               <IconArrowSimple isHover={ isHover } animate />
             </div>
          </BreakpointNotSmallDesktop>
-         <Link className="navBar__ctaLink" to={ link.url } target={ link.target }>{ name }</Link>
-         <div className="navBar__ctaArrow">
-            <IconArrowSimple isHover={ isHover } animate />
-         </div>
       </div>
    )
 }

@@ -3,7 +3,7 @@
    &__nav {
       align-items: center;
       bottom: -1rem;
-      display: grid;
+      display: none;
       gap: 15px;
       grid-auto-columns: max-content;
       grid-auto-flow: column dense;
@@ -11,21 +11,37 @@
       right: 0;
       transform-origin: 100% 0;
       transform: rotate(90deg);
+
+      @include breakpoint( xs ) {
+         display: grid;
+      }
    }
 
    &__navLink {
       @include pseudo-link();
       @include theme-text();
-      font-size: 1rem;
+      font-size: var(--fontSize-10);
       font-weight: 600;
       text-transform: uppercase;
+
+      @include breakpoint( md ) {
+         font-size: var(--fontSize-14);
+      }
+
+      @include breakpoint( xl ) {
+         font-size: var(--fontSize-16);
+      }
    }
 
    &__navIcon {
-      @include svg-contain( 60px, 60px );
+      @include svg-contain( 40px, 40px );
       color: currentColor;
       transform: rotate( 270deg );
       transition: transform 300ms ease-in-out;
+
+      @include breakpoint( sm ) {
+         @include svg-contain( 60px, 60px );
+      }
 
       &.-reverse {
          transform: rotate( 450deg );

@@ -1,9 +1,5 @@
-$ff-stack:  'Titillium Web', system-ui, -apple-system, BlinkMacSystemFont,
-            "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-$ff-ui:     'Chivo', system-ui, -apple-system, BlinkMacSystemFont,
-            "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-            "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$ff-stack:  'Titillium Web', "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+$ff-ui:     'Chivo', "Helvetica Neue", Arial, "Noto Sans", sans-serif;
 
 $c-plum:                #715191;
 $c-rose:                #BA5B80;
@@ -25,12 +21,12 @@ $e-out:                 $easeOutQuint;
 $e-in-out:              $easeInOutQuint;
 
 $navHeightMobile:       69px;
-$navWidthDesktop:       100px;
+$navWidthDesktop:       85px;
 $mobileHeight:          calc( var( --vh ) - $navHeightMobile );
-$desktopWidth:          calc( 100vw - $navWidthDesktop );
-$desktopContentHalf:    calc( ( 100vw - $navWidthDesktop ) / 2 );
-$desktopContent40:      calc( ( 100vw - $navWidthDesktop ) - 60% );
-$desktopContent60:      calc( ( 100vw - $navWidthDesktop ) - 40% );
+$desktopWidth:          calc( 100vw - var(--navWidthDesktop) );
+$desktopContentHalf:    calc( ( 100vw - var(--navWidthDesktop) ) / 2 );
+$desktopContent40:      calc( ( 100vw - var(--navWidthDesktop) ) - 60% );
+$desktopContent60:      calc( ( 100vw - var(--navWidthDesktop) ) - 40% );
 
 $breakpoints: (
    xs: 500px,

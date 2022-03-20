@@ -34,7 +34,7 @@
       right: auto;
 
       @include breakpoint( md ) {
-         left: $navWidthDesktop;
+         left: var(--navWidthDesktop);
       }
    }
 

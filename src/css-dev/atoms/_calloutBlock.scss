@@ -69,9 +69,9 @@
          width: 100vw;
 
          @include breakpoint( md ) {
-            margin-left: calc( 50% - 50vw + ( $navWidthDesktop / 2 ) );
-            margin-right: calc( 50% - 50vw + ( $navWidthDesktop / 2 ) );
-            width: calc( 100vw - $navWidthDesktop );
+            margin-left: calc( 50% - 50vw + ( var(--navWidthDesktop) / 2 ) );
+            margin-right: calc( 50% - 50vw + ( var(--navWidthDesktop) / 2 ) );
+            width: calc( 100vw - var(--navWidthDesktop) );
          }
       }
    }

@@ -7,8 +7,8 @@
    }
 
    @include breakpoint( md ) {
-      margin: 4rem calc( 50% - 50vw + ( $navWidthDesktop / 2 ) );
-      width: calc( 100vw - $navWidthDesktop );
+      margin: 4rem calc( 50% - 50vw + ( var(--navWidthDesktop) / 2 ) );
+      width: calc( 100vw - var(--navWidthDesktop) );
    }
 
    &__caption {
