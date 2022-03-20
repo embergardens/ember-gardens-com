@@ -33,6 +33,11 @@ const Layout = ({ isHomePage, children }) => {
     document.querySelector(':root').dataset.themeColor = currentTextColor
   })
 
+  // Remove v-cloak from all elements once loaded.
+  useEffect(() => {
+    document.querySelectorAll('[v-cloak]').forEach((el) => el.removeAttribute('v-cloak') )
+  }, [])
+
   const scrollRef = useRef()
 	// const { scrollYProgress } = useElementScroll(scrollRef)
   return (

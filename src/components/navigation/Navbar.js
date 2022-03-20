@@ -38,7 +38,7 @@ export const Navbar = () => {
    const navLinks = quickLinks.map( ( navLink, index ) => <NavLink key={ navLink.name } index={ index } data={ navLink } /> )
 
    return (
-      <nav className="navBar">
+      <nav className="navBar" v-cloak="true">
          <NavTrigger />
          <NavTitle />
          <BreakpointDesktop>
