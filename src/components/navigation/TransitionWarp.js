@@ -1,14 +1,19 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import TransitionLink, { TransitionPortal } from 'gatsby-plugin-transition-link'
 
 import { useRecoilState} from 'recoil'
 import { navOpenState } from '../../store/navigation'
 
 import farmer from '../../assets/images/illustrations/farmer.svg'
+import joint from '../../assets/images/illustrations/joint.svg'
+import mantis from '../../assets/images/illustrations/mantis.svg'
+import woman from '../../assets/images/illustrations/woman.svg'
+
 import { cubicInOut } from '../../functions/easing'
+import { randomize } from '../../functions/utility'
 
 const TransitionWarp = ( options ) => {
 	const {
@@ -21,7 +26,8 @@ const TransitionWarp = ( options ) => {
    // Props =======================
 	const pathArray = [ 1, 2, 3 ]
    const length = props.duration || 1
-   const illustration = useRef()
+   const illustrations = [ 'farmer', 'joint', 'mantis', 'woman' ]
+   const firstImage = useMemo( () => randomize( illustrations ) )
 
    const motion = {
       cover: null,
@@ -30,6 +36,7 @@ const TransitionWarp = ( options ) => {
       delayPointsMax: 420,
       duration: 600,
       exitNode: null,
+      image: firstImage,
       intermissionTime: 250,
       isAnimating: false,
       isOpened: false,
@@ -163,6 +170,7 @@ const TransitionWarp = ( options ) => {
       motion.paths = motion.cover.querySelectorAll('.mjScreen__path')
       motion.bg = document.querySelector('.mjScreen__illustration')
       motion.exitNode = node
+      motion.image = randomize( illustrations )
       toggle( true )
       document.body.classList.add('-transitionOpen')
       motion.bg.style.opacity = 1
@@ -197,7 +205,18 @@ const TransitionWarp = ( options ) => {
                   { pathArray.map( (item) => <path className={`mjScreen__path path-${item}`} key={`path-${item}`}/> ) }
                </svg>
                <div className="mjScreen__illustration" style={{opacity: 0, clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)' }}>
-                  <img src={farmer} alt="farmer"/>
+                  { motion.image === 'farmer' &&
+                     <img src={ farmer } alt='' />
+                  }
+                  { motion.image === 'joint' &&
+                     <img src={ joint } alt='' />
+                  }
+                  { motion.image === 'woman' &&
+                     <img src={ woman } alt='' />
+                  }
+                  { motion.image === 'mantis' &&
+                     <img src={ mantis } alt='' />
+                  }
                   <div className='mjScreen__illustrationText'>Loading...</div>
                </div>
             </div>
