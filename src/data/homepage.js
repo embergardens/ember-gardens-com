@@ -19,5 +19,19 @@ export const homepageFragments = graphql`
             }
          }
       }
+      template {
+         ... on WpHomepageTemplate {
+            homepageTemplate {
+               buttongroup {
+                  button {
+                     target
+                     title
+                     url
+                  }
+                  style
+               }
+            }
+         }
+      }
    }
 `

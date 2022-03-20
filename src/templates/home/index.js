@@ -8,7 +8,16 @@ import { HomepageVideo } from '../../components/video/HomepageVideo'
 
 const Home = ({ data }) => {
    const { page } = data
-   const { title, featuredImage, excerpt, uri } = page
+   const { title, featuredImage, excerpt, uri, template: { homepageTemplate: { buttongroup } } } = page
+
+   const buttons = buttongroup.map( ( btn, index ) => {
+      const { style, button } = btn
+      return (
+         <Link className={`homepage__button button -${ style }`} to={ button.url } target={ button.target } key={ `${button.title}-${index}` }>
+            { button.title }
+         </Link>
+      )
+   })
 
    return (
       <>
@@ -19,14 +28,11 @@ const Home = ({ data }) => {
                <section className="homepage__wrapper">
                   <div className="homepage__content">
                   </div>
-                  <div className="homepage__footer">
-                     <Link className="homepage__button button -full" to='/shop'>
-                        Order now
-                     </Link>
-                     <Link className="homepage__button button -half" to='/products'>
-                        Craft made products
-                     </Link>
-                  </div>
+                  { buttons &&
+                     <div className="homepage__footer">
+                        { buttons }
+                     </div>
+                  }
                </section>
             </ContentWrapper>
          </div>
