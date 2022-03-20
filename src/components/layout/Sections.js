@@ -11,6 +11,7 @@ import Seo from './Seo'
 import { ContentWrapper } from './ContentWrapper'
 import { PageSection } from './PageSection'
 import { SectionNav } from '../navigation/SectionNav'
+import { SectionFooterNav } from '../navigation/SectionFooterNav'
 
 const Sections = ({ data, postType }) => {
    const { page, globalFooter } = data
@@ -58,6 +59,9 @@ const Sections = ({ data, postType }) => {
                <SectionNav items={ sectionList } />
 
                { sections }
+
+
+               <SectionFooterNav list={ sectionList } />
 
             </ContentWrapper>
 

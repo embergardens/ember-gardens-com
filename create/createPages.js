@@ -4,6 +4,7 @@ const pageTemplate = require.resolve('../src/templates/pages/index.js' )
 const homepageTemplate = require.resolve('../src/templates/home/index.js' )
 const simpleTemplate = require.resolve( '../src/templates/pages/simple.js' )
 const listingTemplate = require.resolve( '../src/templates/pages/listing.js' )
+const sectionsTemplate = require.resolve( '../src/templates/pages/sections.js' )
 
 const getTemplate = ( node ) => {
    if ( node.isFrontPage ) {
@@ -16,6 +17,10 @@ const getTemplate = ( node ) => {
 
    if ( node.template.templateName === 'Listing Template' ) {
       return listingTemplate
+   }
+
+   if ( node.tempalte.templateName === 'Sections Template' ) {
+      return sectionsTemplate
    }
 
    return simpleTemplate

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useRecoilValue } from 'recoil'
-import { IconArrowCircle } from '../icons/IconArrowCircle'
+import { IconArrowLongDown } from '../icons/IconArrowLongDown'
 import { currentSectionState } from '../../store/navigation'
 
 export const SectionFooterNav = ({ list }) => {
@@ -18,6 +18,9 @@ export const SectionFooterNav = ({ list }) => {
       label = ''
       slug = list[0].slug
       footer = true
+   } else if ( list[next].isFooter ) {
+      label = ''
+      slug = list[next].slug
    } else if ( next < list.length ) {
       label = list[next].navTitle || list[next].title
       slug = list[next].slug
@@ -25,12 +28,16 @@ export const SectionFooterNav = ({ list }) => {
 
    return (
       <div className="sectionFooter__nav">
-         <a href={ `#${ slug }` } className='sectionFooter__navLink'>
-            { label }
-         </a>
-         <div className={ `sectionFooter__navIcon ${ footer ? '-reverse' : ''}` }>
-            <IconArrowCircle />
-         </div>
+         { list.length > 1 &&
+            <>
+               <a href={ `#${ slug }` } className='sectionFooter__navLink'>
+                  { label }
+               </a>
+               <div className={ `sectionFooter__navIcon ${ footer ? '-reverse' : ''}` }>
+                  <IconArrowLongDown />
+               </div>
+            </>
+         }
       </div>
    )
 }
