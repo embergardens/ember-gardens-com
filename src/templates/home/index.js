@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Link from '../../components/navigation/Link'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
 import Seo from '../../components/layout/Seo'
+import VideoLoadingScreen from '../../components/navigation/VideoLoadingScreen'
 
 const HomepageVideo = React.lazy( () => import( '../../components/video/HomepageVideo' ) )
 
@@ -23,7 +24,7 @@ const Home = ({ data }) => {
       <>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
          <div className='home-template homepage' >
-            <Suspense fallback={ <div>LOADING VIDEO</div> }>
+            <Suspense fallback={ <VideoLoadingScreen /> }>
                <HomepageVideo />
             </Suspense>
             <ContentWrapper layout="splash">
