@@ -29,6 +29,11 @@ module.exports = {
           }
         },
         url: process.env.WPGRAPHQL_URL,
+        type: {
+          MediaItem: {
+            createFileNodes: false,
+          },
+        },
         schema: {
           perPage: 50,
           timeout: 60000,

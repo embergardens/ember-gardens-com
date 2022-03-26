@@ -57,7 +57,7 @@ export const PageSection = ({ data }) => {
                <div className="pageSection__halfImageWrapper">
                   <GatsbyImage
                      alt={ image.altText }
-                     image={ getImage( image?.localFile ) }
+                     image={ getImage( image?.gatsbyImage ) }
                      className='pageSection__halfImageBg'
                      placeholder="blurred"
                   />

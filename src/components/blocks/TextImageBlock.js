@@ -7,7 +7,7 @@ export const TextImageBlock = ({ content }) => {
    const { imageLayout, imageShape, image, textgroup, buttongroup } = content
    const { eyebrow, title, subtitle, content: text } = textgroup
 
-   const imageData = getImage(image?.localFile)
+   const imageData = getImage(image?.gatsbyImage)
 
    if (!imageData) return null
 

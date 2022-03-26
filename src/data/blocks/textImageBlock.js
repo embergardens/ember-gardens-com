@@ -9,10 +9,7 @@ export const textImageBlockFragments = graphql`
       image {
          altText
          caption
-         localFile {
-            ...SquareImage
-            publicURL
-         }
+         ...GatsbySquareImage
          mediaDetails {
             width
             height
@@ -41,10 +38,7 @@ export const textImageBlockFragments = graphql`
       image {
          altText
          caption
-         localFile {
-            ...SquareImage
-            publicURL
-         }
+         ...GatsbySquareImage
          mediaDetails {
             width
             height
@@ -73,10 +67,7 @@ export const textImageBlockFragments = graphql`
       image {
          altText
          caption
-         localFile {
-            ...SquareImage
-            publicURL
-         }
+         ...GatsbySquareImage
          mediaDetails {
             width
             height

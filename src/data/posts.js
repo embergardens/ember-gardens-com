@@ -10,9 +10,7 @@ export const postFragments = graphql`
       featuredImage {
          node {
             altText
-            localFile {
-               ...Thumbnail
-            }
+            ...GatsbyThumbnail
          }
       }
       author {
@@ -41,10 +39,7 @@ export const postFragments = graphql`
       featuredImage {
          node {
             altText
-            localFile {
-               ...HeroImage
-               publicURL
-            }
+            ...GatsbyHeroImage
             mediaDetails {
                width
                height
@@ -62,9 +57,7 @@ export const postFragments = graphql`
                url
                width
                height
-               imageFile {
-                  ...AvatarImage
-               }
+               ...GatsbyAvatarImage
             }
          }
       }

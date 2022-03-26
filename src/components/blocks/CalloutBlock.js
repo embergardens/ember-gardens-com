@@ -5,9 +5,7 @@ import Link from '../navigation/Link'
 export const CalloutBlock = ({ data }) => {
    const { background, eyebrow, alignment, title, text, link } = data
    const { brightness, image, color, size } = background
-
-   const imageData = image ? getImage( image.localFile ) : null
-
+   const imageData = image ? getImage( image.gatsbyImage ) : null
    return (
       <div className={`calloutBlock -${alignment} -${size} -${color}`}>
          <div className='calloutBlock__wrapper'>

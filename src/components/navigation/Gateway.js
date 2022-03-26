@@ -30,7 +30,7 @@ export const Gateway = () => {
 
    const { options: { acfOptionsGlobal: { globalOptions: { gatewayOptions } } } } = data
    const { enableLocalStorage, failmessage, failtext, passtext, subtitle, title, backgroundImage: image } = gatewayOptions
-   const imageData = getImage(image?.localFile)
+   const imageData = getImage(image?.gatsbyImage)
 
    // VARIABLES ====================================================
    const storageName = 'emberGardens:gateway'

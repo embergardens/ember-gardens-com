@@ -2,7 +2,7 @@ import React from 'react'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
 export const ImageBlock = ({ image }) => {
-   const imageData = getImage(image?.localFile)
+   const imageData = getImage(image?.gatsbyImage)
 
    if (!imageData) return null
 

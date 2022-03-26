@@ -14,10 +14,7 @@ export const footerFragments = graphql`
                }
                backgroundImage {
                   altText
-                  localFile {
-                     ...HeroImage
-                     publicURL
-                  }
+                  ...GatsbyHeroImage
                   mediaDetails {
                      width
                      height
