@@ -17,10 +17,7 @@ export const calloutBlockFragments = graphql`
          background {
             image {
                altText
-               localFile {
-                  ...HeroImage
-                  publicURL
-               }
+               ...GatsbyHeroImage
             }
             brightness
             color
@@ -44,10 +41,7 @@ export const calloutBlockFragments = graphql`
          background {
             image {
                altText
-               localFile {
-                  ...HeroImage
-                  publicURL
-               }
+               ...GatsbyHeroImage
             }
             brightness
             color
@@ -71,10 +65,7 @@ export const calloutBlockFragments = graphql`
          background {
             image {
                altText
-               localFile {
-                  ...HeroImage
-                  publicURL
-               }
+               ...GatsbyHeroImage
             }
             brightness
             color

@@ -14,10 +14,7 @@ export const locationFragments = graphql`
                color
                image {
                   altText
-                  localFile {
-                     ...HeroImage
-                     publicURL
-                  }
+                  ...GatsbyHeroImage
                   mediaDetails {
                      width
                      height
@@ -51,10 +48,7 @@ export const locationFragments = graphql`
                color
                image {
                   altText
-                  localFile {
-                     ...HeroImage
-                     publicURL
-                  }
+                  ...GatsbyHeroImage
                   mediaDetails {
                      width
                      height

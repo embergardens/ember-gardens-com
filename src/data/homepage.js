@@ -9,10 +9,7 @@ export const homepageFragments = graphql`
       featuredImage {
          node {
             altText
-            localFile {
-               ...HeroImage
-               publicURL
-            }
+            ...GatsbyHeroImage
             mediaDetails {
                width
                height

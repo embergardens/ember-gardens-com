@@ -12,10 +12,7 @@ export const gatewayFragments = graphql`
                title
                backgroundImage {
                   altText
-                  localFile {
-                     ...HeroImage
-                     publicURL
-                  }
+                  ...GatsbyHeroImage
                   mediaDetails {
                      width
                      height

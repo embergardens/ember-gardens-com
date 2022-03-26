@@ -7,7 +7,7 @@ export const SectionBackground = ({ data, active }) => {
 
    const { image, brightness, layout } = data
 
-   const imageData = getImage(image?.localFile)
+   const imageData = getImage(image?.gatsbyImage)
 
    if (!imageData) return null
 
