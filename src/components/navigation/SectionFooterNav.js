@@ -15,11 +15,11 @@ export const SectionFooterNav = ({ list }) => {
    let footer = false
 
    if ( next === list.length ) {
-      label = ''
+      label = 'TOP'
       slug = list[0].slug
       footer = true
    } else if ( list[next].isFooter ) {
-      label = ''
+      label = 'MORE'
       slug = list[next].slug
    } else if ( next < list.length ) {
       label = list[next].navTitle || list[next].title

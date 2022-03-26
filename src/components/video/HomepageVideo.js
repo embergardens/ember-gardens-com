@@ -15,13 +15,12 @@ import { gatewayPassedState } from '../../store/homepage'
 import introDesktopMp4 from '../../assets/video/EG_Desktop_intro.mp4'
 import loopDesktopMp4 from '../../assets/video/EG_Desktop_loop.mp4'
 import introMobileMp4 from '../../assets/video/EG_Mobile_intro.mp4'
-//import loopMobileMp4 from '../../assets/video/EG_Mobile_loop.mp4'
 import loopMobileMp4 from '../../assets/video/EG_MOBILE_FINAL.mp4'
 import desktopPoster from '../../assets/images/EG_Desktop_Still.png'
 import mobilePoster from '../../assets/images/EG_Mobile_Still.png'
 
 
-export const HomepageVideo = () => {
+const HomepageVideo = () => {
 
    const storageName = 'emberGardens:introPlayed'
    const isPortrait = useMediaQuery( useRecoilValue( isPortraitState ) )
@@ -126,3 +125,5 @@ export const HomepageVideo = () => {
       </div>
    )
 }
+
+export default HomepageVideo

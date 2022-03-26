@@ -1,17 +1,5 @@
 .pageSection {
-   padding: var(--fontSize-90) var(--fontSize-30);
-
-   @include breakpoint( sm ) {
-      padding: var(--fontSize-90)  var(--fontSize-60);
-   }
-
-   @include breakpoint( md ) {
-      padding: var(--fontSize-120) var(--fontSize-90);
-   }
-
-   @include breakpoint( lg ) {
-      padding: 16vh var(--fontSize-120);
-   }
+   padding: var(--sectionPadding-y) var(--sectionPadding-x);
 
    &.-fullWidth {
       align-items: center;

@@ -54,14 +54,15 @@ const Sections = ({ data, postType }) => {
       <>
          <Seo title={title} uri={uri} />
          <div className="default-template">
-            <ContentWrapper layout="open" gradient={ currentBackground } sections={ sectionList }>
-
-               <SectionNav items={ sectionList } />
+            <ContentWrapper
+               layout="open"
+               gradient={ currentBackground }
+               sections={ sectionList }
+               header={ <SectionNav items={ sectionList } /> }
+               footer={ <SectionFooterNav list={ sectionList } /> }
+            >
 
                { sections }
-
-
-               <SectionFooterNav list={ sectionList } />
 
             </ContentWrapper>
 

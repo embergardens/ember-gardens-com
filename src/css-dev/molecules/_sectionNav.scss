@@ -5,7 +5,7 @@
    padding: 0;
    position: fixed;
    top: calc( ( $navHeightMobile + var(--fontSize-45) ) - var(--fontSize-14) );
-   z-index: 300;
+   z-index: 600;
 
    @include breakpoint( sm ) {
       left: var(--fontSize-60);

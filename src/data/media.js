@@ -3,7 +3,13 @@ import { graphql } from "gatsby";
 export const mediaFragments = graphql`
    fragment HeroImage on File {
       childImageSharp {
-         gatsbyImageData(layout: CONSTRAINED, quality: 90)
+         gatsbyImageData(layout: CONSTRAINED, quality: 90, placeholder: BLURRED )
+      }
+   }
+
+   fragment HeroHalfImage on File {
+      childImageSharp {
+         gatsbyImageData(layout: CONSTRAINED, quality: 90 )
       }
    }
 

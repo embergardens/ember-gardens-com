@@ -1,7 +1,6 @@
 /* CSS Custom Properties Definitions */
 
 :root {
-  --vh: 100vh;
   --maxWidth-none: "none";
   --maxWidth-xs: 20rem; // 320
   --maxWidth-sm: 24rem; // 384
@@ -14,12 +13,33 @@
   --maxWidth-full: "100%";
   --maxWidth-wrapper: var(--maxWidth-2xl);
 
+  // Viewports
+  --vh: 100vh;
   --navWidthDesktop: 5.3125rem;
 
   @include breakpoint( xl ) {
     --navWidthDesktop: 5.9375rem;
   }
 
+  // Section Padding.
+  --sectionPadding-x: var(--fontSize-30);
+  --sectionPadding-y: var(--fontSize-90);
+
+  @include breakpoint( sm ) {
+    --sectionPadding-x: var(--fontSize-60);
+  }
+
+  @include breakpoint( md ) {
+    --sectionPadding-x: var(--fontSize-90);
+    --sectionPadding-y: var(--fontSize-120);
+  }
+
+  @include breakpoint( lg ) {
+    --sectionPadding-x: var(--fontSize-120);
+    --sectionPadding-y: 16vh;
+  }
+
+  // Spacing
   --spacing-px: "1px";
   --spacing-0: 0;
   --spacing-1: 0.25rem;

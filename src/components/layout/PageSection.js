@@ -46,6 +46,7 @@ export const PageSection = ({ data }) => {
    useEffect( () => {
       if ( inView ) {
          setCurrentSection( idName )
+         document.body.setAttribute('current-section', idName)
       }
    }, [inView] )
 

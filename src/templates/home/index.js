@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { graphql } from "gatsby"
 import Link from '../../components/navigation/Link'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
 import Seo from '../../components/layout/Seo'
 
-import { HomepageVideo } from '../../components/video/HomepageVideo'
+const HomepageVideo = React.lazy( () => import( '../../components/video/HomepageVideo' ) )
 
 const Home = ({ data }) => {
    const { page } = data
@@ -23,7 +23,9 @@ const Home = ({ data }) => {
       <>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
          <div className='home-template homepage' >
-            <HomepageVideo />
+            <Suspense fallback={ <div>LOADING VIDEO</div> }>
+               <HomepageVideo />
+            </Suspense>
             <ContentWrapper layout="splash">
                <section className="homepage__wrapper">
                   <div className="homepage__content">

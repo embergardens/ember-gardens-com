@@ -76,6 +76,41 @@
       }
    }
 
+   &__frame {
+
+      // FALLBACK IF CLIPPATH DOESNT WORK===========================
+      // height: calc( $mobileHeight - var(--sectionPadding-y) );
+      // margin-top: var(--sectionPadding-y);
+      // overflow: hidden;
+      // width: 100vw;
+
+      // @include breakpoint( md ) {
+      //    height: calc( var( --vh ) - var(--sectionPadding-y) );
+      //    width: $desktopWidth;
+      // }
+
+      --y: var(--sectionPadding-y);
+
+      clip-path: polygon( 0% var(--y), 100% var(--y), 100% 100%, 0% 100% );
+      height: $mobileHeight;
+      overflow: hidden;
+      transition: clip-path 300ms cubic-bezier(0.85, 0, 0.15, 1);
+      width: 100vw;
+
+      @include breakpoint( md ) {
+         height: var(--vh);
+         width: $desktopWidth;
+      }
+
+      > .contentWrapper__content {
+         overflow: auto;
+      }
+
+      [current-section="footer"] & {
+         clip-path: polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% );
+      }
+   }
+
    &__content {
       height: 100%;
       position: relative;
