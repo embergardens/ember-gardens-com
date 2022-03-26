@@ -39,12 +39,13 @@ export const SectionBackground = ({ data, active }) => {
                initial='exit'
                animate='enter'
                exit='exit'
+               style={{ backgroundColor: `${imageData.backgroundColor}`}}
             >
                <GatsbyImage
                   alt={image.altText}
                   image={imageData}
                   className={`backgroundMedia__img -brightness-${ brightness }`}
-                  placeholder="blurred"
+                  // objectFit='contain'
                />
             </motion.div>
          }
