@@ -88,10 +88,10 @@
       //    height: calc( var( --vh ) - var(--sectionPadding-y) );
       //    width: $desktopWidth;
       // }
-
+      --x: calc(100% - 30px);
       --y: var(--sectionPadding-y);
 
-      clip-path: polygon( 0% var(--y), 100% var(--y), 100% 100%, 0% 100% );
+      clip-path: polygon( 0% var(--y), var(--x) var(--y), var(--x) 100%, 0% 100% );
       height: $mobileHeight;
       overflow: hidden;
       transition: clip-path 300ms cubic-bezier(0.85, 0, 0.15, 1);
