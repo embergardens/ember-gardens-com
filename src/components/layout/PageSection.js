@@ -60,7 +60,6 @@ export const PageSection = ({ data }) => {
                      alt={ image.altText }
                      image={ getImage( image?.localFile ) }
                      className='pageSection__halfImageBg'
-                     placeholder="blurred"
                   />
                </div>
             </div>
