@@ -60,6 +60,7 @@ const Sections = ({ data, postType }) => {
                sections={ sectionList }
                header={ <SectionNav items={ sectionList } /> }
                footer={ <SectionFooterNav list={ sectionList } /> }
+               frame
             >
 
                { sections }

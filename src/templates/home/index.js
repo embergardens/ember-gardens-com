@@ -8,6 +8,7 @@ import HomepageVideo from '../../components/video/HomepageVideo'
 
 // import VideoLoadingScreen from '../../components/navigation/VideoLoadingScreen'
 // const HomepageVideo = React.lazy( () => import( '../../components/video/HomepageVideo' ) )
+// reference: https://www.harrytheo.com/blog/2021/08/lazy-loading-react-components/
 
 const Home = ({ data }) => {
    const { page } = data
