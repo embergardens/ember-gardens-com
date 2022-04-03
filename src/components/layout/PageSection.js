@@ -16,6 +16,7 @@ import { useMediaQuery } from 'react-responsive'
 import { isMobile } from '../utility/Breakpoints'
 import { TextBlock } from '../blocks/TextBlock'
 import { ButtonBlock } from '../blocks/ButtonBlock'
+import { currentTextColorOverrideState } from '../../store/global'
 
 export const PageSection = ({ data }) => {
    const {
@@ -28,7 +29,7 @@ export const PageSection = ({ data }) => {
       content,
       eyebrow,
       locationInfo,
-      background: { layout, image },
+      background: { layout, image, size, text },
    } = data
 
    const { ref, inView } = useInView({
@@ -42,9 +43,11 @@ export const PageSection = ({ data }) => {
    const layoutClass = layout ? `-${layout}Layout` : ''
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
+   const [ currentTextOverride, setCurrentTextOverride ] = useRecoilState( currentTextColorOverrideState )
 
    useEffect( () => {
       if ( inView ) {
+         setCurrentTextOverride( text )
          setCurrentSection( idName )
          document.body.setAttribute('current-section', idName)
       }
@@ -60,6 +63,7 @@ export const PageSection = ({ data }) => {
                      alt={ image.altText }
                      image={ getImage( image?.localFile ) }
                      className='pageSection__halfImageBg'
+                     objectFit={ size }
                   />
                </div>
             </div>

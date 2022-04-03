@@ -25,6 +25,9 @@ export const locationFragments = graphql`
                }
                layout
                brightness
+               imageSize
+               imageBackgroundColor
+               textColor
             }
             text
             address
@@ -62,6 +65,9 @@ export const locationFragments = graphql`
                }
                layout
                brightness
+               imageSize
+               imageBackgroundColor
+               textColor
             }
             contentdesigner {
                ...LocationTextBlock

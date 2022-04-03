@@ -26,6 +26,8 @@ const BackgroundGradient = ( { theme } ) => {
          case 'white':
             return `linear-gradient( 90deg, ${ White.rgb }, ${ White.rgb }, ${ White.rgb } )`
          break
+         case 'none':
+            return 'linear-gradient( 90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) )'
          default:
             return White.rgb
          }

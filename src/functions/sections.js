@@ -10,16 +10,32 @@ export const buildSectionObject = ( section ) => {
       ? null
       : section.sectionbackground.layout || 'left'
 
+   const halfOverlayColor = section.sectionstyle === 'halfWidth' && section.sectionbackground.color !== 'none'
+      ? section.sectionbackground.color
+      : null
+
    const sectionSlug = section.isHero
       ? section.pageTitle
       : section.navigationtitle ||section.sectiontitle
+
+   const imageSize = section.sectionstyle !== 'halfWidth'
+      ? 'cover'
+      : section.sectionbackground.imageSize || 'cover'
+
+   const sectionText = section.sectionbackground.color !== 'none'
+      ? null
+      : section.sectionbackground.textColor || 'dark'
 
    const sectionObject = {
       background: {
          brightness: section.sectionbackground.brightness || 100,
          color: sectionColor,
+         half: halfOverlayColor,
          image: section.sectionbackground.image || null,
+         imageBg: section.sectionbackground.imageBackgroundColor || null,
          layout: sectionLayout,
+         size: imageSize,
+         text: sectionText,
       },
       content: section.contentdesigner || null,
       eyebrow: section.sectioneyebrow || null,

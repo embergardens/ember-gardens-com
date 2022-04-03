@@ -10,10 +10,20 @@ export const currentThemeState = atom({
    default: 'white'
 })
 
+export const currentTextColorOverrideState = atom({
+   key: 'currentTextColorOverrideState',
+   default: null
+})
+
 export const currentTextColorState = selector({
    key: 'currentTextColorState',
    get: ({get}) => {
       const theme = get( currentThemeState )
+      const override = get( currentTextColorOverrideState )
+
+      if ( override !== null ) {
+         return override
+      }
 
       switch (theme) {
          case 'gradient':
