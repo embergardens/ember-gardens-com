@@ -30,7 +30,6 @@ const Home = ({ data }) => {
             <Suspense fallback={ <VideoLoadingScreen /> }>
                <HomepageVideo />
             </Suspense>
-            {/* <HomepageVideo /> */}
             <ContentWrapper layout="splash">
                <section className="homepage__wrapper">
                   <div className="homepage__content">
