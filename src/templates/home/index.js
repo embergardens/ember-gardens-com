@@ -1,13 +1,13 @@
-import React, { Suspense } from 'react'
-//import React from 'react'
+//import React, { Suspense } from 'react'
+import React from 'react'
 import { graphql } from "gatsby"
 import Link from '../../components/navigation/Link'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
 import Seo from '../../components/layout/Seo'
-//import HomepageVideo from '../../components/video/HomepageVideo'
+import HomepageVideo from '../../components/video/HomepageVideo'
 
-import VideoLoadingScreen from '../../components/navigation/VideoLoadingScreen'
-const HomepageVideo = React.lazy( () => import( '../../components/video/HomepageVideo' ) )
+// import VideoLoadingScreen from '../../components/navigation/VideoLoadingScreen'
+// const HomepageVideo = React.lazy( () => import( '../../components/video/HomepageVideo' ) )
 // reference: https://www.harrytheo.com/blog/2021/08/lazy-loading-react-components/
 
 const Home = ({ data }) => {
@@ -27,9 +27,10 @@ const Home = ({ data }) => {
       <>
          <Seo title={title} description={excerpt} socialImage={featuredImage?.node} uri={uri} />
          <div className='home-template homepage' >
-            <Suspense fallback={ <VideoLoadingScreen /> }>
+            {/* <Suspense fallback={ <VideoLoadingScreen /> }>
                <HomepageVideo />
-            </Suspense>
+            </Suspense> */}
+            <HomepageVideo />
             <ContentWrapper layout="splash">
                <section className="homepage__wrapper">
                   <div className="homepage__content">
