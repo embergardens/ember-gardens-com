@@ -25,7 +25,7 @@ const NameField = ({
    })
    const nameInputs = filteredNames.map((input) => {
       const inputName = `input_${input.id}`;
-      Object.assign(input, { type: 'NAME' })
+      Object.assign(input, { type: 'text' })
       return <Input
             fieldData={input}
             key={input.id}
@@ -38,7 +38,7 @@ const NameField = ({
    })
    return (
       <li>
-         <ul className="Nameinput -columns">
+         <ul className="nameInput -columns">
             { nameInputs }
          </ul>
       </li>
