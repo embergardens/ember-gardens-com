@@ -3,14 +3,14 @@
 import React, { useMemo } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import GravityFormForm from '../../../plugins/gatsby-plugin-gravity-forms-v2'
+import GravityFormForm from '../../../plugins/gatsby-plugin-gravity-forms-v3'
 
 export const FormBlock = ({ formId, blockClass ='formBlock' }) => {
    const data = useStaticQuery(graphql`
       {
          allWpGfForm {
             nodes {
-               ...gfForm
+               ...GravityFormFields
             }
          }
       }

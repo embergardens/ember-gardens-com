@@ -53,7 +53,7 @@ module.exports = {
 
     // Gravity Forms =====================================
     {
-      resolve: "gatsby-plugin-gravity-forms-v2.3",
+      resolve: "gatsby-plugin-gravity-forms-v3",
       options: {
         url: process.env.WPGRAPHQL_URL,
       },
