@@ -30,6 +30,7 @@ export const SectionBackground = ({ data, active }) => {
 
    const layoutClass = layout ? `-${layout}Layout` : ''
    const overlayClass = layout && half !== 'none' ? `-${half}Overlay` : '-noOverlay'
+   const brightnessClass = ! layout ? `-brightness-${ brightness }` : ''
 
    return (
       <AnimatePresence>
@@ -45,7 +46,7 @@ export const SectionBackground = ({ data, active }) => {
                <GatsbyImage
                   alt={image.altText}
                   image={imageData}
-                  className={`backgroundMedia__img -brightness-${ brightness }`}
+                  className={`backgroundMedia__img ${ brightnessClass }`}
                   objectFit={ size }
                />
             </motion.div>

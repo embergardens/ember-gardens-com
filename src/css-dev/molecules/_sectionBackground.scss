@@ -74,7 +74,7 @@
    &.-coralOverlay::before {
       @include linear-gradient( 90deg, $c-coral, $c-coral);
    }
-   &.-roseoverlay::before {
+   &.-roseOverlay::before {
       @include linear-gradient( 90deg, $c-rose, $c-rose);
    }
    &.-whiteOverlay::before {

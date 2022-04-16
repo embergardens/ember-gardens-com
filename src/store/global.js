@@ -22,7 +22,11 @@ export const currentTextColorState = selector({
       const override = get( currentTextColorOverrideState )
 
       if ( override !== null ) {
-         return override
+         if ( override === 'dark' ) {
+            return 'light'
+         }
+
+         return 'dark'
       }
 
       switch (theme) {

@@ -114,7 +114,7 @@
    color: var( --theme-color-#{ $shade } );
 
    @if ( $transition ) {
-      transition: color var(--theme-transition-speed) $e-in-out;
+      transition: color var(--theme-transition-speed) $e-out;
    }
 }
 

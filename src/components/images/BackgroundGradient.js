@@ -37,7 +37,7 @@ const BackgroundGradient = ( { theme } ) => {
 
    useEffect(() => {
       setCurrentTheme( theme )
-   })
+   }, [theme])
 
    return (
       <motion.div
