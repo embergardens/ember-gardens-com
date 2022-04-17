@@ -4,6 +4,15 @@
    position: fixed;
    z-index: 9999;
 
+   &.-notFound {
+      @include viewport();
+
+      .gateway__backgroundImage,
+      .gateway__content {
+         @include viewport();
+      }
+   }
+
    &__overlay {
       @include primary-gradient(0deg);
 

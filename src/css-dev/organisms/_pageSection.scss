@@ -13,35 +13,19 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 100vh;
+      min-height: $mobileHeight;
+      padding-top: 0;
       width: 100vw;
 
-      // @include breakpoint( sm ) {
-      //    flex-direction: row;
-      //    width: 60vw;
-      // }
-
-      // @include breakpoint( md ) {
-      //    padding-left: var(--fontSize-45);
-      //    padding-right: var(--fontSize-45);
-      //    width: $desktopContent60;
-      // }
-
       @include breakpoint( md ) {
+         min-height: 100vh;
          padding-left: var(--fontSize-60);
          padding-right: var(--fontSize-60);
+         padding-top: var(--sectionPadding-y);
          width: $desktopContentHalf;
       }
 
       &.-leftLayout {
-
-         // @include breakpoint( sm ) {
-         //    margin-left: 40vw;
-         // }
-
-         // @include breakpoint( md ) {
-         //    margin-left: $desktopContent40;
-         // }
 
          @include breakpoint( md ) {
             margin-left: $desktopContentHalf;
@@ -49,14 +33,6 @@
       }
 
       &.-rightLayout {
-
-         // @include breakpoint( sm ) {
-         //    margin-right: 40vw;
-         // }
-
-         // @include breakpoint( md ) {
-         //    margin-right: $desktopContent40;
-         // }
 
          @include breakpoint( md ) {
             margin-right: $desktopContentHalf;
@@ -79,17 +55,8 @@
          width: 100%;
 
          @include breakpoint( xs ) {
-            // max-width: 410px;
             max-width: 84%;
          }
-
-         // @include breakpoint( sm ) {
-         //    max-width: 730px;
-         // }
-
-         // @include breakpoint( md ) {
-         //    max-width: 815px;
-         // }
 
          @include breakpoint( lg ) {
             max-width: 1020px;
@@ -115,10 +82,20 @@
          max-width: 1400px;
          width: 100%;
       }
+
+      .pageSection__halfImage + & {
+         flex: 1 1 auto;
+         padding-top: calc( var(--sectionPadding-y) / 2 );
+
+         @include breakpoint( md ) {
+            flex: none;
+            padding-top: 0;
+         }
+      }
    }
 
    &__halfImage {
-      //clip-path: url(#moon-bottom);
+      flex: 0 0 60vh;
       height: 60vh;
       margin: 0 calc(50% - 50vw);
       width: 100vw;
@@ -126,7 +103,42 @@
 
    &__halfImageWrapper {
       height: 100%;
+      position: relative;
       width: 100%;
+
+      &.-gradientOverlay,
+      &.-plumOverlay,
+      &.-coralOverlay,
+      &.-roseOverlay,
+      &.-whiteOverlay {
+         &::before {
+            bottom: 0;
+            content: '';
+            left: 0;
+            mix-blend-mode: multiply;
+            opacity: 0.9;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+         }
+      }
+
+      &.-gradientOverlay::before {
+         @include primary-gradient();
+      }
+      &.-plumOverlay::before {
+         @include linear-gradient( 90deg, $c-plum, $c-plum);
+      }
+      &.-coralOverlay::before {
+         @include linear-gradient( 90deg, $c-coral, $c-coral);
+      }
+      &.-roseOverlay::before {
+         @include linear-gradient( 90deg, $c-rose, $c-rose);
+      }
+      &.-whiteOverlay::before {
+         @include linear-gradient( 90deg, $c-white, $c-white);
+      }
    }
 
    &__halfImageBg {

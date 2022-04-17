@@ -25,6 +25,9 @@ export const pageFragments = graphql`
                }
                layout
                brightness
+               imageSize
+               imageBackgroundColor
+               textColor
             }
             contentdesigner {
                ...HeroTextBlock
@@ -65,6 +68,9 @@ export const pageFragments = graphql`
                }
                layout
                brightness
+               imageSize
+               imageBackgroundColor
+               textColor
             }
             contentdesigner {
                ...TextBlock

@@ -53,7 +53,7 @@ module.exports = {
 
     // Gravity Forms =====================================
     {
-      resolve: "gatsby-plugin-gravity-forms-v2.3",
+      resolve: "gatsby-plugin-gravity-forms-v3",
       options: {
         url: process.env.WPGRAPHQL_URL,
       },
@@ -86,7 +86,7 @@ module.exports = {
         background_color: `#402E52`,
         theme_color: `#715191`,
         display: `minimal-ui`,
-        icon: `src/assets/images/gatsby-icon.png`,
+        icon: `src/assets/favicons/favicon_transparent.svg`,
       },
     },
 

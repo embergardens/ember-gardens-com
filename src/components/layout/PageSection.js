@@ -13,9 +13,10 @@ import { currentSectionState } from '../../store/navigation'
 import { ContentDesigner } from '../content/ContentDesigner'
 import { Footer } from './Footer'
 import { useMediaQuery } from 'react-responsive'
-import { isMobile } from '../utility/Breakpoints'
+import { isNotDesktop } from '../utility/Breakpoints'
 import { TextBlock } from '../blocks/TextBlock'
 import { ButtonBlock } from '../blocks/ButtonBlock'
+import { currentTextColorOverrideState } from '../../store/global'
 
 export const PageSection = ({ data }) => {
    const {
@@ -28,23 +29,28 @@ export const PageSection = ({ data }) => {
       content,
       eyebrow,
       locationInfo,
-      background: { layout, image },
+      background: { layout, half, image, imageBg, size, text },
    } = data
+
+   const imageData = getImage(image?.localFile)
+   const overlayClass = layout && half !== 'none' ? `-${half}Overlay` : '-noOverlay'
 
    const { ref, inView } = useInView({
       threshold: 0,
-      rootMargin: '-50% 0%',
+      rootMargin: '-70% 0% -30%',
    })
 
-   const mobile = useMediaQuery( useRecoilValue( isMobile ) )
+   const mobile = useMediaQuery( useRecoilValue( isNotDesktop ) )
 
    const idName = kebabCase( isHero ? pageTitle : navTitle || title )
    const layoutClass = layout ? `-${layout}Layout` : ''
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
+   const [ currentTextOverride, setCurrentTextOverride ] = useRecoilState( currentTextColorOverrideState )
 
    useEffect( () => {
       if ( inView ) {
+         setCurrentTextOverride( text )
          setCurrentSection( idName )
          document.body.setAttribute('current-section', idName)
       }
@@ -55,11 +61,15 @@ export const PageSection = ({ data }) => {
       <section ref={ ref } id={ idName } className={`pageSection -${ style } ${ layoutClass }`}>
          { mobile && style === 'halfWidth' &&
             <div className="pageSection__halfImage">
-               <div className="pageSection__halfImageWrapper">
+               <div
+                  className={`pageSection__halfImageWrapper ${ overlayClass }` }
+                  style={{ backgroundColor: `${ imageBg ? imageBg : imageData.backgroundColor }`}}
+               >
                   <GatsbyImage
                      alt={ image.altText }
-                     image={ getImage( image?.localFile ) }
+                     image={ imageData }
                      className='pageSection__halfImageBg'
+                     objectFit={ size }
                   />
                </div>
             </div>

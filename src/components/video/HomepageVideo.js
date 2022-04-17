@@ -12,12 +12,13 @@ import { isPortraitState } from '../utility/Breakpoints'
 import { gatewayPassedState } from '../../store/homepage'
 
 // Assets
+// import introDesktopMp4 from '../../assets/video/EG_DESKTOP_Intro_Option1_032722.mp4'
 import introDesktopMp4 from '../../assets/video/EG_Desktop_intro.mp4'
-import loopDesktopMp4 from '../../assets/video/EG_Desktop_loop.mp4'
-import introMobileMp4 from '../../assets/video/EG_Mobile_intro.mp4'
-import loopMobileMp4 from '../../assets/video/EG_MOBILE_FINAL.mp4'
-import desktopPoster from '../../assets/images/EG_Desktop_Still.png'
-import mobilePoster from '../../assets/images/EG_Mobile_Still.png'
+import loopDesktopMp4 from '../../assets/video/EG_DESKTOP_Loop_Option1_032722.mp4'
+import introMobileMp4 from '../../assets/video/EG_MOBILE_Intro_Option1_032722.mp4'
+import loopMobileMp4 from '../../assets/video/EG_MOBILE_Loop_Option1_032722.mp4'
+import desktopPoster from '../../assets/images/EG_DESKTOP_Still_Option1_032722.jpg'
+import mobilePoster from '../../assets/images/EG_MOBILE_Still_Option1_032722.jpg'
 
 
 const HomepageVideo = () => {

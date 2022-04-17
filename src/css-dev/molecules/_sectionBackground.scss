@@ -10,7 +10,6 @@
    &.-leftLayout,
    &.-rightLayout {
       display: none;
-      mix-blend-mode: normal;
       width: $desktopContentHalf;
 
       // @include breakpoint( sm ) {
@@ -25,6 +24,10 @@
       @include breakpoint( md ) {
          display: block;
          width: $desktopContentHalf;
+      }
+
+      &.-noOverlay {
+         mix-blend-mode: normal;
       }
    }
 
@@ -42,6 +45,40 @@
       // clip-path: url(#moon-right);
       left: auto;
       right: 0;
+   }
+
+   &.-gradientOverlay,
+   &.-plumOverlay,
+   &.-coralOverlay,
+   &.-roseOverlay,
+   &.-whiteOverlay {
+      &::before {
+         bottom: 0;
+         content: '';
+         left: 0;
+         mix-blend-mode: multiply;
+         opacity: 0.9;
+         position: absolute;
+         right: 0;
+         top: 0;
+         z-index: 1;
+      }
+   }
+
+   &.-gradientOverlay::before {
+      @include primary-gradient();
+   }
+   &.-plumOverlay::before {
+      @include linear-gradient( 90deg, $c-plum, $c-plum);
+   }
+   &.-coralOverlay::before {
+      @include linear-gradient( 90deg, $c-coral, $c-coral);
+   }
+   &.-roseOverlay::before {
+      @include linear-gradient( 90deg, $c-rose, $c-rose);
+   }
+   &.-whiteOverlay::before {
+      @include linear-gradient( 90deg, $c-white, $c-white);
    }
 
    .gatsby-image-wrapper-constrained {

@@ -87,29 +87,26 @@
          // width: 100vw;
 
          // @include breakpoint( md ) {
-            //    height: calc( var( --vh ) - var(--sectionPadding-y) );
-            //    width: $desktopWidth;
-            // }
-            --x: calc(100% - 30px);
-            --y: var(--sectionPadding-y);
-
-            clip-path: polygon( 0% var(--y), var(--x) var(--y), var(--x) 100%, 0% 100% );
-            height: $mobileHeight;
-            overflow: hidden;
-            transition: clip-path 300ms cubic-bezier(0.85, 0, 0.15, 1);
-            width: 100vw;
-
+         //    height: calc( var( --vh ) - var(--sectionPadding-y) );
+         //    width: $desktopWidth;
+         // }
             @include breakpoint( md ) {
+               --x: calc(100% - 30px);
+               --y: calc( var(--sectionPadding-y) * 0.75 );
+
+               clip-path: polygon( 0% var(--y), var(--x) var(--y), var(--x) 100%, 0% 100% );
                height: var(--vh);
+               overflow: hidden;
+               transition: clip-path 300ms cubic-bezier(0.85, 0, 0.15, 1);
                width: $desktopWidth;
-            }
 
-            > .contentWrapper__content {
-               overflow: auto;
-            }
+               > .contentWrapper__content {
+                  overflow: auto;
+               }
 
-            [current-section="footer"] & {
-               clip-path: polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% );
+               [current-section="footer"] & {
+                  clip-path: polygon( 0% 0%, 100% 0%, 100% 100%, 0% 100% );
+               }
             }
          }
       }

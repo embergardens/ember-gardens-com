@@ -11,8 +11,12 @@ export const buildPageFooter = ( globalData, pageData = null ) => {
       background: {
          brightness: 100,
          color: 'gradient',
+         half: null,
          image: backgroundImage || null,
+         imageBg: null,
          layout: null,
+         size: 'cover',
+         text: null,
       },
       content: null,
       eyebrow: null,

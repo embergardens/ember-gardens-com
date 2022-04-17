@@ -8,6 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 
 const Select = ({ fieldData, name, ...wrapProps }) => {
   const { choices, cssClass, isRequired, size } = fieldData;
+  console.log({fieldData})
   const options = JSON.parse(choices);
 
   const {
@@ -59,7 +60,7 @@ export default Select;
 
 Select.propTypes = {
   fieldData: PropTypes.shape({
-    choices: PropTypes.string,
+    //choices: PropTypes.string,
     cssClass: PropTypes.string,
     isRequired: PropTypes.bool,
     size: PropTypes.string,
