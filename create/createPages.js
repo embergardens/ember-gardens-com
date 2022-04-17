@@ -2,28 +2,18 @@ const _ = require('lodash')
 
 const pageTemplate = require.resolve('../src/templates/pages/index.js' )
 const homepageTemplate = require.resolve('../src/templates/home/index.js' )
-const simpleTemplate = require.resolve( '../src/templates/pages/simple.js' )
 const listingTemplate = require.resolve( '../src/templates/pages/listing.js' )
-const sectionsTemplate = require.resolve( '../src/templates/pages/sections.js' )
 
 const getTemplate = ( node ) => {
    if ( node.isFrontPage ) {
       return homepageTemplate
    }
 
-   if ( node.template.templateName === 'Default' ) {
-      return pageTemplate
-   }
-
    if ( node.template.templateName === 'Listing Template' ) {
       return listingTemplate
    }
 
-   if ( node.template.templateName === 'Sections Template' ) {
-      return sectionsTemplate
-   }
-
-   return simpleTemplate
+   return pageTemplate
 
 }
 
