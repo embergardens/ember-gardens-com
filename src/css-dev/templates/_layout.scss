@@ -1,5 +1,6 @@
 .viewport {
    display: grid;
+   grid-template-rows: max-content auto;
    height: var( --vh );
    margin: 0;
    padding: 0;
@@ -8,6 +9,7 @@
 
    @include breakpoint( md ) {
       grid-template-columns: min-content 1fr;
+      grid-template-rows: auto;
    }
 
 }
