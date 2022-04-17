@@ -70,6 +70,7 @@ const GravityFormForm = ({
   const [generalError, setGeneralError] = useState("");
 
   const onSubmitCallback = async (values) => {
+    console.log({values})
     // Make sure we are not already waiting for a response
     if (!loading) {
       // Clean error
@@ -92,7 +93,7 @@ const GravityFormForm = ({
           .then(
             ({
               data: {
-                submitGravityFormsForm: { errors },
+                submitGfForm: { errors },
               },
             }) => {
               // Success if no errors returned.
@@ -109,6 +110,7 @@ const GravityFormForm = ({
           )
           .catch((error) => {
             setGeneralError("unknownError");
+            console.log({ formRes, error, reset })
             errorCallback({ data: formRes, error, reset });
           });
       } else {
