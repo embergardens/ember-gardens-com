@@ -37,6 +37,7 @@ const Sections = ({ data, postType }) => {
    })
 
    const currentBackground = currentObject[0] ? currentObject[0].background.color : 'gradient'
+   const currentOverride = currentObject[0] ? currentObject[0].background.text : null
 
    // Build Individual Sections
    const sections = sectionList.map( ( section, index ) => {
@@ -56,6 +57,7 @@ const Sections = ({ data, postType }) => {
          <div className="default-template">
             <ContentWrapper
                layout="open"
+               textOverride={ currentOverride }
                gradient={ currentBackground }
                sections={ sectionList }
                header={ <SectionNav items={ sectionList } /> }

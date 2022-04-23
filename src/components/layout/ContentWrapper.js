@@ -8,7 +8,7 @@ import BackgroundGradient from '../images/BackgroundGradient'
 import { SectionBackground } from '../images/SectionBackground'
 import { SvgFilters } from '../images/SvgFilters'
 
-export const ContentWrapper = ( { children, frame, header, footer, layout, image, gradient, sections = [], tag = 'main' } ) => {
+export const ContentWrapper = ( { children, frame, header, footer, layout, image, gradient, textOverride, sections = [], tag = 'main' } ) => {
    const layoutClass = layout ? `-${ layout }` : '-full'
    const ContentTag = tag
 
@@ -32,7 +32,7 @@ export const ContentWrapper = ( { children, frame, header, footer, layout, image
          <SvgFilters />
 
          { gradient &&
-            <BackgroundGradient theme={ gradient } />
+            <BackgroundGradient theme={ gradient } textOverride={ textOverride } />
          }
 
          { sectionList &&

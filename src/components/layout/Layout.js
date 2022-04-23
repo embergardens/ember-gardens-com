@@ -31,7 +31,7 @@ const Layout = ({ isHomePage, children }) => {
 
   useEffect(() => {
     document.querySelector(':root').dataset.themeColor = currentTextColor
-  })
+  }, [ currentTextColor ])
 
   // Remove v-cloak from all elements once loaded.
   useEffect(() => {
