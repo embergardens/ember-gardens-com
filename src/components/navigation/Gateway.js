@@ -34,6 +34,7 @@ export const Gateway = () => {
 
    // VARIABLES ====================================================
    const storageName = 'emberGardens:gateway'
+   const isPreview = process.env.IS_PREVIEW
    let isHomepage = false
 
    // STATE ====================================================
@@ -66,6 +67,14 @@ export const Gateway = () => {
    const checkStorage = () => {
       const local = localStorage.getItem( storageName )
       const session = sessionStorage.getItem( storageName )
+
+      if ( isPreview === true ) {
+         sessionStorage.setItem( storageName, true)
+         setInStorage( true )
+         setUserPassed( true )
+         toggleIsActive( false )
+         return
+      }
 
       if ( local === 'false' || session === 'false' ) {
          setInStorage( false )
