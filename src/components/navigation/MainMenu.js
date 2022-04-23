@@ -1,11 +1,12 @@
 // React / Gatsby --------------------------------------------------
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useRecoilValue, useSetRecoilState} from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import { useMediaQuery } from 'react-responsive'
 
 // Plugins ---------------------------------------------------------
 import { AnimatePresence, motion } from 'framer-motion'
+import FocusTrap from 'focus-trap-react'
 
 // Components ------------------------------------------------------
 import Link from './Link'
@@ -55,7 +56,7 @@ export const MainMenu = () => {
          transition: {
             when: 'beforeChildren',
             staggerChildren: 0.1,
-         }
+         },
       }
    }
 
@@ -111,7 +112,7 @@ export const MainMenu = () => {
       }
    }
 
-   const navOpen = useRecoilValue( navOpenState )
+   const [navOpen, setNavOpen ] = useRecoilState( navOpenState )
 
    const { mainMenu, options } = data
    const { menuItems: { nodes } } = mainMenu
@@ -119,84 +120,94 @@ export const MainMenu = () => {
 
    const menuItems = nodes.map( ( item, index ) => <MainMenuItem data={ item } index={ index } key={ item.label } />)
 
+   const handleKeydown = (e) => {
+      if ( e.code === 'Escape' ) {
+         setNavOpen( false )
+         document.querySelector('.navBar__trigger').focus()
+      }
+   }
+
    return (
       <AnimatePresence>
          { navOpen &&
-            <motion.nav
-               className="mainMenu"
-               variants={ motionMenu }
-               initial='closed'
-               animate={ navOpen ? 'open' : 'closed' }
-               exit='closed'
-               key='mainMenu'
-            >
-               <motion.div
-                  className="mainMenu__bgImage"
-                  variants={ motionBackground }
-               />
-               <motion.div
-                  className="mainMenu__bgGradient"
-                  variants={ motionGradient }
-               />
-               <div className="mainMenu__wrapper">
-                  <div className="mainMenu__primary">
-                     <ul className="mainMenu__primaryWrapper">
+            <FocusTrap>
+               <motion.nav
+                  className="mainMenu"
+                  variants={ motionMenu }
+                  initial='closed'
+                  animate={ navOpen ? 'open' : 'closed' }
+                  exit='closed'
+                  key='mainMenu'
+                  onKeyDown={ (e) => handleKeydown(e) }
+               >
+                  <motion.div
+                     className="mainMenu__bgImage"
+                     variants={ motionBackground }
+                  />
+                  <motion.div
+                     className="mainMenu__bgGradient"
+                     variants={ motionGradient }
+                  />
+                  <div className="mainMenu__wrapper">
+                     <div className="mainMenu__primary">
+                        <ul className="mainMenu__primaryWrapper">
 
-                        { menuItems }
+                           { menuItems }
 
-                     </ul>
-                     <motion.div
-                        className="mainMenu__primaryBorder"
-                        variants={ motionBorder }
-                     />
+                        </ul>
+                        <motion.div
+                           className="mainMenu__primaryBorder"
+                           variants={ motionBorder }
+                        />
+                     </div>
+                     <div className="mainMenu__social">
+                        <ul className="mainMenu__socialWrapper">
+
+                           { instagram.link.url &&
+                              <motion.li
+                                 className="mainMenu__socialItem"
+                                 variants={ motionSocial }
+                              >
+                                 <div className="mainMenu__socialIcon">
+                                    <IconInstagram />
+                                 </div>
+                                 <a className="mainMenu__socialLink" href={ instagram.link.url } target={ instagram.link.target }>
+                                    { instagram.text ? instagram.text : 'Instagram' }
+                                 </a>
+                              </motion.li>
+                           }
+
+                           { email.address &&
+                              <motion.li
+                                 className="mainMenu__socialItem"
+                                 variants={ motionSocial }
+                              >
+                                 <div className="mainMenu__socialIcon">
+                                    <IconEmail />
+                                 </div>
+                                 <a className="mainMenu__socialLink" href={ `mailto:${email.address}` } target='_blank' rel='noreferrer' >
+                                    { email.text ? email.text : 'Email' }
+                                 </a>
+                              </motion.li>
+                           }
+
+                           { signup.text &&
+                              <motion.li
+                                 className="mainMenu__socialSignup mainMenu__socialItem"
+                                 variants={ motionSocial }
+                              >
+                                 <h6 className="mainMenu__socialSignupTitle">
+                                    { signup.text ? signup.text : 'Sign Up' }
+                                 </h6>
+                                 <FormBlock formId={ signup } blockClass='mainMenu__socialSignupForm' />
+                              </motion.li>
+                           }
+
+                        </ul>
+                     </div>
                   </div>
-                  <div className="mainMenu__social">
-                     <ul className="mainMenu__socialWrapper">
-
-                        { instagram.link.url &&
-                           <motion.li
-                              className="mainMenu__socialItem"
-                              variants={ motionSocial }
-                           >
-                              <div className="mainMenu__socialIcon">
-                                 <IconInstagram />
-                              </div>
-                              <a className="mainMenu__socialLink" href={ instagram.link.url } target={ instagram.link.target }>
-                                 { instagram.text ? instagram.text : 'Instagram' }
-                              </a>
-                           </motion.li>
-                        }
-
-                        { email.address &&
-                           <motion.li
-                              className="mainMenu__socialItem"
-                              variants={ motionSocial }
-                           >
-                              <div className="mainMenu__socialIcon">
-                                 <IconEmail />
-                              </div>
-                              <a className="mainMenu__socialLink" href={ `mailto:${email.address}` } target='_blank' rel='noreferrer' >
-                                 { email.text ? email.text : 'Email' }
-                              </a>
-                           </motion.li>
-                        }
-
-                        { signup.text &&
-                           <motion.li
-                              className="mainMenu__socialSignup mainMenu__socialItem"
-                              variants={ motionSocial }
-                           >
-                              <h6 className="mainMenu__socialSignupTitle">
-                                 { signup.text ? signup.text : 'Sign Up' }
-                              </h6>
-                              <FormBlock formId={ signup } blockClass='mainMenu__socialSignupForm' />
-                           </motion.li>
-                        }
-
-                     </ul>
-                  </div>
-               </div>
-            </motion.nav>
+               </motion.nav>
+            </FocusTrap>
          }
       </AnimatePresence>
    )

@@ -121,12 +121,35 @@ export const NavLocationGroup = ( props ) => {
 
    const [ menuOpen, setMenuOpen ] = useState(false)
 
+   const handleKeyDown = (e, isLink = false ) => {
+      const key = e.code
+
+      if ( ( key === 'Enter' || key === 'Space' ) && ! isLink ) {
+         setMenuOpen( !menuOpen )
+      }
+
+      if ( key === 'Escape' ) {
+         setMenuOpen(false)
+      }
+   }
+
+   const handleBlur = (e) => {
+      if ( !e.currentTarget.contains(e.relatedTarget) ) {
+         setMenuOpen(false)
+      }
+   }
+
    const cityList = cities.map( ( city ) => {
       const { uri, title } = city
 
       return (
          <li className="navBar__locationCity" key={ city.title }>
-            <Link to={ uri } className="navBar__locationCityLink" onClick={ () => setMenuOpen(false) }>
+            <Link
+               to={ uri }
+               className="navBar__locationCityLink"
+               onClick={ () => setMenuOpen(false) }
+               onKeyDown={ (e) => handleKeyDown(e, true) }
+            >
                <span>{ title }</span>
                <div className="navBar__locationCityArrow">
                   <IconArrowDouble />
@@ -137,7 +160,7 @@ export const NavLocationGroup = ( props ) => {
    })
 
    return (
-      <div className="navBar__locationGroup">
+      <div className="navBar__locationGroup" onBlur={ (e) => handleBlur(e) }>
          <div className="navBar__locationGroupIcon">
             { state === 'ME' &&
                <IconMaine />
@@ -151,8 +174,10 @@ export const NavLocationGroup = ( props ) => {
             to={ link.url }
             aria-label={ link.title }
             // onMouseEnter={() => setMenuOpen(true)}
-            onMouseLeave={() => setMenuOpen(false)}
+            onMouseLeave={ () => setMenuOpen(false)}
             onClick={ () => setMenuOpen(true) }
+            onKeyDown={ (e) => handleKeyDown(e) }
+            tabIndex="0"
          >
             { state }
          </Link>

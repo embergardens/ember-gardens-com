@@ -495,3 +495,9 @@ a:focus {
   }
 
 }
+
+// A11Y
+
+[data-whatintent='mouse'] *:focus {
+  outline: none;
+}

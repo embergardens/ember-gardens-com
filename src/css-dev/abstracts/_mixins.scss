@@ -68,6 +68,11 @@
    }
 }
 
+@mixin focus-style( $offset: 3px, $color: currentColor ) {
+   outline: 3px solid $color;
+   outline-offset: $offset;
+}
+
 @mixin doubleArrow-link-style() {
    @include theme-text();
    align-items: center;

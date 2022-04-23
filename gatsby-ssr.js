@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react'
 import { RecoilRoot } from 'recoil'
+import 'what-input'
 import Layout from './src/components/layout/Layout'
 
 // custom typefaces
