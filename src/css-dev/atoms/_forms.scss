@@ -54,10 +54,9 @@ textarea {
    width: 100%;
 
    &:focus {
+      @include focus-style( -3px, var( --theme-color-accent ) );
       background-color: transparent;
       border-color: var( --theme-color-accent );
-      outline: 2px solid var( --theme-color-accent );
-      outline-offset: -3px;
    }
 }
 
@@ -116,9 +115,8 @@ select {
    }
 
    &:focus {
+      @include focus-style( -3px, var( --theme-color-accent ) );
       border-color: var( --theme-color-accent );
-      outline: 2px solid var( --theme-color-accent );
-      outline-offset: -3px;
    }
 
    option {
@@ -223,8 +221,7 @@ span.button,
 
       &:focus + label {
          &::before {
-            outline: 2px solid var( --theme-color-accent );
-            outline-offset: 2px;
+            @include focus-style( 2px, var( --theme-color-accent ) );
          }
       }
    }
@@ -272,8 +269,7 @@ span.button,
 
       &:focus + label {
          &::before {
-            outline: 2px solid var( --theme-color-accent );
-            outline-offset: 2px;
+            @include focus-style( 2px, var( --theme-color-accent ) );
          }
       }
    }

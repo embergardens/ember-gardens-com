@@ -71,6 +71,10 @@
 @mixin focus-style( $offset: 3px, $color: currentColor ) {
    outline: 3px solid $color;
    outline-offset: $offset;
+
+   [data-whatintent='mouse'] & {
+      outline: none;
+   }
 }
 
 @mixin doubleArrow-link-style() {

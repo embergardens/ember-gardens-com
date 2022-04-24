@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable arrow-body-style */
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Store
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { gatewayPassedState } from '../../store/homepage'
 
 // Motion
