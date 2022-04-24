@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
-import React from 'react'
+/* eslint-disable arrow-body-style */
+import React, { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
 import { currentSectionState } from '../../store/navigation'
 
@@ -13,6 +14,21 @@ export const ContentWrapper = ( { children, frame, header, footer, layout, image
    const ContentTag = tag
 
    const currentSection = useRecoilValue( currentSectionState )
+   // Get Current Section Background
+   const currentObject = sections.filter( (section) => {
+      if ( currentSection === section.slug ) {
+         return section
+      }
+   })
+
+   const currentBackground = currentObject[0] ? currentObject[0].background.color : 'gradient'
+   const currentOverride = currentObject[0] ? currentObject[0].background.text : null
+
+   useEffect(() => {
+      console.log({currentSection, currentObject, currentBackground })
+
+   }, [currentSection])
+
 
    const sectionList = sections.map( (section) => {
       const isCurrent = currentSection === section.slug
@@ -31,8 +47,8 @@ export const ContentWrapper = ( { children, frame, header, footer, layout, image
       <ContentTag className={ `contentWrapper ${ layoutClass }` }>
          <SvgFilters />
 
-         { gradient &&
-            <BackgroundGradient theme={ gradient } textOverride={ textOverride } />
+         { currentBackground &&
+            <BackgroundGradient theme={ currentBackground } textOverride={ currentOverride } />
          }
 
          { sectionList &&
