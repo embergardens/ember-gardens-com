@@ -106,6 +106,13 @@ export const Gateway = () => {
       checkStorage()
    }
 
+   const resetFocus = () => {
+      setTimeout(() => {
+         const trap = document.querySelector('.navBar__trigger')
+         if ( trap ) { trap.focus() }
+      }, 0);
+   }
+
    // TEMPLATE ====================================================
    if ( inStorage === true ) {
       return null
@@ -116,13 +123,14 @@ export const Gateway = () => {
          { isActive &&
             <ReactModal
                isOpen={true}
-               contentLabel='gateway content title'
+               contentLabel={ title }
                portalClassName='gateway'
                overlayClassName='gateway__overlay'
                className='gateway__content'
                bodyOpenClassName='-gatewayOpen'
                shouldCloseOnEsc={false}
                shouldCloseOnOverlayClick={false}
+               shouldReturnFocusAfterClose={true}
                preventScroll={true}
                // appElement={'#___gatsby'}
                overlayElement={
@@ -136,6 +144,7 @@ export const Gateway = () => {
                                  duration: 1.5
                               }
                            }}
+                           onAnimationComplete={ resetFocus }
                            {...props}
                         >
                            { imageData &&

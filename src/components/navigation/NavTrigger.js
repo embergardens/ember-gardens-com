@@ -311,19 +311,20 @@ export const NavTrigger = () => {
          initial='closed'
          animate={ navOpen ? 'menuOpen' : 'menuClosed' }
          whileHover={ navOpen ? 'menuOpenHover' : 'menuClosedHover' }
+         aria-label={ navOpen ? 'Click to close menu' : 'Click to open menu'}
       >
-         <IconMenuTrigger />
+         <IconMenuTrigger open={ navOpen } />
       </motion.button>
    )
 }
 
-export const IconMenuTrigger = ( props ) => {
+export const IconMenuTrigger = ({ open }) => {
    const textColor = 'currentColor'
    const iconColor = '#715191'
 
    return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54.2 48.4" className="iconMenuTrigger">
-         <title>Menu</title>
+         <title>{ open ? 'Close Menu' : 'Main Menu' }</title>
          <g id="close_group">
             <motion.path variants={ motionCloseC} id="close_c" d="M12.61,39A3.21,3.21,0,0,1,14,40.36a4.28,4.28,0,0,1,.52,2.17H11.85v-.47a1.27,1.27,0,0,0-.38-1,1.34,1.34,0,0,0-1-.37h-.07a1.35,1.35,0,0,0-1.36,1.36v2.61A1.35,1.35,0,0,0,10.43,46h.19a1.37,1.37,0,0,0,1-.36,1.29,1.29,0,0,0,.39-1v-.44h2.55a4.28,4.28,0,0,1-.5,2.09,3.45,3.45,0,0,1-1.36,1.37,4.13,4.13,0,0,1-2,.47h-.38a4.82,4.82,0,0,1-2.19-.49,3.7,3.7,0,0,1-1.55-1.41A4,4,0,0,1,6,44.09V42.65a4,4,0,0,1,.57-2.11A4.1,4.1,0,0,1,8.12,39.1a4.42,4.42,0,0,1,2.09-.51h.38A4.44,4.44,0,0,1,12.61,39Z" fill={ textColor }/>
             <motion.path variants={ motionCloseL} id="close_l" d="M18.5,45.75h3.38L22.15,48H15.63V38.72H18.5Z" fill={ textColor }/>
