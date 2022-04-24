@@ -2,33 +2,22 @@
 /* eslint-disable arrow-body-style */
 import React, { useEffect } from 'react'
 import { useRecoilValue } from 'recoil'
-import { currentSectionState } from '../../store/navigation'
+import { currentSectionObjectState, currentSectionState } from '../../store/navigation'
 
 import BackgroundMedia from '../images/BackgroundMedia'
 import BackgroundGradient from '../images/BackgroundGradient'
 import { SectionBackground } from '../images/SectionBackground'
 import { SvgFilters } from '../images/SvgFilters'
 
-export const ContentWrapper = ( { children, frame, header, footer, layout, image, gradient, textOverride, sections = [], tag = 'main' } ) => {
+export const ContentWrapper = ( { children, frame, header, footer, layout, image, sections = [], tag = 'main' } ) => {
    const layoutClass = layout ? `-${ layout }` : '-full'
    const ContentTag = tag
 
    const currentSection = useRecoilValue( currentSectionState )
-   // Get Current Section Background
-   const currentObject = sections.filter( (section) => {
-      if ( currentSection === section.slug ) {
-         return section
-      }
-   })
+   const currentSectionObject = useRecoilValue( currentSectionObjectState )
 
-   const currentBackground = currentObject[0] ? currentObject[0].background.color : 'gradient'
-   const currentOverride = currentObject[0] ? currentObject[0].background.text : null
-
-   useEffect(() => {
-      console.log({currentSection, currentObject, currentBackground })
-
-   }, [currentSection])
-
+   const currentBackground = currentSectionObject.background?.color
+   const currentOverride = currentSectionObject.background?.text
 
    const sectionList = sections.map( (section) => {
       const isCurrent = currentSection === section.slug

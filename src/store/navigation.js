@@ -15,6 +15,11 @@ export const currentSectionState = atom({
    default: null,
 })
 
+export const currentSectionObjectState = atom({
+   key: 'currentSectionObjectState',
+   default: {},
+})
+
 export const transitionImageState = atom({
    key: 'transitionImageState',
    default: { name: 'none', image: null },
