@@ -75,6 +75,7 @@ const HomepageVideo = () => {
          { ! introHasPlayed &&
             <ReactPlayer
             className="homeVideo__video -intro"
+            tabIndex='-1'
             url={ introVideos }
             height="100%"
             width="100%"
@@ -106,6 +107,7 @@ const HomepageVideo = () => {
          >
             <ReactPlayer
                className="homeVideo__video -loop"
+               tabIndex='-1'
                url={ loopVideos }
                height="100%"
                width="100%"

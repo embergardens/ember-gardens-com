@@ -80,10 +80,18 @@ const TransitionWarp = ( options ) => {
       }, 500 )
    }
 
+   const resetFocus = () => {
+      setTimeout(() => {
+         const trap = document.querySelector('[data-react-modal-body-trap]')
+         if ( trap ) { trap.focus() }
+      }, 500);
+   }
+
    // Lifecycle Hooks ======================
 	const onExitComplete = () => {
 		toggleNav()
 		resetScroll()
+      resetFocus()
 	}
 
    // Functional Methods ====================
