@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import { useMediaQuery } from 'react-responsive'
 
 // Plugins ---------------------------------------------------------
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 // Components ------------------------------------------------------
 import Link from './Link'
@@ -24,6 +24,7 @@ import { focusableElements, waitForEl } from '../../functions/utility'
 
 export const MainMenu = () => {
    const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
+   const shouldReduceMotion = useReducedMotion()
 
    const data = useStaticQuery(graphql`
       query MainMenuData {
@@ -47,7 +48,8 @@ export const MainMenu = () => {
       closed: {
          opacity: 0,
          transition: {
-            when: 'afterChildren'
+            when: 'afterChildren',
+            duration: shouldReduceMotion ? 0 : 0.5,
          }
       },
 
@@ -55,7 +57,8 @@ export const MainMenu = () => {
          opacity: 1,
          transition: {
             when: 'beforeChildren',
-            staggerChildren: 0.1,
+            staggerChildren: shouldReduceMotion ? 0 : 0.1,
+            duration: shouldReduceMotion ? 0 : 0.5,
          },
       }
    }
@@ -64,21 +67,32 @@ export const MainMenu = () => {
 
       closed: {
          opacity: 0,
-
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
    const motionGradient = {
       closed: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
@@ -88,13 +102,18 @@ export const MainMenu = () => {
          opacity: 0,
          height: desktop ? 0 : 1,
          width: desktop ? 1 : 0,
-
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
          height: desktop ? '100%' : 1,
-         width: desktop ? 1 : '100%'
+         width: desktop ? 1 : '100%',
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
@@ -102,13 +121,18 @@ export const MainMenu = () => {
 
       closed: {
          opacity: 0,
-         translateY: -100
-
+         translateY: -100,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
-         translateY: 0
+         translateY: 0,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
@@ -241,12 +265,15 @@ export const MainMenu = () => {
 }
 
 export const MainMenuItem = ({ data, index }) => {
-
+   const shouldReduceMotion = useReducedMotion()
    const motionPrimary = {
 
       closed: {
          opacity: 0,
-         translateY: -100
+         translateY: -100,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
 
       },
 
@@ -254,7 +281,8 @@ export const MainMenuItem = ({ data, index }) => {
          opacity: 1,
          translateY: 0,
          transition: {
-            delay: i * 0.1,
+            delay: shouldReduceMotion ? 0 : i * 0.1,
+            duration: shouldReduceMotion ? 0 : 0.5,
          },
       })
    }

@@ -4,8 +4,9 @@ import React, { useEffect, useRef } from "react"
 
 // Components ------------------------------------------------------
 import { Helmet } from "react-helmet"
-import { useRecoilValue } from "recoil"
-import { currentTextColorState } from "../../store/global"
+import { useRecoilState, useRecoilValue } from "recoil"
+import { stopVideoAutoplay, updateReducedMotionLocalStorage } from "../../functions/reducedMotion"
+import { currentTextColorState, reduceMotionState } from "../../store/global"
 import { Gateway } from "../navigation/Gateway"
 import { MainMenu } from "../navigation/MainMenu"
 import { Navbar } from "../navigation/Navbar"
@@ -36,6 +37,27 @@ const Layout = ({ isHomePage, children }) => {
   // Remove v-cloak from all elements once loaded.
   useEffect(() => {
     document.querySelectorAll('[v-cloak]').forEach((el) => el.removeAttribute('v-cloak') )
+  }, [])
+
+  const [reducedMotionStatus, setReducedMotionStatus] = useRecoilState( reduceMotionState )
+
+  useEffect(() => {
+    const motionQuery = matchMedia('(prefers-reduced-motion)')
+
+    const reducedMotionCheck = () => {
+      if ( motionQuery.matches ) {
+        console.warn('[EMBER GARDENS]: Reduced Motion setting is active. Autoplay and animations have been turned off.')
+        updateReducedMotionLocalStorage( true )
+        setReducedMotionStatus( true )
+        stopVideoAutoplay()
+      } else {
+        updateReducedMotionLocalStorage( false )
+        setReducedMotionStatus( false )
+      }
+    }
+
+    reducedMotionCheck()
+    motionQuery.addEventListener('change', reducedMotionCheck)
   }, [])
 
   const scrollRef = useRef()

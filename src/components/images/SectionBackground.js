@@ -1,7 +1,7 @@
 import React from 'react'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 export const SectionBackground = ({ data, active }) => {
 
@@ -11,18 +11,20 @@ export const SectionBackground = ({ data, active }) => {
 
    if (!imageData) return null
 
+   const shouldReduceMotion = useReducedMotion()
+
    const anime = {
       enter: {
          opacity: 0.9,
          transition: {
-            duration: 0.75
+            duration: shouldReduceMotion ? 2 :  0.75
          }
       },
 
       exit: {
          opacity: 0,
          transition: {
-            duration: 1.25
+            duration: shouldReduceMotion ? 2 :  1.25
          }
 
       }

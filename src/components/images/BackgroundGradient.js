@@ -1,6 +1,6 @@
 /* eslint-disable no-unreachable */
 import React, { useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
 import { useRecoilState } from 'recoil'
 import { currentTextColorState, currentThemeState } from '../../store/global'
@@ -37,6 +37,8 @@ const BackgroundGradient = ( { theme, textOverride } ) => {
    const [ currentTheme, setCurrentTheme ] = useRecoilState( currentThemeState )
    const [ currentTextColor, setCurrentTextColor ] = useRecoilState( currentTextColorState )
 
+   const shouldReduceMotion = useReducedMotion()
+
    useEffect(() => {
       setCurrentTheme( theme )
       setCurrentTextColor( updateTextTheme( theme, textOverride) )
@@ -47,7 +49,7 @@ const BackgroundGradient = ( { theme, textOverride } ) => {
          className="backgroundGradient"
          initial={{ backgroundImage: gradient( theme ) }}
          animate={{ backgroundImage: gradient( theme )}}
-         transition={{ duration: 1.5 }}
+         transition={{ duration: shouldReduceMotion ? 2 : 1.5 }}
       />
    )
 }

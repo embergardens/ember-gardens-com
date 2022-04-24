@@ -130,6 +130,10 @@
   }
 
   --theme-transition-speed: 750ms;
+
+  @media (prefers-reduced-motion: reduce) {
+    --theme-transition-speed: 0ms;
+  }
 }
 
  /* HTML elements */

@@ -204,6 +204,7 @@ export const Gateway = () => {
                                  type='button'
                                  className='gateway__button'
                                  onClick={youShallNotPass}
+                                 aria-label={`Click to answer ${failtext}`}
                               >
                                  {failtext}
                               </button>
@@ -211,6 +212,7 @@ export const Gateway = () => {
                                  type='button'
                                  className='gateway__button'
                                  onClick={youShallPass}
+                                 aria-label={`Click to answer ${passtext}`}
                               >
                                  {passtext}
                               </button>
