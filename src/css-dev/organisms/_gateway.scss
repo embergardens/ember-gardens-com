@@ -62,8 +62,7 @@
       }
 
       &:focus {
-         outline: 1px solid $c-coral;
-         outline-offset: 4px;
+         @include focus-style( 4px, $c-coral );
       }
    }
 
@@ -119,8 +118,7 @@
 
          &:focus-visible + label {
             &::before {
-               outline: 2px solid $c-white;
-               outline-offset: 2px;
+               @include focus-style( 2px, $c-white );
             }
          }
       }
@@ -153,10 +151,6 @@
 
    &__button {
       @include button( $color: $c-white );
-
-      &:focus {
-         outline: none;
-      }
    }
 
    &__footer {

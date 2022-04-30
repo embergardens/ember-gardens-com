@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable arrow-body-style */
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 // Store
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { gatewayPassedState } from '../../store/homepage'
 
 // Motion
@@ -34,6 +34,7 @@ export const Gateway = () => {
 
    // VARIABLES ====================================================
    const storageName = 'emberGardens:gateway'
+   const isPreview = process.env.IS_PREVIEW
    let isHomepage = false
 
    // STATE ====================================================
@@ -67,6 +68,14 @@ export const Gateway = () => {
       const local = localStorage.getItem( storageName )
       const session = sessionStorage.getItem( storageName )
 
+      if ( isPreview === true ) {
+         sessionStorage.setItem( storageName, true)
+         setInStorage( true )
+         setUserPassed( true )
+         toggleIsActive( false )
+         return
+      }
+
       if ( local === 'false' || session === 'false' ) {
          setInStorage( false )
          setUserPassed( false )
@@ -97,6 +106,13 @@ export const Gateway = () => {
       checkStorage()
    }
 
+   const resetFocus = () => {
+      setTimeout(() => {
+         const trap = document.querySelector('.navBar__trigger')
+         if ( trap ) { trap.focus() }
+      }, 0);
+   }
+
    // TEMPLATE ====================================================
    if ( inStorage === true ) {
       return null
@@ -107,13 +123,14 @@ export const Gateway = () => {
          { isActive &&
             <ReactModal
                isOpen={true}
-               contentLabel='gateway content title'
+               contentLabel={ title }
                portalClassName='gateway'
                overlayClassName='gateway__overlay'
                className='gateway__content'
                bodyOpenClassName='-gatewayOpen'
                shouldCloseOnEsc={false}
                shouldCloseOnOverlayClick={false}
+               shouldReturnFocusAfterClose={true}
                preventScroll={true}
                // appElement={'#___gatsby'}
                overlayElement={
@@ -127,6 +144,7 @@ export const Gateway = () => {
                                  duration: 1.5
                               }
                            }}
+                           onAnimationComplete={ resetFocus }
                            {...props}
                         >
                            { imageData &&
@@ -186,6 +204,7 @@ export const Gateway = () => {
                                  type='button'
                                  className='gateway__button'
                                  onClick={youShallNotPass}
+                                 aria-label={`Click to answer ${failtext}`}
                               >
                                  {failtext}
                               </button>
@@ -193,6 +212,7 @@ export const Gateway = () => {
                                  type='button'
                                  className='gateway__button'
                                  onClick={youShallPass}
+                                 aria-label={`Click to answer ${passtext}`}
                               >
                                  {passtext}
                               </button>

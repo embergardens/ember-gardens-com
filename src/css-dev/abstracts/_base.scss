@@ -130,6 +130,10 @@
   }
 
   --theme-transition-speed: 750ms;
+
+  @media (prefers-reduced-motion: reduce) {
+    --theme-transition-speed: 0ms;
+  }
 }
 
  /* HTML elements */
@@ -494,4 +498,10 @@ a:focus {
     margin-left: var(--spacing-0);
   }
 
+}
+
+// A11Y
+
+[data-whatintent='mouse'] *:focus {
+  outline: none;
 }

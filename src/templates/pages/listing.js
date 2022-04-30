@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import { kebabCase } from 'lodash'
 
 import { useRecoilState } from 'recoil'
-import { currentSectionState } from '../../store/navigation'
+import { currentSectionObjectState, currentSectionState } from '../../store/navigation'
 
 import Seo from '../../components/layout/Seo'
 import { ContentWrapper } from '../../components/layout/ContentWrapper'
@@ -21,17 +21,19 @@ const ListingTemplate = ({ data }) => {
    }
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
-   const currentBackground = background.color
+   const [ currentSectionObject, setCurrentSectionObject ] = useRecoilState( currentSectionObjectState )
 
    useEffect( () => {
       setCurrentSection( idName )
+      setCurrentSectionObject( listingPageTemplate )
+      document.body.setAttribute('current-section', idName)
    }, [])
 
    return (
       <>
          <Seo title={title} uri={uri} />
          <div className="listing-template">
-            <ContentWrapper layout="open" gradient={ currentBackground } sections={ [section] }>
+            <ContentWrapper layout="open" sections={ [section] }>
                <h1 className='sr-only'>{ title }</h1>
                <section className='pageSection -fullWidth' id={ idName }>
                   <div className='pageSection__wrapper'>

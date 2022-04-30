@@ -68,6 +68,15 @@
    }
 }
 
+@mixin focus-style( $offset: 3px, $color: currentColor ) {
+   outline: 3px solid $color;
+   outline-offset: $offset;
+
+   [data-whatintent='mouse'] & {
+      outline: none;
+   }
+}
+
 @mixin doubleArrow-link-style() {
    @include theme-text();
    align-items: center;
@@ -76,10 +85,22 @@
    font-weight: var(--fontWeight-bold);
    line-height: 1;
 
+   &:hover,
+   &:focus {
+      span {
+         margin: 0 0 0 1em;
+      }
+   }
+
+   &:focus {
+      @include focus-style();
+   }
+
    span {
       @include theme-text('accent');
       @include svg-contain( 15px, 15px );
       margin: 0 0 0 0.5em;
+      transition: margin 300ms $e-in-out;
    }
 }
 

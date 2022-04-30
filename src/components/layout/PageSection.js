@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer'
 
 // Store ---------------
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { currentSectionState } from '../../store/navigation'
+import { currentSectionObjectState, currentSectionState } from '../../store/navigation'
 
 // Components --------------------
 import { ContentDesigner } from '../content/ContentDesigner'
@@ -46,12 +46,14 @@ export const PageSection = ({ data }) => {
    const layoutClass = layout ? `-${layout}Layout` : ''
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
+   const [ currentSectionObject, setCurrentSectionObject ] = useRecoilState( currentSectionObjectState )
    const [ currentTextOverride, setCurrentTextOverride ] = useRecoilState( currentTextColorOverrideState )
 
    useEffect( () => {
       if ( inView ) {
          setCurrentTextOverride( text )
          setCurrentSection( idName )
+         setCurrentSectionObject( data )
          document.body.setAttribute('current-section', idName)
       }
    }, [inView] )
@@ -145,5 +147,3 @@ const LocationHero = ({ info }) => {
       </div>
    )
 }
-
-//https://www.google.com/maps/place/18+Jefferson+St,+Newburyport,+MA+01950/

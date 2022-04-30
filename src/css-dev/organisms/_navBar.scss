@@ -62,6 +62,10 @@
          color: $c-plum;
       }
 
+      &:focus {
+         @include focus-style( -8px );
+      }
+
       svg {
          overflow: visible;
          width: 42px;
@@ -87,6 +91,10 @@
       @include breakpoint( md ) {
          border-width: 1px 0 0 0;
          justify-content: center;
+      }
+
+      &:focus {
+         @include focus-style( -8px );
       }
 
       &Wrapper {
@@ -125,6 +133,10 @@
          transition: background $fast $e-in-out, color $fast $e-in-out;
       }
 
+      &:focus {
+         @include focus-style( -8px );
+      }
+
       @include breakpoint( md ) {
          border-width: 1px 0 0 0;
       }
@@ -147,6 +159,10 @@
          .navBar__ctaLink {
             color: $c-plum;
          }
+      }
+
+      &:focus-within {
+         @include focus-style( -8px, $c-plum );
       }
 
       &Icon {
@@ -176,6 +192,10 @@
 
          @include breakpoint( xl ) {
             font-size: var(--fontSize-12);
+         }
+
+         &:focus {
+            outline: none;
          }
       }
 
@@ -226,6 +246,10 @@
          }
       }
 
+      &:focus-within {
+         @include focus-style( 8px, $c-plum );
+      }
+
       &Icon {
          color: $c-plum;
          height: 20px;
@@ -248,6 +272,10 @@
          line-height: 1.1;
          text-decoration: none;
          transition: color 250ms ease-in-out;
+
+         &:focus {
+            outline: none;
+         }
       }
    }
 
@@ -308,9 +336,15 @@
          text-decoration: none;
          transition: color 250ms ease-in-out;
 
-         &:hover {
+         &:hover,
+         &:focus {
             color: $c-plum;
          }
+
+         &:focus {
+            @include focus-style( 0, $c-plum );
+         }
+
 
          span {
             margin: 0 8px 0 0;

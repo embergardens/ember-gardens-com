@@ -10,6 +10,7 @@ import ReactPlayer from 'react-player'
 import { useRecoilValue } from 'recoil'
 import { isPortraitState } from '../utility/Breakpoints'
 import { gatewayPassedState } from '../../store/homepage'
+import { reduceMotionState } from '../../store/global'
 
 // Assets
 import introDesktopMp4 from '../../assets/video/EG_DESKTOP_Intro_Option1_032722.mp4'
@@ -26,6 +27,7 @@ const HomepageVideo = () => {
 
    const storageName = 'emberGardens:introPlayed'
    const isPortrait = useMediaQuery( useRecoilValue( isPortraitState ) )
+   const reducedMotion = useRecoilValue( reduceMotionState )
 
    const [ introIsLoaded, setIntroIsLoaded ] = useState( false )
    const [ loopIsLoaded, setLoopIsLoaded ] = useState( false )
@@ -47,7 +49,6 @@ const HomepageVideo = () => {
          noIntro = true
       }
    }, [])
-
 
    // VIDEO FILES ==============================================
    const videos = {
@@ -71,60 +72,72 @@ const HomepageVideo = () => {
    const loopVideos = useMemo( () => [...loopFiles], [])
 
    return (
-      <div className='homeVideo'>
-         { ! introHasPlayed &&
-            <ReactPlayer
-            className="homeVideo__video -intro"
-            url={ introVideos }
-            height="100%"
-            width="100%"
-            playing={ playIntro }
-            muted
-            playsinline
-            volume={0}
-            progressInterval={ 1000 }
-            config={{
-               file: {
-                  attributes: {
-                     poster: videoPoster
-                  }
-               }
-            }}
-            onReady={ handleIntroReady }
-            onStart={ handleIntroStarted }
-            // onPlay={ handleIntroPlaying }
-            onEnded={ handleIntroEnded }
-            />
-         }
-         <motion.div
-            initial={{ opacity: 0 }}
-            animate={
-               playLoop && !noIntro
-               ? { opacity: 1, transition: { duration: 1 } }
-               : { opacity: 0 }
-            }
-         >
-            <ReactPlayer
-               className="homeVideo__video -loop"
-               url={ loopVideos }
-               height="100%"
-               width="100%"
-               playing={ playLoop }
-               muted
-               loop
-               playsinline
-               volume={0}
-               onReady={ handleLoopReady }
-               config={{
-                  file: {
-                     attributes: {
-                        poster: videoPoster
+      <>
+         { ! reducedMotion &&
+            <div className='homeVideo'>
+
+               { ! introHasPlayed &&
+                  <ReactPlayer
+                  className="homeVideo__video -intro"
+                  tabIndex='-1'
+                  url={ introVideos }
+                  height="100%"
+                  width="100%"
+                  playing={ playIntro }
+                  muted
+                  playsinline
+                  volume={0}
+                  progressInterval={ 1000 }
+                  config={{
+                     file: {
+                        attributes: {
+                           poster: videoPoster
+                        }
                      }
+                  }}
+                  onReady={ handleIntroReady }
+                  onStart={ handleIntroStarted }
+                  // onPlay={ handleIntroPlaying }
+                  onEnded={ handleIntroEnded }
+                  />
+               }
+               <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={
+                     playLoop && !noIntro
+                     ? { opacity: 1, transition: { duration: 1 } }
+                     : { opacity: 0 }
                   }
-               }}
-            />
-         </motion.div>
-      </div>
+               >
+                  <ReactPlayer
+                     className="homeVideo__video -loop"
+                     tabIndex='-1'
+                     url={ loopVideos }
+                     height="100%"
+                     width="100%"
+                     playing={ playLoop }
+                     muted
+                     loop
+                     playsinline
+                     volume={0}
+                     onReady={ handleLoopReady }
+                     config={{
+                        file: {
+                           attributes: {
+                              poster: videoPoster
+                           }
+                        }
+                     }}
+                  />
+               </motion.div>
+            </div>
+         }
+         { reducedMotion &&
+            <div className='homeVideo'>
+               <img src={ videoPoster} alt='' />
+            </div>
+         }
+      </>
    )
 }
 

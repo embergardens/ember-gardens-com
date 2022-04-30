@@ -74,6 +74,11 @@
          //W
          1px 100%;
       }
+
+      &:focus {
+         @include focus-style();
+      }
+
    } @else if $style == 'half' {
       background-image:
          //NW
@@ -116,5 +121,10 @@
          //W
          1px 100%;
       }
+
+      &:focus {
+         @include focus-style();
+      }
    }
+
 }

@@ -8,7 +8,7 @@ export const ListingRow = ({ rows }) => {
    const listings = rows.map( ( row, index ) => {
       const { label, featuredTile, listingTiles } = row
 
-      const tiles = listingTiles.map( (tile, index) => <ListingTile tile={ tile } key={ `${tile.title}-${index}`} /> )
+      const tiles = listingTiles.map( (tile, index) => <ListingTile tile={ tile } key={ `${tile.title}-${index}`} label={ label } /> )
 
       return (
          <div className="listingRow" key={`${label}-${index}`}>
@@ -17,7 +17,7 @@ export const ListingRow = ({ rows }) => {
             }
             <div className="listingRow__wrapper">
                { featuredTile &&
-                  <ListingTile tile={ featuredTile[0] } isFeatured={ true } />
+                  <ListingTile tile={ featuredTile[0] } isFeatured={ true } label={ label } />
                }
                { listingTiles &&
                   <>
@@ -36,15 +36,15 @@ export const ListingRow = ({ rows }) => {
    )
 }
 
-export const ListingTile = ({ tile, isFeatured = false }) => {
+export const ListingTile = ({ tile, label, isFeatured = false }) => {
    const { title, links, description = null } = tile
 
    const linkList = links.map( (tileLink, index) => {
-      const { link: { title, target, url } } = tileLink
+      const { link: { title: linkTitle, target, url } } = tileLink
 
       return (
-         <Link className="listingTile__link" to={ url } target={ target } key={ `${title}-${index}` }>
-            { title }
+         <Link className="listingTile__link" to={ url } target={ target } key={ `${linkTitle}-${index}` } aria-label={ `${label ? label : ''}: ${ title } - ${ linkTitle }`}>
+            { linkTitle }
             <span>
                <IconArrowDouble />
             </span>

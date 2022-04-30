@@ -2,7 +2,7 @@
 import React from 'react'
 import TransitionWarp from './TransitionWarp'
 
-const Link = ({ children, to, activeClassName, partiallyActive, ...other }) => {
+const Link = ({ children, to, activeClassName, partiallyActive, getProps, ...other }) => {
 
    const internal = /^\/(?!\/)/.test(to)
 
