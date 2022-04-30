@@ -43,6 +43,26 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
           value: fieldResponse,
         },
       };
+    case "NAME":
+      console.log({ id, type, fieldResponse })
+      // const nameInputs = inputs.map( ({id, label, isHidden }, index) => {
+      //   console.log({ id, label, index})
+      //   return {
+      //     inputId: id,
+      //     value: fieldResponse,
+      //     label: label,
+      //     isHidden
+      //   }
+      // })
+      const nameInputs = {}
+      inputs.forEach( ({ label, isHidden }) => {
+        nameInputs[`${label}`] = fieldResponse
+      })
+      console.log({nameInputs})
+      // return {
+      //   nameValues: nameInputs
+      // }
+      break;
     case "CONSENT":
     case "DATE":
     case "HIDDEN":

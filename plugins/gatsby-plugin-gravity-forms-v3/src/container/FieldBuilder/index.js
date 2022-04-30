@@ -1,7 +1,8 @@
 import classnames from "classnames";
-import React from "react";
+import React, { useEffect } from "react";
 
 import Captcha from "../../components/Captcha";
+import Honeypot from "../../components/Honeypot";
 import Html from "../../components/Html";
 import Input from "../../components/Input";
 import Multiselect from "../../components/Multiselect";
@@ -16,8 +17,25 @@ const FieldBuilder = ({
   databaseId,
   formFields,
   formLoading,
+  honeypot,
   presetValues,
 }) => {
+
+  useEffect(() => {
+    if ( honeypot ) {
+      const maxId = Math.max(...formFields.map(o => o.id), 0) || 9998
+      formFields.push({
+        descriptionPlacement: "INHERIT",
+        id: maxId + 1,
+        isRequired: false,
+        type:'HONEYPOT',
+        size: "LARGE",
+        subLabelPlacement: "INHERIT",
+        visibility: "VISIBLE"
+      })
+    }
+  },[])
+
   // Loop through fields and create
   return formFields.map((field) => {
     // Set the wrapper classes
@@ -27,6 +45,7 @@ const FieldBuilder = ({
       descriptionPlacement,
       isRequired,
       subLabelPlacement,
+      layoutGridColumnSpan,
       labelPlacement,
       type,
       size,
@@ -38,6 +57,7 @@ const FieldBuilder = ({
     let inputWrapperClass = classnames(
       "gfield",
       "gravityform__field",
+      `gf-grid-span-${layoutGridColumnSpan || 12 }`,
       "gravityform__field__" + valueToLowerCase(type),
       { [`gravityform__field--${valueToLowerCase(size)}`]: size },
       field.cssClass,
@@ -55,7 +75,7 @@ const FieldBuilder = ({
         )}`]: descriptionPlacement,
       },
       `gfield_visibility_${
-        valueToLowerCase ? "hidden" : valueToLowerCase(visibility)
+        isHiddenField ? "hidden" : valueToLowerCase(visibility)
       }`
     );
 
@@ -108,6 +128,16 @@ const FieldBuilder = ({
             wrapId={wrapId}
           />
         );
+      case "HONEYPOT":
+        return (
+          <Honeypot
+            key={id}
+            gfId={id}
+            defaultValue={defaultValue}
+            name={inputName}
+            wrapClassName={inputWrapperClass}
+          />
+        )
       case "NAME":
         return (
           <NameField

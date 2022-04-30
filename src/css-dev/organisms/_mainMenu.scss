@@ -254,6 +254,7 @@
       }
 
       &Form {
+         color: $c-white;
          margin: 0;
 
          form {
@@ -271,6 +272,11 @@
 
          .gform_body {
             margin: 0;
+         }
+
+         .gform_confirmation_wrapper {
+            color: $c-white;
+            font-weight: 700;
          }
       }
 

@@ -5,6 +5,7 @@ import { useFormContext } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import InputWrapper from "../InputWrapper";
+import { valueToLowerCase } from "../../utils/helpers";
 
 const Captcha = ({ captchaTheme, fieldData, name, ...wrapProps }) => {
   const { register, errors, setValue } = useFormContext();
@@ -55,11 +56,14 @@ const Captcha = ({ captchaTheme, fieldData, name, ...wrapProps }) => {
     >
       <ReCAPTCHA
         onExpired={changeCaptchaToken}
+        asyncScriptOnLoad={() => setLoaded(true)}
         onLoad={() => setLoaded(true)}
-        onVerify={changeCaptchaToken}
+        // onVerify={changeCaptchaToken}
+        onChange={changeCaptchaToken}
         ref={captchaRef}
         sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
-        theme={captchaTheme || "light"}
+        theme={ valueToLowerCase( captchaTheme ) || "dark"}
+        size='normal'
       />
       <input
         name="g-recaptcha-response"

@@ -192,7 +192,45 @@ span.button,
 
 .gform_fields {
    display: grid;
+   grid-template-columns: repeat(12, 1fr);
+   column-gap: var(--fontSize-16);
    row-gap: var(--fontSize-30);
+
+   > * {
+      grid-column: span 12;
+   }
+}
+
+.gf-grid-span {
+   &-3 {
+      @include breakpoint( xs ) {
+         grid-column: span 6;
+      }
+
+      @include breakpoint( md ) {
+         grid-column: span 3;
+      }
+   }
+
+   &-4 {
+      @include breakpoint( xs ) {
+         grid-column: span 6;
+      }
+
+      @include breakpoint( md ) {
+         grid-column: span 4;
+      }
+   }
+
+   &-6 {
+      @include breakpoint( xs ) {
+         grid-column: span 6;
+      }
+   }
+
+   &-12 {
+      grid-column: span 12;
+   }
 }
 
 .gfield_radio {
@@ -300,5 +338,33 @@ span.button,
    p:last-child {
       margin: 0;
 
+   }
+}
+
+.gravityform__field__honeypot {
+   display: none !important;
+   left: -9000px;
+   position: absolute !important;
+}
+
+.gravityform__button {
+   position: relative;
+}
+.gravityform__loader {
+   bottom: -12px;
+   height: 4px;
+   left: 50%;
+   position: absolute;
+   transform: translateX(-50%);
+   width: 100%;
+
+   > span {
+      background-color: var(--theme-color-accent, $c-plum);
+      display: block;
+      width: 100%;
+
+      > span {
+         background-color: currentColor;
+      }
    }
 }
