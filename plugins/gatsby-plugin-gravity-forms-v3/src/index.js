@@ -18,6 +18,8 @@ import submitMutation from "./submitMutation";
 import formatPayload from "./utils/formatPayload";
 import { valueToLowerCase } from "./utils/helpers";
 
+import BarLoader from 'react-spinners/BarLoader'
+
 /**
  * Component to take Gravity Form graphQL data and turn into
  * a fully functional form.
@@ -45,6 +47,7 @@ const GravityFormForm = ({
     descriptionPlacement,
     formFields,
     labelPlacement,
+    hasHoneypot,
     subLabelPlacement,
     title,
   } = form;
@@ -70,7 +73,6 @@ const GravityFormForm = ({
   const [generalError, setGeneralError] = useState("");
 
   const onSubmitCallback = async (values) => {
-    console.log({values})
     // Make sure we are not already waiting for a response
     if (!loading) {
       // Clean error
@@ -98,11 +100,13 @@ const GravityFormForm = ({
             }) => {
               // Success if no errors returned.
               if (!Boolean(errors?.length)) {
+                console.warn('[EMBER GARDENS:] Form Submitted')
                 successCallback({
                   data: formRes,
                   reset,
                 });
               } else {
+                console.warn('[EMBER GARDENS:] Form Validation Error', {errors})
                 handleGravityFormsValidationErrors(errors, setError);
                 errorCallback({ data: formRes, error: errors, reset });
               }
@@ -110,7 +114,7 @@ const GravityFormForm = ({
           )
           .catch((error) => {
             setGeneralError("unknownError");
-            console.log({ formRes, error, reset })
+            console.warn('[EMBER GARDENS:] Form Submission Error',{ formRes, errors, error, reset })
             errorCallback({ data: formRes, error, reset });
           });
       } else {
@@ -170,6 +174,7 @@ const GravityFormForm = ({
                   formFields={formFields.nodes}
                   presetValues={presetValues}
                   labelPlacement={labelPlacement}
+                  honeypot={hasHoneypot}
                 />
               </ul>
             </div>
@@ -186,8 +191,12 @@ const GravityFormForm = ({
                     Loading
                   </span>
                 ) : (
-                  submitButton?.text
+                  submitButton?.text || 'Submit'
                 )}
+                <div className="gravityform__loader" style={{ opacity: loading ? 1 : 0 }}>
+                  <BarLoader loading={loading} />
+                </div>
+
               </button>
             </div>
           </form>
@@ -218,6 +227,7 @@ export const GravityFormFields = graphql`
     description
     descriptionPlacement
     labelPlacement
+    hasHoneypot
     subLabelPlacement
     title
     submitButton {
