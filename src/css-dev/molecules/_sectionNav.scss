@@ -72,6 +72,10 @@
          }
       }
 
+      &:focus {
+         @include focus-style(8px);
+      }
+
       &::after {
          background: currentColor;
          bottom: -6px;

@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 // Data ------------------------------------------------------------
 
@@ -20,6 +20,8 @@ import { IconTruck } from '../icons/IconTruck'
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop, BreakpointNotDesktop, BreakpointNotSmallDesktop } from '../utility/Breakpoints'
 import Link from './Link'
+import { getStateName } from '../../functions/locations'
+import { waitForEl } from '../../functions/utility'
 
 // Store -----------------------------------------------------------
 
@@ -71,6 +73,7 @@ export const NavInstagram = ( props ) => {
 
    return (
       <Link className="navBar__instagram" to={ url.url } target={ url.target } rel="noreferrer">
+         <div className='sr-only'>Instagram</div>
          <IconInstagram />
       </Link>
    )
@@ -121,12 +124,42 @@ export const NavLocationGroup = ( props ) => {
 
    const [ menuOpen, setMenuOpen ] = useState(false)
 
+   const cityWrapperRef = useRef()
+
+   const handleKeyDown = (e, isLink = false ) => {
+      const key = e.code
+
+      if ( ( key === 'Enter' || key === 'Space' ) && ! isLink ) {
+         setMenuOpen( !menuOpen )
+         if ( !menuOpen ) {
+            waitForEl('.navBar__locationCityLink').then(() => {
+               cityWrapperRef.current.querySelector('.navBar__locationCityLink').focus()
+            })
+         }
+      }
+
+      if ( key === 'Escape' ) {
+         setMenuOpen(false)
+      }
+   }
+
+   const handleBlur = (e) => {
+      if ( !e.currentTarget.contains(e.relatedTarget) ) {
+         setMenuOpen(false)
+      }
+   }
+
    const cityList = cities.map( ( city ) => {
       const { uri, title } = city
 
       return (
          <li className="navBar__locationCity" key={ city.title }>
-            <Link to={ uri } className="navBar__locationCityLink" onClick={ () => setMenuOpen(false) }>
+            <Link
+               to={ uri }
+               className="navBar__locationCityLink"
+               onClick={ () => setMenuOpen(false) }
+               onKeyDown={ (e) => handleKeyDown(e, true) }
+            >
                <span>{ title }</span>
                <div className="navBar__locationCityArrow">
                   <IconArrowDouble />
@@ -137,7 +170,7 @@ export const NavLocationGroup = ( props ) => {
    })
 
    return (
-      <div className="navBar__locationGroup">
+      <div className="navBar__locationGroup" onBlur={ (e) => handleBlur(e) }>
          <div className="navBar__locationGroupIcon">
             { state === 'ME' &&
                <IconMaine />
@@ -149,10 +182,12 @@ export const NavLocationGroup = ( props ) => {
          <Link
             className="navBar__locationGroupLink"
             to={ link.url }
-            aria-label={ link.title }
+            aria-label={ `Click to view ${getStateName( state )} locations.` }
             // onMouseEnter={() => setMenuOpen(true)}
-            onMouseLeave={() => setMenuOpen(false)}
+            onMouseLeave={ () => setMenuOpen(false)}
             onClick={ () => setMenuOpen(true) }
+            onKeyDown={ (e) => handleKeyDown(e) }
+            tabIndex="0"
          >
             { state }
          </Link>
@@ -162,7 +197,7 @@ export const NavLocationGroup = ( props ) => {
                onMouseEnter={() => setMenuOpen(true)}
                onMouseLeave={() => setMenuOpen(false)}
             >
-               <ul className="navBar__locationCitiesWrapper">
+               <ul className="navBar__locationCitiesWrapper" ref={ cityWrapperRef }>
                   { cityList }
                </ul>
             </div>

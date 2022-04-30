@@ -50,7 +50,7 @@ export const SectionNav = ({ items }) => {
                animate='enter'
                exit='exit'
             >
-               <ul className="sectionNav__list">
+               <ul className="sectionNav__list" role="navigation" aria-label='Page section navigation'>
                   { sections }
                </ul>
             </motion.nav>
@@ -65,7 +65,7 @@ export const SectionNavLink = ({ title, slug }) => {
    const hash = `#${ slug }`
 
    return (
-      <a className={`sectionNav__link ${ isCurrent }`} href={ hash }>
+      <a className={`sectionNav__link ${ isCurrent }`} href={ hash } aria-label={ `Click to scroll to section ${title}` }>
          { title }
       </a>
    )

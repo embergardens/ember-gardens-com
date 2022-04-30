@@ -111,11 +111,10 @@
       justify-content: start;
       margin: 0;
       overflow: hidden;
-      padding: 1.6rem 0;
+      padding: 1.6rem 0 1.6rem 6px;
       position: relative;
 
-      &:hover,
-      &:focus {
+      &:hover {
          .mainMenu__primaryLink:not(.-currentPage) {
 
             + .mainMenu__primaryLinkIcon {
@@ -147,6 +146,10 @@
 
       @include breakpoint( lg ) {
          font-size: var(--fontSize-55);
+      }
+
+      &:focus {
+         @include focus-style( 3px, $c-white );
       }
 
       &.-currentPage {
@@ -209,6 +212,10 @@
       > * + * {
          margin-left: 30px;
       }
+
+      &:not(.mainMenu__socialSignup):focus-within {
+         @include focus-style( 3px, $c-white );
+      }
    }
 
    &__socialIcon {
@@ -226,6 +233,7 @@
       &:hover,
       &:focus {
          color: $c-white;
+         outline: none;
       }
    }
 
@@ -274,10 +282,18 @@
          input[type="EMAIL"] {
             border: 1px solid $c-white;
             color: $c-white;
+
+            &:focus {
+               @include focus-style( 3px, $c-white );
+            }
          }
 
          button[type="submit"] {
             @include button( $style: 'full', $gap: 40px, $color: $c-white );
+
+            &:focus {
+               @include focus-style( 3px, $c-white );
+            }
          }
       }
 

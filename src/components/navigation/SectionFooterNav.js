@@ -13,24 +13,28 @@ export const SectionFooterNav = ({ list }) => {
    let label = ''
    let slug = ''
    let footer = false
+   let aria = ''
 
    if ( next === list.length ) {
       label = 'TOP'
       slug = list[0].slug
       footer = true
+      aria = 'Scroll back to top of page.'
    } else if ( list[next].isFooter ) {
       label = 'MORE'
       slug = list[next].slug
+      aria = 'Scroll to footer'
    } else if ( next < list.length ) {
       label = list[next].navTitle || list[next].title
       slug = list[next].slug
+      aria = `Scroll to next section: ${ label }`
    }
 
    return (
       <div className="sectionFooter__nav">
          { list.length > 1 &&
             <>
-               <a href={ `#${ slug }` } className='sectionFooter__navLink'>
+               <a href={ `#${ slug }` } className='sectionFooter__navLink' aria-label={ aria } >
                   { label }
                </a>
                <div className={ `sectionFooter__navIcon ${ footer ? '-reverse' : ''}` }>

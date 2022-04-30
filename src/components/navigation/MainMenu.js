@@ -1,11 +1,11 @@
 // React / Gatsby --------------------------------------------------
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import { useRecoilValue, useSetRecoilState} from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil'
 import { useMediaQuery } from 'react-responsive'
 
 // Plugins ---------------------------------------------------------
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 // Components ------------------------------------------------------
 import Link from './Link'
@@ -20,9 +20,11 @@ import { IconEmail } from '../icons/IconEmail'
 // import { IconExternalLink } from '../icons/IconExternalLink'
 import { IconInstagram } from '../icons/IconInstagram'
 import { FormBlock } from '../blocks/FormBlock'
+import { focusableElements, waitForEl } from '../../functions/utility'
 
 export const MainMenu = () => {
    const desktop = useMediaQuery( useRecoilValue( isDesktop ) )
+   const shouldReduceMotion = useReducedMotion()
 
    const data = useStaticQuery(graphql`
       query MainMenuData {
@@ -46,7 +48,8 @@ export const MainMenu = () => {
       closed: {
          opacity: 0,
          transition: {
-            when: 'afterChildren'
+            when: 'afterChildren',
+            duration: shouldReduceMotion ? 0 : 0.5,
          }
       },
 
@@ -54,8 +57,9 @@ export const MainMenu = () => {
          opacity: 1,
          transition: {
             when: 'beforeChildren',
-            staggerChildren: 0.1,
-         }
+            staggerChildren: shouldReduceMotion ? 0 : 0.1,
+            duration: shouldReduceMotion ? 0 : 0.5,
+         },
       }
    }
 
@@ -63,21 +67,32 @@ export const MainMenu = () => {
 
       closed: {
          opacity: 0,
-
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
    const motionGradient = {
       closed: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
@@ -87,13 +102,18 @@ export const MainMenu = () => {
          opacity: 0,
          height: desktop ? 0 : 1,
          width: desktop ? 1 : 0,
-
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
          height: desktop ? '100%' : 1,
-         width: desktop ? 1 : '100%'
+         width: desktop ? 1 : '100%',
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
@@ -101,23 +121,63 @@ export const MainMenu = () => {
 
       closed: {
          opacity: 0,
-         translateY: -100
-
+         translateY: -100,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       },
 
       open: {
          opacity: 1,
-         translateY: 0
+         translateY: 0,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
       }
    }
 
-   const navOpen = useRecoilValue( navOpenState )
+   const [navOpen, setNavOpen ] = useRecoilState( navOpenState )
+   const [focusList, setFocusList] = useState([])
+   const menuRef = useRef(null)
 
    const { mainMenu, options } = data
    const { menuItems: { nodes } } = mainMenu
    const { acfOptionsNavigation: { navigation: { instagram, email, signup } } } = options
 
+   useEffect(() => {
+      if ( !navOpen ) { return }
+
+      waitForEl('.mainMenu').then(() => {
+         const focused = [ document.querySelector('.navBar__trigger'), ...menuRef.current.querySelectorAll( focusableElements() ) ]
+         setFocusList( () => focused )
+         focused[1].focus()
+      })
+
+   }, [navOpen])
+
    const menuItems = nodes.map( ( item, index ) => <MainMenuItem data={ item } index={ index } key={ item.label } />)
+
+   const handleKeydown = (e) => {
+      if ( e.code === 'Escape' ) {
+         setNavOpen( false )
+         document.querySelector('.navBar__trigger').focus()
+      }
+
+      if ( e.code === 'Tab' ) {
+         const firstEl = focusList[0]
+         const lastEl = focusList[focusList.length - 1]
+
+         if (!e.shiftKey && document.activeElement === lastEl) {
+            firstEl.focus()
+            return e.preventDefault()
+         }
+
+         if (e.shiftKey && document.activeElement === firstEl) {
+            lastEl.focus()
+            e.preventDefault()
+         }
+      }
+   }
 
    return (
       <AnimatePresence>
@@ -129,6 +189,8 @@ export const MainMenu = () => {
                animate={ navOpen ? 'open' : 'closed' }
                exit='closed'
                key='mainMenu'
+               onKeyDown={ (e) => handleKeydown(e) }
+               ref={menuRef}
             >
                <motion.div
                   className="mainMenu__bgImage"
@@ -203,12 +265,15 @@ export const MainMenu = () => {
 }
 
 export const MainMenuItem = ({ data, index }) => {
-
+   const shouldReduceMotion = useReducedMotion()
    const motionPrimary = {
 
       closed: {
          opacity: 0,
-         translateY: -100
+         translateY: -100,
+         transition: {
+            duration: shouldReduceMotion ? 0 : 0.5,
+         }
 
       },
 
@@ -216,7 +281,8 @@ export const MainMenuItem = ({ data, index }) => {
          opacity: 1,
          translateY: 0,
          transition: {
-            delay: i * 0.1,
+            delay: shouldReduceMotion ? 0 : i * 0.1,
+            duration: shouldReduceMotion ? 0 : 0.5,
          },
       })
    }

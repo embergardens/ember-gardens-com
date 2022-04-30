@@ -90,6 +90,14 @@ module.exports = {
       },
     },
 
+    // ENV Variables ==========================
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        allowList: ["IS_PREVIEW"]
+      },
+    },
+
     // Helmet =======================================
     `gatsby-plugin-react-helmet`,
 
