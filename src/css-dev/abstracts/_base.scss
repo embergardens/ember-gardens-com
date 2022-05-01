@@ -502,6 +502,7 @@ a:focus {
 
 // A11Y
 
-[data-whatintent='mouse'] *:focus {
+[data-whatintent='mouse'] *:focus,
+[data-whatintent='touch'] *:focus {
   outline: none;
 }

@@ -72,7 +72,8 @@
    outline: 3px solid $color;
    outline-offset: $offset;
 
-   [data-whatintent='mouse'] & {
+   [data-whatintent='mouse'] &,
+   [data-whatintent='touch'] & {
       outline: none;
    }
 }
