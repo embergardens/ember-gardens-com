@@ -39,8 +39,15 @@ module.exports = {
           // imageMaxWidth: 1024,
           // fallbackImageMaxWidth: 800,
           // imageQuality: 90,
-          // createStaticFiles: true,
+          createStaticFiles: true,
           generateWebpImages: true,
+        },
+        type: {
+          MediaItem: {
+            localFile: {
+              maxFileSizeBytes: 104857600, // 100Mb
+            },
+          },
         },
         debug: {
           graphql: {
@@ -65,6 +72,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/assets/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `videos`,
+        path: `${__dirname}/src/assets/video`,
       },
     },
 
