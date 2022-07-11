@@ -30,6 +30,8 @@ export const homepageFragments = graphql`
                   }
                   style
                }
+
+
             }
          }
       }

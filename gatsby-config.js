@@ -19,6 +19,7 @@ module.exports = {
     `gatsby-plugin-gatsby-cloud`,
 
     // Wordpress =======================================
+    // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/docs/plugin-options.md ======
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -45,6 +46,7 @@ module.exports = {
         type: {
           MediaItem: {
             localFile: {
+              // excludeByMimeTypes: [`image/jpg`],
               maxFileSizeBytes: 104857600, // 100Mb
             },
           },
@@ -86,6 +88,9 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
+
+    // Video Plugins =======================================
+    `gatsby-transformer-ffmpeg`,
 
     // Gatsby Transition Link ===================================
     `gatsby-plugin-transition-link`,
