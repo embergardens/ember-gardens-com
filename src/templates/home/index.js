@@ -12,7 +12,14 @@ import HomepageVideo from '../../components/video/HomepageVideo'
 
 const Home = ({ data }) => {
    const { page } = data
-   const { title, featuredImage, excerpt, uri, template: { homepageTemplate: { buttongroup } } } = page
+   const { title, featuredImage, excerpt, uri,
+      template: {
+         homepageTemplate: {
+            buttongroup,
+            ...videoUploads
+         }
+      }
+   } = page
 
    const buttons = buttongroup.map( ( btn, index ) => {
       const { style, button } = btn
@@ -31,7 +38,7 @@ const Home = ({ data }) => {
                <HomepageVideo />
             </Suspense> */}
             <h1 className='sr-only'>{ title }</h1>
-            <HomepageVideo />
+            <HomepageVideo videos={ videoUploads } />
             <ContentWrapper layout="splash">
                <section className="homepage__wrapper">
                   <div className="homepage__content">

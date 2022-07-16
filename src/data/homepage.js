@@ -30,6 +30,36 @@ export const homepageFragments = graphql`
                   }
                   style
                }
+               mobileBackgroundVideoImage {
+                  localFile {
+                     publicURL
+                  }
+               }
+               mobileBackgroundVideo {
+                  localFile {
+                     ...LocalVideo
+                  }
+               }
+               mobileBackgroundLoopVideo {
+                  localFile {
+                     ...LocalVideo
+                  }
+               }
+               desktopBackgroundVideoImage {
+                  localFile {
+                     publicURL
+                  }
+               }
+               desktopBackgroundVideo {
+                  localFile {
+                     ...LocalVideo
+                  }
+               }
+               desktopBackgroundLoopVideo {
+                  localFile {
+                     ...LocalVideo
+                  }
+               }
 
 
             }

@@ -90,6 +90,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
 
     // Video Plugins =======================================
+    `gatsby-plugin-ffmpeg`,
     `gatsby-transformer-ffmpeg`,
 
     // Gatsby Transition Link ===================================

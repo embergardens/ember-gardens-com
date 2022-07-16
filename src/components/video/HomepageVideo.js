@@ -12,18 +12,15 @@ import { isPortraitState } from '../utility/Breakpoints'
 import { gatewayPassedState } from '../../store/homepage'
 import { reduceMotionState } from '../../store/global'
 
-// Assets
-import introDesktopMp4 from '../../assets/video/EG_DESKTOP_Intro_Option1_032722.mp4'
-import loopDesktopMp4 from '../../assets/video/EG_DESKTOP_Loop_Option1_032722.mp4'
-
-import introMobileMp4 from '../../assets/video/EG_MOBILE_Intro_Option1_032722.mp4'
-import loopMobileMp4 from '../../assets/video/EG_MOBILE_Loop_Option1_032722.mp4'
-
-import desktopPoster from '../../assets/images/EG_DESKTOP_Still_Option1_032722.jpg'
-import mobilePoster from '../../assets/images/EG_MOBILE_Still_Option1_032722.jpg'
-
-
-const HomepageVideo = () => {
+const HomepageVideo = ({ videos: uploads }) => {
+   const {
+      desktopBackgroundVideo: desktopIntro,
+      desktopBackgroundLoopVideo: desktopLoop,
+      desktopBackgroundVideoImage: desktopStill,
+      mobileBackgroundVideo: mobileIntro,
+      mobileBackgroundLoopVideo: mobileLoop,
+      mobileBackgroundVideoImage: mobileStill,
+   } = uploads
 
    const storageName = 'emberGardens:introPlayed'
    const isPortrait = useMediaQuery( useRecoilValue( isPortraitState ) )
@@ -51,22 +48,33 @@ const HomepageVideo = () => {
    }, [])
 
    // VIDEO FILES ==============================================
+   const getMediaData = ( media, video = true ) => {
+      if ( media?.localFile?.publicURL ) {
+         if ( video ) {
+            return {
+               src: media.localFile.publicURL,
+               type: `video/${media.localFile.extension}`
+            }
+         }
+         return media.localFile.publicURL
+      }
+      console.warn( `[EMBER GARDENS:] Homepage video file is missing. Please check that all media files have been added in Wordpress.`, { uploads })
+      return null
+   }
+
    const videos = {
       intro: {
-         mobile: [
-            // { src: webmVideo, type: 'video/webm' },
-            { src: introMobileMp4, type: 'video/mp4' }
-         ],
-         desktop: [ { src:introDesktopMp4, type: 'video/mp4' } ]
+         mobile: [ getMediaData( mobileIntro ) ],
+         desktop: [ getMediaData( desktopIntro ) ]
       },
       loop: {
-         mobile: [ { src: loopMobileMp4, type: 'video/mp4' } ],
-         desktop: [ { src: loopDesktopMp4, type: 'video/mp4' } ]
+         mobile: [ getMediaData( mobileLoop ) ],
+         desktop: [ getMediaData( desktopLoop ) ]
       }
    }
    const introFiles = isPortrait ? videos.intro.mobile : videos.intro.desktop
    const loopFiles = isPortrait ? videos.loop.mobile : videos.loop.desktop
-   const videoPoster = isPortrait ? mobilePoster : desktopPoster
+   const videoPoster = isPortrait ? getMediaData( mobileStill, false ) : getMediaData( desktopStill, false )
 
    const introVideos = useMemo( () => [...introFiles], [])
    const loopVideos = useMemo( () => [...loopFiles], [])
@@ -134,7 +142,7 @@ const HomepageVideo = () => {
          }
          { reducedMotion &&
             <div className='homeVideo'>
-               <img src={ videoPoster} alt='' />
+               <img src={ videoPoster } alt='' />
             </div>
          }
       </>
