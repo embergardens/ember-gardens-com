@@ -16,12 +16,14 @@ export const navigationFragments = graphql`
                state
                link {
                   ... on WpLocation {
+                     id
                      uri
                      slug
                   }
                }
                cities {
                   ... on WpLocation {
+                     id
                      title
                      uri
                   }
