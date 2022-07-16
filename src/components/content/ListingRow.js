@@ -38,9 +38,12 @@ export const ListingRow = ({ rows }) => {
 
 export const ListingTile = ({ tile, label, isFeatured = false }) => {
    const { title, links, description = null } = tile
-
    const linkList = links.map( (tileLink, index) => {
-      const { link: { title: linkTitle, target, url } } = tileLink
+      const { link } = tileLink
+
+      if ( !link ) { return }
+
+      const { title: linkTitle, target, url } = link
 
       return (
          <Link className="listingTile__link" to={ url } target={ target } key={ `${linkTitle}-${index}` } aria-label={ `${label ? label : ''}: ${ title } - ${ linkTitle }`}>
