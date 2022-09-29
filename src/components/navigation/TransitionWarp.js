@@ -148,6 +148,7 @@ const TransitionWarp = ( options ) => {
       }
    }
 
+   // need to cancelAnimationFrame and clean up loop
    const motionRenderLoop = () => {
       motionRender()
       if ( Date.now() - motion.timeStart < motion.duration + motion.delayPerPath * (motion.paths.length - 1) + motion.delayPointsMax ) {
