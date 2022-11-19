@@ -3,7 +3,7 @@
    &__nav {
       align-items: center;
       bottom: -1rem;
-      display: none;
+      display: grid;
       gap: 15px;
       grid-auto-columns: max-content;
       grid-auto-flow: column dense;
@@ -11,10 +11,7 @@
       right: 0;
       transform-origin: 100% 0;
       transform: rotate(90deg);
-
-      @include breakpoint( xs ) {
-         display: grid;
-      }
+      z-index: 800;
 
       &:focus-within {
          @include focus-style();

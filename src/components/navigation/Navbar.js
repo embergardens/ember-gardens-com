@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 // Data ------------------------------------------------------------
 
@@ -83,12 +83,18 @@ export const NavLink = ( props ) => {
    const { data, index } = props
    const {name, link } = data
    const [ isHover, setIsHover ] = useState( false )
+   const [ isCurrent, setCurrent ] = useState( false )
+
+   useEffect(() => {
+      setCurrent(() => window.location.pathname === link.url)
+   }, [window.location.pathname])
 
    return (
       <div
          className="navBar__cta"
          onMouseEnter={() => setIsHover(true)}
          onMouseLeave={() => setIsHover(false)}
+         data-current-page={isCurrent}
       >
          <div className="navBar__ctaIcon">
             { index === 0 &&
