@@ -1,4 +1,6 @@
 .mainMenu {
+   $b: &;
+
    @include viewport();
    background: #334455;
    bottom: 0;
@@ -154,10 +156,7 @@
 
       &.-currentPage {
          opacity: 0.5;
-
-         &:hover {
-            cursor: default;
-         }
+         pointer-events: none;
       }
    }
 
@@ -216,6 +215,15 @@
       &:not(.mainMenu__socialSignup):focus-within {
          @include focus-style( 3px, $c-white );
       }
+
+      &[data-current-page="true"] {
+
+         #{$b}__socialIcon {
+            opacity: 0.5;
+            pointer-events: none;
+         }
+
+      }
    }
 
    &__socialIcon {
@@ -234,6 +242,11 @@
       &:focus {
          color: $c-white;
          outline: none;
+      }
+
+      &.-currentPage {
+         opacity: 0.5;
+         pointer-events: none;
       }
    }
 

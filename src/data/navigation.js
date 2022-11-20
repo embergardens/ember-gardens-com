@@ -37,7 +37,10 @@ export const navigationFragments = graphql`
                text
             }
             email {
-               address
+               address {
+                  url
+                  target
+               }
                text
             }
             signup {

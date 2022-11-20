@@ -22,7 +22,7 @@ const Link = ({ children, to, activeClassName, partiallyActive, getProps, ...oth
       )
    }
    return (
-      <a href={to} {...other}>
+      <a href={to} {...other} data-external-link>
          {children}
       </a>
    )
