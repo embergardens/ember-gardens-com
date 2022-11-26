@@ -47,6 +47,34 @@
       right: 0;
    }
 
+   &.-graphicVersion {
+      &::after {
+         background: var(--imageBackground);
+         bottom: 0;
+         content: '';
+         position: absolute;
+         top: 0;
+      }
+
+      &::before {
+         width: 200%;
+      }
+
+      &.-leftLayout {
+         &::after {
+            left: 100%;
+            right: -100%;
+         }
+      }
+
+      &.-rightLayout {
+         &::after {
+            left: -100%;
+            right: 100%;
+         }
+      }
+   }
+
    &.-gradientOverlay,
    &.-plumOverlay,
    &.-coralOverlay,

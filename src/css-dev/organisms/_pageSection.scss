@@ -25,6 +25,14 @@
          width: $desktopContentHalf;
       }
 
+      h1 {
+         text-align: center;
+
+         @include breakpoint( md ) {
+            text-align: left;
+         }
+      }
+
       &.-leftLayout {
 
          @include breakpoint( md ) {
@@ -36,6 +44,33 @@
 
          @include breakpoint( md ) {
             margin-right: $desktopContentHalf;
+         }
+      }
+   }
+
+   &.-graphicVersion {
+      position: relative;
+
+      h1 {
+         font-family: $ff-graphic;
+         font-size: min(17vh, 23vw);
+         font-weight: 400;
+         line-height: 0.8;
+         margin: 0;
+         text-transform: uppercase;
+
+         @include breakpoint( md ) {
+            font-size: 11vw;
+         }
+      }
+
+      .pageSection__halfImage {
+         flex: 0 1 50vh;
+         height: 50vh;
+
+         @include breakpoint( sm ) {
+            flex: 0 0 60vh;
+            height: 60vh;
          }
       }
    }
@@ -105,6 +140,34 @@
       height: 100%;
       position: relative;
       width: 100%;
+
+      .-graphicVersion & {
+         &::before {
+            height: 200%;
+         }
+
+         &::after {
+            background: var(--imageBackground);
+            content: '';
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            top: 100%;
+            transform: translateY(-100%);
+            transition: opacity 600ms ease-in-out, transform 600ms ease-in-out;
+            width: 100%;
+            z-index: -1;
+         }
+      }
+
+      [data-current="true"].-graphicVersion & {
+
+         &::after {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
 
       &.-gradientOverlay,
       &.-plumOverlay,

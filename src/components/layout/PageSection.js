@@ -29,7 +29,7 @@ export const PageSection = ({ data }) => {
       content,
       eyebrow,
       locationInfo,
-      background: { layout, half, image, imageBg, size, text },
+      background: { layout, half, image, imageBg, size, text, version },
    } = data
 
    const imageData = getImage(image?.localFile)
@@ -44,6 +44,7 @@ export const PageSection = ({ data }) => {
 
    const idName = kebabCase( isHero ? pageTitle : navTitle || title )
    const layoutClass = layout ? `-${layout}Layout` : ''
+   const bgColor = imageBg ? imageBg : imageData.backgroundColor
 
    const [ currentSection, setCurrentSection ] = useRecoilState( currentSectionState )
    const [ currentSectionObject, setCurrentSectionObject ] = useRecoilState( currentSectionObjectState )
@@ -60,12 +61,17 @@ export const PageSection = ({ data }) => {
 
 
    return (
-      <section ref={ ref } id={ idName } className={`pageSection -${ style } ${ layoutClass }`}>
+      <section
+         ref={ ref }
+         id={ idName }
+         className={`pageSection -${ style } ${ layoutClass } ${ version ? '-graphicVersion' : '' }`}
+         data-current={ inView }
+      >
          { mobile && style === 'halfWidth' &&
             <div className="pageSection__halfImage">
                <div
                   className={`pageSection__halfImageWrapper ${ overlayClass }` }
-                  style={{ backgroundColor: `${ imageBg ? imageBg : imageData.backgroundColor }`}}
+                  style={{ backgroundColor: `${ bgColor }`, '--imageBackground': bgColor }}
                >
                   <GatsbyImage
                      alt={ image.altText }
