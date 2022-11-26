@@ -102,6 +102,20 @@
   --fontSize-90: 5.625rem; // 90
   --fontSize-120: 7.5rem; // 120
 
+  --fontSize-emphasized: var(--fontSize-20);
+
+  @include breakpoint( sm ) {
+    --fontSize-emphasized: var(--fontSize-22);
+  }
+
+  @include breakpoint( md ) {
+    --fontSize-emphasized: var(--fontSize-24);
+  }
+
+  @include breakpoint( xl ) {
+    --fontSize-emphasized: var(--fontSize-26);
+  }
+
   --color-primary:#{ $c-plum };
   --color-text: #{ $c-dark };
   --color-text-light: #4f5969;

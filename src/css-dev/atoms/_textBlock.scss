@@ -1,10 +1,7 @@
 .textBlock {
-   .-hero > & {
-      &:first-child {
-         p:first-child {
-            @include intro();
-         }
-      }
+
+   .emphasized-paragraph {
+      @include intro();
    }
 
    &.-details {

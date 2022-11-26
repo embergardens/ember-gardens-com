@@ -12,6 +12,15 @@ export const navigationFragments = graphql`
                   url
                }
             }
+            locationsLinkType
+            locationsQuickLink {
+               name
+               link {
+                  target
+                  title
+                  url
+               }
+            }
             locations {
                state
                link {
