@@ -1,6 +1,10 @@
+/* eslint-disable no-nested-ternary */
 import { kebabCase } from "lodash"
 
 export const buildSectionObject = ( section ) => {
+   const isGraphicVersion = section.sectionstyle === 'halfWidth' && section.graphicversion
+      ? 'graphic'
+      : null
 
    const sectionColor = section.sectionstyle !== 'fullWidth'
       ? 'white'
@@ -30,12 +34,14 @@ export const buildSectionObject = ( section ) => {
       background: {
          brightness: section.sectionbackground.brightness || 100,
          color: sectionColor,
+         custom: isGraphicVersion ? section.sectionbackground.imageBackgroundColor : null,
          half: halfOverlayColor,
          image: section.sectionbackground.image || null,
          imageBg: section.sectionbackground.imageBackgroundColor || null,
          layout: sectionLayout,
          size: imageSize,
          text: sectionText,
+         version: isGraphicVersion,
       },
       content: section.contentdesigner || null,
       eyebrow: section.sectioneyebrow || null,

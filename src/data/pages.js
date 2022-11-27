@@ -10,6 +10,7 @@ export const pageFragments = graphql`
             sectioneyebrow
             sectionstyle
             sectiontitle
+            graphicversion
             sectionbackground {
                color
                image {

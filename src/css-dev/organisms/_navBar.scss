@@ -1,4 +1,6 @@
 .navBar {
+   $b: &;
+
    background: $color-grayscale-f;
    box-shadow: $low-shadow;
    display: grid;
@@ -153,9 +155,12 @@
       justify-content: center;
       padding: 24px 12px;
       position: relative;
+      transition: background 250ms ease-in-out;
 
       &:hover,
       &:focus-within {
+         background: rgba($c-plum, 0.1);
+
          .navBar__ctaLink {
             color: $c-plum;
          }
@@ -163,6 +168,21 @@
 
       &:focus-within {
          @include focus-style( -8px, $c-plum );
+      }
+
+      &[data-current-page="true"] {
+         background: rgba($c-plum, 0.3);
+         pointer-events: none;
+
+         #{$b}__ctaLink {
+            color: $c-plum;
+         }
+
+         #{$b}__ctaArrow {
+            opacity: 0;
+         }
+
+
       }
 
       &Icon {
@@ -205,6 +225,7 @@
          justify-self: center;
          object-fit: contain;
          height: 14px;
+         transition: opacity 250ms ease-in-out;
          width: auto;
 
          svg {

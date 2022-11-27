@@ -1,6 +1,6 @@
 /* eslint-disable arrow-body-style */
 // React / Gatsby --------------------------------------------------
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 // Data ------------------------------------------------------------
 
@@ -16,6 +16,7 @@ import { IconMaine } from '../icons/IconMaine'
 import { IconMass } from '../icons/IconMass'
 import { IconFlower } from '../icons/IconFlower'
 import { IconTruck } from '../icons/IconTruck'
+import { IconLocationPin } from '../icons/IconLocationPin'
 
 // Hooks -----------------------------------------------------------
 import { BreakpointDesktop, BreakpointNotDesktop, BreakpointNotSmallDesktop } from '../utility/Breakpoints'
@@ -36,7 +37,7 @@ export const Navbar = () => {
       }
    `)
    const { wp: { acfOptionsNavigation: { navigation } } } = data
-   const { quickLinks, locations, instagram } = navigation
+   const { quickLinks, locationsLinkType, locationsQuickLink, locations, instagram } = navigation
    const navLinks = quickLinks.map( ( navLink, index ) => <NavLink key={ navLink.name } index={ index } data={ navLink } /> )
 
    return (
@@ -45,7 +46,12 @@ export const Navbar = () => {
          <NavTitle />
          <BreakpointDesktop>
             { navLinks }
-            <NavLocations icon={ <IconUSA /> } locations={ locations } />
+            { !locationsLinkType &&
+               <NavLink key={ locationsQuickLink.name } index={ 2 } data={ locationsQuickLink } />
+            }
+            { locationsLinkType &&
+               <NavLocations icon={ <IconUSA /> } locations={ locations } />
+            }
          </BreakpointDesktop>
          <NavInstagram url={ instagram.link } />
       </nav>
@@ -83,12 +89,18 @@ export const NavLink = ( props ) => {
    const { data, index } = props
    const {name, link } = data
    const [ isHover, setIsHover ] = useState( false )
+   const [ isCurrent, setCurrent ] = useState( false )
+
+   useEffect(() => {
+      setCurrent(() => window.location.pathname === link.url)
+   }, [window.location.pathname])
 
    return (
       <div
          className="navBar__cta"
          onMouseEnter={() => setIsHover(true)}
          onMouseLeave={() => setIsHover(false)}
+         data-current-page={isCurrent}
       >
          <div className="navBar__ctaIcon">
             { index === 0 &&
@@ -97,8 +109,11 @@ export const NavLink = ( props ) => {
             { index === 1 &&
                <IconTruck />
             }
+            { index === 2 &&
+               <IconLocationPin />
+            }
          </div>
-         <Link className="navBar__ctaLink" to={ link.url } target={ link.target }>{ name }</Link>
+         <Link className="navBar__ctaLink" to={ link.url } target={ link.target } tabIndex={ isCurrent ? -1 : 0 }>{ name }</Link>
          <BreakpointNotSmallDesktop>
             <div className="navBar__ctaArrow">
                <IconArrowSimple isHover={ isHover } animate />

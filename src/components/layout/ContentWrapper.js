@@ -18,6 +18,7 @@ export const ContentWrapper = ( { children, frame, header, footer, layout, image
 
    const currentBackground = currentSectionObject.background?.color
    const currentOverride = currentSectionObject.background?.text
+   const currentCustomBackground = currentSectionObject.background?.custom
 
    const sectionList = sections.map( (section) => {
       const isCurrent = currentSection === section.slug
@@ -37,7 +38,7 @@ export const ContentWrapper = ( { children, frame, header, footer, layout, image
          <SvgFilters />
 
          { currentBackground &&
-            <BackgroundGradient theme={ currentBackground } textOverride={ currentOverride } />
+            <BackgroundGradient theme={ currentBackground } textOverride={ currentOverride } custom={ currentCustomBackground } />
          }
 
          { sectionList &&

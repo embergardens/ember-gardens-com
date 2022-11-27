@@ -7,9 +7,13 @@
   "bugs": {
     "url": "https://github.com/embergardens/ember-gardens-com/issues"
   },
+  "engines": {
+    "node": ">=16.17.0 <=18.12.1"
+  },
   "dependencies": {
     "@apollo/client": "^3.4.16",
     "@fontsource/chivo": "^4.5.0",
+    "@fontsource/teko": "^4.5.9",
     "@fontsource/titillium-web": "^4.5.0",
     "classnames": "^2.3.1",
     "cross-fetch": "^3.1.4",
@@ -24,7 +28,6 @@
     "gatsby-plugin-image": "^2.0.0",
     "gatsby-plugin-manifest": "^4.0.0",
     "gatsby-plugin-offline": "^5.0.0",
-    "gatsby-plugin-purgecss": "^6.0.2",
     "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-sass": "^5.0.0",
     "gatsby-plugin-sharp": "^4.0.0",

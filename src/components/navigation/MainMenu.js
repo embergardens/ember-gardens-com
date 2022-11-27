@@ -155,7 +155,7 @@ export const MainMenu = () => {
 
    }, [navOpen])
 
-   const menuItems = nodes.map( ( item, index ) => <MainMenuItem data={ item } index={ index } key={ item.label } />)
+   const menuItems = nodes?.map( ( item, index ) => <MainMenuItem data={ item } index={ index } key={ item.label } />)
 
    const handleKeydown = (e) => {
       if ( e.code === 'Escape' ) {
@@ -219,27 +219,29 @@ export const MainMenu = () => {
                            <motion.li
                               className="mainMenu__socialItem"
                               variants={ motionSocial }
+                              data-current-page={ window.location.pathname === instagram.link.url ? true : false }
                            >
                               <div className="mainMenu__socialIcon">
                                  <IconInstagram />
                               </div>
-                              <a className="mainMenu__socialLink" href={ instagram.link.url } target={ instagram.link.target }>
+                              <Link className="mainMenu__socialLink" to={ instagram.link.url } target={ instagram.link.target }>
                                  { instagram.text ? instagram.text : 'Instagram' }
-                              </a>
+                              </Link>
                            </motion.li>
                         }
 
-                        { email.address &&
+                        { email.address.url &&
                            <motion.li
                               className="mainMenu__socialItem"
                               variants={ motionSocial }
+                              data-current-page={ window.location.pathname === email.address.url ? true : false }
                            >
                               <div className="mainMenu__socialIcon">
                                  <IconEmail />
                               </div>
-                              <a className="mainMenu__socialLink" href={ `mailto:${email.address}` } target='_blank' rel='noreferrer' >
+                              <Link className="mainMenu__socialLink" to={ email.address.url } target={ email.address.target } >
                                  { email.text ? email.text : 'Email' }
-                              </a>
+                              </Link>
                            </motion.li>
                         }
 

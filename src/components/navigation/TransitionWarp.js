@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-use-before-define */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
@@ -150,10 +152,12 @@ const TransitionWarp = ( options ) => {
 
    // need to cancelAnimationFrame and clean up loop
    const motionRenderLoop = () => {
+      let raf
       motionRender()
       if ( Date.now() - motion.timeStart < motion.duration + motion.delayPerPath * (motion.paths.length - 1) + motion.delayPointsMax ) {
-         requestAnimationFrame( () => motionRenderLoop() )
+         raf = requestAnimationFrame( () => motionRenderLoop() )
       } else {
+         raf = cancelAnimationFrame(raf)
          motion.isAnimating = false
          if ( motion.isOpened ) {
             intermission()

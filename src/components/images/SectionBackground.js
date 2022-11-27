@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 export const SectionBackground = ({ data, active }) => {
 
-   const { image, brightness, layout, size, imageBg, half } = data
+   const { image, brightness, layout, size, imageBg, half, version } = data
 
    const imageData = getImage(image?.localFile)
 
@@ -15,7 +15,7 @@ export const SectionBackground = ({ data, active }) => {
 
    const anime = {
       enter: {
-         opacity: 0.9,
+         opacity: version ? 1 : 0.9,
          transition: {
             duration: shouldReduceMotion ? 2 :  0.75
          }
@@ -31,19 +31,20 @@ export const SectionBackground = ({ data, active }) => {
    }
 
    const layoutClass = layout ? `-${layout}Layout` : ''
-   const overlayClass = layout && half !== 'none' ? `-${half}Overlay` : '-noOverlay'
+   const overlayClass = layout && half && half !== 'none' ? `-${half}Overlay` : '-noOverlay'
    const brightnessClass = ! layout ? `-brightness-${ brightness }` : ''
+   const bgColor = imageBg ? imageBg : imageData.backgroundColor
 
    return (
       <AnimatePresence>
          { active &&
             <motion.div
-               className={`sectionBackground ${ layoutClass } ${ overlayClass }`}
+               className={`sectionBackground ${ layoutClass } ${ overlayClass } ${ version ? '-graphicVersion' : '' }`}
                variants={ anime }
                initial='exit'
                animate='enter'
                exit='exit'
-               style={{ backgroundColor: `${ imageBg ? imageBg : imageData.backgroundColor }`}}
+               style={{ backgroundColor: `${ bgColor }`, '--imageBackground': bgColor }}
             >
                <GatsbyImage
                   alt={image.altText}

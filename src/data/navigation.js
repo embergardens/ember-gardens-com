@@ -12,6 +12,15 @@ export const navigationFragments = graphql`
                   url
                }
             }
+            locationsLinkType
+            locationsQuickLink {
+               name
+               link {
+                  target
+                  title
+                  url
+               }
+            }
             locations {
                state
                link {
@@ -37,7 +46,10 @@ export const navigationFragments = graphql`
                text
             }
             email {
-               address
+               address {
+                  url
+                  target
+               }
                text
             }
             signup {
