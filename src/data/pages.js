@@ -37,6 +37,7 @@ export const pageFragments = graphql`
                ...HeroCalloutBlock
                ...HeroTextImageBlock
                ...HeroFormBlock
+               ...HeroCardGridBlock
             }
          }
          footerOptions {
@@ -80,6 +81,7 @@ export const pageFragments = graphql`
                ...CalloutBlock
                ...TextImageBlock
                ...FormBlock
+               ...CardGridBlock
             }
          }
       }

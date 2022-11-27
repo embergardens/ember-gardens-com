@@ -1,0 +1,38 @@
+.card {
+    align-items: center;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: minmax(14.125rem, 23.125rem);
+    grid-template-areas: 'MEDIA' 'CONTENT';
+    justify-items: center;
+    position: relative;
+
+    &__content {
+        grid-area: CONTENT;
+    }
+
+    &__media {
+        aspect-ratio: 1/1;
+        grid-area: MEDIA;
+    }
+
+    &__image {
+        border-radius: 50%;
+        border: 1px solid var(--theme-color-0);
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &__span,
+    &__link {
+        color: var(--theme-color-2);
+        font-size: fluid(1rem, 1.3125rem);
+        font-weight: var(--fontWeight-bold);
+        text-align: center;
+    }
+
+    &__link {
+        @include pseudo-link();
+    }
+}

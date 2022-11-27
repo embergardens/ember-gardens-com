@@ -1,0 +1,40 @@
+@use 'sass:math';
+@use "sass:map";
+
+@function rnd($number, $places: 0) {
+    $n: 1;
+    @if $places > 0 {
+        @for $i from 1 through $places {
+            $n: $n * 10;
+        }
+    }
+    @return math.div(math.round($number * $n), $n);
+}
+
+@function to-rems($px) {
+    $rems: math.div($px, 16px) * 1rem;
+    @return $rems;
+}
+
+@function to-pxs($rem) {
+    $pxs: $rem * 16px;
+    @return $pxs;
+}
+
+@function fluid($min, $max, $default-min-bp: xs, $default-max-bp: xl) {
+    $min-bp: map.get($breakpoints, $default-min-bp);
+    $max-bp: map.get($breakpoints, $default-max-bp);
+
+    $min-rem: strip-units($min);
+    $max-rem: strip-units($max);
+
+    $min-px: to-pxs($min-rem);
+    $max-px: to-pxs($max-rem);
+
+    $slope: math.div($max-px - $min-px, $max-bp - $min-bp);
+    $slope-vw: rnd($slope * 100, 2);
+
+    $intercept-rems: rnd(to-rems($min-px - $slope * $min-bp), 2);
+
+    @return clamp(#{$min-rem}rem, #{$slope-vw}vw + #{$intercept-rems}, #{$max-rem}rem);
+}

@@ -1,0 +1,11 @@
+.cardGridBlock {
+    display: grid;
+    gap: fluid(3rem, 6rem);
+    grid-template-columns: repeat(auto-fit, minmax(14.125rem, 1fr));
+    justify-content: space-between;
+    margin: 2.5rem 0;
+
+    &:first-child {
+        margin: 0;
+    }
+}

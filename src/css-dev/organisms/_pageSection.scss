@@ -64,6 +64,10 @@
          }
       }
 
+      .sectionEyebrow {
+         margin: 0 0 2rem;
+      }
+
       .pageSection__halfImage {
          flex: 0 1 50vh;
          height: 50vh;
@@ -112,6 +116,7 @@
 
    &__wrapper {
       max-width: 1220px;
+      width: 100%;
 
       .listing-template & {
          max-width: 1400px;
