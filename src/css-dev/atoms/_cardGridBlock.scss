@@ -1,9 +1,49 @@
 .cardGridBlock {
     display: grid;
     gap: fluid(3rem, 6rem);
-    grid-template-columns: repeat(auto-fit, minmax(14.125rem, 1fr));
-    justify-content: space-between;
+    grid-template-columns: 1fr;
+    justify-content: center;
+    justify-items: center;
     margin: 2.5rem 0;
+
+    @include breakpoint( xs ) {
+        &.-canHalf,
+        &.-canThird,
+        &.-canQuarter,
+        &.-isLargerGroup {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    }
+
+    @include breakpoint( sm ) {
+        justify-content: space-between;
+
+        &.-canThird,
+        &.-isLargerGroup {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @include breakpoint( md ) {
+        &.-canQuarter {
+            grid-template-columns: repeat( 4, 1fr );
+        }
+
+        &.-canThird,
+        &.-isLargerGroup {
+            grid-template-columns: repeat( 3, 1fr );
+        }
+    }
+
+    @include breakpoint( lg ) {
+        &.-canQuarter.-canThird,
+        &.-isLargerGroup.-canQuarter,
+        &.-isLargerGroup.-canHalf,
+        &.-isLargerGroup:not(-canThird) {
+            grid-template-columns: repeat( 4, 1fr );
+        }
+    }
 
     &:first-child {
         margin: 0;

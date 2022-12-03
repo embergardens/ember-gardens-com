@@ -8,7 +8,7 @@ import { FormBlock } from '../blocks/FormBlock'
 import { CardGridBlock } from '../blocks/CardGridBlock'
 
 export const ContentDesigner = ({ blocks, hero }) => {
-   console.log({blocks})
+
    const content = blocks.map( ( block, index ) => {
 
       if ( !block.fieldGroupName ) return null

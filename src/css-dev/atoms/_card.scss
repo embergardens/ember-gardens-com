@@ -1,19 +1,73 @@
 .card {
-    align-items: center;
+    $b: &;
+
+    align-content: start;
     display: grid;
     gap: 2rem;
-    grid-template-columns: minmax(14.125rem, 23.125rem);
+    grid-template-columns: min(14.125rem, 100%);
     grid-template-areas: 'MEDIA' 'CONTENT';
+    justify-content: center;
     justify-items: center;
     position: relative;
 
+    @include breakpoint( md ) {
+        grid-template-columns: min(23.125rem, 100%);
+    }
+
+    &:hover {
+        #{$b}__mediaOverlay {
+            background: rgba($c-plum, 0.75);
+        }
+
+        #{$b}__icon {
+            opacity: 1;
+        }
+    }
+
+    &:focus-within {
+
+        [data-whatintent='keyboard'] & {
+            #{$b}__mediaOverlay {
+                background: rgba($c-plum, 0.75);
+            }
+
+            #{$b}__icon {
+                opacity: 1;
+            }
+        }
+    }
+
     &__content {
+        display: grid;
         grid-area: CONTENT;
+        justify-items: center;
     }
 
     &__media {
         aspect-ratio: 1/1;
         grid-area: MEDIA;
+        position: relative;
+    }
+
+    &__mediaOverlay {
+        background: rgba($c-plum, 0);
+        border-radius: 50%;
+        border: 1px solid var(--theme-color-0);
+        bottom: 0;
+        display: grid;
+        left: 0;
+        overflow: hidden;
+        place-items: center;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: background 500ms $e-out;
+    }
+
+    &__icon {
+        @include svg-contain( min(2.25rem, 20%) );
+        opacity: 0;
+        transition: opacity 500ms $e-out;
     }
 
     &__image {
@@ -29,10 +83,15 @@
         color: var(--theme-color-2);
         font-size: fluid(1rem, 1.3125rem);
         font-weight: var(--fontWeight-bold);
+        line-height: 1.4;
         text-align: center;
     }
 
     &__link {
         @include pseudo-link();
+
+        &:focus {
+            @include focus-style(4px);
+        }
     }
 }
