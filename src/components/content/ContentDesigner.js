@@ -5,6 +5,7 @@ import { TextBlock } from '../blocks/TextBlock'
 import { ImageBlock } from '../blocks/ImageBlock'
 import { TextImageBlock } from '../blocks/TextImageBlock'
 import { FormBlock } from '../blocks/FormBlock'
+import { CardGridBlock } from '../blocks/CardGridBlock'
 
 export const ContentDesigner = ({ blocks, hero }) => {
 
@@ -32,6 +33,9 @@ export const ContentDesigner = ({ blocks, hero }) => {
 
          case 'FormBlock':
             return <FormBlock formId={block} key={`${name}-${index}`}/>
+
+         case 'CardGridBlock':
+            return <CardGridBlock group={block.card} key={`${name}-${index}`} />
       }
    })
 

@@ -64,6 +64,10 @@
          }
       }
 
+      .sectionEyebrow {
+         margin: 0 0 2rem;
+      }
+
       .pageSection__halfImage {
          flex: 0 1 50vh;
          height: 50vh;
@@ -102,8 +106,11 @@
 
    &.-footer {
       display: block;
-      min-height: 100vh;
       padding: var(--fontSize-60) var(--fontSize-30);
+
+      @include breakpoint( md ) {
+         min-height: 100vh;
+      }
 
       .pageSection__wrapper {
          max-width: none;
@@ -112,6 +119,7 @@
 
    &__wrapper {
       max-width: 1220px;
+      width: 100%;
 
       .listing-template & {
          max-width: 1400px;

@@ -76,6 +76,7 @@ export const locationFragments = graphql`
                ...LocationCalloutBlock
                ...LocationTextImageBlock
                ...LocationFormBlock
+               ...LocationCardGridBlock
             }
          }
       }
