@@ -77,10 +77,10 @@ export const CardGridBlock = ({ group }) => {
                 </div>
             </div>
         )
-    })
+    }).filter(x => x) // Filter out any cards that returned null due to missing fields.
 
     return (
-        <div className={ `cardGridBlock ${addColumnClasses(group.length).join(' ')}`} data-grid-items={ group.length } style={{ '--grid-count': group.length }}>
+        <div className={ `cardGridBlock ${addColumnClasses(cards.length).join(' ')}`} data-grid-items={ cards.length } style={{ '--grid-count': cards.length }}>
             { cards }
         </div>
     )

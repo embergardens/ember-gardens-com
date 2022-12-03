@@ -106,8 +106,11 @@
 
    &.-footer {
       display: block;
-      min-height: 100vh;
       padding: var(--fontSize-60) var(--fontSize-30);
+
+      @include breakpoint( md ) {
+         min-height: 100vh;
+      }
 
       .pageSection__wrapper {
          max-width: none;
