@@ -9,7 +9,7 @@ export const mediaFragments = graphql`
 
    fragment HeroHalfImage on File {
       childImageSharp {
-         gatsbyImageData(layout: CONSTRAINED, quality: 90 )
+         gatsbyImageData(layout: CONSTRAINED, quality: 90, placeholder: BLURRED )
       }
    }
 
@@ -27,7 +27,7 @@ export const mediaFragments = graphql`
 
    fragment SquareImage on File {
       childImageSharp {
-         gatsbyImageData(layout: CONSTRAINED, width: 1000, height: 1000, quality: 90 )
+         gatsbyImageData(layout: CONSTRAINED, width: 1000, height: 1000, quality: 90, placeholder: BLURRED )
       }
    }
 

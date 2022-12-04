@@ -13,7 +13,7 @@ import { currentSectionObjectState, currentSectionState } from '../../store/navi
 import { ContentDesigner } from '../content/ContentDesigner'
 import { Footer } from './Footer'
 import { useMediaQuery } from 'react-responsive'
-import { isNotDesktop } from '../utility/Breakpoints'
+import { BreakpointNotDesktop } from '../utility/Breakpoints'
 import { TextBlock } from '../blocks/TextBlock'
 import { ButtonBlock } from '../blocks/ButtonBlock'
 import { currentTextColorOverrideState } from '../../store/global'
@@ -40,8 +40,6 @@ export const PageSection = ({ data }) => {
       rootMargin: '-70% 0% -30%',
    })
 
-   const mobile = useMediaQuery( useRecoilValue( isNotDesktop ) )
-
    const idName = kebabCase( isHero ? pageTitle : navTitle || title )
    const layoutClass = layout ? `-${layout}Layout` : ''
    const bgColor = imageBg ? imageBg : imageData.backgroundColor
@@ -67,21 +65,23 @@ export const PageSection = ({ data }) => {
          className={`pageSection -${ style } ${ layoutClass } ${ version ? '-graphicVersion' : '' }`}
          data-current={ inView }
       >
-         { mobile && style === 'halfWidth' &&
-            <div className="pageSection__halfImage">
-               <div
-                  className={`pageSection__halfImageWrapper ${ overlayClass }` }
-                  style={{ backgroundColor: `${ bgColor }`, '--imageBackground': bgColor }}
-               >
-                  <GatsbyImage
-                     alt={ image.altText }
-                     image={ imageData }
-                     className='pageSection__halfImageBg'
-                     objectFit={ size }
-                  />
+         <BreakpointNotDesktop>
+            { style === 'halfWidth' &&
+               <div className="pageSection__halfImage">
+                  <div
+                     className={`pageSection__halfImageWrapper ${ overlayClass }` }
+                     style={{ backgroundColor: `${ bgColor }`, '--imageBackground': bgColor }}
+                     >
+                     <GatsbyImage
+                        alt={ image.altText }
+                        image={ imageData }
+                        className='pageSection__halfImageBg'
+                        objectFit={ size }
+                        />
+                  </div>
                </div>
-            </div>
-         }
+            }
+         </BreakpointNotDesktop>
          <div className="pageSection__wrapper">
             { isHero &&
                <>

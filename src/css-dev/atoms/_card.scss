@@ -15,12 +15,14 @@
     }
 
     &:hover {
-        #{$b}__mediaOverlay {
-            background: rgba($c-plum, 0.75);
-        }
+        [data-whatintent='mouse'] & {
+            #{$b}__mediaOverlay {
+                background: rgba($c-plum, 0.75);
+            }
 
-        #{$b}__icon {
-            opacity: 1;
+            #{$b}__icon {
+                opacity: 1;
+            }
         }
     }
 
@@ -76,6 +78,11 @@
         height: 100%;
         object-fit: cover;
         width: 100%;
+
+        img {
+            border-radius: 50%;
+            overflow: hidden;
+        }
     }
 
     &__span,
