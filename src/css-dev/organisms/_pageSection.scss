@@ -51,6 +51,19 @@
    &.-graphicVersion {
       position: relative;
 
+      &.-halfWidth {
+         display: grid;
+         grid-template-rows: 45vh auto;
+
+         @include breakpoint( sm ) {
+            grid-template-rows: 60vh auto;
+         }
+
+         @include breakpoint( md ) {
+            grid-template-rows: auto;
+         }
+      }
+
       h1 {
          font-family: $ff-graphic;
          font-size: min(17vh, 23vw);
@@ -69,13 +82,7 @@
       }
 
       .pageSection__halfImage {
-         flex: 0 1 45vh;
-         height: auto;
-
-         @include breakpoint( sm ) {
-            flex: 0 0 60vh;
-            height: 60vh;
-         }
+         height: 100%;
       }
    }
 
