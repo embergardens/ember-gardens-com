@@ -105,7 +105,7 @@
          width: auto;
 
          @include breakpoint( md ) {
-            height: min(320px, 100%);
+            height: min(30vh, 100%);
             width: min(42px, 100%);
          }
 
