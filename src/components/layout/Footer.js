@@ -101,9 +101,9 @@ export const Footer = ({ links }) => {
                               <div className="footer__socialIcon">
                                  <IconEmail />
                               </div>
-                              <a className="footer__socialLink" href={ `mailto:${email.address}` } target='_blank' rel='noreferrer' >
+                              <Link className="footer__socialLink" to={ email.address.url } target={ email.address.target } >
                                  { email.text ? email.text : 'Email' }
-                              </a>
+                              </Link>
                            </li>
                         }
                      </ul>

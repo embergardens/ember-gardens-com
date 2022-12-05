@@ -12,7 +12,7 @@
       right: 0;
       transform-origin: 100% 0;
       transform: rotate(90deg);
-      z-index: 800;
+      z-index: 750;
 
       &:focus-within {
          @include focus-style();

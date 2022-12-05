@@ -106,7 +106,11 @@
 
          @include breakpoint( md ) {
             height: min(30vh, 100%);
-            width: min(42px, 100%);
+            width: min(3vmin, 100%);
+         }
+
+         @include breakpoint( xl ) {
+            width: min(4vmin, 100%);
          }
 
       }
