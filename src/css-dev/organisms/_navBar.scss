@@ -105,20 +105,16 @@
          width: auto;
 
          @include breakpoint( md ) {
-            height: auto;
-            width: 30px;
+            height: min(320px, 100%);
+            width: min(42px, 100%);
          }
 
       }
 
       svg {
          height: 100%;
+         object-fit: contain;
          width: 100%;
-
-         @include breakpoint( md ) {
-            max-height: 19vh;
-            max-height: clamp( 100px, 19vh, 230px);
-         }
       }
    }
 
