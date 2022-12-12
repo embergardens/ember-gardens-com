@@ -1,6 +1,5 @@
 .buttonBlock {
-   display: grid;
+   display: flex;
+   flex-wrap: wrap;
    gap: 1.3rem;
-   grid-auto-columns: max-content;
-   grid-auto-flow: column dense;
 }
