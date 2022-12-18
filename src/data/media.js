@@ -7,6 +7,12 @@ export const mediaFragments = graphql`
       }
    }
 
+   fragment HeroVideoImage on File {
+      childImageSharp {
+         gatsbyImageData(layout: CONSTRAINED, quality: 70, placeholder: BLURRED, formats: [WEBP, AUTO], transformOptions: {fit: COVER} )
+      }
+   }
+
    fragment HeroHalfImage on File {
       childImageSharp {
          gatsbyImageData(layout: CONSTRAINED, quality: 90, placeholder: BLURRED )

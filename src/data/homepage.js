@@ -32,6 +32,7 @@ export const homepageFragments = graphql`
                }
                mobileBackgroundVideoImage {
                   localFile {
+                     ...HeroVideoImage
                      publicURL
                   }
                }
@@ -47,6 +48,7 @@ export const homepageFragments = graphql`
                }
                desktopBackgroundVideoImage {
                   localFile {
+                     ...HeroVideoImage
                      publicURL
                   }
                }
