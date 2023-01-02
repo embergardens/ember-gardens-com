@@ -13,7 +13,7 @@ export const gatewayFragments = graphql`
                backgroundImage {
                   altText
                   localFile {
-                     ...HeroImage
+                     ...HeroVideoImage
                      publicURL
                   }
                   mediaDetails {
