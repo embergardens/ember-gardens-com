@@ -75,15 +75,35 @@ const HomepageVideo = ({ videos: uploads }) => {
 
          // If video is 80% loaded or more cancel test.
          if (loaded >= 80 ) {
-            console.log(loaded, count)
+            //console.log(loaded, count)
             clearInterval(videoTimeout)
          }
 
          // If intervals have run for 15 seconds and video is not loaded, pull the plug.
          if (count === 3) {
-            //console.log('30 seconds complete - perecent loaded: ', { loaded }, loaded >= 50)
+            //console.log('15 seconds complete - perecent loaded: ', { loaded }, loaded >= 50)
 
             if ( loaded <= 50 ) {
+               handleAbortVideo()
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
+               clearInterval(videoTimeout)
+            }
+         }
+
+         if (count === 6) {
+            //console.log('30 seconds complete - perecent loaded: ', { loaded }, loaded >= 60)
+
+            if ( loaded <= 60 ) {
+               handleAbortVideo()
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
+               clearInterval(videoTimeout)
+            }
+         }
+
+         if (count === 9) {
+            //console.log('45 seconds complete - perecent loaded: ', { loaded }, loaded >= 75)
+
+            if ( loaded <= 75 ) {
                handleAbortVideo()
                console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
             }
