@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { useMediaQuery } from 'react-responsive'
 import ReactPlayer from 'react-player/lazy'
@@ -35,6 +35,15 @@ const HomepageVideo = ({ videos: uploads }) => {
    const playIntro = useRecoilValue( gatewayPassedState )
    let introHasPlayed
    let noIntro = false
+   let count = 0
+
+   // Developer Mode =============================================
+   const developerMode = true
+   const [ percentLoaded, setPercentLoaded ] = useState(0)
+   const [ intervalCount, setIntervalCount ] = useState(0)
+
+   const handlePercentLoaded = (value) => setPercentLoaded(value)
+   const handleIntervalCount = (value) => setIntervalCount(value)
 
    // Refs ========================================================
    const introVideoRef = useRef(null)
@@ -50,28 +59,31 @@ const HomepageVideo = ({ videos: uploads }) => {
    }
 
    const videoGoNoGo = () => {
-      let intervalCount = 0
       const videoLoading = introHasPlayed ? loopVideoRef : introVideoRef
       const videoTimeout = setInterval(() => {
-         const secondsLoaded = videoLoading?.current.getSecondsLoaded()
-         const videoDuration = videoLoading?.current.getDuration()
-         const percentLoaded = Math.floor(secondsLoaded * 100 / videoDuration)
-         intervalCount++
+
+         const secondsLoaded = videoLoading?.current?.getSecondsLoaded()
+         const videoDuration = videoLoading?.current?.getDuration()
+         const loaded = Math.floor(secondsLoaded * 100 / videoDuration)
+         count++
+         handlePercentLoaded(loaded)
+         handleIntervalCount(count)
 
          // Logs for testing connection speed.
-         // console.log({secondsLoaded, videoDuration, intervalCount})
+         // console.log({secondsLoaded, videoDuration, count})
          // console.log(`${percentLoaded}% Loaded`)
 
          // If video is 80% loaded or more cancel test.
-         if (percentLoaded >= 80 ) {
+         if (loaded >= 80 ) {
+            console.log(loaded, count)
             clearInterval(videoTimeout)
          }
 
          // If intervals have run for 15 seconds and video is not loaded, pull the plug.
-         if (intervalCount === 3) {
-            // console.log('15 seconds complete - perecent loaded: ', { percentLoaded }, percentLoaded >= 90)
+         if (count === 3) {
+            //console.log('30 seconds complete - perecent loaded: ', { loaded }, loaded >= 50)
 
-            if ( percentLoaded <= 90 ) {
+            if ( loaded <= 50 ) {
                handleAbortVideo()
                console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
             }
@@ -79,6 +91,14 @@ const HomepageVideo = ({ videos: uploads }) => {
          }
 
       }, 5000) // check ever 5 seconds
+   }
+
+   const DevHelper = () => {
+      return (
+         <div className='developerStats'>
+            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * 5000 }ms
+         </div>
+      )
    }
 
 
@@ -140,6 +160,9 @@ const HomepageVideo = ({ videos: uploads }) => {
    // Render ===========================================
    return (
       <>
+         { developerMode &&
+            <DevHelper />
+         }
          { ! reducedMotion &&
             <div className='homeVideo'>
                <motion.div
@@ -156,60 +179,66 @@ const HomepageVideo = ({ videos: uploads }) => {
                </motion.div>
 
                { ! introHasPlayed && ! abortVideo &&
-                  <motion.div
-                     initial={{ opacity: 0 }}
-                     animate={
+                  <AnimatePresence>
+                     <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={
                            introIsLoaded
                            ? { opacity: 1, transition: { duration: 0.25 } }
                            : { opacity: 0 }
                         }
-                     >
-                     <ReactPlayer
-                        ref={introVideoRef}
-                        className="homeVideo__video -intro"
-                        tabIndex='-1'
-                        url={ introVideos }
-                        height="100%"
-                        width="100%"
-                        playing={ playIntro }
-                        muted
-                        playsinline
-                        volume={0}
-                        progressInterval={ 1000 }
-                        onReady={ handleIntroReady }
-                        onStart={ handleIntroStarted }
-                        // onPlay={ handleIntroPlaying }
-                        onEnded={ handleIntroEnded }
-                        fallback={<FallbackImage />}
-                     />
-                  </motion.div>
+                        exit={ playLoop ? { opacity: 1 } : { opacity: 0 } }
+                        >
+                        <ReactPlayer
+                           ref={introVideoRef}
+                           className="homeVideo__video -intro"
+                           tabIndex='-1'
+                           url={ introVideos }
+                           height="100%"
+                           width="100%"
+                           playing={ playIntro }
+                           muted
+                           playsinline
+                           volume={0}
+                           progressInterval={ 1000 }
+                           onReady={ handleIntroReady }
+                           onStart={ handleIntroStarted }
+                           // onPlay={ handleIntroPlaying }
+                           onEnded={ handleIntroEnded }
+                           fallback={<FallbackImage />}
+                           />
+                     </motion.div>
+                  </AnimatePresence>
                }
                {
                   ! abortVideo &&
-                  <motion.div
-                     initial={{ opacity: 0 }}
-                     animate={
-                        playLoop && !noIntro
-                        ? { opacity: 1, transition: { duration: 1 } }
-                        : { opacity: 0 }
-                     }
-                  >
-                     <ReactPlayer
-                        ref={loopVideoRef}
-                        className="homeVideo__video -loop"
-                        tabIndex='-1'
-                        url={ loopVideos }
-                        height="100%"
-                        width="100%"
-                        playing={ playLoop }
-                        muted
-                        loop
-                        playsinline
-                        volume={0}
-                        onReady={ handleLoopReady }
-                        fallback={<FallbackImage />}
-                     />
-                  </motion.div>
+                  <AnimatePresence>
+                     <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={
+                           playLoop && !noIntro
+                           ? { opacity: 1, transition: { duration: 1 } }
+                           : { opacity: 0 }
+                        }
+                        exit={{ opacity: 0 }}
+                     >
+                        <ReactPlayer
+                           ref={loopVideoRef}
+                           className="homeVideo__video -loop"
+                           tabIndex='-1'
+                           url={ loopVideos }
+                           height="100%"
+                           width="100%"
+                           playing={ playLoop }
+                           muted
+                           loop
+                           playsinline
+                           volume={0}
+                           onReady={ handleLoopReady }
+                           fallback={<FallbackImage />}
+                        />
+                     </motion.div>
+                  </AnimatePresence>
                }
             </div>
          }
