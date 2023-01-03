@@ -85,7 +85,7 @@ const HomepageVideo = ({ videos: uploads }) => {
 
             if ( loaded <= 50 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
                clearInterval(videoTimeout)
             }
          }
@@ -95,7 +95,7 @@ const HomepageVideo = ({ videos: uploads }) => {
 
             if ( loaded <= 60 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
                clearInterval(videoTimeout)
             }
          }
@@ -105,7 +105,7 @@ const HomepageVideo = ({ videos: uploads }) => {
 
             if ( loaded <= 75 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.')
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
             }
             clearInterval(videoTimeout)
          }
