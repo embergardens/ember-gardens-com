@@ -52,7 +52,10 @@ const HomepageVideo = ({ videos: uploads }) => {
    // Methods =====================================================
    const handleIntroReady = () => setIntroIsLoaded( true )
    const handleLoopReady = () => setLoopIsLoaded( true )
-   const handleAbortVideo = () => setAbortVideo( true )
+   const handleAbortVideo = () => {
+      setAbortVideo( true )
+      sessionStorage.setItem('emberGardens:videoAborted', true)
+   }
    const handleIntroStarted = () => sessionStorage.setItem( storageName, true )
    const handleIntroEnded = () => {
       setPlayLoop( true )
@@ -130,8 +133,13 @@ const HomepageVideo = ({ videos: uploads }) => {
          noIntro = true
       }
 
-      // Test connection speed. Abort video if too slow.
-      videoGoNoGo()
+      videoHasAborted = JSON.parse(sessionStorage.getItem( 'emberGardens:videoAborted' ))
+      if ( videoHasAborted ) {
+         handleAbortVideo()
+      } else {
+         // Test connection speed. Abort video if too slow.
+         videoGoNoGo()
+      }
    }, [])
 
    // VIDEO FILES ==============================================
