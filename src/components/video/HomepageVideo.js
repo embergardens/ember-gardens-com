@@ -33,7 +33,7 @@ const HomepageVideo = ({ videos: uploads }) => {
 
    const [ playLoop, setPlayLoop ] = useState( false )
    const playIntro = useRecoilValue( gatewayPassedState )
-   let introHasPlayed
+   let introHasPlayed, videoHasAborted
    let noIntro = false
    let count = 0
 
