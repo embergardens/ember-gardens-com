@@ -82,44 +82,37 @@ const HomepageVideo = ({ videos: uploads }) => {
             clearInterval(videoTimeout)
          }
 
-         // If intervals have run for 15 seconds and video is not loaded, pull the plug.
-         if (count === 3) {
-            //console.log('15 seconds complete - perecent loaded: ', { loaded }, loaded >= 25)
-
-            if ( loaded <= 25 ) {
+         if (count === 1) {
+            if ( loaded <= 16 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
                clearInterval(videoTimeout)
             }
          }
 
-         if (count === 6) {
-            //console.log('30 seconds complete - perecent loaded: ', { loaded }, loaded >= 50)
+         if (count === 2) {
+            if ( loaded <= 32 ) {
+               handleAbortVideo()
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
+               clearInterval(videoTimeout)
+            }
+         }
 
+         if (count === 3) {
             if ( loaded <= 50 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
-               clearInterval(videoTimeout)
-            }
-         }
-
-         if (count === 9) {
-            //console.log('45 seconds complete - perecent loaded: ', { loaded }, loaded >= 75)
-
-            if ( loaded <= 75 ) {
-               handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 5000}ms`)
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
             }
             clearInterval(videoTimeout)
          }
 
-      }, 5000) // check ever 5 seconds
+      }, 8000) // check ever 8 seconds
    }
 
    const DevHelper = () => {
       return (
          <div className='developerStats'>
-            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * 5000 }ms
+            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * 8000 }ms
          </div>
       )
    }
