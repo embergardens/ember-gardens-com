@@ -62,10 +62,10 @@ const HomepageVideo = ({ videos: uploads }) => {
    }
 
    const videoGoNoGo = () => {
+      const intervalTime = 4000
       const videoLoading = introHasPlayed ? loopVideoRef : introVideoRef
       const videoTimeout = setInterval(() => {
 
-         const intervalTime = 4000
          const secondsLoaded = videoLoading?.current?.getSecondsLoaded()
          const videoDuration = videoLoading?.current?.getDuration()
          const loaded = Math.floor(secondsLoaded * 100 / videoDuration)
@@ -113,7 +113,7 @@ const HomepageVideo = ({ videos: uploads }) => {
    const DevHelper = () => {
       return (
          <div className='developerStats'>
-            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * intervalTime }ms
+            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * 4000 }ms
          </div>
       )
    }
