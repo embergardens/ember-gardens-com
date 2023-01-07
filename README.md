@@ -9,12 +9,12 @@ Ember Gardens is a website built on the React & GatsbyJS Framework, using Wordpr
 Since Wordpress is being used in a headless way, it means the backend is completely decoupled from the front-end experience.
 That means each has their own repo, hosting and domain.
 
-# Front-end (React / Gatsby)
+### Front-end (React / Gatsby)
 - **Repo**: [ember-gardens-com](https://github.com/embergardens/ember-gardens-com)
 - **Hosting**: [Gatsby Cloud](https://www.gatsbyjs.com/dashboard/organization/3346176b-e663-4361-bb7a-cb6a2aa9bd64/sites)
 - **Domain**: [https://embergardens.com](https://embergardens.com) - managed by [1 & 1](https://www.ionos.com/) & SSL provided by Gatsby Cloud
 
-# Back-end (Wordpress)
+## Back-end (Wordpress)
 - **Repo**: [EmberHarvest: Custom Headless Wordpress Theme](https://github.com/embergardens/emberharvest)
 - **Hosting**: [Flywheel](https://app.getflywheel.com/sites#)
 - **Domain**: Both domains are managed by [1 & 1](https://www.ionos.com/) & SSLs are provided by Flywheel
