@@ -38,7 +38,7 @@ const HomepageVideo = ({ videos: uploads }) => {
    let count = 0
 
    // Developer Mode =============================================
-   const developerMode = true
+   const developerMode = false
    const [ percentLoaded, setPercentLoaded ] = useState(0)
    const [ intervalCount, setIntervalCount ] = useState(0)
 
@@ -65,6 +65,7 @@ const HomepageVideo = ({ videos: uploads }) => {
       const videoLoading = introHasPlayed ? loopVideoRef : introVideoRef
       const videoTimeout = setInterval(() => {
 
+         const intervalTime = 4000
          const secondsLoaded = videoLoading?.current?.getSecondsLoaded()
          const videoDuration = videoLoading?.current?.getDuration()
          const loaded = Math.floor(secondsLoaded * 100 / videoDuration)
@@ -82,37 +83,37 @@ const HomepageVideo = ({ videos: uploads }) => {
             clearInterval(videoTimeout)
          }
 
-         if (count === 1) {
+         if (count === 2) {
             if ( loaded <= 16 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * intervalTime}ms`)
                clearInterval(videoTimeout)
             }
          }
 
-         if (count === 2) {
+         if (count === 4) {
             if ( loaded <= 32 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * intervalTime}ms`)
                clearInterval(videoTimeout)
             }
          }
 
-         if (count === 3) {
+         if (count === 6) {
             if ( loaded <= 50 ) {
                handleAbortVideo()
-               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * 8000}ms`)
+               console.warn('[EMBER GARDENS]: Connection is too slow. Video loading aborted.', `${loaded}% loaded in ${count * intervalTime}ms`)
             }
             clearInterval(videoTimeout)
          }
 
-      }, 8000) // check ever 8 seconds
+      }, intervalTime) // check ever 8 seconds
    }
 
    const DevHelper = () => {
       return (
          <div className='developerStats'>
-            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * 8000 }ms
+            <strong>Loaded:</strong> { percentLoaded }% | <strong>Time elapsed:</strong> { intervalCount * intervalTime }ms
          </div>
       )
    }

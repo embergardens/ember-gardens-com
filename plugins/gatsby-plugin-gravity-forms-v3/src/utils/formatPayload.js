@@ -44,7 +44,7 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
         },
       };
     case "NAME":
-      console.log({ id, type, fieldResponse })
+      // console.log({ id, type, fieldResponse })
       // const nameInputs = inputs.map( ({id, label, isHidden }, index) => {
       //   console.log({ id, label, index})
       //   return {
@@ -58,7 +58,7 @@ const formatter = ({ id, fieldResponse, type, inputs }) => {
       inputs.forEach( ({ label, isHidden }) => {
         nameInputs[`${label}`] = fieldResponse
       })
-      console.log({nameInputs})
+      // console.log({nameInputs})
       // return {
       //   nameValues: nameInputs
       // }

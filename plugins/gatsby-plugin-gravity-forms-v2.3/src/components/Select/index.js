@@ -8,7 +8,7 @@ import { valueToLowerCase } from "../../utils/helpers";
 
 const Select = ({ fieldData, name, ...wrapProps }) => {
   const { choices, cssClass, isRequired, size } = fieldData;
-  console.log({fieldData})
+  //console.log({fieldData})
   const options = JSON.parse(choices);
 
   const {
