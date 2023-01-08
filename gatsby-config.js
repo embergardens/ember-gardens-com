@@ -132,5 +132,18 @@ module.exports = {
 			},
     },
 
+    // Google Analytics ===================================
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          'G-BKHS7G3EV3'
+        ],
+        pluginConfig: {
+          head: true, // places script in <head> instead of bottom of <body>
+        }
+      }
+    }
+
   ],
 }
