@@ -16,7 +16,8 @@ module.exports = {
   },
   plugins: [
     // Gatsby Cloud ====================================
-    `gatsby-plugin-gatsby-cloud`,
+    `gatsby-plugin-gatsby-cloud`, // deprecated as of October 1, 2023 -> moved to Netlify
+    `gatsby-plugin-netlify`,
 
     // Wordpress =======================================
     // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-source-wordpress/docs/plugin-options.md ======
